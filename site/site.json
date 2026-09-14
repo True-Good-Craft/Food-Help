@@ -18,15 +18,15 @@
   "operator": {
     "name": "True Good Craft",
     "url": "https://truegoodcraft.ca",
-    "statement": "A community food-resource directory maintained by True Good Craft."
+    "statement": "An independent community resource by True Good Craft Inc.\nNot an official City of Kingston service."
   },
   "corrections": {
     "email": "jamie@truegoodcraft.ca"
   },
   "help_contact": {
-    "label": "Call 2-1-1 for additional local help",
+    "label": "Call 2-1-1",
     "phone": "211",
-    "description": "Ontario 211 can help identify community and social services.",
+    "description": "Call 2-1-1 for help finding services. Free and confidential, 24 hours a day.",
     "source_url": "https://211ontario.ca/",
     "checked_on": "2026-09-04"
   },
@@ -37,6 +37,13 @@
   },
   "review": {
     "interval_days": 30
+  },
+  "presentation": {
+    "introduction": "Find a meal or groceries. See where to go, when to visit, and what to bring.",
+    "category_groups": [
+      { "id": "meals", "label": "Meals", "categories": ["prepared_meals"] },
+      { "id": "groceries", "label": "Groceries", "categories": ["groceries", "food_banks_pantries"] }
+    ]
   },
   "location": {
     "enabled": true
@@ -56,4 +63,3 @@
   },
   "software_source_url": "https://github.com/True-Good-Craft/Food-Help"
 }
-

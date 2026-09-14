@@ -21,6 +21,7 @@
 | `indexing.enabled` | No | Explicitly true to allow indexing in a production build |
 | `location.enabled` | No | Enable optional, in-memory approximate distance sorting |
 | `branding` | No | Local logo, 192px/512px PNG icons, and small color-token overrides |
+| `presentation` | No | Optional introduction text and category button groups; resource facts remain in the dataset |
 | `jurisdiction` | No | Reviewed date warnings and the date through which that list has been reviewed |
 | `analytics` | No | Explicit optional collection boundary, described below |
 | `public_usage` | No | Enable a local sanitized aggregate file; independent of collection |
@@ -33,6 +34,10 @@ For French, add `src/copy/fr.ts` against the English pack’s key contract, sele
 Branding files must live in `site/assets/` and are copied with content-hashed filenames. Supply all three overrides together. Icons must be actual 192×192 and 512×512 PNGs. SVG logos must be passive and self-contained. Optional colors are six-digit hex `primary`, `background`, and `text`; the operator deployment’s accessibility test checks the result. Fonts remain local with their licence.
 
 Jurisdiction configuration contains `coverage_through` and `warning_dates` entries with date, note, source URL and checked date. There is no automatic national holiday library. A local warning suppresses an inferred weekly status unless a provider has a confirmed exception for that date. Expired coverage yields uncertainty. Do not assume that a public holiday means a provider is closed.
+
+The directory title derives from `community.name`. `presentation.introduction` overrides the generic introductory sentence. Optional `presentation.category_groups` entries have a unique `id`, a short `label`, and one or more existing taxonomy `categories`. For example, a “Take-home food” button can include both `groceries` and `food_banks_pantries`. Groups without published resources are hidden. Without configured groups, buttons are generated from the categories present. The built-in “All food help” option always includes all published resources, even categories outside the configured groups; do not define an `all` group yourself. Grouping changes discovery, never resource classification or evidence.
+
+The compact header and help panel use `help_contact.label` and `help_contact.description`; keep the label brief. `operator.statement` supports plain-text line breaks in the footer. These are reviewed public deployment copy, not HTML templates.
 
 ## Optional analytics
 

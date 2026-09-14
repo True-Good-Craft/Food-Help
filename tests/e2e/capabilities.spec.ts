@@ -16,12 +16,14 @@ test('the operator deployment itself passes browsing and accessibility checks', 
 });
 test('analytics adapter is opt-in, context-free, and independent of public aggregates', async ({ browser }) => {
   const server = await serve({ root: 'artifacts/analytics', port: 0 }); const origin = `http://127.0.0.1:${(server.address() as { port: number }).port}`;
-  const context = await browser.newContext(), events: unknown[] = [];
+  // WebKit does not reliably intercept requests made from worker-controlled pages.
+  // Exercise the adapter with a blocked worker; its lifecycle is covered separately.
+  const context = await browser.newContext({ serviceWorkers: 'block' }), events: unknown[] = [];
   try {
     await context.route('https://metrics.example.invalid/**', async route => { if (route.request().method() === 'POST') events.push(route.request().postDataJSON()); await route.fulfill({ status: 204, headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'content-type' } }); });
     const page = await context.newPage(); await page.goto(`${origin}/privacy/`); expect(events).toEqual([]);
     await page.locator('#analytics-preference').check(); await page.goto(origin); await expect.poll(() => events.length).toBe(1); expect(events[0]).toEqual({ deployment: 'exampleville', event: 'page_start' });
-    await page.locator('#search').fill('sensitive search'); await page.locator('#category').selectOption('community_fridges'); expect(events).toHaveLength(1);
+    await page.locator('#search').fill('sensitive search'); await page.locator('[data-category="community_fridges"]').click(); expect(events).toHaveLength(1);
     await page.goto(`${origin}/usage/`); await expect(page.locator('main')).toContainText('Page starts'); await expect(page.locator('main')).toContainText('Unavailable'); await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,follow');
     await page.goto(`${origin}/privacy/`); await page.locator('#analytics-preference').uncheck(); const count = events.length; await page.goto(origin); expect(events).toHaveLength(count);
     await context.addInitScript(() => { Object.defineProperty(navigator, 'globalPrivacyControl', { get: () => true }); });

@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MPL-2.0
 import { validateSite, validateSource, validatePublic, validateUsage } from '../.generated/validators.js';
 import type { Site, Dataset, PublicDataset, Resource, Usage } from './types.ts';
+import { copy } from './copy/en.ts';
 
 function requireValid(condition: unknown, message: string): asserts condition { if (!condition) throw new Error(message); }
 export function validDate(value: string): boolean { return /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value; }
@@ -23,6 +24,13 @@ export function assertSite(value: unknown): asserts value is Site {
   requireValid(new URL(site.canonical_origin).origin === site.canonical_origin, 'canonical_origin must be an HTTPS origin without a path or trailing slash');
   requireValid(site.language === 'en' && site.text_direction === 'ltr', 'v1 ships English UI; add a reviewed copy pack before enabling another UI language');
   new Intl.DateTimeFormat(site.locale).format();
+  if (site.presentation?.category_groups) {
+    unique(site.presentation.category_groups.map(group => group.id), 'category group IDs');
+    for (const group of site.presentation.category_groups) {
+      requireValid(group.id !== 'all', 'The all category group is built in');
+      requireValid(group.categories.every(category => Object.hasOwn(copy.categories, category)), 'Unknown category in presentation group');
+    }
+  }
   if (site.analytics?.enabled) {
     requireValid(site.analytics.endpoint && site.analytics.collection_mode && site.analytics.disclosure, 'Enabled analytics requires endpoint, collection_mode and disclosure');
     const endpoint = new URL(site.analytics.endpoint); requireValid(!endpoint.search && !endpoint.hash, 'Analytics endpoint cannot contain query or fragment');
