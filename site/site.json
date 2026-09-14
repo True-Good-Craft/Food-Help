@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "deployment_id": "exampleville",
+  "community": {
+    "name": "Exampleville",
+    "locality": "Exampleville",
+    "region": "Exampleshire",
+    "country": "GB"
+  },
+  "site_name": "Exampleville Food Help",
+  "short_name": "Food Help",
+  "description": "A fictional demonstration of a local food-access directory. These example services do not exist.",
+  "language": "en",
+  "locale": "en-GB",
+  "text_direction": "ltr",
+  "time_zone": "Europe/London",
+  "canonical_origin": "https://exampleville.example.invalid",
+  "operator": {
+    "name": "Example Community Volunteers",
+    "statement": "A fictional community directory demonstrating Food Help."
+  },
+  "corrections": {
+    "email": "corrections@example.invalid"
+  },
+  "help_contact": null,
+  "emergency_contact": null,
+  "review": {
+    "interval_days": 30
+  },
+  "location": {
+    "enabled": true
+  },
+  "indexing": {
+    "enabled": false
+  },
+  "analytics": {
+    "enabled": false
+  },
+  "public_usage": {
+    "enabled": false
+  },
+  "example_content": true,
+  "data_rights": {
+    "statement": "Fictional example data created for Food Help; dedicated to the public domain under CC0.",
+    "license": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  }
+}

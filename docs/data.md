@@ -1,0 +1,43 @@
+# Reviewed resource data
+
+`site/resources.json` is authoritative. Generated `/data/v1/resources.json` must never be edited. Food Help’s `format: "food-help"`, `schema_version: 1` distinguishes it from other projects’ version numbering.
+
+The dataset has a stable UUID `dataset_id`, `content_language`, `taxonomy_version: 1`, organizations and resources. Organizations have stable slug IDs, names and optional descriptions, official URLs and content language. A resource references `organization_id`; locations are inline to keep small-directory authoring manageable. Preserve IDs through name changes. Do not recycle withdrawn IDs for unrelated services. V1 URLs use the stable resource ID directly.
+
+Use the example as a shape guide. Replace it with reviewed facts and a new dataset UUID. Empty arrays are allowed for an initially empty directory. Never publish synthetic contacts, coordinates or fictional records under a real community’s identity.
+
+## Taxonomy and scope
+
+The fixed v1 categories are `prepared_meals`, `food_banks_pantries`, `groceries`, `community_fridges`, `community_markets`, `community_gardens`, `food_delivery`, `food_access_support`, and `other_food_access`. A service can have several categories. `cost` independently describes free, low-cost, subsidized, mixed or unknown pricing, with useful public wording.
+
+Every resource needs an evidence-supported `food_access_purpose`. Ordinary commercial retail does not qualify merely because it sells food. A retailer’s independently reviewed subsidized programme may qualify as a service. This is a human editorial decision; a validator cannot prove public benefit.
+
+## Facts and uncertainty
+
+Each resource carries name, summary, category, food-access purpose, eligibility, limitations, before-you-go guidance, evidence, verification, publication status, service condition and updated date. Optional facts include address/coordinates, service area, phone/extension, official URL, timezone, service languages, cost and temporary notices. `content_language` describes the text; `service_languages` describes service provision, not translations.
+
+Access rules are exactly `yes`, `no`, or `unknown` for walk-ins, appointments, registration and identification. Known access rules need supporting evidence. An empty guidance list means unspecified, not “no restrictions.” Do not infer eligibility or identification requirements from missing information.
+
+Keep these states separate:
+
+- `publication_status`: `draft`, `published`, `withdrawn` (editorial decision).
+- `service_condition`: `active`, `temporarily_changed`, `temporarily_unavailable`, `closed` (service condition).
+- `verification.state`: `confirmed`, `partially_confirmed`, `needs_review` (review confidence).
+
+Only published, non-closed records enter public JSON, HTML or discovery output. Temporarily unavailable services remain useful published pages with clear wording. Closed and withdrawn records do not become hidden historical public snapshots; preserve private operator records outside this repository if necessary. Removing a service creates a real 404, not a misleading directory redirect.
+
+## Schedules and evidence
+
+Schedule kind is weekly, dated, by-arrangement or unknown. Weekly weekdays use ISO 1=Monday through 7=Sunday. Each day is published, closed or unknown; a missing day is unknown. Intervals use local `HH:MM`, an exclusive closing time and explicit `closes_next_day` for overnight service. Optional valid date ranges, explicit date exceptions, confirmation and evidence references are preserved. A confirmed empty exception means closed for that whole date and overrides overnight carry-in. Unconfirmed exceptions remain unknown. Never infer live availability, stock or guaranteed access.
+
+Evidence has a stable ID, source kind, checked date, public note, supported field paths and a source URL (direct confirmation may omit a URL). Keep private names, correspondence and personal details out of public evidence notes. Verification records give the review date, method and state. Evidence review dates cannot be after verification, and verification cannot be after the resource’s updated date. Referenced sources must exist. Automation validates these relationships; it does not validate the truth of claims or automatically contact providers.
+
+Temporary notices include text, start/end dates and evidence references. Dates remain visible in static/offline copies, including notices that have since expired. Do not silently portray an old notice as a current alert. Correct and rebuild when facts change. A public copy can remain in a visitor’s offline storage after withdrawal; removing it from the server cannot erase downloaded copies.
+
+Generated public fields are `deployment_id`, `dataset_version` (content digest), `compatibility_id` (deployment/configuration compatibility digest) and `data_updated_on` (latest published resource update). They are forbidden in source. Unreferenced organizations and unpublished resources never enter the public projection. The public dataset carries evidence; it is not an assertion of live availability. V1 limits its serialized size to 5 MB.
+
+## Later Kingston conversion
+
+Treat the verified Kingston source dataset, not a stale generated public file, as the input. Map legacy meals to `prepared_meals`; review grocery records individually for pantry versus groceries. Preserve stable IDs and evidence, group provider identity into organizations, convert known/unknown access explicitly, and split editorial/service/review status. Retain IANA timezones and explicit schedule uncertainty. Do not increase confidence during conversion. The Food Help format discriminator and new dataset ID make the public-contract transition explicit.
+
+Conversion is a separately reviewed deployment step. The repository includes only a synthetic Kingston-like test fixture. No provider facts, production domain redirects or installed-app migration are performed by this project’s setup command.

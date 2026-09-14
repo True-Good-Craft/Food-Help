@@ -1,0 +1,31 @@
+{
+  "name": "food-help",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MPL-2.0",
+  "engines": {
+    "node": ">=24.12 <25"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.ts",
+    "dev": "node scripts/build.ts --dev",
+    "build": "node scripts/build.ts",
+    "preview": "node scripts/serve.ts",
+    "contracts": "node scripts/lib/contracts.ts",
+    "typecheck": "npm run contracts && tsc --noEmit",
+    "test": "npm run contracts && node --test tests/unit/*.test.ts tests/contracts/*.test.ts",
+    "test:e2e": "playwright test",
+    "check": "node scripts/check.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1",
+    "@types/node": "24.13.4",
+    "ajv": "8.20.0",
+    "axe-core": "4.13.0",
+    "json-schema-to-typescript": "15.0.4",
+    "parse5": "8.0.1",
+    "typescript": "7.0.2",
+    "vite": "8.2.2"
+  }
+}
