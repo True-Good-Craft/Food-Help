@@ -1,66 +1,90 @@
 {
   "format": "food-help",
   "schema_version": 1,
-  "dataset_id": "b0e85423-f924-4e79-9495-1d9f9c13252b",
+  "dataset_id": "774da8bd-b838-4d83-aa3b-a7ae98c7725c",
   "content_language": "en",
   "taxonomy_version": 1,
   "organizations": [
     {
-      "id": "example-community",
-      "name": "Example Community Volunteers"
+      "id": "martha-s-table",
+      "name": "Martha’s Table"
+    },
+    {
+      "id": "st-vincent-de-paul-society-of-kingston",
+      "name": "St. Vincent de Paul Society of Kingston"
+    },
+    {
+      "id": "partners-in-mission-food-bank",
+      "name": "Partners in Mission Food Bank"
+    },
+    {
+      "id": "st-mary-s-cathedral",
+      "name": "St. Mary’s Cathedral"
+    },
+    {
+      "id": "outreach-st-george-s-kingston",
+      "name": "Outreach St. George’s Kingston"
+    },
+    {
+      "id": "the-salvation-army-kingston-citadel",
+      "name": "The Salvation Army — Kingston Citadel"
+    },
+    {
+      "id": "kingston-alliance-church",
+      "name": "Kingston Alliance Church"
     }
   ],
   "resources": [
     {
-      "id": "community-table",
-      "organization_id": "example-community",
-      "name": "Example Community Table",
-      "summary": "Fictional example: practical food support from a community-run program.",
+      "id": "marthas-table",
+      "organization_id": "martha-s-table",
+      "name": "Martha’s Table",
+      "summary": "Free breakfast, lunch and dinner on weekdays, with takeout lunch on weekends.",
       "categories": [
         "prepared_meals"
       ],
-      "food_access_purpose": "Demonstrates a reviewed food-access service, not an ordinary commercial retailer.",
+      "food_access_purpose": "Free breakfast, lunch and dinner on weekdays, with takeout lunch on weekends.",
       "location": {
-        "description": "Fictional location; do not travel here.",
+        "description": "629 Princess Street, Kingston, ON K7L 1E2",
         "address": {
-          "street": "1 Example Lane",
-          "locality": "Exampleville",
-          "region": "Exampleshire",
-          "country": "GB",
-          "postal_code": "EX1 1EX"
+          "street": "629 Princess Street",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K7L 1E2",
+          "neighbourhood": "Princess & Nelson"
         },
         "coordinates": {
-          "latitude": 52.1,
-          "longitude": -1.1
+          "latitude": 44.237109,
+          "longitude": -76.5015428
         }
       },
-      "official_url": "https://providers.example.invalid/community-table",
+      "phone": "+16135460320",
+      "official_url": "https://marthastable.ca/plan-your-visit/",
+      "time_zone": "America/Toronto",
       "access": {
         "walk_in": "yes",
         "appointment_required": "no",
-        "registration_required": "unknown",
-        "identification_required": "unknown",
+        "registration_required": "no",
+        "identification_required": "no",
         "details": [
-          "This is example information. Check access arrangements with the operator."
+          "Drop in during meal times. No documents required."
         ]
       },
       "eligibility": [
-        "Example: community residents."
+        "Everyone is welcome for meals."
       ],
       "limitations": [
-        "Availability depends on the provider; these records are fictional."
+        "Weekend service is takeout lunch only."
       ],
       "before_you_go": [
-        "Do not use this fictional listing to seek food."
+        "Takeout is at the rear of the building.",
+        "For meal delivery, call 343-580-1519 to ask about arrangements."
       ],
-      "cost": {
-        "state": "free",
-        "description": "Fictional example of a free service."
-      },
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Example service hours; not live availability.",
+        "note": "Weekdays: breakfast 9–11, lunch noon–2, dinner 3–5. Weekend lunch: takeout only.",
         "weekly": [
           {
             "day": 1,
@@ -68,6 +92,14 @@
             "intervals": [
               {
                 "opens": "09:00",
+                "closes": "11:00"
+              },
+              {
+                "opens": "12:00",
+                "closes": "14:00"
+              },
+              {
+                "opens": "15:00",
                 "closes": "17:00"
               }
             ]
@@ -78,6 +110,14 @@
             "intervals": [
               {
                 "opens": "09:00",
+                "closes": "11:00"
+              },
+              {
+                "opens": "12:00",
+                "closes": "14:00"
+              },
+              {
+                "opens": "15:00",
                 "closes": "17:00"
               }
             ]
@@ -88,6 +128,14 @@
             "intervals": [
               {
                 "opens": "09:00",
+                "closes": "11:00"
+              },
+              {
+                "opens": "12:00",
+                "closes": "14:00"
+              },
+              {
+                "opens": "15:00",
                 "closes": "17:00"
               }
             ]
@@ -98,6 +146,14 @@
             "intervals": [
               {
                 "opens": "09:00",
+                "closes": "11:00"
+              },
+              {
+                "opens": "12:00",
+                "closes": "14:00"
+              },
+              {
+                "opens": "15:00",
                 "closes": "17:00"
               }
             ]
@@ -108,113 +164,543 @@
             "intervals": [
               {
                 "opens": "09:00",
+                "closes": "11:00"
+              },
+              {
+                "opens": "12:00",
+                "closes": "14:00"
+              },
+              {
+                "opens": "15:00",
                 "closes": "17:00"
               }
             ]
           },
           {
             "day": 6,
-            "state": "unknown",
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "12:00",
+                "closes": "14:00"
+              }
+            ]
+          },
+          {
+            "day": 7,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "12:00",
+                "closes": "14:00"
+              }
+            ]
+          }
+        ],
+        "exceptions": [
+          {
+            "date": "2026-09-07",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for Labour Day, according to the provider.",
+            "evidence_ids": [
+              "source-1"
+            ]
+          },
+          {
+            "date": "2026-10-12",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for Thanksgiving, according to the provider.",
+            "evidence_ids": [
+              "source-1"
+            ]
+          },
+          {
+            "date": "2026-12-23",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "13:00",
+                "closes": "16:00"
+              }
+            ],
+            "note": "Holiday meal: dine-in 1–4 p.m.; takeout 1–2 p.m. only.",
+            "evidence_ids": [
+              "source-1"
+            ]
+          },
+          {
+            "date": "2026-12-24",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "12:00"
+              }
+            ],
+            "note": "Holiday brunch, dine-in only.",
+            "evidence_ids": [
+              "source-1"
+            ]
+          },
+          {
+            "date": "2026-12-25",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for Christmas Day.",
+            "evidence_ids": [
+              "source-1"
+            ]
+          },
+          {
+            "date": "2026-12-26",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for Boxing Day.",
+            "evidence_ids": [
+              "source-1"
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "source-1"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "source-1",
+          "source_kind": "provider",
+          "url": "https://marthastable.ca/plan-your-visit/",
+          "checked_on": "2026-09-04",
+          "note": "Meal windows, weekend takeout, holiday closures and delivery contact.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "official_url",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "schedule"
+          ]
+        },
+        {
+          "id": "source-2",
+          "source_kind": "referral_directory",
+          "url": "https://211ontario.ca/service/68954791/marthas-table-marthas-table/",
+          "checked_on": "2026-09-04",
+          "note": "No fee or documents; drop-in access. Map link supplies provider coordinates. Provider page supersedes 211’s incomplete weekend hours.",
+          "supports": [
+            "name",
+            "location",
+            "phone",
+            "access.walk_in",
+            "access.appointment_required",
+            "access.registration_required",
+            "access.identification_required"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-09-04",
+        "method": "multiple_sources",
+        "state": "confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-09-04"
+    },
+    {
+      "id": "loretta-meal-program",
+      "organization_id": "st-vincent-de-paul-society-of-kingston",
+      "name": "Loretta Meal Program",
+      "summary": "Free dine-in meal at St. Vincent de Paul, with coffee and other beverages.",
+      "categories": [
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Free dine-in meal at St. Vincent de Paul, with coffee and other beverages.",
+      "location": {
+        "description": "595 Bagot Street, Kingston, ON K7K 3E2",
+        "address": {
+          "street": "595 Bagot Street",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K7K 3E2",
+          "neighbourhood": "Bagot Street"
+        },
+        "coordinates": {
+          "latitude": 44.24254,
+          "longitude": -76.4912632
+        }
+      },
+      "phone": "+16137668432",
+      "official_url": "https://svdpkingston.com/services/loretta-meal-program/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "yes",
+        "appointment_required": "no",
+        "registration_required": "no",
+        "identification_required": "unknown",
+        "details": [
+          "No registration is required.",
+          "The provider does not list an ID requirement for meals."
+        ]
+      },
+      "eligibility": [
+        "Everyone is welcome."
+      ],
+      "limitations": [
+        "Dining hall hours are longer than meal service; the times above are for food."
+      ],
+      "before_you_go": [
+        "Use the new location at 595 Bagot Street.",
+        "Call to check holiday service."
+      ],
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Meals: Monday–Friday, 10 a.m.–1 p.m. The hall is open 9 a.m.–2:30 p.m.",
+        "weekly": [
+          {
+            "day": 1,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "13:00"
+              }
+            ]
+          },
+          {
+            "day": 2,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "13:00"
+              }
+            ]
+          },
+          {
+            "day": 3,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "13:00"
+              }
+            ]
+          },
+          {
+            "day": 4,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "13:00"
+              }
+            ]
+          },
+          {
+            "day": 5,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "13:00"
+              }
+            ]
+          },
+          {
+            "day": 6,
+            "state": "closed",
             "intervals": []
           },
           {
             "day": 7,
-            "state": "unknown",
+            "state": "closed",
             "intervals": []
           }
         ],
         "exceptions": [],
         "evidence_ids": [
-          "example-source"
+          "source-1"
         ]
       },
       "evidence": [
         {
-          "id": "example-source",
+          "id": "source-1",
           "source_kind": "provider",
-          "url": "https://providers.example.invalid/about",
-          "checked_on": "2026-09-01",
-          "note": "Fictional evidence illustrating the data contract; no real provider verification is claimed.",
+          "url": "https://svdpkingston.com/services/loretta-meal-program/",
+          "checked_on": "2026-09-04",
+          "note": "Provider confirms dine-in meals 10 a.m.–1 p.m., weekdays; no registration or charge; everyone welcome.",
           "supports": [
             "name",
             "summary",
             "food_access_purpose",
-            "location",
+            "official_url",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "schedule",
             "access.walk_in",
             "access.appointment_required",
-            "eligibility",
-            "cost",
-            "schedule"
+            "access.registration_required"
+          ]
+        },
+        {
+          "id": "source-2",
+          "source_kind": "provider",
+          "url": "https://svdpkingston.com/services/brit-smith-social-market/",
+          "checked_on": "2026-09-04",
+          "note": "Shared contact address and provider map: 595 Bagot Street, K7K 3E2. Older Stephen Street listings must not be used.",
+          "supports": [
+            "name",
+            "location",
+            "phone"
           ]
         }
       ],
       "verification": {
-        "reviewed_on": "2026-09-01",
-        "method": "provider_source",
+        "reviewed_on": "2026-09-04",
+        "method": "multiple_sources",
         "state": "confirmed"
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-09-01"
+      "updated_on": "2026-09-04"
     },
     {
-      "id": "neighbourhood-pantry",
-      "organization_id": "example-community",
-      "name": "Example Neighbourhood Pantry",
-      "summary": "Fictional example: practical food support from a community-run program.",
+      "id": "brit-smith-social-market",
+      "organization_id": "st-vincent-de-paul-society-of-kingston",
+      "name": "Brit Smith Social Market",
+      "summary": "A registered food program offering two days of groceries each month, with household-size points.",
+      "categories": [
+        "groceries"
+      ],
+      "food_access_purpose": "A registered food program offering two days of groceries each month, with household-size points.",
+      "location": {
+        "description": "595 Bagot Street, Kingston, ON K7K 3E2",
+        "address": {
+          "street": "595 Bagot Street",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K7K 3E2",
+          "neighbourhood": "Bagot Street"
+        },
+        "coordinates": {
+          "latitude": 44.24254,
+          "longitude": -76.4912632
+        }
+      },
+      "phone": "+16137668432",
+      "official_url": "https://svdpkingston.com/services/brit-smith-social-market/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "unknown",
+        "appointment_required": "unknown",
+        "registration_required": "yes",
+        "identification_required": "yes",
+        "details": [
+          "Register with ID for each household member and a current address.",
+          "No income statement or pay stub is required.",
+          "Call to ask how to register and whether you need a booked visit."
+        ]
+      },
+      "eligibility": [
+        "Community members may register; no income qualifying criteria are published."
+      ],
+      "limitations": [
+        "Two days of food, once a month.",
+        "Food selections depend on stock and points for household size."
+      ],
+      "before_you_go": [
+        "Ask about registration before making a trip.",
+        "Call to check holiday service."
+      ],
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Published service hours; this is not live availability.",
+        "weekly": [
+          {
+            "day": 1,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "14:30"
+              }
+            ]
+          },
+          {
+            "day": 2,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "14:30"
+              }
+            ]
+          },
+          {
+            "day": 3,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "14:30"
+              }
+            ]
+          },
+          {
+            "day": 4,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "14:30"
+              }
+            ]
+          },
+          {
+            "day": 5,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "14:30"
+              }
+            ]
+          },
+          {
+            "day": 6,
+            "state": "closed",
+            "intervals": []
+          },
+          {
+            "day": 7,
+            "state": "closed",
+            "intervals": []
+          }
+        ],
+        "exceptions": [],
+        "evidence_ids": [
+          "source-1"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "source-1",
+          "source_kind": "provider",
+          "url": "https://svdpkingston.com/services/brit-smith-social-market/",
+          "checked_on": "2026-09-04",
+          "note": "Provider confirms hours, registration, household identification, current address, monthly limit and provider map.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "official_url",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "schedule",
+            "location",
+            "phone",
+            "access.registration_required",
+            "access.identification_required"
+          ]
+        },
+        {
+          "id": "source-2",
+          "source_kind": "local_authority",
+          "url": "https://www.cityofkingston.ca/community-supports/community-supports-and-well-being/food-supports/",
+          "checked_on": "2026-09-04",
+          "note": "Confirms current Bagot Street location and public telephone.",
+          "supports": [
+            "name",
+            "location",
+            "phone"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-09-04",
+        "method": "multiple_sources",
+        "state": "confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-09-04"
+    },
+    {
+      "id": "partners-in-mission",
+      "organization_id": "partners-in-mission-food-bank",
+      "name": "Partners in Mission Food Bank",
+      "summary": "Free groceries by appointment, usually enough for about five to seven days.",
       "categories": [
         "food_banks_pantries"
       ],
-      "food_access_purpose": "Demonstrates a reviewed food-access service, not an ordinary commercial retailer.",
+      "food_access_purpose": "Free groceries by appointment, usually enough for about five to seven days.",
       "location": {
-        "description": "Fictional location; do not travel here.",
+        "description": "4 Harvey Street, Kingston, ON K7K 5B9",
         "address": {
-          "street": "1 Example Lane",
-          "locality": "Exampleville",
-          "region": "Exampleshire",
-          "country": "GB",
-          "postal_code": "EX1 1EX"
+          "street": "4 Harvey Street",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K7K 5B9",
+          "neighbourhood": "North Kingston"
         },
         "coordinates": {
-          "latitude": 52.1,
-          "longitude": -1.1
+          "latitude": 44.2521562,
+          "longitude": -76.4938664
         }
       },
-      "official_url": "https://providers.example.invalid/neighbourhood-pantry",
+      "phone": "+16135444100",
+      "official_url": "https://www.kingstonfoodbank.ca/get-assistance/",
+      "time_zone": "America/Toronto",
       "access": {
         "walk_in": "no",
         "appointment_required": "yes",
-        "registration_required": "unknown",
-        "identification_required": "unknown",
+        "registration_required": "yes",
+        "identification_required": "yes",
         "details": [
-          "This is example information. Check access arrangements with the operator."
+          "Call to book a first intake appointment. No referral is needed.",
+          "Bring ID for each household member if available; call if you do not have it.",
+          "No proof of income is required. Proof of address is helpful but not always required."
         ]
       },
       "eligibility": [
-        "Example: community residents."
+        "Kingston and the Islands, Loyalist Township, and surrounding areas described by the provider; call to confirm your address."
       ],
       "limitations": [
-        "Availability depends on the provider; these records are fictional."
+        "Once per month, by appointment.",
+        "In-person pickup; delivery is not currently offered."
       ],
       "before_you_go": [
-        "Do not use this fictional listing to seek food."
+        "Book by phone, Monday–Friday 8:30–noon or 1–4:30.",
+        "The displayed food hours are shopping appointments, not walk-in or phone hours."
       ],
-      "cost": {
-        "state": "free",
-        "description": "Fictional example of a free service."
-      },
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Example service hours; not live availability.",
+        "note": "Booked shopping visits: 9:15–11:30 a.m. and 1:15–3:30 p.m., weekdays.",
         "weekly": [
           {
             "day": 1,
             "state": "published",
             "intervals": [
               {
-                "opens": "09:00",
-                "closes": "17:00"
+                "opens": "09:15",
+                "closes": "11:30"
+              },
+              {
+                "opens": "13:15",
+                "closes": "15:30"
               }
             ]
           },
@@ -223,8 +709,12 @@
             "state": "published",
             "intervals": [
               {
-                "opens": "09:00",
-                "closes": "17:00"
+                "opens": "09:15",
+                "closes": "11:30"
+              },
+              {
+                "opens": "13:15",
+                "closes": "15:30"
               }
             ]
           },
@@ -233,8 +723,12 @@
             "state": "published",
             "intervals": [
               {
-                "opens": "09:00",
-                "closes": "17:00"
+                "opens": "09:15",
+                "closes": "11:30"
+              },
+              {
+                "opens": "13:15",
+                "closes": "15:30"
               }
             ]
           },
@@ -243,8 +737,12 @@
             "state": "published",
             "intervals": [
               {
-                "opens": "09:00",
-                "closes": "17:00"
+                "opens": "09:15",
+                "closes": "11:30"
+              },
+              {
+                "opens": "13:15",
+                "closes": "15:30"
               }
             ]
           },
@@ -253,589 +751,680 @@
             "state": "published",
             "intervals": [
               {
-                "opens": "09:00",
-                "closes": "17:00"
+                "opens": "09:15",
+                "closes": "11:30"
+              },
+              {
+                "opens": "13:15",
+                "closes": "15:30"
               }
             ]
           },
           {
             "day": 6,
-            "state": "unknown",
+            "state": "closed",
             "intervals": []
           },
           {
             "day": 7,
-            "state": "unknown",
+            "state": "closed",
+            "intervals": []
+          }
+        ],
+        "exceptions": [
+          {
+            "date": "2026-09-07",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for Labour Day; provider closes on holidays.",
+            "evidence_ids": [
+              "source-1"
+            ]
+          },
+          {
+            "date": "2026-10-12",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for Thanksgiving; provider closes on holidays.",
+            "evidence_ids": [
+              "source-1"
+            ]
+          },
+          {
+            "date": "2026-12-25",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for Christmas; provider closes on holidays.",
+            "evidence_ids": [
+              "source-1"
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "source-1"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "source-1",
+          "source_kind": "provider",
+          "url": "https://www.kingstonfoodbank.ca/get-assistance/",
+          "checked_on": "2026-09-04",
+          "note": "Provider shopping appointments, intake, ID guidance, service area, monthly limit, no delivery and holiday closure; service times supersede 211.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "official_url",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "schedule",
+            "access.walk_in",
+            "access.appointment_required",
+            "access.registration_required",
+            "access.identification_required"
+          ]
+        },
+        {
+          "id": "source-2",
+          "source_kind": "referral_directory",
+          "url": "https://211ontario.ca/service/68953414/partners-in-mission-food-bank-food-bank/",
+          "checked_on": "2026-09-04",
+          "note": "Corroborates new 4 Harvey Street address and phone; published map coordinates.",
+          "supports": [
+            "name",
+            "location",
+            "phone"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-09-04",
+        "method": "multiple_sources",
+        "state": "confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-09-04"
+    },
+    {
+      "id": "st-marys-drop-in",
+      "organization_id": "st-mary-s-cathedral",
+      "name": "St. Mary’s Drop-In Centre",
+      "summary": "Free light meals and snacks during weekday afternoon drop-in hours.",
+      "categories": [
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Free light meals and snacks during weekday afternoon drop-in hours.",
+      "location": {
+        "description": "260 Brock Street, Kingston, ON K7L 1S4",
+        "address": {
+          "street": "260 Brock Street",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K7L 1S4",
+          "neighbourhood": "Brock & Clergy"
+        },
+        "coordinates": {
+          "latitude": 44.23137,
+          "longitude": -76.48904
+        }
+      },
+      "phone": "+16135465521",
+      "phone_extension": "3",
+      "official_url": "https://stmaryscathedral.ca/dropincentre/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "yes",
+        "appointment_required": "no",
+        "registration_required": "no",
+        "identification_required": "no",
+        "details": [
+          "Drop in during service hours. No documents required."
+        ]
+      },
+      "eligibility": [
+        "No eligibility restrictions are listed."
+      ],
+      "limitations": [
+        "Light meals and snacks; offerings may vary."
+      ],
+      "before_you_go": [
+        "Use the Parish Centre at 260 Brock Street.",
+        "Call extension 3 for the drop-in centre and holiday arrangements."
+      ],
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Published service hours; this is not live availability.",
+        "weekly": [
+          {
+            "day": 1,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "13:00",
+                "closes": "15:30"
+              }
+            ]
+          },
+          {
+            "day": 2,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "13:00",
+                "closes": "15:30"
+              }
+            ]
+          },
+          {
+            "day": 3,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "13:00",
+                "closes": "15:30"
+              }
+            ]
+          },
+          {
+            "day": 4,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "13:00",
+                "closes": "15:30"
+              }
+            ]
+          },
+          {
+            "day": 5,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "13:00",
+                "closes": "15:30"
+              }
+            ]
+          },
+          {
+            "day": 6,
+            "state": "closed",
+            "intervals": []
+          },
+          {
+            "day": 7,
+            "state": "closed",
             "intervals": []
           }
         ],
         "exceptions": [],
         "evidence_ids": [
-          "example-source"
+          "source-1"
         ]
       },
       "evidence": [
         {
-          "id": "example-source",
+          "id": "source-1",
           "source_kind": "provider",
-          "url": "https://providers.example.invalid/about",
-          "checked_on": "2026-09-01",
-          "note": "Fictional evidence illustrating the data contract; no real provider verification is claimed.",
+          "url": "https://stmaryscathedral.ca/dropincentre/",
+          "checked_on": "2026-09-04",
+          "note": "Current Services section confirms 1–3:30 p.m. weekdays and extension 3; older newsletter copy on the page is historical.",
           "supports": [
             "name",
             "summary",
             "food_access_purpose",
+            "official_url",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "schedule"
+          ]
+        },
+        {
+          "id": "source-2",
+          "source_kind": "referral_directory",
+          "url": "https://211ontario.ca/service/68954074/st-marys-cathedral-drop-in-centre/",
+          "checked_on": "2026-09-04",
+          "note": "Corroborates hours, no fee or documents, unrestricted drop-in, address and coordinates.",
+          "supports": [
+            "name",
             "location",
+            "phone",
             "access.walk_in",
             "access.appointment_required",
-            "eligibility",
-            "cost",
-            "schedule"
+            "access.registration_required",
+            "access.identification_required"
           ]
         }
       ],
       "verification": {
-        "reviewed_on": "2026-09-01",
-        "method": "provider_source",
+        "reviewed_on": "2026-09-04",
+        "method": "multiple_sources",
         "state": "confirmed"
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-09-01"
+      "updated_on": "2026-09-04"
     },
     {
-      "id": "sharing-fridge",
-      "organization_id": "example-community",
-      "name": "Example Sharing Fridge",
-      "summary": "Fictional example: practical food support from a community-run program.",
+      "id": "lunch-by-george",
+      "organization_id": "outreach-st-george-s-kingston",
+      "name": "Lunch by George",
+      "summary": "Free takeaway breakfast and lunch from St. George’s Hall.",
       "categories": [
-        "community_fridges"
+        "prepared_meals"
       ],
-      "food_access_purpose": "Demonstrates a reviewed food-access service, not an ordinary commercial retailer.",
+      "food_access_purpose": "Free takeaway breakfast and lunch from St. George’s Hall.",
       "location": {
-        "description": "Fictional location; do not travel here.",
+        "description": "129 Wellington Street, Kingston, ON K7L 4W5",
         "address": {
-          "street": "1 Example Lane",
-          "locality": "Exampleville",
-          "region": "Exampleshire",
-          "country": "GB",
-          "postal_code": "EX1 1EX"
+          "street": "129 Wellington Street",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K7L 4W5",
+          "neighbourhood": "Downtown Kingston"
         },
         "coordinates": {
-          "latitude": 52.1,
-          "longitude": -1.1
+          "latitude": 44.2296985,
+          "longitude": -76.4833517
         }
       },
-      "official_url": "https://providers.example.invalid/sharing-fridge",
+      "phone": "+16134842984",
+      "official_url": "https://lunchbygeorge.ca/",
+      "time_zone": "America/Toronto",
       "access": {
         "walk_in": "yes",
         "appointment_required": "no",
-        "registration_required": "unknown",
-        "identification_required": "unknown",
+        "registration_required": "no",
+        "identification_required": "no",
         "details": [
-          "This is example information. Check access arrangements with the operator."
+          "Meals are takeaway only.",
+          "Drop-in service; no documents required according to 211."
         ]
       },
       "eligibility": [
-        "Example: community residents."
+        "Anyone needing a meal is welcome."
       ],
       "limitations": [
-        "Availability depends on the provider; these records are fictional."
+        "Published lunch times conflict. Contact the provider before travelling."
       ],
       "before_you_go": [
-        "Do not use this fictional listing to seek food."
+        "Use the Wellington Street entrance.",
+        "Provider lists weekday breakfast 9–10:30 a.m. and lunch noon–1 p.m.; older listings show lunch 11:30–12:30."
       ],
-      "cost": {
-        "state": "free",
-        "description": "Fictional example of a free service."
-      },
       "schedule": {
         "kind": "unknown",
         "confirmed": false,
-        "note": "Ask the operator about arrangements.",
+        "note": "Weekday breakfast and lunch; call to confirm current serving times.",
         "weekly": [],
         "exceptions": [],
         "evidence_ids": [
-          "example-source"
+          "source-1"
         ]
       },
       "evidence": [
         {
-          "id": "example-source",
+          "id": "source-1",
           "source_kind": "provider",
-          "url": "https://providers.example.invalid/about",
-          "checked_on": "2026-09-01",
-          "note": "Fictional evidence illustrating the data contract; no real provider verification is claimed.",
+          "url": "https://lunchbygeorge.ca/",
+          "checked_on": "2026-09-04",
+          "note": "Provider homepage now lists lunch noon–1 p.m., but repeats 11:30–12:30 elsewhere; provider phone is 613-484-2984.",
           "supports": [
             "name",
             "summary",
             "food_access_purpose",
+            "official_url",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "schedule"
+          ]
+        },
+        {
+          "id": "source-2",
+          "source_kind": "provider",
+          "url": "https://lunchbygeorge.ca/279307-2/",
+          "checked_on": "2026-09-04",
+          "note": "Dated August 10, 2026 notice announces changed hours; full notice could not be inspected. No lunch status inferred.",
+          "supports": [
+            "name"
+          ]
+        },
+        {
+          "id": "source-3",
+          "source_kind": "referral_directory",
+          "url": "https://211ontario.ca/service/68953695/outreach-st-georges-kingston-lunch-by-george/",
+          "checked_on": "2026-09-04",
+          "note": "June listing confirms drop-in, no documents, address and map; old lunch hours and phone differ from provider.",
+          "supports": [
+            "name",
             "location",
+            "phone",
             "access.walk_in",
             "access.appointment_required",
-            "eligibility",
-            "cost",
-            "schedule"
+            "access.registration_required",
+            "access.identification_required"
           ]
         }
       ],
       "verification": {
-        "reviewed_on": "2026-09-01",
-        "method": "provider_source",
+        "reviewed_on": "2026-09-04",
+        "method": "multiple_sources",
         "state": "partially_confirmed"
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-09-01"
+      "updated_on": "2026-09-04",
+      "notices": [
+        {
+          "id": "verification-notice",
+          "text": "Lunch hours recently changed. Conflicting published times still need confirmation.",
+          "starts_on": "2026-09-04",
+          "evidence_ids": [
+            "source-1"
+          ]
+        }
+      ]
     },
     {
-      "id": "garden-support",
-      "organization_id": "example-community",
-      "name": "Example Garden Support",
-      "summary": "Fictional example: practical food support from a community-run program.",
+      "id": "salvation-army-pantry",
+      "organization_id": "the-salvation-army-kingston-citadel",
+      "name": "Community Choice Pantry",
+      "summary": "Emergency food assistance. Call Community & Family Services to arrange access to the pantry.",
       "categories": [
-        "community_gardens"
+        "food_banks_pantries"
       ],
-      "food_access_purpose": "Demonstrates a reviewed food-access service, not an ordinary commercial retailer.",
+      "food_access_purpose": "Emergency food assistance. Call Community & Family Services to arrange access to the pantry.",
       "location": {
-        "description": "Fictional location; do not travel here.",
+        "description": "342 Patrick Street, Kingston, ON K7K 6R6",
         "address": {
-          "street": "1 Example Lane",
-          "locality": "Exampleville",
-          "region": "Exampleshire",
-          "country": "GB",
-          "postal_code": "EX1 1EX"
+          "street": "342 Patrick Street",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K7K 6R6",
+          "neighbourhood": "North Kingston"
         },
         "coordinates": {
-          "latitude": 52.1,
-          "longitude": -1.1
+          "latitude": 44.2456961,
+          "longitude": -76.4912101
         }
       },
-      "official_url": "https://providers.example.invalid/garden-support",
+      "phone": "+16135484411",
+      "official_url": "https://sacfs.ca/",
+      "time_zone": "America/Toronto",
       "access": {
-        "walk_in": "yes",
-        "appointment_required": "no",
+        "walk_in": "unknown",
+        "appointment_required": "unknown",
         "registration_required": "unknown",
-        "identification_required": "unknown",
+        "identification_required": "yes",
         "details": [
-          "This is example information. Check access arrangements with the operator."
+          "211 lists ID, income and expense statements for each household member for emergency assistance.",
+          "Call to ask about intake, appointments and pantry collection hours."
         ]
       },
       "eligibility": [
-        "Example: community residents."
+        "Eligibility varies by program; ask about food assistance."
       ],
       "limitations": [
-        "Availability depends on the provider; these records are fictional."
+        "Pantry pickup hours have not been confirmed."
       ],
       "before_you_go": [
-        "Do not use this fictional listing to seek food."
+        "Call before going; office opening hours do not establish food availability."
       ],
-      "cost": {
-        "state": "free",
-        "description": "Fictional example of a free service."
-      },
       "schedule": {
-        "kind": "by_arrangement",
+        "kind": "unknown",
         "confirmed": false,
-        "note": "Ask the operator about arrangements.",
+        "note": "Call for pantry collection times and intake arrangements.",
         "weekly": [],
         "exceptions": [],
         "evidence_ids": [
-          "example-source"
+          "source-1"
         ]
       },
       "evidence": [
         {
-          "id": "example-source",
-          "source_kind": "provider",
-          "url": "https://providers.example.invalid/about",
-          "checked_on": "2026-09-01",
-          "note": "Fictional evidence illustrating the data contract; no real provider verification is claimed.",
+          "id": "source-1",
+          "source_kind": "referral_directory",
+          "url": "https://211ontario.ca/service/69035083/salvation-army-the-community-and-family-services-kingston-citadel/",
+          "checked_on": "2026-09-04",
+          "note": "Confirms pantry, contact, address/map and emergency-assistance documents. Listed hours are administration, not food collection.",
           "supports": [
             "name",
             "summary",
             "food_access_purpose",
+            "official_url",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "schedule",
             "location",
-            "access.walk_in",
-            "access.appointment_required",
-            "eligibility",
-            "cost",
-            "schedule"
+            "phone",
+            "access.identification_required"
           ]
-        }
-      ],
-      "verification": {
-        "reviewed_on": "2026-09-01",
-        "method": "provider_source",
-        "state": "partially_confirmed"
-      },
-      "publication_status": "published",
-      "service_condition": "active",
-      "updated_on": "2026-09-01"
-    },
-    {
-      "id": "delivery-support",
-      "organization_id": "example-community",
-      "name": "Example Delivery Support",
-      "summary": "Fictional example: practical food support from a community-run program.",
-      "categories": [
-        "food_delivery"
-      ],
-      "food_access_purpose": "Demonstrates a reviewed food-access service, not an ordinary commercial retailer.",
-      "official_url": "https://providers.example.invalid/delivery-support",
-      "access": {
-        "walk_in": "yes",
-        "appointment_required": "no",
-        "registration_required": "unknown",
-        "identification_required": "unknown",
-        "details": [
-          "This is example information. Check access arrangements with the operator."
-        ]
-      },
-      "eligibility": [
-        "Example: community residents."
-      ],
-      "limitations": [
-        "Availability depends on the provider; these records are fictional."
-      ],
-      "before_you_go": [
-        "Do not use this fictional listing to seek food."
-      ],
-      "cost": {
-        "state": "free",
-        "description": "Fictional example of a free service."
-      },
-      "schedule": {
-        "kind": "by_arrangement",
-        "confirmed": false,
-        "note": "Ask the operator about arrangements.",
-        "weekly": [],
-        "exceptions": [],
-        "evidence_ids": [
-          "example-source"
-        ]
-      },
-      "evidence": [
+        },
         {
-          "id": "example-source",
-          "source_kind": "provider",
-          "url": "https://providers.example.invalid/about",
-          "checked_on": "2026-09-01",
-          "note": "Fictional evidence illustrating the data contract; no real provider verification is claimed.",
+          "id": "source-2",
+          "source_kind": "local_authority",
+          "url": "https://www.cityofkingston.ca/community-supports/community-supports-and-well-being/food-supports/",
+          "checked_on": "2026-09-04",
+          "note": "Corroborates food assistance at 342 Patrick Street and public phone.",
           "supports": [
             "name",
-            "summary",
-            "food_access_purpose",
-            "service_area",
-            "access.walk_in",
-            "access.appointment_required",
-            "eligibility",
-            "cost",
-            "schedule"
+            "location",
+            "phone"
           ]
         }
       ],
       "verification": {
-        "reviewed_on": "2026-09-01",
-        "method": "provider_source",
+        "reviewed_on": "2026-09-04",
+        "method": "multiple_sources",
         "state": "partially_confirmed"
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-09-01",
-      "service_area": "Exampleville area; arrangements must be confirmed."
+      "updated_on": "2026-09-04",
+      "notices": [
+        {
+          "id": "verification-notice",
+          "text": "Pantry hours need confirmation. Office hours are not shown as food-service hours.",
+          "starts_on": "2026-09-04",
+          "evidence_ids": [
+            "source-1"
+          ]
+        }
+      ]
     },
     {
-      "id": "draft-example",
-      "organization_id": "example-community",
-      "name": "PRIVATE DRAFT SENTINEL",
-      "summary": "Fictional example: practical food support from a community-run program.",
+      "id": "storehouse-of-hope",
+      "organization_id": "kingston-alliance-church",
+      "name": "Storehouse of Hope",
+      "summary": "Free Monday lunch, with coffee and snacks before the meal. Fall service restarts September 14.",
       "categories": [
-        "groceries"
+        "prepared_meals"
       ],
-      "food_access_purpose": "Demonstrates a reviewed food-access service, not an ordinary commercial retailer.",
+      "food_access_purpose": "Free Monday lunch, with coffee and snacks before the meal. Fall service restarts September 14.",
       "location": {
-        "description": "Fictional location; do not travel here.",
+        "description": "540 Palace Road, Kingston, ON K7L 4T7",
         "address": {
-          "street": "1 Example Lane",
-          "locality": "Exampleville",
-          "region": "Exampleshire",
-          "country": "GB",
-          "postal_code": "EX1 1EX"
+          "street": "540 Palace Road",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K7L 4T7",
+          "neighbourhood": "Palace & Bath"
         },
         "coordinates": {
-          "latitude": 52.1,
-          "longitude": -1.1
+          "latitude": 44.2399898,
+          "longitude": -76.5150493
         }
       },
-      "official_url": "https://providers.example.invalid/draft-example",
+      "phone": "+16135462143",
+      "official_url": "https://kingstonalliance.ca/storehouse-opens-on-mon-sep-14/",
+      "time_zone": "America/Toronto",
       "access": {
         "walk_in": "yes",
         "appointment_required": "no",
-        "registration_required": "unknown",
-        "identification_required": "unknown",
+        "registration_required": "no",
+        "identification_required": "no",
         "details": [
-          "This is example information. Check access arrangements with the operator."
+          "Drop in for the Monday lunch program.",
+          "No documents are listed by 211."
         ]
       },
       "eligibility": [
-        "Example: community residents."
+        "Community food outreach; no eligibility restrictions are listed."
       ],
       "limitations": [
-        "Availability depends on the provider; these records are fictional."
+        "No service on holiday Mondays; summer arrangements differ."
       ],
       "before_you_go": [
-        "Do not use this fictional listing to seek food."
+        "First fall session: Monday, September 14, 2026.",
+        "Coffee and snacks 10:30–11:30 a.m.; lunch 11:30 a.m.–1 p.m."
       ],
-      "cost": {
-        "state": "free",
-        "description": "Fictional example of a free service."
-      },
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Example service hours; not live availability.",
+        "note": "Mondays from September 14: lunch 11:30 a.m.–1 p.m. No holiday Mondays.",
         "weekly": [
           {
             "day": 1,
             "state": "published",
             "intervals": [
               {
-                "opens": "09:00",
-                "closes": "17:00"
+                "opens": "11:30",
+                "closes": "13:00"
               }
             ]
           },
           {
             "day": 2,
-            "state": "published",
-            "intervals": [
-              {
-                "opens": "09:00",
-                "closes": "17:00"
-              }
-            ]
+            "state": "closed",
+            "intervals": []
           },
           {
             "day": 3,
-            "state": "published",
-            "intervals": [
-              {
-                "opens": "09:00",
-                "closes": "17:00"
-              }
-            ]
+            "state": "closed",
+            "intervals": []
           },
           {
             "day": 4,
-            "state": "published",
-            "intervals": [
-              {
-                "opens": "09:00",
-                "closes": "17:00"
-              }
-            ]
+            "state": "closed",
+            "intervals": []
           },
           {
             "day": 5,
-            "state": "published",
-            "intervals": [
-              {
-                "opens": "09:00",
-                "closes": "17:00"
-              }
-            ]
+            "state": "closed",
+            "intervals": []
           },
           {
             "day": 6,
-            "state": "unknown",
+            "state": "closed",
             "intervals": []
           },
           {
             "day": 7,
-            "state": "unknown",
+            "state": "closed",
             "intervals": []
           }
         ],
-        "exceptions": [],
+        "exceptions": [
+          {
+            "date": "2026-09-07",
+            "confirmed": true,
+            "intervals": [],
+            "note": "No service; fall program resumes September 14.",
+            "evidence_ids": [
+              "source-1"
+            ]
+          },
+          {
+            "date": "2026-10-12",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed on holiday Mondays.",
+            "evidence_ids": [
+              "source-1"
+            ]
+          }
+        ],
         "evidence_ids": [
-          "example-source"
+          "source-1"
         ]
       },
       "evidence": [
         {
-          "id": "example-source",
+          "id": "source-1",
           "source_kind": "provider",
-          "url": "https://providers.example.invalid/about",
-          "checked_on": "2026-09-01",
-          "note": "Fictional evidence illustrating the data contract; no real provider verification is claimed.",
+          "url": "https://kingstonalliance.ca/storehouse-opens-on-mon-sep-14/",
+          "checked_on": "2026-09-04",
+          "note": "Dated fall notice updated September 2: restart September 14; coffee 10:30–11:30, lunch 11:30–1.",
           "supports": [
             "name",
             "summary",
             "food_access_purpose",
-            "location",
+            "official_url",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "schedule",
             "access.walk_in",
             "access.appointment_required",
-            "eligibility",
-            "cost",
-            "schedule"
+            "access.registration_required",
+            "access.identification_required"
           ]
-        }
-      ],
-      "verification": {
-        "reviewed_on": "2026-09-01",
-        "method": "provider_source",
-        "state": "confirmed"
-      },
-      "publication_status": "draft",
-      "service_condition": "active",
-      "updated_on": "2026-09-01"
-    },
-    {
-      "id": "closed-example",
-      "organization_id": "example-community",
-      "name": "CLOSED SENTINEL",
-      "summary": "Fictional example: practical food support from a community-run program.",
-      "categories": [
-        "groceries"
-      ],
-      "food_access_purpose": "Demonstrates a reviewed food-access service, not an ordinary commercial retailer.",
-      "location": {
-        "description": "Fictional location; do not travel here.",
-        "address": {
-          "street": "1 Example Lane",
-          "locality": "Exampleville",
-          "region": "Exampleshire",
-          "country": "GB",
-          "postal_code": "EX1 1EX"
         },
-        "coordinates": {
-          "latitude": 52.1,
-          "longitude": -1.1
-        }
-      },
-      "official_url": "https://providers.example.invalid/closed-example",
-      "access": {
-        "walk_in": "yes",
-        "appointment_required": "no",
-        "registration_required": "unknown",
-        "identification_required": "unknown",
-        "details": [
-          "This is example information. Check access arrangements with the operator."
-        ]
-      },
-      "eligibility": [
-        "Example: community residents."
-      ],
-      "limitations": [
-        "Availability depends on the provider; these records are fictional."
-      ],
-      "before_you_go": [
-        "Do not use this fictional listing to seek food."
-      ],
-      "cost": {
-        "state": "free",
-        "description": "Fictional example of a free service."
-      },
-      "schedule": {
-        "kind": "weekly",
-        "confirmed": true,
-        "note": "Example service hours; not live availability.",
-        "weekly": [
-          {
-            "day": 1,
-            "state": "published",
-            "intervals": [
-              {
-                "opens": "09:00",
-                "closes": "17:00"
-              }
-            ]
-          },
-          {
-            "day": 2,
-            "state": "published",
-            "intervals": [
-              {
-                "opens": "09:00",
-                "closes": "17:00"
-              }
-            ]
-          },
-          {
-            "day": 3,
-            "state": "published",
-            "intervals": [
-              {
-                "opens": "09:00",
-                "closes": "17:00"
-              }
-            ]
-          },
-          {
-            "day": 4,
-            "state": "published",
-            "intervals": [
-              {
-                "opens": "09:00",
-                "closes": "17:00"
-              }
-            ]
-          },
-          {
-            "day": 5,
-            "state": "published",
-            "intervals": [
-              {
-                "opens": "09:00",
-                "closes": "17:00"
-              }
-            ]
-          },
-          {
-            "day": 6,
-            "state": "unknown",
-            "intervals": []
-          },
-          {
-            "day": 7,
-            "state": "unknown",
-            "intervals": []
-          }
-        ],
-        "exceptions": [],
-        "evidence_ids": [
-          "example-source"
-        ]
-      },
-      "evidence": [
         {
-          "id": "example-source",
+          "id": "source-2",
           "source_kind": "provider",
-          "url": "https://providers.example.invalid/about",
-          "checked_on": "2026-09-01",
-          "note": "Fictional evidence illustrating the data contract; no real provider verification is claimed.",
+          "url": "https://kingstonalliance.ca/storehouse-of-hope/",
+          "checked_on": "2026-09-04",
+          "note": "Free food outreach; holiday Mondays excluded; summer service changes.",
+          "supports": [
+            "name"
+          ]
+        },
+        {
+          "id": "source-3",
+          "source_kind": "provider",
+          "url": "https://kingstonalliance.ca/contact-kac/",
+          "checked_on": "2026-09-04",
+          "note": "Street address/postal code and provider map coordinates.",
           "supports": [
             "name",
-            "summary",
-            "food_access_purpose",
             "location",
+            "phone"
+          ]
+        },
+        {
+          "id": "source-4",
+          "source_kind": "referral_directory",
+          "url": "https://211ontario.ca/service/68959504/kingston-alliance-church-kingston-alliance-church/",
+          "checked_on": "2026-09-04",
+          "note": "Church phone and no documents. Its old program frequency is superseded by provider notice.",
+          "supports": [
+            "name",
             "access.walk_in",
             "access.appointment_required",
-            "eligibility",
-            "cost",
-            "schedule"
+            "access.registration_required",
+            "access.identification_required"
           ]
         }
       ],
       "verification": {
-        "reviewed_on": "2026-09-01",
-        "method": "provider_source",
+        "reviewed_on": "2026-09-04",
+        "method": "multiple_sources",
         "state": "confirmed"
       },
       "publication_status": "published",
-      "service_condition": "closed",
-      "updated_on": "2026-09-01"
+      "service_condition": "active",
+      "updated_on": "2026-09-04"
     }
   ]
 }
+

@@ -1,29 +1,40 @@
 {
   "schema_version": 1,
-  "deployment_id": "exampleville",
+  "deployment_id": "kingston",
   "community": {
-    "name": "Exampleville",
-    "locality": "Exampleville",
-    "region": "Exampleshire",
-    "country": "GB"
+    "name": "Kingston",
+    "locality": "Kingston",
+    "region": "Ontario",
+    "country": "CA"
   },
-  "site_name": "Exampleville Food Help",
+  "site_name": "Kingston Food Help",
   "short_name": "Food Help",
-  "description": "A fictional demonstration of a local food-access directory. These example services do not exist.",
+  "description": "Find free and low-cost food support in Kingston, Ontario. Check details and contact providers before travelling.",
   "language": "en",
-  "locale": "en-GB",
+  "locale": "en-CA",
   "text_direction": "ltr",
-  "time_zone": "Europe/London",
-  "canonical_origin": "https://exampleville.example.invalid",
+  "time_zone": "America/Toronto",
+  "canonical_origin": "https://kingston.food-help.ca",
   "operator": {
-    "name": "Example Community Volunteers",
-    "statement": "A fictional community directory demonstrating Food Help."
+    "name": "True Good Craft",
+    "url": "https://truegoodcraft.ca",
+    "statement": "A community food-resource directory maintained by True Good Craft."
   },
   "corrections": {
-    "email": "corrections@example.invalid"
+    "email": "jamie@truegoodcraft.ca"
   },
-  "help_contact": null,
-  "emergency_contact": null,
+  "help_contact": {
+    "label": "Call 2-1-1 for additional local help",
+    "phone": "211",
+    "description": "Ontario 211 can help identify community and social services.",
+    "source_url": "https://211ontario.ca/",
+    "checked_on": "2026-09-04"
+  },
+  "emergency_contact": {
+    "label": "Call 9-1-1 in an emergency",
+    "phone": "911",
+    "description": "For immediate danger or a life-threatening emergency."
+  },
   "review": {
     "interval_days": 30
   },
@@ -31,7 +42,7 @@
     "enabled": true
   },
   "indexing": {
-    "enabled": false
+    "enabled": true
   },
   "analytics": {
     "enabled": false
@@ -39,10 +50,10 @@
   "public_usage": {
     "enabled": false
   },
-  "example_content": true,
+  "example_content": false,
   "data_rights": {
-    "statement": "Fictional example data created for Food Help; dedicated to the public domain under CC0.",
-    "license": "CC0-1.0",
-    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
-  }
+    "statement": "Resource facts remain subject to their original sources and provider rights. No separate open-data licence is asserted for this deployment."
+  },
+  "software_source_url": "https://github.com/True-Good-Craft/Food-Help"
 }
+
