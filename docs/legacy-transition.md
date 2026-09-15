@@ -39,6 +39,8 @@ The host's website redirect must exclude these paths:
 - Exact: `/sw.js`, `/manifest.webmanifest`, `/favicon.svg`, `/icon-192.png`, `/icon-512.png`, `/fonts.css`, `/simple.css`.
 - Prefixes: `/data/`, `/assets/`, `/fonts/`, `/transition-licenses/`.
 
+At the host layer, also exempt certificate/domain validation paths such as `/.well-known/` from website redirects. These are hosting control paths, not files copied by the transition helper. A new hostname can serve some requests while its Pages certificate validation is still pending; verify the hostname state and both HTTP/HTTPS machine requests before declaring it ready. Cloudflare documents this [domain-validation failure mode](https://developers.cloudflare.com/pages/configuration/debugging-pages/).
+
 An absent file under an excluded prefix must return a real 404, not the new directory or an incompatible dataset. Retain the old domain and HTTPS. Do not touch unrelated DNS or mail records.
 
 Redirect website URLs permanently to the new origin, preserving query strings. Explicitly map `/directory` and `/directory.html` to `/directory/`; normalize `/index` and `/index.html` to `/`. Verify the relevant HTTP/HTTPS and `www` variants at the host. The generated fallback `index.html` is a simple link with no old application scripts; the external host rule supplies the actual website redirect and query preservation. It is not a copy of the old application.
