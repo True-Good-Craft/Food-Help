@@ -2,9 +2,20 @@
 
 Food Help builds an accessible, installable, offline-capable food-resource directory from reviewed local data. It is a static Vite + TypeScript application with no runtime package dependencies, accounts, database or server application.
 
+The project homepage at [food-help.ca](https://food-help.ca) is a separate static target and community hub. Its public copy lives in `project-site/site.json`; `project-site/communities.json` is the single authoritative list of available directories. The root links people to local directories and does not duplicate their food-provider records.
+
 **A new community requires no changes to generic application source.** Shared software lives on `main`; each community supplies a folder containing `site.json`, `resources.json`, optional `assets/` and optional sanitized `usage.json`. Building and releasing one community does not update another.
 
 The real Kingston configuration and eight reviewed listings are in `deployments/kingston/`, for [kingston.food-help.ca](https://kingston.food-help.ca). The neutral starter in `examples/exampleville/` is fictional and excluded from indexing. It must not be used to find real services.
+
+## Work on the project homepage
+
+```sh
+npm run project:check
+npm run project:dev
+```
+
+Open `http://127.0.0.1:4175`. The normal local build is a noindex preview at `dist/project/`; build it without starting a server with `npm run project:build`, or serve an existing build with `npm run project:preview`. A production build and `release/project` pointer are explicitly separate from every community build and release. See [deployment](docs/deployment.md#food-help-project-site) before publication.
 
 ## Start independently
 
@@ -59,13 +70,14 @@ Published schedules are never a live availability feed. Location is optional and
 | Location | Role |
 | --- | --- |
 | `deployments/<community>/site.json`, `resources.json` | Community configuration and reviewed fact authority |
+| `project-site/site.json`, `communities.json`, `styles.css` | Root project-site copy, available-community authority and presentation |
 | Selected folder's `assets/`, optional `usage.json`, `AGENTS.md` | Branding, reviewed aggregates and local rules |
 | `examples/exampleville/` | Neutral fictional starter and test fixture |
 | `src/`, `schemas/`, `scripts/` | Shared application, data contracts and tooling |
 | `src/copy/en.ts` | Application copy and documented additive language path |
 | `tests/` | Unit, contract, browser, offline and synthetic-community checks |
 | `.github/workflows/` | Repeatable validation, separate from explicit publication |
-| `.generated/`, `artifacts/`, `dist/<deployment_id>/` | Disposable generated output; never hand-maintained authority |
+| `.generated/`, `artifacts/`, `dist/project/`, `dist/<deployment_id>/` | Disposable generated output; never hand-maintained authority |
 
 Read [maintenance](docs/maintenance.md) for adding listings, communities and shared upgrades; [architecture](docs/architecture.md) for generation/offline behaviour; [interoperability](docs/interoperability.md) for the preserved v1/HSDS mapping; [verification](docs/verification.md) for automated versus physical-device evidence; and the [changelog](CHANGELOG.md) for unreleased user-visible changes.
 

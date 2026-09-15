@@ -32,6 +32,7 @@ for (const { directory, sourceDir, production } of [...selectedBuilds, { directo
       const canonical = doc.find(n => n.nodeName === 'link' && attr(n, 'rel') === 'canonical')!;
       const url = attr(canonical, 'href')!; expect(new URL(url).origin).toBe(site.canonical_origin);
       expect(doc.find(n => attr(n, 'property') === 'og:url')?.attrs).toContainEqual({ name: 'content', value: url });
+      if (site.project_home_url) expect(doc.some(node => node.nodeName === 'a' && attr(node, 'href') === site.project_home_url)).toBe(true);
       expect(doc.filter(n => n.nodeName === 'h1')).toHaveLength(1);
       let previousLevel = 0;
       for (const heading of doc.filter(n => /^h[1-6]$/.test(n.nodeName))) { const level = Number(heading.nodeName.slice(1)); expect(level, `${file} skips a heading level`).toBeLessThanOrEqual(previousLevel + 1); previousLevel = level; }

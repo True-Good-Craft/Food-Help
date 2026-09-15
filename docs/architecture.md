@@ -2,7 +2,11 @@
 
 Food Help produces one static community artifact per selected configuration. There is no tenant router, server API, database, account system or admin portal. `deployments/<community>/` contains that community's authority; `schemas/` and shared semantic validation define the contract. `src/`, `schemas/` and `scripts/` are shared on `main`. Generated files are never authoring authority.
 
+The root project site is a smaller, separate static artifact. `project-site/site.json` owns its public copy and integration choices, while `project-site/communities.json` is the only list used to generate community cards, crawlable links, JSON discovery and machine-readable project guidance. Its output is `dist/project/`; it contains no provider records, client JavaScript, service worker, browser storage or analytics. `scripts/build-project.ts` cannot select or write a community output, and community builds do not read the project-site community list.
+
 Setup requires an explicit `--site` folder. Development, build and preview select the same folder, with `examples/exampleville/` as the neutral default when omitted. `check --all` may discover community folders for validation; publication never discovers targets implicitly. Each community release chooses an exact shared-source revision and can retain its prior artifact while another advances.
+
+The project site similarly advances only through `release/project`. It is not a community release pointer and must be connected to a distinct root hosting project. Building, checking, merging or releasing the root does not advance `release/<community>`; adding a community directory does not automatically publish the root list.
 
 ## Build order
 

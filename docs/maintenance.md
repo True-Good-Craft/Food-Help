@@ -2,6 +2,12 @@
 
 Configuration and facts belong in the folder selected by `--site`. For Kingston this is `deployments/kingston/`; independent operators can use their own folder. Generic source must not acquire community-specific branches or hardcoded locality values.
 
+## Maintain the project homepage and community list
+
+Root-site copy and integration choices live in `project-site/site.json`. Available community names, coverage and canonical directory URLs live only in `project-site/communities.json`; do not duplicate provider records or add fictional/coming-soon communities. Keep an ordinary HTTPS link from the root to each local directory, and set that directory's optional `project_home_url` when it should link back.
+
+Adding a community requires two separately reviewed publication decisions: first publish and verify the community directory at its canonical origin, then add its record to `project-site/communities.json` and release the root site. Confirm the community's own sitemap and indexing configuration independently; the root sitemap does not include subdomain pages. Run `npm run project:check` for root-only work and `npm run check -- --all` when shared community rendering or contracts also change.
+
 ## Add or correct a food programme
 
 1. Read the selected folder's `AGENTS.md` and review ownership instructions. Check the provider's current official sources and any supporting evidence. Treat submissions and automated findings as leads requiring human review.

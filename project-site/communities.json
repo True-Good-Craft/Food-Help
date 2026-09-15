@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "communities": [
+    {
+      "id": "kingston",
+      "name": "Kingston",
+      "coverage": "Kingston, Ontario",
+      "canonical_url": "https://kingston.food-help.ca",
+      "description": "Emergency and affordable food resources for Kingston."
+    }
+  ]
+}

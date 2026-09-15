@@ -2,6 +2,10 @@
 
 Food Help and the fictional starter work with `"analytics": { "enabled": false }`. Disabled deployments contain no collector endpoint or collector CSP permission. Public aggregate files are independent of browser collection and never enable it.
 
+The root project site also explicitly keeps analytics disabled. It has no client JavaScript, collector endpoint, cookie, identifier or consent storage. Its contact action is a direct link to the existing public True Good Craft email address; it does not embed the True Good Craft inquiry form or connect to its private form storage.
+
+Project-site interest must not be counted as Kingston directory activity. The existing Food Help/Lighthouse adapter is deployment-scoped, and no root-site collector contract or origin registration is configured here. Any later root measurement would require a separately reviewed property name, allowed `https://food-help.ca` origin, bounded event contract, public wording, retention/reporting treatment and coordinated Lighthouse configuration outside this repository. Until those approvals and compatibility checks exist, keep `project-site/site.json` set to disabled and do not reuse Kingston constants or reporting.
+
 Collection requires an explicitly reviewed deployment configuration, a production build and the exact configured HTTPS canonical origin. Preview URLs and preview builds suppress it. The emitter runs only on the interactive home directory: resource pages, the simple directory, downloads and other informational pages do not produce page-history events.
 
 ## Fixed events and wire formats

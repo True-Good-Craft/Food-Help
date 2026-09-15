@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "site_name": "Food Help",
+  "short_name": "Food Help",
+  "canonical_origin": "https://food-help.ca",
+  "language": "en",
+  "locale": "en-CA",
+  "text_direction": "ltr",
+  "description": "Find trusted local directories for emergency and affordable food support, starting with Kingston, Ontario.",
+  "headline": "Find food help in your community.",
+  "introduction": "Food Help makes emergency and affordable food resources easier to find. It started in Kingston and is built so other communities can use it too.",
+  "scope": "Each local directory brings practical details, schedules and contact routes together without replacing the organizations that provide food support.",
+  "maintenance": "Listings are maintained from public sources, provider input and corrections. Local review owners keep qualifications and uncertainty visible rather than guessing when details are unclear.",
+  "operator": {
+    "name": "True Good Craft",
+    "url": "https://truegoodcraft.ca",
+    "lead": "Jamie Whelan",
+    "statement": "Jamie Whelan and True Good Craft built Food Help and maintain the shared project. Each community directory remains a separately reviewed local publication."
+  },
+  "contact": {
+    "email": "jamie@truegoodcraft.ca",
+    "label": "Email Jamie",
+    "description": "Suggest a food program, ask to list a community directory, or discuss starting one."
+  },
+  "repository_url": "https://github.com/True-Good-Craft/Food-Help",
+  "setup_url": "https://github.com/True-Good-Craft/Food-Help#start-independently",
+  "contribution_url": "https://github.com/True-Good-Craft/Food-Help/blob/main/CONTRIBUTING.md",
+  "community_guide_url": "https://github.com/True-Good-Craft/Food-Help/blob/main/docs/maintenance.md#prepare-a-new-community",
+  "analytics": {
+    "enabled": false
+  },
+  "indexing": {
+    "enabled": true
+  }
+}
