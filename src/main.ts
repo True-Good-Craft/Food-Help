@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MPL-2.0
 import './styles.css';
-import configuration from '../.generated/runtime-config.json';
+import configuration from 'virtual:food-help-config';
 import type { PublicDataset, RuntimeConfig } from './types.ts';
 import { copy as c } from './copy/en.ts';
 import { card, formatDate } from './presentation.ts';
@@ -10,7 +10,7 @@ import { analytics, type EventKind } from './analytics.ts';
 const config = configuration as RuntimeConfig, site = config.site;
 const byId = <T extends HTMLElement>(id: string) => document.getElementById(id) as T | null;
 const status = (id: string, text: string) => { const element = byId(id); if (element) element.textContent = text; };
-const collection = analytics(site);
+const collection = analytics(site, config.production);
 let dataset: PublicDataset | null = null, position: { latitude: number; longitude: number } | null = null, loading = false, selectedCategory = 'all';
 const results = byId('resource-list'), search = byId<HTMLInputElement>('search'), scheduled = byId<HTMLInputElement>('scheduled');
 function render(): void {
@@ -70,9 +70,17 @@ byId('locate')?.addEventListener('click', () => {
 byId('forget-location')?.addEventListener('click', () => { position = null; render(); byId('forget-location')?.setAttribute('hidden', ''); status('location-status', c.locationOptional); byId('locate')?.focus(); });
 if (site.analytics?.enabled) {
   const preference = byId<HTMLInputElement>('analytics-preference');
-  if (preference) { preference.disabled = false; preference.checked = collection.allowed(); preference.addEventListener('change', () => { collection.setAllowed(preference.checked); preference.checked = collection.allowed(); }); }
+  function renderPreference(): void {
+    const current = collection.state();
+    if (preference) { preference.disabled = Boolean(current.suppression); preference.checked = collection.allowed(); }
+    status('analytics-status', current.suppression ? c.analyticsSuppressed[current.suppression] : collection.allowed() ? c.analyticsEnabled : c.analyticsDisabled);
+  }
+  if (preference) { preference.addEventListener('change', () => { collection.setAllowed(preference.checked); renderPreference(); }); }
+  window.addEventListener('storage', renderPreference);
+  document.addEventListener('visibilitychange', renderPreference);
+  renderPreference();
 }
-document.addEventListener('click', event => { const target = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-event]') : null; const kind = target?.dataset.event; if (['call', 'directions', 'source'].includes(kind ?? '')) collection.emit(kind as EventKind); });
+document.addEventListener('click', event => { const target = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-event]') : null; const kind = target?.dataset.event; if (['call', 'help', 'directions', 'source'].includes(kind ?? '')) collection.emit(kind as EventKind); });
 collection.emit('page_start');
 window.addEventListener('online', () => { status('connection-status', c.online); void refresh(); });
 window.addEventListener('offline', () => status('connection-status', c.offline));

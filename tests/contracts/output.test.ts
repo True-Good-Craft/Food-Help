@@ -6,11 +6,12 @@ import { parse } from 'parse5';
 import { files } from '../../scripts/build.ts';
 import { assertDataset } from '../../src/validation.ts';
 import type { PublicDataset, Site } from '../../src/types.ts';
+import { selectedBuilds } from '../selected.ts';
 type Node = { nodeName: string; value?: string; attrs?: { name: string; value: string }[]; childNodes?: Node[] };
 const nodes = (node: Node): Node[] => [node, ...(node.childNodes ?? []).flatMap(nodes)];
 const attr = (node: Node, key: string) => node.attrs?.find(item => item.name === key)?.value;
 const text = (node: Node): string => node.value ?? (node.childNodes ?? []).map(text).join('');
-for (const [directory, sourceDir, production] of [['dist', 'site', false], ['artifacts/exampleville', 'examples/exampleville', false], ['artifacts/kingston-like', 'tests/fixtures/kingston-like', false], ['artifacts/production', 'artifacts/production-site', true]] as const) describe(directory, () => {
+for (const { directory, sourceDir, production } of [...selectedBuilds, { directory: 'artifacts/exampleville', sourceDir: 'examples/exampleville', production: false }, { directory: 'artifacts/kingston-like', sourceDir: 'tests/fixtures/kingston-like', production: false }, { directory: 'artifacts/production', sourceDir: 'artifacts/production-site', production: true }]) describe(directory, () => {
   it('derives public facts, resource pages, metadata, sitemap and internal links consistently', async () => {
     const data = JSON.parse(await readFile(`${directory}/data/v1/resources.json`, 'utf8')) as PublicDataset; assertDataset(data, 'public');
     const site = JSON.parse(await readFile(`${sourceDir}/site.json`, 'utf8')) as Site;
@@ -49,11 +50,15 @@ for (const [directory, sourceDir, production] of [['dist', 'site', false], ['art
     expect(await readFile(`${directory}/robots.txt`, 'utf8')).toContain(`Sitemap: ${site.canonical_origin}/sitemap.xml`);
     expect(await readFile(`${directory}/llms.txt`, 'utf8')).toContain(`${site.canonical_origin}/data/v1/resources.json`);
     const download = await readFile(`${directory}/directory/download.html`, 'utf8'); expect(download).toContain('data:font/woff2;base64,'); expect(download).not.toContain('type="module"');
+    const downloadNodes = nodes(parse(download) as unknown as Node);
+    expect(text(downloadNodes.find(n => n.nodeName === 'pre')!)).toBe((await readFile('src/assets/fonts/OFL.txt', 'utf8')).replace(/\r\n?/g, '\n'));
   });
 });
 it('Exampleville and generic source contain no reference deployment or private infrastructure strings', async () => {
   for (const directory of ['src', 'schemas', 'artifacts/exampleville']) for (const file of await files(directory)) {
     if (/\.(png|woff2)$/.test(file)) continue;
+    // Source attribution must preserve the legacy work's names; it is not deployment data.
+    if (directory === 'artifacts/exampleville' && file === 'licenses/NOTICE.txt') { expect(await readFile(path.join(directory, file), 'utf8')).toBe((await readFile('NOTICE.md', 'utf8')).replace(/\r\n?/g, '\n')); continue; }
     expect(await readFile(path.join(directory, file), 'utf8'), `${directory}/${file}`).not.toMatch(/kingston|kfh-|buscore|true good craft|lighthouse|agent smith/i);
   }
 });

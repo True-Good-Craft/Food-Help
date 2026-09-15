@@ -15,8 +15,10 @@
     "contracts": "node scripts/lib/contracts.ts",
     "typecheck": "npm run contracts && tsc --noEmit",
     "test": "npm run contracts && node --test tests/unit/*.test.ts tests/contracts/*.test.ts",
-    "test:e2e": "playwright test",
-    "check": "node scripts/check.ts"
+    "test:e2e": "node scripts/browser.ts",
+    "check": "node scripts/check.ts",
+    "release": "node scripts/release.ts",
+    "verify": "node scripts/verify-release.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.62.1",

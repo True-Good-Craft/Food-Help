@@ -1,10 +1,33 @@
 name: Check Food Help
 on:
   workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
 permissions:
   contents: read
 jobs:
+  select:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+      - id: matrix
+        env:
+          FOOD_HELP_CHECK_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          FOOD_HELP_CHECK_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: node scripts/select-checks.ts
   check:
+    needs: select
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.select.outputs.matrix) }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -15,11 +38,13 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium firefox webkit
-      - run: npm run check
+      - run: npm run check -- --site "$FOOD_HELP_CHECK_SITE"
+        env:
+          FOOD_HELP_CHECK_SITE: ${{ matrix.site }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: food-help-verification
+          name: food-help-verification-${{ strategy.job-index }}
           path: |
             playwright-report/
             artifacts/reports/
