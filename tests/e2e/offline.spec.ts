@@ -1,6 +1,8 @@
 import { test, expect, chromium, type Page } from '@playwright/test';
 import { serve } from '../../scripts/serve.ts';
 import { cp, writeFile } from 'node:fs/promises';
+const EMERGENCY_COUNT = 4;
+const AFFORDABLE_COUNT = 2;
 const ready = async (page: Page) => {
   await expect(page.locator('#filters')).toBeVisible();
   await expect.poll(() => page.evaluate(() => Boolean(navigator.serviceWorker.controller)), { timeout: 20_000 }).toBe(true);
@@ -12,11 +14,15 @@ test('offline launch and validated last-good fallback', async ({ page }) => {
   const port = (server.address() as { port: number }).port;
   const origin = 'http://127.0.0.1:' + port;
   try {
-    await page.goto(origin); await ready(page);
+    await page.goto(`${origin}/affordable-food/`); await ready(page);
+    await expect(page.locator('#resource-list article')).toHaveCount(AFFORDABLE_COUNT);
+    await page.goto(origin); await expect(page.locator('#resource-list article')).toHaveCount(EMERGENCY_COUNT);
+    await page.goto(`${origin}/affordable-food/`); await expect(page.locator('#resource-list article')).toHaveCount(AFFORDABLE_COUNT);
     // Stop listening and close browser keep-alive sockets to simulate a dead origin.
     await new Promise<void>(resolve => { server.close(() => resolve()); server.closeAllConnections(); });
     await page.reload();
-    await expect(page.locator('#resource-list article')).toHaveCount(5); await expect(page.locator('#data-retention-status')).toContainText('last saved validated');
+    await expect(page.locator('#resource-list article')).toHaveCount(AFFORDABLE_COUNT); await expect(page.locator('#data-retention-status')).toContainText('last saved validated');
+    await page.goto(origin); await expect(page.locator('#resource-list article')).toHaveCount(EMERGENCY_COUNT);
     await page.locator('#search').fill('pantry'); await expect(page.locator('#resource-list article')).toHaveCount(1);
     await page.getByRole('link', { name: 'Example Neighbourhood Pantry', exact: true }).click(); await expect(page.locator('h1')).toHaveText('Example Neighbourhood Pantry');
     server = await serve({ root: 'artifacts/exampleville', port });
@@ -33,11 +39,15 @@ test('bad response never overwrites last-good data; absent storage leaves static
   const server = await serve({ root: () => corrupt ? corruptRoot : 'artifacts/exampleville', port: 0 });
   const origin = `http://127.0.0.1:${(server.address() as { port: number }).port}`;
   try {
-    await page.goto(origin); await ready(page);
+    await page.goto(`${origin}/affordable-food/`); await ready(page);
+    await expect(page.locator('#resource-list article')).toHaveCount(AFFORDABLE_COUNT);
+    await page.goto(origin); await expect(page.locator('#resource-list article')).toHaveCount(EMERGENCY_COUNT);
+    await page.goto(`${origin}/affordable-food/`);
     corrupt = true;
-    await page.reload(); await expect(page.locator('#data-retention-status')).toContainText('last saved validated'); await expect(page.locator('#resource-list article')).toHaveCount(5);
+    await page.reload(); await expect(page.locator('#data-retention-status')).toContainText('last saved validated'); await expect(page.locator('#resource-list article')).toHaveCount(AFFORDABLE_COUNT);
     await page.evaluate(async () => { await Promise.all((await caches.keys()).map(key => caches.delete(key))); });
-    await page.reload(); await expect(page.locator('#data-retention-status')).toContainText('published page remains'); await expect(page.locator('#resource-list article')).toHaveCount(5); await expect(page.locator('#filters')).toBeHidden();
+    await page.reload(); await expect(page.locator('#data-retention-status')).toContainText('published page remains'); await expect(page.locator('#resource-list article')).toHaveCount(AFFORDABLE_COUNT); await expect(page.locator('#filters')).toBeHidden();
+    await page.goto(origin); await expect(page.locator('#resource-list article')).toHaveCount(EMERGENCY_COUNT); await expect(page.locator('#filters')).toBeHidden();
   } finally { await context.close(); await new Promise<void>(resolve => server.close(() => resolve())); }
 });
 test('cold restart uses the persisted worker and data with no network', async ({ browserName }, info) => {
@@ -45,10 +55,14 @@ test('cold restart uses the persisted worker and data with no network', async ({
   const profile = info.outputPath('persistent-profile');
   let context = await chromium.launchPersistentContext(profile, { headless: true });
   try {
-    const page = await context.newPage(); await page.goto('http://127.0.0.1:4173/'); await ready(page); await context.close();
+    const page = await context.newPage(); await page.goto('http://127.0.0.1:4173/affordable-food/'); await ready(page);
+    await expect(page.locator('#resource-list article')).toHaveCount(AFFORDABLE_COUNT);
+    await page.goto('http://127.0.0.1:4173/'); await expect(page.locator('#resource-list article')).toHaveCount(EMERGENCY_COUNT); await context.close();
     context = await chromium.launchPersistentContext(profile, { headless: true, offline: true });
-    const cold = await context.newPage(); await cold.goto('http://127.0.0.1:4173/'); await expect(cold.locator('#filters')).toBeVisible(); await expect(cold.locator('#data-retention-status')).toContainText('last saved validated');
+    const cold = await context.newPage(); await cold.goto('http://127.0.0.1:4173/affordable-food/'); await expect(cold.locator('#filters')).toBeVisible(); await expect(cold.locator('#data-retention-status')).toContainText('last saved validated');
+    await expect(cold.locator('#resource-list article')).toHaveCount(AFFORDABLE_COUNT);
     await cold.locator('#search').fill('garden'); await expect(cold.locator('#resource-list article')).toHaveCount(1);
+    await cold.goto('http://127.0.0.1:4173/'); await expect(cold.locator('#resource-list article')).toHaveCount(EMERGENCY_COUNT);
   } finally { await context.close(); }
 });
 test('failed update, explicit activation across two tabs, cleanup and rollback', async ({ browser, browserName }) => {

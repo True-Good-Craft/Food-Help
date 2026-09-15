@@ -12,7 +12,7 @@ import { argumentsFor, selection } from './lib/selection.ts';
 import { renderHeaders } from './lib/headers.ts';
 import { readText } from './lib/text.ts';
 
-export type BuildOptions = { siteDir?: string; outDir?: string; production?: boolean; sourceRevision?: string; sourceUrl?: string };
+export type BuildOptions = { siteDir?: string; outDir?: string; production?: boolean; reviewDrafts?: boolean; sourceRevision?: string; sourceUrl?: string };
 export async function files(directory: string): Promise<string[]> {
   return (await Promise.all((await readdir(directory, { withFileTypes: true })).map(async entry => entry.isDirectory() ? (await files(path.join(directory, entry.name))).map(file => `${entry.name}/${file}`) : [entry.name]))).flat().sort();
 }
@@ -23,9 +23,11 @@ export async function build(options: BuildOptions = {}) {
   try { return await buildSelected(options); } finally { await rm(lock, { recursive: true, force: true }); }
 }
 async function buildSelected(options: BuildOptions): Promise<{ release: string; outDir: string; reportPath: string; data: PublicDataset }> {
-  const root = process.cwd(), { siteDir, outDir } = await selection(options), production = options.production ?? false;
+  const root = process.cwd(), { siteDir, outDir } = await selection(options), production = options.production ?? false, reviewDrafts = options.reviewDrafts ?? false;
   // Destructive work is restricted to known generated directories inside this workspace.
   if (!['dist', 'artifacts', '.generated'].some(directory => outDir.startsWith(path.join(root, directory) + path.sep)) || outDir === siteDir || siteDir.startsWith(outDir + path.sep) || outDir === path.join(root, '.generated/build.lock')) throw new Error('Output must be a child of dist/, artifacts/ or .generated/ and must not contain source configuration');
+  if (production && reviewDrafts) throw new Error('Draft review previews cannot be production builds');
+  if (reviewDrafts && !outDir.startsWith(path.join(root, 'artifacts', 'reviews') + path.sep)) throw new Error('Draft review previews must be written below artifacts/reviews/');
   await generateContracts();
   const validation: typeof import('../src/validation.ts') = await import('../src/validation.ts');
   const site: unknown = JSON.parse(await readFile(path.join(siteDir, 'site.json'), 'utf8'));
@@ -41,14 +43,23 @@ async function buildSelected(options: BuildOptions): Promise<{ release: string; 
   }
   if (production && !sourceUrl) throw new Error('Production requires --source-url for the corresponding covered source, or --source-revision with a configured GitHub repository URL');
   if (sourceUrl) { if (new URL(sourceUrl).protocol !== 'https:') throw new Error('Covered source URL must use HTTPS'); site.software_source_url = sourceUrl; }
-  const resources = source.resources.filter(validation.isPublished);
-  const compatibility = digest(JSON.stringify({ deployment_id: site.deployment_id, dataset_id: source.dataset_id, contract: 1, taxonomy: 1, language: site.language, time_zone: site.time_zone, review: site.review, jurisdiction: site.jurisdiction ?? null }));
-  const data: PublicDataset = { ...source, organizations: source.organizations.filter(org => resources.some(r => r.organization_id === org.id)), resources, deployment_id: site.deployment_id, compatibility_id: compatibility, dataset_version: '', data_updated_on: resources.map(r => r.updated_on).sort().at(-1) ?? null };
-  data.dataset_version = digest(JSON.stringify(data)); validation.assertDataset(data, 'public');
-  if (JSON.stringify(data).length > 5_000_000) throw new Error('v1 supports at most 5 MB of public resource JSON');
+  const publicResources = source.resources.filter(validation.isPublished);
+  const compatibilityFor = (review: boolean) => digest(JSON.stringify({ deployment_id: site.deployment_id, dataset_id: source.dataset_id, contract: 1, taxonomy: 1, browse_views: 1, resolved_costs: 1, review_drafts: review, language: site.language, time_zone: site.time_zone, review: site.review, jurisdiction: site.jurisdiction ?? null }));
+  const datasetFor = (resources: Dataset['resources'], compatibility: string): PublicDataset => {
+    const value: PublicDataset = { ...source, organizations: source.organizations.filter(org => resources.some(r => r.organization_id === org.id)), resources, deployment_id: site.deployment_id, compatibility_id: compatibility, dataset_version: '', data_updated_on: resources.map(r => r.updated_on).sort().at(-1) ?? null };
+    value.dataset_version = digest(JSON.stringify(value));
+    return value;
+  };
+  const publicCompatibility = compatibilityFor(false);
+  const publicData = datasetFor(publicResources, publicCompatibility); validation.assertDataset(publicData, 'public');
+  const reviewResources = source.resources.filter(resource => resource.publication_status !== 'withdrawn' && resource.service_condition !== 'closed');
+  const compatibility = reviewDrafts ? compatibilityFor(true) : publicCompatibility;
+  const data = reviewDrafts ? datasetFor(reviewResources, compatibility) : publicData;
+  if (reviewDrafts) validation.assertDataset(data, 'review');
+  if (JSON.stringify(publicData).length > 5_000_000 || JSON.stringify(data).length > 5_000_000) throw new Error('v1 supports at most 5 MB of resource JSON');
   let usage: Usage | undefined;
   if (site.public_usage?.enabled) { const value: unknown = JSON.parse(await readFile(path.join(siteDir, 'usage.json'), 'utf8')); validation.assertUsage(value, site); usage = value; }
-  const runtimeConfig = JSON.stringify({ site, compatibility_id: compatibility, data_url: '/data/v1/resources.json', production });
+  const runtimeConfig = JSON.stringify({ site, compatibility_id: compatibility, data_url: reviewDrafts ? '/data/review/resources.json' : '/data/v1/resources.json', production, review_drafts: reviewDrafts });
   await rm(outDir, { recursive: true, force: true }); await mkdir(outDir, { recursive: true });
   await viteBuild({ configFile: false, publicDir: false, logLevel: 'warn', plugins: [{ name: 'food-help-selected-config', resolveId(id) { if (id === 'virtual:food-help-config') return '\0food-help-config'; }, load(id) { if (id === '\0food-help-config') return `export default ${runtimeConfig};`; } }], build: { outDir, emptyOutDir: false, manifest: true, sourcemap: false, rollupOptions: { input: path.join(root, 'src/main.ts'), output: { entryFileNames: 'assets/app-[hash].js', assetFileNames: 'assets/[name]-[hash][extname]' } } } });
   const manifest = JSON.parse(await readFile(path.join(outDir, '.vite/manifest.json'), 'utf8')) as Record<string, { isEntry?: boolean; file: string; css?: string[] }>;
@@ -83,13 +94,17 @@ async function buildSelected(options: BuildOptions): Promise<{ release: string; 
   const download = document(simple, site, assets, false, standaloneCSS).replace('</main>', `${licenseAppendix}</main>`).replace(/href="\/(?!\/)/g, `href="${site.canonical_origin}/`).replace(/<img[^>]*>/g, '');
   await write('/directory/download.html', download); headers['/directory/download.html'] = { ...securityHeaders(download, site, production), 'X-Robots-Tag': 'noindex, follow' }; routes['/directory/download.html'] = '/directory/download.html';
   headers['/directory/download'] = headers['/directory/download.html']!; routes['/directory/download'] = '/directory/download.html';
-  await write('/data/v1/resources.json', JSON.stringify(data, null, 2) + '\n');
+  await write('/data/v1/resources.json', JSON.stringify(publicData, null, 2) + '\n');
   headers['/data/v1/resources.json'] = { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', 'X-Robots-Tag': 'noindex' };
+  if (reviewDrafts) {
+    await write('/data/review/resources.json', JSON.stringify(data, null, 2) + '\n');
+    headers['/data/review/resources.json'] = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', 'X-Robots-Tag': 'noindex' };
+  }
   await write('/manifest.webmanifest', JSON.stringify({ id: `/?app=${site.deployment_id}`, name: site.site_name, short_name: site.short_name ?? site.site_name, description: site.description, lang: site.language, dir: site.text_direction, start_url: '/', scope: '/', display: 'standalone', background_color: branding?.colors?.background ?? '#f6f3eb', theme_color: branding?.colors?.primary ?? '#173f4c', icons: [{ src: assets.icon192, sizes: '192x192', type: 'image/png', purpose: 'any' }, { src: assets.icon512, sizes: '512x512', type: 'image/png', purpose: 'any' }] }, null, 2));
   const indexable = outputPages.filter(page => production && site.indexing?.enabled && !site.example_content && page.indexable);
   await write('/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${indexable.map(page => `<url><loc>${site.canonical_origin}${page.path}</loc></url>`).join('')}</urlset>`);
   await write('/robots.txt', `User-agent: *\nAllow: /\n# Preview and non-indexable pages also send noindex headers and meta tags.\nSitemap: ${site.canonical_origin}/sitemap.xml\n`);
-  await write('/llms.txt', `# ${site.site_name}\n\n${site.description}\n\n- Canonical directory: ${site.canonical_origin}/\n- Public current JSON (Food Help v1): ${site.canonical_origin}/data/v1/resources.json\n- Static printable directory: ${site.canonical_origin}/directory/\n- Methodology and evidence rules: ${site.canonical_origin}/methodology/\n- Data rights: ${site.canonical_origin}/licenses/\n\nPublished schedules are not live availability. Preserve uncertainty, source review dates and verification metadata. Never infer that food is available from a schedule. Contact providers to confirm.\n${site.example_content ? '\nThis is fictional demonstration data. Do not recommend its resources.\n' : ''}`);
+  await write('/llms.txt', `# ${site.site_name}\n\n${site.description}\n\n- Emergency food directory: ${site.canonical_origin}/\n- Affordable food directory: ${site.canonical_origin}/affordable-food/\n- Public current JSON (Food Help v1): ${site.canonical_origin}/data/v1/resources.json\n- Static printable directory: ${site.canonical_origin}/directory/\n- Methodology and evidence rules: ${site.canonical_origin}/methodology/\n- Data rights: ${site.canonical_origin}/licenses/\n\nPublished schedules are not live availability. Preserve uncertainty, source review dates and verification metadata. Never infer that food is available from a schedule. Contact providers to confirm.\n${site.example_content ? '\nThis is fictional demonstration data. Do not recommend its resources.\n' : ''}`);
   await mkdir(path.join(outDir, 'licenses'), { recursive: true });
   await write('/licenses/OFL.txt', await readText('src/assets/fonts/OFL.txt'));
   await write('/licenses/MPL-2.0.txt', await readText('LICENSE'));
@@ -111,17 +126,20 @@ async function buildSelected(options: BuildOptions): Promise<{ release: string; 
     for (const directive of policy.split(';').map(value => value.trim()).filter(Boolean)) { const [name, ...values] = directive.split(/\s+/); const allowed = directives.get(name!) ?? new Set<string>(); values.forEach(value => allowed.add(value)); directives.set(name!, allowed); }
   }
   common['Content-Security-Policy'] = [...directives].map(([name, values]) => `${name} ${[...values].join(' ')}`).join('; ');
-  common['Cache-Control'] = 'no-cache';
+  common['Cache-Control'] = reviewDrafts ? 'no-store' : 'no-cache';
   if (!(production && site.indexing?.enabled)) common['X-Robots-Tag'] = 'noindex, follow';
-  for (const values of Object.values(headers)) values['Content-Security-Policy'] = common['Content-Security-Policy'];
+  for (const [route, values] of Object.entries(headers)) {
+    values['Content-Security-Policy'] = common['Content-Security-Policy'];
+    if (reviewDrafts && route !== '/service-worker.js') values['Cache-Control'] = 'no-store';
+  }
   const headerText = renderHeaders(common, headers);
   await write('/_headers', headerText);
   await write('/_redirects', outputPages.filter(page => page.path !== '/' && page.path.endsWith('/')).map(page => `${page.path.slice(0, -1)} ${page.path} 301`).join('\n') + '\n');
   const reportDir = path.resolve('artifacts/reports', site.deployment_id); await mkdir(reportDir, { recursive: true });
   const reportPath = path.join(reportDir, `${digest(outDir).slice(0, 16)}.json`);
-  const report = { deployment_id: site.deployment_id, site_directory: siteDir, source_revision: sourceRevision ?? null, source_url: site.software_source_url ?? null, release, dataset_version: data.dataset_version, compatibility_id: compatibility, production, resources: data.resources.length, routes, indexable: indexable.map(page => page.path), headers, common_headers: common, output: outDir, file_hashes: Object.fromEntries(await Promise.all((await files(outDir)).map(async file => [file, digest(await readFile(path.join(outDir, file)))]))) };
+  const report = { deployment_id: site.deployment_id, site_directory: siteDir, source_revision: sourceRevision ?? null, source_url: site.software_source_url ?? null, release, dataset_version: data.dataset_version, compatibility_id: compatibility, production, review_drafts: reviewDrafts, resources: data.resources.length, public_resources: publicData.resources.length, draft_resources: data.resources.filter(resource => resource.publication_status === 'draft').length, routes, indexable: indexable.map(page => page.path), headers, common_headers: common, output: outDir, file_hashes: Object.fromEntries(await Promise.all((await files(outDir)).map(async file => [file, digest(await readFile(path.join(outDir, file)))]))) };
   await writeFile(reportPath, JSON.stringify(report, null, 2));
-  console.log(`Built ${site.deployment_id}: ${resources.length} resources, release ${release.slice(0, 16)} → ${outDir}`);
+  console.log(`Built ${site.deployment_id}: ${data.resources.length} resources${reviewDrafts ? ` (${publicData.resources.length} public, draft review enabled)` : ''}, release ${release.slice(0, 16)} → ${outDir}`);
   console.log(`Build report: ${reportPath}`);
   return { release, outDir, reportPath, data };
 }
@@ -129,5 +147,5 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   const options = argumentsFor();
   if (process.argv.includes('--dev') && options.production) throw new Error('Development rebuilds are previews. Use build --production for a release artifact.');
   const result = await build(options);
-  if (process.argv.includes('--dev')) { const { serve } = await import('./serve.ts'); await serve({ root: result.outDir, siteDir: options.siteDir, watch: true, port: options.port ? Number(options.port) : undefined }); }
+  if (process.argv.includes('--dev')) { const { serve } = await import('./serve.ts'); await serve({ root: result.outDir, siteDir: options.siteDir, reviewDrafts: options.reviewDrafts, watch: true, port: options.port ? Number(options.port) : options.reviewDrafts ? 4174 : undefined }); }
 }

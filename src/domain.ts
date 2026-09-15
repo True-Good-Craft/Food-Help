@@ -1,5 +1,22 @@
 // SPDX-License-Identifier: MPL-2.0
 import type { Resource, Site } from './types.ts';
+export type BrowseView = 'emergency' | 'affordable';
+export const browseViewPaths: Record<BrowseView, string> = { emergency: '/', affordable: '/affordable-food/' };
+export function resourceBrowseViews(resource: Resource): BrowseView[] {
+  switch (resource.cost?.state) {
+    case 'free': return ['emergency'];
+    case 'low_cost':
+    case 'subsidized': return ['affordable'];
+    case 'mixed': return ['emergency', 'affordable'];
+    default: return [];
+  }
+}
+export function inBrowseView(resource: Resource, view: BrowseView): boolean {
+  return resourceBrowseViews(resource).includes(view);
+}
+export function browseViewFromPath(pathname: string): BrowseView {
+  return pathname.replace(/\/index\.html$/, '').replace(/\/+$/, '') === '/affordable-food' ? 'affordable' : 'emergency';
+}
 export function localTime(now: Date, zone: string): { date: string; day: number; time: string } {
   const parts = new Intl.DateTimeFormat('en-CA', { timeZone: zone, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(now);
   const part = (key: string) => parts.find(item => item.type === key)!.value;

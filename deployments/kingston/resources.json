@@ -32,6 +32,12 @@
     {
       "id": "kingston-alliance-church",
       "name": "Kingston Alliance Church"
+    },
+    {
+      "id": "lionhearts",
+      "name": "Lionhearts",
+      "description": "Operator of Fresh Food Market Pop-Ups in Kingston and area.",
+      "url": "https://www.lionhearts.ca/kingston/our-programs/fresh-food-market-pop-ups/"
     }
   ],
   "resources": [
@@ -81,6 +87,10 @@
         "Takeout is at the rear of the building.",
         "For meal delivery, call 343-580-1519 to ask about arrangements."
       ],
+      "cost": {
+        "state": "free",
+        "description": "Free meals."
+      },
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
@@ -295,6 +305,7 @@
             "name",
             "location",
             "phone",
+            "cost",
             "access.walk_in",
             "access.appointment_required",
             "access.registration_required",
@@ -358,6 +369,10 @@
         "Use the new location at 595 Bagot Street.",
         "Call to check holiday service."
       ],
+      "cost": {
+        "state": "free",
+        "description": "Free meal."
+      },
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
@@ -444,6 +459,7 @@
             "eligibility",
             "limitations",
             "before_you_go",
+            "cost",
             "schedule",
             "access.walk_in",
             "access.appointment_required",
@@ -521,6 +537,10 @@
         "Ask about registration before making a trip.",
         "Call to check holiday service."
       ],
+      "cost": {
+        "state": "free",
+        "description": "Free groceries."
+      },
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
@@ -618,23 +638,24 @@
           "id": "source-2",
           "source_kind": "local_authority",
           "url": "https://www.cityofkingston.ca/community-supports/community-supports-and-well-being/food-supports/",
-          "checked_on": "2026-09-04",
-          "note": "Confirms current Bagot Street location and public telephone.",
+          "checked_on": "2026-09-15",
+          "note": "Current City food-support page confirms the Bagot Street location and public telephone and places St. Vincent de Paul under free food assistance programs.",
           "supports": [
             "name",
             "location",
-            "phone"
+            "phone",
+            "cost"
           ]
         }
       ],
       "verification": {
-        "reviewed_on": "2026-09-04",
+        "reviewed_on": "2026-09-15",
         "method": "multiple_sources",
         "state": "confirmed"
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-09-04"
+      "updated_on": "2026-09-15"
     },
     {
       "id": "partners-in-mission",
@@ -685,6 +706,10 @@
         "Book by phone, Monday–Friday 8:30–noon or 1–4:30.",
         "The displayed food hours are shopping appointments, not walk-in or phone hours."
       ],
+      "cost": {
+        "state": "free",
+        "description": "Free groceries."
+      },
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
@@ -819,6 +844,7 @@
             "eligibility",
             "limitations",
             "before_you_go",
+            "cost",
             "schedule",
             "access.walk_in",
             "access.appointment_required",
@@ -895,6 +921,10 @@
         "Use the Parish Centre at 260 Brock Street.",
         "Call extension 3 for the drop-in centre and holiday arrangements."
       ],
+      "cost": {
+        "state": "free",
+        "description": "Free light meals and snacks."
+      },
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
@@ -994,6 +1024,7 @@
             "name",
             "location",
             "phone",
+            "cost",
             "access.walk_in",
             "access.appointment_required",
             "access.registration_required",
@@ -1057,6 +1088,10 @@
         "Use the Wellington Street entrance.",
         "Provider lists weekday breakfast 9–10:30 a.m. and lunch noon–1 p.m.; older listings show lunch 11:30–12:30."
       ],
+      "cost": {
+        "state": "free",
+        "description": "Free breakfast and lunch."
+      },
       "schedule": {
         "kind": "unknown",
         "confirmed": false,
@@ -1082,6 +1117,7 @@
             "eligibility",
             "limitations",
             "before_you_go",
+            "cost",
             "schedule"
           ]
         },
@@ -1177,6 +1213,10 @@
       "before_you_go": [
         "Call before going; office opening hours do not establish food availability."
       ],
+      "cost": {
+        "state": "free",
+        "description": "Free emergency food assistance."
+      },
       "schedule": {
         "kind": "unknown",
         "confirmed": false,
@@ -1213,11 +1253,12 @@
           "source_kind": "local_authority",
           "url": "https://www.cityofkingston.ca/community-supports/community-supports-and-well-being/food-supports/",
           "checked_on": "2026-09-04",
-          "note": "Corroborates food assistance at 342 Patrick Street and public phone.",
+          "note": "Corroborates free food assistance at 342 Patrick Street and the public phone.",
           "supports": [
             "name",
             "location",
-            "phone"
+            "phone",
+            "cost"
           ]
         }
       ],
@@ -1287,6 +1328,10 @@
         "First fall session: Monday, September 14, 2026.",
         "Coffee and snacks 10:30–11:30 a.m.; lunch 11:30 a.m.–1 p.m."
       ],
+      "cost": {
+        "state": "free",
+        "description": "Free Monday lunch, coffee and snacks."
+      },
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
@@ -1386,7 +1431,8 @@
           "checked_on": "2026-09-04",
           "note": "Free food outreach; holiday Mondays excluded; summer service changes.",
           "supports": [
-            "name"
+            "name",
+            "cost"
           ]
         },
         {
@@ -1424,6 +1470,1365 @@
       "publication_status": "published",
       "service_condition": "active",
       "updated_on": "2026-09-04"
+    },
+    {
+      "id": "lionhearts-market-seniors-association",
+      "organization_id": "lionhearts",
+      "name": "Lionhearts Fresh Food Market — Seniors Association Kingston Region",
+      "summary": "Affordable market open to everyone, with fruit and vegetables plus some prepared and frozen foods.",
+      "categories": [
+        "community_markets",
+        "groceries",
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Affordable food purchases at a neighbourhood market open to everyone.",
+      "location": {
+        "description": "Seniors Association Kingston Region, 56 Francis Street, Kingston, ON",
+        "address": {
+          "street": "56 Francis Street",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA"
+        }
+      },
+      "phone": "+16137660664",
+      "official_url": "https://www.instagram.com/freshfoodmktygk/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "yes",
+        "appointment_required": "no",
+        "registration_required": "no",
+        "identification_required": "no",
+        "details": [
+          "211 lists this market location as fully accessible.",
+          "Lionhearts aims to choose locations accessible to wheelchair users and people with other access needs, and includes dignity and respect in its approach."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone — no income requirement."
+      ],
+      "limitations": [
+        "Fruit and vegetables, some prepared foods, and frozen soups, stews, or meals may be offered; selection varies by market session.",
+        "An August 24, 2026 market update advertised Ontario peaches, corn, strawberries and blackberries for that week; not every product is confirmed Canadian or local."
+      ],
+      "before_you_go": [
+        "All payment methods accepted, including debit, credit and mobile payments.",
+        "For schedule changes, use the Fresh Food Market account on Instagram. Public market email: info@freshfoodmkt.ca."
+      ],
+      "cost": {
+        "state": "low_cost",
+        "description": "Affordable food, with prices kept as low as possible."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Tuesdays, 10 a.m.–1 p.m. This is a published schedule, not live availability.",
+        "weekly": [
+          { "day": 1, "state": "closed", "intervals": [] },
+          { "day": 2, "state": "published", "intervals": [{ "opens": "10:00", "closes": "13:00" }] },
+          { "day": 3, "state": "closed", "intervals": [] },
+          { "day": 4, "state": "closed", "intervals": [] },
+          { "day": 5, "state": "closed", "intervals": [] },
+          { "day": 6, "state": "closed", "intervals": [] },
+          { "day": 7, "state": "closed", "intervals": [] }
+        ],
+        "exceptions": [],
+        "evidence_ids": [
+          "lionhearts-schedule"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "lionhearts-schedule",
+          "source_kind": "provider",
+          "url": "https://www.lionhearts.ca/kingston/our-programs/fresh-food-market-pop-ups/",
+          "checked_on": "2026-09-15",
+          "note": "Undated live Lionhearts page checked September 15, 2026 lists the venue, address and Tuesday 10 a.m.–1 p.m. schedule; it also describes seasonal produce, prepared options and low prices. The page does not publish a general cancellation policy.",
+          "supports": [
+            "name",
+            "summary",
+            "categories",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "limitations",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "jamie-provider-relay",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-09-15",
+          "note": "Provider information relayed by Jamie Whelan from his September 15, 2026 meeting and subsequent clarification: markets are publicly available and open to everyone with no income requirement; prices are kept as low as possible; debit, credit and mobile payments are accepted; offerings include fruit and vegetables, some prepared foods and frozen soups, stews or meals; Lionhearts aims to choose accessible locations and treats dignity and respect as part of its approach.",
+          "supports": [
+            "summary",
+            "food_access_purpose",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "cost",
+            "access.details"
+          ]
+        },
+        {
+          "id": "market-account",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/",
+          "checked_on": "2026-09-15",
+          "note": "The official Fresh Food Market account identifies the market as a Lionhearts program and links to lionhearts.ca/popup; this is the primary public stream for schedule changes.",
+          "supports": [
+            "official_url",
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "market-contact-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcUG0avjtGk/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 21, 2026 publishes info@freshfoodmkt.ca as the market email.",
+          "supports": [
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "ontario-produce-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcbbyP5FspW/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 24, 2026 advertises Ontario peaches, corn, strawberries and blackberries for that week; it does not establish that all food is Canadian, local or Ontario-grown.",
+          "supports": [
+            "limitations"
+          ]
+        },
+        {
+          "id": "seniors-211",
+          "source_kind": "referral_directory",
+          "url": "https://211ontario.ca/service/96539444/lionhearts-fresh-food-market-pop-up/",
+          "checked_on": "2026-09-15",
+          "note": "Listing updated January 19, 2026 corroborates the address, Tuesday time, drop-in access, no documents, public contact and fully accessible designation.",
+          "supports": [
+            "location",
+            "before_you_go",
+            "access.walk_in",
+            "access.appointment_required",
+            "access.registration_required",
+            "access.identification_required",
+            "access.details"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-09-15",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-09-15"
+    },
+    {
+      "id": "lionhearts-market-ymca-wright-crescent",
+      "organization_id": "lionhearts",
+      "name": "Lionhearts Fresh Food Market — YMCA Wright Crescent",
+      "summary": "Affordable market open to everyone, with fruit and vegetables plus some prepared and frozen foods.",
+      "categories": [
+        "community_markets",
+        "groceries",
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Affordable food purchases at a neighbourhood market open to everyone.",
+      "location": {
+        "description": "YMCA Wright Crescent, 100 Wright Crescent, Kingston, ON",
+        "address": {
+          "street": "100 Wright Crescent",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA"
+        }
+      },
+      "phone": "+16137660664",
+      "official_url": "https://www.instagram.com/freshfoodmktygk/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "unknown",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "The YMCA lists elevator access to second-floor programming areas and free parking; the market’s exact position inside the building is not published.",
+          "Lionhearts aims to choose locations accessible to wheelchair users and people with other access needs, and includes dignity and respect in its approach."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone — no income requirement."
+      ],
+      "limitations": [
+        "Fruit and vegetables, some prepared foods, and frozen soups, stews, or meals may be offered; selection varies by market session.",
+        "An August 24, 2026 market update advertised Ontario peaches, corn, strawberries and blackberries for that week; not every product is confirmed Canadian or local."
+      ],
+      "before_you_go": [
+        "All payment methods accepted, including debit, credit and mobile payments.",
+        "For schedule changes, use the Fresh Food Market account on Instagram. Public market email: info@freshfoodmkt.ca."
+      ],
+      "cost": {
+        "state": "low_cost",
+        "description": "Affordable food, with prices kept as low as possible."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Fridays, 10 a.m.–1 p.m. The evening market moved from Monday to Tuesday and starts Tuesday, September 22, at 4:30–6:30 p.m.",
+        "valid_from": "2026-09-15",
+        "weekly": [
+          { "day": 1, "state": "closed", "intervals": [] },
+          { "day": 2, "state": "published", "intervals": [{ "opens": "16:30", "closes": "18:30" }] },
+          { "day": 3, "state": "closed", "intervals": [] },
+          { "day": 4, "state": "closed", "intervals": [] },
+          { "day": 5, "state": "published", "intervals": [{ "opens": "10:00", "closes": "13:00" }] },
+          { "day": 6, "state": "closed", "intervals": [] },
+          { "day": 7, "state": "closed", "intervals": [] }
+        ],
+        "exceptions": [
+          {
+            "date": "2026-09-15",
+            "confirmed": true,
+            "intervals": [],
+            "note": "No Tuesday market; Tuesday evening sessions start September 22.",
+            "evidence_ids": [
+              "ymca-change-post"
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "lionhearts-schedule",
+          "ymca-change-post"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "lionhearts-schedule",
+          "source_kind": "provider",
+          "url": "https://www.lionhearts.ca/kingston/our-programs/fresh-food-market-pop-ups/",
+          "checked_on": "2026-09-15",
+          "note": "Undated live Lionhearts page checked September 15, 2026 lists 100 Wright Crescent, Friday 10 a.m.–1 p.m., Monday dates September 7 and 14, and Tuesday evenings starting September 22; it also describes seasonal produce, prepared options and low prices.",
+          "supports": [
+            "name",
+            "summary",
+            "categories",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "limitations",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "jamie-provider-relay",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-09-15",
+          "note": "Provider information relayed by Jamie Whelan from his September 15, 2026 meeting and subsequent clarification: markets are publicly available and open to everyone with no income requirement; prices are kept as low as possible; debit, credit and mobile payments are accepted; offerings include fruit and vegetables, some prepared foods and frozen soups, stews or meals; Lionhearts aims to choose accessible locations and treats dignity and respect as part of its approach.",
+          "supports": [
+            "summary",
+            "food_access_purpose",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "cost",
+            "access.details"
+          ]
+        },
+        {
+          "id": "market-account",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/",
+          "checked_on": "2026-09-15",
+          "note": "The official Fresh Food Market account identifies the market as a Lionhearts program and links to lionhearts.ca/popup; this is the primary public stream for schedule changes.",
+          "supports": [
+            "official_url",
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "market-contact-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcUG0avjtGk/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 21, 2026 publishes info@freshfoodmkt.ca as the market email.",
+          "supports": [
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "ontario-produce-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcbbyP5FspW/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 24, 2026 advertises Ontario peaches, corn, strawberries and blackberries for that week; it does not establish that all food is Canadian, local or Ontario-grown.",
+          "supports": [
+            "limitations"
+          ]
+        },
+        {
+          "id": "ymca-change-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DdRxVVbo-wc/",
+          "checked_on": "2026-09-15",
+          "note": "Official update published September 14, 2026 says the September 14 Monday market will run and the evening market moves to Tuesdays, 4:30–6:30 p.m., starting September 22.",
+          "supports": [
+            "schedule",
+            "before_you_go",
+            "notices"
+          ]
+        },
+        {
+          "id": "ymca-venue",
+          "source_kind": "other_reviewed",
+          "url": "https://eo.ymca.ca/who-we-are",
+          "checked_on": "2026-09-15",
+          "note": "Undated live YMCA page checked September 15, 2026 confirms the 100 Wright Crescent address, elevator access to second-floor programming areas and free parking; it does not identify the market’s position inside the building.",
+          "supports": [
+            "location",
+            "access.details"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-09-15",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-09-15",
+      "notices": [
+        {
+          "id": "evening-market-moves-to-tuesday",
+          "text": "The YMCA evening market moved from Monday to Tuesday, 4:30–6:30 p.m., starting September 22, 2026. Friday market hours remain 10 a.m.–1 p.m.",
+          "starts_on": "2026-09-14",
+          "evidence_ids": [
+            "ymca-change-post"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lionhearts-market-kingston-east",
+      "organization_id": "lionhearts",
+      "name": "Lionhearts Fresh Food Market — Kingston East Community Centre",
+      "summary": "Affordable market open to everyone, with fruit and vegetables plus some prepared and frozen foods.",
+      "categories": [
+        "community_markets",
+        "groceries",
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Affordable food purchases at a neighbourhood market open to everyone.",
+      "location": {
+        "description": "Kingston East Community Centre, 779 Highway 15, Kingston, ON",
+        "address": {
+          "street": "779 Highway 15",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA"
+        }
+      },
+      "phone": "+16137660664",
+      "official_url": "https://www.instagram.com/freshfoodmktygk/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "unknown",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "The City lists Kingston East Community Centre as a fully accessible facility with Rick Hansen Foundation Certified Gold status.",
+          "Lionhearts aims to choose locations accessible to wheelchair users and people with other access needs, and includes dignity and respect in its approach."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone — no income requirement."
+      ],
+      "limitations": [
+        "Fruit and vegetables, some prepared foods, and frozen soups, stews, or meals may be offered; selection varies by market session.",
+        "An August 24, 2026 market update advertised Ontario peaches, corn, strawberries and blackberries for that week; not every product is confirmed Canadian or local."
+      ],
+      "before_you_go": [
+        "All payment methods accepted, including debit, credit and mobile payments.",
+        "For schedule changes, use the Fresh Food Market account on Instagram. Public market email: info@freshfoodmkt.ca."
+      ],
+      "cost": {
+        "state": "low_cost",
+        "description": "Affordable food, with prices kept as low as possible."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Wednesdays, 10–11:30 a.m. This is a published schedule, not live availability.",
+        "weekly": [
+          { "day": 1, "state": "closed", "intervals": [] },
+          { "day": 2, "state": "closed", "intervals": [] },
+          { "day": 3, "state": "published", "intervals": [{ "opens": "10:00", "closes": "11:30" }] },
+          { "day": 4, "state": "closed", "intervals": [] },
+          { "day": 5, "state": "closed", "intervals": [] },
+          { "day": 6, "state": "closed", "intervals": [] },
+          { "day": 7, "state": "closed", "intervals": [] }
+        ],
+        "exceptions": [],
+        "evidence_ids": [
+          "lionhearts-schedule"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "lionhearts-schedule",
+          "source_kind": "provider",
+          "url": "https://www.lionhearts.ca/kingston/our-programs/fresh-food-market-pop-ups/",
+          "checked_on": "2026-09-15",
+          "note": "Undated live Lionhearts page checked September 15, 2026 lists the venue, address and Wednesday 10–11:30 a.m. schedule; it also describes seasonal produce, prepared options and low prices.",
+          "supports": [
+            "name",
+            "summary",
+            "categories",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "limitations",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "jamie-provider-relay",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-09-15",
+          "note": "Provider information relayed by Jamie Whelan from his September 15, 2026 meeting and subsequent clarification: markets are publicly available and open to everyone with no income requirement; prices are kept as low as possible; debit, credit and mobile payments are accepted; offerings include fruit and vegetables, some prepared foods and frozen soups, stews or meals; Lionhearts aims to choose accessible locations and treats dignity and respect as part of its approach.",
+          "supports": [
+            "summary",
+            "food_access_purpose",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "cost",
+            "access.details"
+          ]
+        },
+        {
+          "id": "market-account",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/",
+          "checked_on": "2026-09-15",
+          "note": "The official Fresh Food Market account identifies the market as a Lionhearts program and links to lionhearts.ca/popup; this is the primary public stream for schedule changes.",
+          "supports": [
+            "official_url",
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "market-contact-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcUG0avjtGk/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 21, 2026 publishes info@freshfoodmkt.ca as the market email.",
+          "supports": [
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "ontario-produce-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcbbyP5FspW/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 24, 2026 advertises Ontario peaches, corn, strawberries and blackberries for that week; it does not establish that all food is Canadian, local or Ontario-grown.",
+          "supports": [
+            "limitations"
+          ]
+        },
+        {
+          "id": "city-community-centres",
+          "source_kind": "local_authority",
+          "url": "https://www.cityofkingston.ca/activities-and-recreation/facilities/community-centres/",
+          "checked_on": "2026-09-15",
+          "note": "Undated live City page checked September 15, 2026 confirms 779 Highway 15 and describes Kingston East Community Centre as fully accessible and Rick Hansen Foundation Certified Gold. General facility hours were not used as market hours.",
+          "supports": [
+            "location",
+            "access.details"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-09-15",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-09-15"
+    },
+    {
+      "id": "lionhearts-market-rideau-heights",
+      "organization_id": "lionhearts",
+      "name": "Lionhearts Fresh Food Market — Rideau Heights Community Centre",
+      "summary": "Affordable market open to everyone, with fruit and vegetables plus some prepared and frozen foods.",
+      "categories": [
+        "community_markets",
+        "groceries",
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Affordable food purchases at a neighbourhood market open to everyone.",
+      "location": {
+        "description": "Rideau Heights Community Centre, 85 MacCauley Street, Kingston, ON",
+        "address": {
+          "street": "85 MacCauley Street",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA"
+        }
+      },
+      "phone": "+16137660664",
+      "official_url": "https://www.instagram.com/freshfoodmktygk/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "unknown",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "The City lists Rideau Heights Community Centre as a fully accessible facility with Rick Hansen Foundation Certified Gold status.",
+          "Lionhearts aims to choose locations accessible to wheelchair users and people with other access needs, and includes dignity and respect in its approach."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone — no income requirement."
+      ],
+      "limitations": [
+        "Fruit and vegetables, some prepared foods, and frozen soups, stews, or meals may be offered; selection varies by market session.",
+        "An August 24, 2026 market update advertised Ontario peaches, corn, strawberries and blackberries for that week; not every product is confirmed Canadian or local."
+      ],
+      "before_you_go": [
+        "All payment methods accepted, including debit, credit and mobile payments.",
+        "For schedule changes, use the Fresh Food Market account on Instagram. Public market email: info@freshfoodmkt.ca."
+      ],
+      "cost": {
+        "state": "low_cost",
+        "description": "Affordable food, with prices kept as low as possible."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Wednesdays, 1:30–4:30 p.m. This is a published schedule, not live availability.",
+        "weekly": [
+          { "day": 1, "state": "closed", "intervals": [] },
+          { "day": 2, "state": "closed", "intervals": [] },
+          { "day": 3, "state": "published", "intervals": [{ "opens": "13:30", "closes": "16:30" }] },
+          { "day": 4, "state": "closed", "intervals": [] },
+          { "day": 5, "state": "closed", "intervals": [] },
+          { "day": 6, "state": "closed", "intervals": [] },
+          { "day": 7, "state": "closed", "intervals": [] }
+        ],
+        "exceptions": [],
+        "evidence_ids": [
+          "lionhearts-schedule"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "lionhearts-schedule",
+          "source_kind": "provider",
+          "url": "https://www.lionhearts.ca/kingston/our-programs/fresh-food-market-pop-ups/",
+          "checked_on": "2026-09-15",
+          "note": "Undated live Lionhearts page checked September 15, 2026 lists 85 Maccauley Street and Wednesday 1:30–4:30 p.m.; the venue-owned page uses the spelling MacCauley. Lionhearts also describes seasonal produce, prepared options and low prices.",
+          "supports": [
+            "name",
+            "summary",
+            "categories",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "limitations",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "jamie-provider-relay",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-09-15",
+          "note": "Provider information relayed by Jamie Whelan from his September 15, 2026 meeting and subsequent clarification: markets are publicly available and open to everyone with no income requirement; prices are kept as low as possible; debit, credit and mobile payments are accepted; offerings include fruit and vegetables, some prepared foods and frozen soups, stews or meals; Lionhearts aims to choose accessible locations and treats dignity and respect as part of its approach.",
+          "supports": [
+            "summary",
+            "food_access_purpose",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "cost",
+            "access.details"
+          ]
+        },
+        {
+          "id": "market-account",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/",
+          "checked_on": "2026-09-15",
+          "note": "The official Fresh Food Market account identifies the market as a Lionhearts program and links to lionhearts.ca/popup; this is the primary public stream for schedule changes.",
+          "supports": [
+            "official_url",
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "market-contact-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcUG0avjtGk/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 21, 2026 publishes info@freshfoodmkt.ca as the market email.",
+          "supports": [
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "ontario-produce-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcbbyP5FspW/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 24, 2026 advertises Ontario peaches, corn, strawberries and blackberries for that week; it does not establish that all food is Canadian, local or Ontario-grown.",
+          "supports": [
+            "limitations"
+          ]
+        },
+        {
+          "id": "city-community-centres",
+          "source_kind": "local_authority",
+          "url": "https://www.cityofkingston.ca/activities-and-recreation/facilities/community-centres/",
+          "checked_on": "2026-09-15",
+          "note": "Undated live City page checked September 15, 2026 confirms 85 MacCauley Street and describes Rideau Heights Community Centre as fully accessible and Rick Hansen Foundation Certified Gold. Its facility hours were not used as market hours.",
+          "supports": [
+            "location",
+            "access.details"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-09-15",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-09-15"
+    },
+    {
+      "id": "lionhearts-market-st-lawrence-college",
+      "organization_id": "lionhearts",
+      "name": "Lionhearts Fresh Food Market — St. Lawrence College",
+      "summary": "Affordable market open to everyone, with fruit and vegetables plus some prepared and frozen foods.",
+      "categories": [
+        "community_markets",
+        "groceries",
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Affordable food purchases at a neighbourhood market open to everyone.",
+      "location": {
+        "description": "St. Lawrence College Kingston campus, main lobby beside the information desk, 100 Portsmouth Avenue, Kingston, ON",
+        "address": {
+          "street": "100 Portsmouth Avenue",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA"
+        }
+      },
+      "phone": "+16137660664",
+      "official_url": "https://www.instagram.com/freshfoodmktygk/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "yes",
+        "appointment_required": "no",
+        "registration_required": "no",
+        "identification_required": "no",
+        "details": [
+          "211 lists the market’s main-entrance lobby location as fully accessible.",
+          "Lionhearts aims to choose locations accessible to wheelchair users and people with other access needs, and includes dignity and respect in its approach."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone — no income requirement."
+      ],
+      "limitations": [
+        "Fruit and vegetables, some prepared foods, and frozen soups, stews, or meals may be offered; selection varies by market session.",
+        "An August 24, 2026 market update advertised Ontario peaches, corn, strawberries and blackberries for that week; not every product is confirmed Canadian or local."
+      ],
+      "before_you_go": [
+        "All payment methods accepted, including debit, credit and mobile payments.",
+        "The market is in the main lobby beside the information desk.",
+        "For schedule changes, use the Fresh Food Market account on Instagram. Public market email: info@freshfoodmkt.ca."
+      ],
+      "cost": {
+        "state": "low_cost",
+        "description": "Affordable food, with prices kept as low as possible."
+      },
+      "schedule": {
+        "kind": "dated",
+        "confirmed": true,
+        "note": "Published fall 2026 market dates, 10 a.m.–noon. This is not live availability.",
+        "valid_from": "2026-09-10",
+        "valid_to": "2026-12-03",
+        "weekly": [],
+        "exceptions": [
+          { "date": "2026-09-10", "confirmed": true, "intervals": [{ "opens": "10:00", "closes": "12:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule", "slc-launch-post"] },
+          { "date": "2026-09-24", "confirmed": true, "intervals": [{ "opens": "10:00", "closes": "12:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule"] },
+          { "date": "2026-10-08", "confirmed": true, "intervals": [{ "opens": "10:00", "closes": "12:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule"] },
+          { "date": "2026-10-22", "confirmed": true, "intervals": [{ "opens": "10:00", "closes": "12:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule"] },
+          { "date": "2026-11-05", "confirmed": true, "intervals": [{ "opens": "10:00", "closes": "12:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule"] },
+          { "date": "2026-11-19", "confirmed": true, "intervals": [{ "opens": "10:00", "closes": "12:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule"] },
+          { "date": "2026-12-03", "confirmed": true, "intervals": [{ "opens": "10:00", "closes": "12:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule"] }
+        ],
+        "evidence_ids": [
+          "lionhearts-schedule",
+          "slc-launch-post"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "lionhearts-schedule",
+          "source_kind": "provider",
+          "url": "https://www.lionhearts.ca/kingston/our-programs/fresh-food-market-pop-ups/",
+          "checked_on": "2026-09-15",
+          "note": "Undated live Lionhearts page checked September 15, 2026 lists the main lobby, 100 Portsmouth Avenue and seven Thursday dates from September 10 through December 3 at 10 a.m.–noon. The official launch post establishes the year as 2026.",
+          "supports": [
+            "name",
+            "summary",
+            "categories",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "limitations",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "jamie-provider-relay",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-09-15",
+          "note": "Provider information relayed by Jamie Whelan from his September 15, 2026 meeting and subsequent clarification: markets are publicly available and open to everyone with no income requirement; prices are kept as low as possible; debit, credit and mobile payments are accepted; offerings include fruit and vegetables, some prepared foods and frozen soups, stews or meals; Lionhearts aims to choose accessible locations and treats dignity and respect as part of its approach.",
+          "supports": [
+            "summary",
+            "food_access_purpose",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "cost",
+            "access.details"
+          ]
+        },
+        {
+          "id": "market-account",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/",
+          "checked_on": "2026-09-15",
+          "note": "The official Fresh Food Market account identifies the market as a Lionhearts program and links to lionhearts.ca/popup; this is the primary public stream for schedule changes.",
+          "supports": [
+            "official_url",
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "market-contact-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcUG0avjtGk/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 21, 2026 publishes info@freshfoodmkt.ca as the market email.",
+          "supports": [
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "ontario-produce-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcbbyP5FspW/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 24, 2026 advertises Ontario peaches, corn, strawberries and blackberries for that week; it does not establish that all food is Canadian, local or Ontario-grown.",
+          "supports": [
+            "limitations"
+          ]
+        },
+        {
+          "id": "slc-launch-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/Dc_fZqijNcD/",
+          "checked_on": "2026-09-15",
+          "note": "Official post published September 7, 2026 announces the first St. Lawrence College market for September 10, 10 a.m.–noon, in the main lobby beside the information desk.",
+          "supports": [
+            "location",
+            "before_you_go",
+            "schedule"
+          ]
+        },
+        {
+          "id": "slc-211",
+          "source_kind": "referral_directory",
+          "url": "https://211ontario.ca/service/96539438/lionhearts-fresh-food-market-pop-up/",
+          "checked_on": "2026-09-15",
+          "note": "Listing updated January 19, 2026 corroborates the address, main-entrance lobby by the information kiosk, drop-in access, no documents, public contact and fully accessible designation. Its older Wednesday hours are superseded by Lionhearts’ current schedule.",
+          "supports": [
+            "location",
+            "before_you_go",
+            "access.walk_in",
+            "access.appointment_required",
+            "access.registration_required",
+            "access.identification_required",
+            "access.details"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-09-15",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-09-15"
+    },
+    {
+      "id": "lionhearts-market-isabel-turner",
+      "organization_id": "lionhearts",
+      "name": "Lionhearts Fresh Food Market — Isabel Turner Library",
+      "summary": "Affordable market open to everyone, with fruit and vegetables plus some prepared and frozen foods.",
+      "categories": [
+        "community_markets",
+        "groceries",
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Affordable food purchases at a neighbourhood market open to everyone.",
+      "location": {
+        "description": "Isabel Turner Branch, 935 Gardiners Road, Kingston, ON",
+        "address": {
+          "street": "935 Gardiners Road",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA"
+        }
+      },
+      "phone": "+16137660664",
+      "official_url": "https://www.instagram.com/freshfoodmktygk/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "unknown",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "The library lists the Isabel Turner Branch as wheelchair accessible, with an accessible washroom and accessible parking.",
+          "Lionhearts aims to choose locations accessible to wheelchair users and people with other access needs, and includes dignity and respect in its approach."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone — no income requirement."
+      ],
+      "limitations": [
+        "Fruit and vegetables, some prepared foods, and frozen soups, stews, or meals may be offered; selection varies by market session.",
+        "An August 24, 2026 market update advertised Ontario peaches, corn, strawberries and blackberries for that week; not every product is confirmed Canadian or local."
+      ],
+      "before_you_go": [
+        "All payment methods accepted, including debit, credit and mobile payments.",
+        "For schedule changes, use the Fresh Food Market account on Instagram. Public market email: info@freshfoodmkt.ca."
+      ],
+      "cost": {
+        "state": "low_cost",
+        "description": "Affordable food, with prices kept as low as possible."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Thursdays, 2:30–5:30 p.m. This is a published schedule, not live availability.",
+        "weekly": [
+          { "day": 1, "state": "closed", "intervals": [] },
+          { "day": 2, "state": "closed", "intervals": [] },
+          { "day": 3, "state": "closed", "intervals": [] },
+          { "day": 4, "state": "published", "intervals": [{ "opens": "14:30", "closes": "17:30" }] },
+          { "day": 5, "state": "closed", "intervals": [] },
+          { "day": 6, "state": "closed", "intervals": [] },
+          { "day": 7, "state": "closed", "intervals": [] }
+        ],
+        "exceptions": [],
+        "evidence_ids": [
+          "lionhearts-schedule"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "lionhearts-schedule",
+          "source_kind": "provider",
+          "url": "https://www.lionhearts.ca/kingston/our-programs/fresh-food-market-pop-ups/",
+          "checked_on": "2026-09-15",
+          "note": "Undated live Lionhearts page checked September 15, 2026 lists Isabel Turner Library, 935 Gardiners Road and Thursday 2:30–5:30 p.m.; it also describes seasonal produce, prepared options and low prices.",
+          "supports": [
+            "name",
+            "summary",
+            "categories",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "limitations",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "jamie-provider-relay",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-09-15",
+          "note": "Provider information relayed by Jamie Whelan from his September 15, 2026 meeting and subsequent clarification: markets are publicly available and open to everyone with no income requirement; prices are kept as low as possible; debit, credit and mobile payments are accepted; offerings include fruit and vegetables, some prepared foods and frozen soups, stews or meals; Lionhearts aims to choose accessible locations and treats dignity and respect as part of its approach.",
+          "supports": [
+            "summary",
+            "food_access_purpose",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "cost",
+            "access.details"
+          ]
+        },
+        {
+          "id": "market-account",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/",
+          "checked_on": "2026-09-15",
+          "note": "The official Fresh Food Market account identifies the market as a Lionhearts program and links to lionhearts.ca/popup; this is the primary public stream for schedule changes.",
+          "supports": [
+            "official_url",
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "market-contact-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcUG0avjtGk/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 21, 2026 publishes info@freshfoodmkt.ca as the market email.",
+          "supports": [
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "ontario-produce-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcbbyP5FspW/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 24, 2026 advertises Ontario peaches, corn, strawberries and blackberries for that week; it does not establish that all food is Canadian, local or Ontario-grown.",
+          "supports": [
+            "limitations"
+          ]
+        },
+        {
+          "id": "isabel-turner-venue",
+          "source_kind": "other_reviewed",
+          "url": "https://www.kfpl.ca/locations/all-locations/isabel-turner-branch",
+          "checked_on": "2026-09-15",
+          "note": "Undated live library page checked September 15, 2026 confirms 935 Gardiners Road and lists wheelchair access, an accessible washroom and accessible parking. Library opening hours were not used as market hours.",
+          "supports": [
+            "location",
+            "access.details"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-09-15",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-09-15"
+    },
+    {
+      "id": "lionhearts-market-wj-henderson",
+      "organization_id": "lionhearts",
+      "name": "Lionhearts Fresh Food Market — W.J. Henderson Community Centre",
+      "summary": "Affordable market open to everyone, with fruit and vegetables plus some prepared and frozen foods.",
+      "categories": [
+        "community_markets",
+        "groceries",
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Affordable food purchases at a neighbourhood market open to everyone.",
+      "location": {
+        "description": "Outside the main entrance of W.J. Henderson Community Centre, 322 Amherst Drive, Amherstview, ON",
+        "address": {
+          "street": "322 Amherst Drive",
+          "locality": "Amherstview",
+          "region": "ON",
+          "country": "CA"
+        }
+      },
+      "phone": "+16137660664",
+      "official_url": "https://www.instagram.com/freshfoodmktygk/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "unknown",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "The market was announced outside the main entrance; specific accessibility features for the outdoor setup were not published.",
+          "Lionhearts aims to choose locations accessible to wheelchair users and people with other access needs, and includes dignity and respect in its approach."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone — no income requirement."
+      ],
+      "limitations": [
+        "Fruit and vegetables, some prepared foods, and frozen soups, stews, or meals may be offered; selection varies by market session.",
+        "An August 24, 2026 market update advertised Ontario peaches, corn, strawberries and blackberries for that week; not every product is confirmed Canadian or local."
+      ],
+      "before_you_go": [
+        "All payment methods accepted, including debit, credit and mobile payments.",
+        "The market was announced outside the community centre’s main entrance.",
+        "For schedule changes, use the Fresh Food Market account on Instagram. Public market email: info@freshfoodmkt.ca."
+      ],
+      "cost": {
+        "state": "low_cost",
+        "description": "Affordable food, with prices kept as low as possible."
+      },
+      "schedule": {
+        "kind": "dated",
+        "confirmed": true,
+        "note": "Published fall 2026 market dates, 4–6 p.m. This is not live availability.",
+        "valid_from": "2026-09-04",
+        "valid_to": "2026-12-11",
+        "weekly": [],
+        "exceptions": [
+          { "date": "2026-09-04", "confirmed": true, "intervals": [{ "opens": "16:00", "closes": "18:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule", "wj-launch-post"] },
+          { "date": "2026-09-18", "confirmed": true, "intervals": [{ "opens": "16:00", "closes": "18:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule"] },
+          { "date": "2026-10-02", "confirmed": true, "intervals": [{ "opens": "16:00", "closes": "18:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule"] },
+          { "date": "2026-10-16", "confirmed": true, "intervals": [{ "opens": "16:00", "closes": "18:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule"] },
+          { "date": "2026-10-30", "confirmed": true, "intervals": [{ "opens": "16:00", "closes": "18:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule"] },
+          { "date": "2026-11-13", "confirmed": true, "intervals": [{ "opens": "16:00", "closes": "18:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule"] },
+          { "date": "2026-11-27", "confirmed": true, "intervals": [{ "opens": "16:00", "closes": "18:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule"] },
+          { "date": "2026-12-11", "confirmed": true, "intervals": [{ "opens": "16:00", "closes": "18:00" }], "note": "Published market date.", "evidence_ids": ["lionhearts-schedule"] }
+        ],
+        "evidence_ids": [
+          "lionhearts-schedule",
+          "wj-launch-post"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "lionhearts-schedule",
+          "source_kind": "provider",
+          "url": "https://www.lionhearts.ca/kingston/our-programs/fresh-food-market-pop-ups/",
+          "checked_on": "2026-09-15",
+          "note": "Undated live Lionhearts page checked September 15, 2026 lists 322 Amherst Drive and eight Friday dates from September 4 through December 11 at 4–6 p.m. The official launch post establishes the year as 2026.",
+          "supports": [
+            "name",
+            "summary",
+            "categories",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "limitations",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "jamie-provider-relay",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-09-15",
+          "note": "Provider information relayed by Jamie Whelan from his September 15, 2026 meeting and subsequent clarification: markets are publicly available and open to everyone with no income requirement; prices are kept as low as possible; debit, credit and mobile payments are accepted; offerings include fruit and vegetables, some prepared foods and frozen soups, stews or meals; Lionhearts aims to choose accessible locations and treats dignity and respect as part of its approach.",
+          "supports": [
+            "summary",
+            "food_access_purpose",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "cost",
+            "access.details"
+          ]
+        },
+        {
+          "id": "market-account",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/",
+          "checked_on": "2026-09-15",
+          "note": "The official Fresh Food Market account identifies the market as a Lionhearts program and links to lionhearts.ca/popup; this is the primary public stream for schedule changes.",
+          "supports": [
+            "official_url",
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "market-contact-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcUG0avjtGk/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 21, 2026 publishes info@freshfoodmkt.ca as the market email.",
+          "supports": [
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "ontario-produce-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcbbyP5FspW/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 24, 2026 advertises Ontario peaches, corn, strawberries and blackberries for that week; it does not establish that all food is Canadian, local or Ontario-grown.",
+          "supports": [
+            "limitations"
+          ]
+        },
+        {
+          "id": "wj-launch-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DclhtxEgecD/",
+          "checked_on": "2026-09-15",
+          "note": "Official post published August 28, 2026 and edited August 31 announces the September 4 launch, biweekly Fridays from 4–6 p.m., outside the main entrance.",
+          "supports": [
+            "location",
+            "before_you_go",
+            "schedule",
+            "access.details"
+          ]
+        },
+        {
+          "id": "loyalist-food-programs",
+          "source_kind": "local_authority",
+          "url": "https://www.loyalist.ca/living-in-loyalist/community-organizations/local-food-programs-and-services/",
+          "checked_on": "2026-09-15",
+          "note": "Undated live Loyalist Township page checked September 15, 2026 corroborates Lionhearts at W.J. Henderson Community Centre, 322 Amherst Drive, September 4–December 11, biweekly Fridays 4–6 p.m.",
+          "supports": [
+            "name",
+            "location",
+            "schedule"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-09-15",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-09-15"
+    },
+    {
+      "id": "lionhearts-market-artillery-park",
+      "organization_id": "lionhearts",
+      "name": "Lionhearts Fresh Food Market — Artillery Park Aquatic Centre",
+      "summary": "Affordable market open to everyone, with fruit and vegetables plus some prepared and frozen foods.",
+      "categories": [
+        "community_markets",
+        "groceries",
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Affordable food purchases at a neighbourhood market open to everyone.",
+      "location": {
+        "description": "Artillery Park Aquatic Centre, 382 Bagot Street, Kingston, ON",
+        "address": {
+          "street": "382 Bagot Street",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA"
+        }
+      },
+      "phone": "+16137660664",
+      "official_url": "https://www.instagram.com/freshfoodmktygk/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "yes",
+        "appointment_required": "no",
+        "registration_required": "no",
+        "identification_required": "no",
+        "details": [
+          "The City lists ramped pools and fully accessible change rooms, while 211 lists accessible parking and entrance but says the washroom is not accessible. Confirm the specific feature you need with the facility.",
+          "Lionhearts aims to choose locations accessible to wheelchair users and people with other access needs, and includes dignity and respect in its approach."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone — no income requirement."
+      ],
+      "limitations": [
+        "Fruit and vegetables, some prepared foods, and frozen soups, stews, or meals may be offered; selection varies by market session.",
+        "An August 24, 2026 market update advertised Ontario peaches, corn, strawberries and blackberries for that week; not every product is confirmed Canadian or local."
+      ],
+      "before_you_go": [
+        "All payment methods accepted, including debit, credit and mobile payments.",
+        "The September 19 market is cancelled; Lionhearts says the Saturday market returns September 26.",
+        "For schedule changes, use the Fresh Food Market account on Instagram. Public market email: info@freshfoodmkt.ca."
+      ],
+      "cost": {
+        "state": "low_cost",
+        "description": "Affordable food, with prices kept as low as possible."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Saturdays, 10 a.m.–1 p.m.; September 19 is cancelled and the market returns September 26. This is not live availability.",
+        "weekly": [
+          { "day": 1, "state": "closed", "intervals": [] },
+          { "day": 2, "state": "closed", "intervals": [] },
+          { "day": 3, "state": "closed", "intervals": [] },
+          { "day": 4, "state": "closed", "intervals": [] },
+          { "day": 5, "state": "closed", "intervals": [] },
+          { "day": 6, "state": "published", "intervals": [{ "opens": "10:00", "closes": "13:00" }] },
+          { "day": 7, "state": "closed", "intervals": [] }
+        ],
+        "exceptions": [
+          {
+            "date": "2026-09-19",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Cancelled during the Artillery Park maintenance closure; market returns September 26.",
+            "evidence_ids": [
+              "artillery-change-post"
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "lionhearts-schedule",
+          "artillery-change-post"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "lionhearts-schedule",
+          "source_kind": "provider",
+          "url": "https://www.lionhearts.ca/kingston/our-programs/fresh-food-market-pop-ups/",
+          "checked_on": "2026-09-15",
+          "note": "Undated live Lionhearts page checked September 15, 2026 lists Artillery Park Aquatic Centre, 382 Bagot Street and Saturday 10 a.m.–1 p.m.; it also describes seasonal produce, prepared options and low prices.",
+          "supports": [
+            "name",
+            "summary",
+            "categories",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "limitations",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "jamie-provider-relay",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-09-15",
+          "note": "Provider information relayed by Jamie Whelan from his September 15, 2026 meeting and subsequent clarification: markets are publicly available and open to everyone with no income requirement; prices are kept as low as possible; debit, credit and mobile payments are accepted; offerings include fruit and vegetables, some prepared foods and frozen soups, stews or meals; Lionhearts aims to choose accessible locations and treats dignity and respect as part of its approach.",
+          "supports": [
+            "summary",
+            "food_access_purpose",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "cost",
+            "access.details"
+          ]
+        },
+        {
+          "id": "market-account",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/",
+          "checked_on": "2026-09-15",
+          "note": "The official Fresh Food Market account identifies the market as a Lionhearts program and links to lionhearts.ca/popup; this is the primary public stream for schedule changes.",
+          "supports": [
+            "official_url",
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "market-contact-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcUG0avjtGk/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 21, 2026 publishes info@freshfoodmkt.ca as the market email.",
+          "supports": [
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "ontario-produce-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DcbbyP5FspW/",
+          "checked_on": "2026-09-15",
+          "note": "Official market post published August 24, 2026 advertises Ontario peaches, corn, strawberries and blackberries for that week; it does not establish that all food is Canadian, local or Ontario-grown.",
+          "supports": [
+            "limitations"
+          ]
+        },
+        {
+          "id": "artillery-change-post",
+          "source_kind": "provider",
+          "url": "https://www.instagram.com/freshfoodmktygk/p/DdRxVVbo-wc/",
+          "checked_on": "2026-09-15",
+          "note": "Official update published September 14, 2026 says Artillery Park is closed September 8–20, the September 19 market is cancelled and Saturday service returns September 26.",
+          "supports": [
+            "before_you_go",
+            "schedule",
+            "notices"
+          ]
+        },
+        {
+          "id": "artillery-city-facility",
+          "source_kind": "local_authority",
+          "url": "https://www.cityofkingston.ca/activities-and-recreation/aquatics-and-swimming/artillery-park-aquatic-centre/",
+          "checked_on": "2026-09-15",
+          "note": "Undated live City page checked September 15, 2026 confirms 382 Bagot Street and lists ramped pool access, fully accessible pool change rooms and fully accessible universal change rooms. Facility hours were not used as market hours.",
+          "supports": [
+            "location",
+            "access.details"
+          ]
+        },
+        {
+          "id": "artillery-211",
+          "source_kind": "referral_directory",
+          "url": "https://211ontario.ca/service/96539427/lionhearts-fresh-food-market-pop-up/",
+          "checked_on": "2026-09-15",
+          "note": "Listing updated January 19, 2026 corroborates the address, Saturday time, drop-in access, no documents and public contact. It lists accessible parking and entrance but says the washroom is not accessible, which conflicts with the City’s accessible change-room information.",
+          "supports": [
+            "location",
+            "before_you_go",
+            "access.walk_in",
+            "access.appointment_required",
+            "access.registration_required",
+            "access.identification_required",
+            "access.details"
+          ]
+        },
+        {
+          "id": "artillery-city-closure",
+          "source_kind": "local_authority",
+          "url": "https://www.cityofkingston.ca/news/posts/artillery-park-aquatic-centre-closed-sept-8-20-inclusive-for-annual-maintenance-work/",
+          "checked_on": "2026-09-15",
+          "note": "City notice published August 24, 2026 independently confirms the facility closure from September 8 through September 20 inclusive. The notice also calls September 20 Friday even though that date is a Sunday; only the numeric date range is used.",
+          "supports": [
+            "before_you_go",
+            "schedule",
+            "notices"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-09-15",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-09-15",
+      "notices": [
+        {
+          "id": "artillery-maintenance-cancellation",
+          "text": "No market Saturday, September 19, during the Artillery Park closure. Lionhearts says the market returns September 26.",
+          "starts_on": "2026-09-08",
+          "ends_on": "2026-09-20",
+          "evidence_ids": [
+            "artillery-change-post",
+            "artillery-city-closure"
+          ]
+        }
+      ]
     }
   ]
 }

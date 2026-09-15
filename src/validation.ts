@@ -68,7 +68,7 @@ function intervals(items: Resource['schedule']['weekly'][number]['intervals'], l
     requireValid(stop > start && stop - start <= 1440 && start >= end, `Invalid or overlapping intervals: ${label}`); end = stop;
   }
 }
-export function assertDataset(value: unknown, mode: 'source' | 'public' = 'source'): asserts value is Dataset {
+export function assertDataset(value: unknown, mode: 'source' | 'public' | 'review' = 'source'): asserts value is Dataset {
   const guard = mode === 'source' ? validateSource : validatePublic;
   requireValid(guard(value), `Invalid ${mode} dataset schema: ${JSON.stringify(guard.errors)}`);
   const data = value as Dataset; walk(data);
@@ -102,15 +102,23 @@ export function assertDataset(value: unknown, mode: 'source' | 'public' = 'sourc
     }
     if (isPublished(r)) {
       requireValid(r.evidence.length && r.evidence.some(e => e.supports.includes('name')) && r.evidence.some(e => e.supports.includes('food_access_purpose')), `Published resource needs identity and food-access evidence: ${r.id}`);
+      requireValid(r.cost && r.cost.state !== 'unknown', `Published resource needs a resolved cost classification: ${r.id}`);
+      requireValid(r.evidence.some(e => e.supports.includes('cost')), `Published resource needs cost evidence: ${r.id}`);
       if (r.schedule.confirmed) requireValid(r.schedule.evidence_ids.length, `Confirmed schedule needs evidence: ${r.id}`);
       for (const key of ['walk_in', 'appointment_required', 'registration_required', 'identification_required'] as const) if (r.access[key] !== 'unknown') requireValid(r.evidence.some(e => e.supports.includes(`access.${key}`)), `Known access needs evidence: ${r.id}/${key}`);
     }
     if (mode === 'public') requireValid(isPublished(r), `Unpublished record in public dataset: ${r.id}`);
+    if (mode === 'review') requireValid(r.publication_status !== 'withdrawn' && r.service_condition !== 'closed', `Withdrawn or closed record in review dataset: ${r.id}`);
   }
 }
 export function publicDataset(value: unknown, deployment: string, compatibility: string): PublicDataset {
   assertDataset(value, 'public'); const data = value as PublicDataset;
   requireValid(data.deployment_id === deployment && data.compatibility_id === compatibility, 'Dataset belongs to another deployment or incompatible configuration');
+  return data;
+}
+export function reviewDataset(value: unknown, deployment: string, compatibility: string): PublicDataset {
+  assertDataset(value, 'review'); const data = value as PublicDataset;
+  requireValid(data.deployment_id === deployment && data.compatibility_id === compatibility, 'Review dataset belongs to another deployment or incompatible configuration');
   return data;
 }
 export function assertUsage(value: unknown, site: Site): asserts value is Usage {

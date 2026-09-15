@@ -7,7 +7,7 @@ test('accessible search, categories, static pages and private browsing', async (
   await page.goto('/'); await expect(page.locator('#filters')).toBeVisible();
   await page.locator('#search').fill('pantry'); await expect(page.locator('#resource-list article')).toHaveCount(1);
   await page.locator('#search').fill(''); await page.locator('[data-category="community_fridges"]').click(); await expect(page.locator('#resource-list article')).toHaveCount(1);
-  await page.locator('[data-category="all"]').click(); await expect(page.locator('#resource-list article')).toHaveCount(5);
+  await page.locator('[data-category="all"]').click(); await expect(page.locator('#resource-list article')).toHaveCount(4);
   await page.locator('details').first().locator('summary').click();
   await page.evaluate(axe.source); const result = await page.evaluate(async () => (window as unknown as { axe: typeof axe }).axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } }));
   expect(result.violations.map(item => ({ id: item.id, nodes: item.nodes.map(node => node.target) }))).toEqual([]);
@@ -17,9 +17,36 @@ test('accessible search, categories, static pages and private browsing', async (
   expect(await page.context().cookies()).toEqual([]);
   expect(await page.evaluate(() => Object.keys(localStorage))).toEqual([]);
 });
+test('Emergency and Affordable views are direct-linkable and switch coherently', async ({ page }) => {
+  await page.goto('/'); await expect(page.locator('#filters')).toBeVisible();
+  await expect(page.locator('.browse-view-control [data-view="emergency"]')).toHaveAttribute('aria-current', 'page');
+  await expect(page.locator('#resource-list article')).toHaveCount(4);
+  const mixedResourceUrl = await page.getByRole('link', { name: 'Example Delivery Support', exact: true }).getAttribute('href');
+  await page.locator('[data-category="food_delivery"]').click(); await expect(page.locator('#resource-list article')).toHaveCount(1);
+  await page.locator('.browse-view-control [data-view="affordable"]').click();
+  await expect(page).toHaveURL(/\/affordable-food\/$/);
+  await expect(page.locator('.browse-view-control [data-view="affordable"]')).toHaveAttribute('aria-current', 'page');
+  await expect(page.locator('[data-category="food_delivery"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#resource-list article')).toHaveCount(1);
+  await expect(page.getByRole('link', { name: 'Example Delivery Support', exact: true })).toHaveAttribute('href', mixedResourceUrl!);
+  await page.locator('[data-category="all"]').click(); await expect(page.locator('#resource-list article')).toHaveCount(2);
+  await page.locator('[data-category="community_gardens"]').click(); await expect(page.locator('#resource-list article')).toHaveCount(1);
+  await page.locator('.browse-view-control [data-view="emergency"]').click();
+  await expect(page).toHaveURL(/\/$/); await expect(page.locator('#resource-list article')).toHaveCount(4);
+  await expect(page.locator('[data-category="all"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-category="community_gardens"]')).toHaveCount(0);
+  await page.goBack(); await expect(page).toHaveURL(/\/affordable-food\/$/); await expect(page.locator('#resource-list article')).toHaveCount(2);
+  await page.goForward(); await expect(page).toHaveURL(/\/$/); await expect(page.locator('#resource-list article')).toHaveCount(4);
+  await page.goBack(); await expect(page).toHaveURL(/\/affordable-food\/$/); await expect(page.locator('#resource-list article')).toHaveCount(2);
+  await page.locator('#search').fill('does not exist');
+  await expect(page.locator('#resource-list')).toContainText('No Affordable food options match.');
+  await page.reload(); await expect(page.locator('#resource-list article')).toHaveCount(2);
+});
 test('JavaScript and service-worker failure leave a complete directory', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false }); const page = await context.newPage(); await page.goto('http://127.0.0.1:4173/');
-  await expect(page.locator('#resource-list article')).toHaveCount(5); await page.goto('http://127.0.0.1:4173/directory/'); await expect(page.locator('details[open]')).toHaveCount(5);
+  await expect(page.locator('#resource-list article')).toHaveCount(4);
+  await page.getByRole('link', { name: 'Affordable food', exact: true }).click(); await expect(page).toHaveURL(/\/affordable-food\/$/); await expect(page.locator('#resource-list article')).toHaveCount(2);
+  await page.goto('http://127.0.0.1:4173/directory/'); await expect(page.locator('details[open]')).toHaveCount(5);
   await page.getByRole('link', { name: 'Example Community Table', exact: true }).click(); await expect(page.locator('h1')).toHaveText('Example Community Table'); await context.close();
 });
 test('small screens and keyboard access remain usable', async ({ page }) => {

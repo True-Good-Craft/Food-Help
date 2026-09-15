@@ -4,11 +4,15 @@ The selected deployment's `resources.json` is authoritative (for Kingston, `depl
 
 The dataset has a stable UUID `dataset_id`, `content_language`, `taxonomy_version: 1`, organizations and resources. Organizations have stable slug IDs, names and optional descriptions, official URLs and content language. A resource references `organization_id`; locations are inline to keep small-directory authoring manageable. Preserve IDs through name changes. Do not recycle withdrawn IDs for unrelated services. V1 URLs use the stable resource ID directly.
 
+One organization can operate several resources. Give each distinct physical venue its own resource ID, inline location and applicable schedule while reusing the organization ID. Keep repeated sessions at one venue in that resource's schedule unless they are genuinely different services. This preserves one provider identity without merging addresses or hours.
+
 Use the example as a shape guide. Replace it with reviewed facts and a new dataset UUID. Empty arrays are allowed for an initially empty directory. Never publish synthetic contacts, coordinates or fictional records under a real community’s identity.
 
 ## Taxonomy and scope
 
 The fixed v1 categories are `prepared_meals`, `food_banks_pantries`, `groceries`, `community_fridges`, `community_markets`, `community_gardens`, `food_delivery`, `food_access_support`, and `other_food_access`. A service can have several categories. `cost` independently describes free, low-cost, subsidized, mixed or unknown pricing, with useful public wording.
+
+Top-level browsing derives from reviewed cost instead of changing category meanings: `free` appears under **Emergency food**; `low_cost` and `subsidized` appear under **Affordable food**; and `mixed` appears in both views without duplicating the resource or its stable URL. Missing or `unknown` cost is unresolved. A published, non-closed resource must have a resolved cost and evidence supporting `cost`; keep an unresolved candidate in draft. Category filters continue to describe what the service offers within either view. This uses existing v1 cost values, so it adds neither a grouping field nor a category-taxonomy version.
 
 Every resource needs an evidence-supported `food_access_purpose`. Ordinary commercial retail does not qualify merely because it sells food. A retailer’s independently reviewed subsidized programme may qualify as a service. This is a human editorial decision; a validator cannot prove public benefit.
 
@@ -28,9 +32,9 @@ Only published, non-closed records enter public JSON, HTML or discovery output. 
 
 ## Schedules and evidence
 
-Schedule kind is weekly, dated, by-arrangement or unknown. Weekly weekdays use ISO 1=Monday through 7=Sunday. Each day is published, closed or unknown; a missing day is unknown. Intervals use local `HH:MM`, an exclusive closing time and explicit `closes_next_day` for overnight service. Optional valid date ranges, explicit date exceptions, confirmation and evidence references are preserved. A confirmed empty exception means closed for that whole date and overrides overnight carry-in. Unconfirmed exceptions remain unknown. Never infer live availability, stock or guaranteed access.
+Schedule kind is weekly, dated, by-arrangement or unknown. Weekly weekdays use ISO 1=Monday through 7=Sunday. Each day is published, closed or unknown; a missing day is unknown. Intervals use local `HH:MM`, an exclusive closing time and explicit `closes_next_day` for overnight service. Optional valid date ranges, explicit date exceptions, confirmation and evidence references are preserved. Represent a dated event with its actual date and intervals in `exceptions`; a validity range alone does not establish that the service is scheduled on a particular day. A confirmed empty exception means closed for that whole date and overrides overnight carry-in. Unconfirmed exceptions remain unknown. Never infer live availability, stock or guaranteed access.
 
-Evidence has a stable ID, source kind, checked date, public note, supported field paths and a source URL (direct confirmation may omit a URL). Keep private names, correspondence and personal details out of public evidence notes. Verification records give the review date, method and state. Evidence review dates cannot be after verification, and verification cannot be after the resource’s updated date. Referenced sources must exist. Automation validates these relationships; it does not validate the truth of claims or automatically contact providers.
+Evidence has a stable ID, source kind, checked date, public note, supported field paths and a source URL (direct confirmation may omit a URL). Describe direct-confirmation provenance accurately—for example, provider information relayed by the review owner is not an interview performed by an automated agent. Keep private names, correspondence and personal details out of public evidence notes. Verification records give the review date, method and state. Evidence review dates cannot be after verification, and verification cannot be after the resource’s updated date. Referenced sources must exist. Automation validates these relationships; it does not validate the truth of claims or automatically contact providers.
 
 Temporary notices include text, start/end dates and evidence references. Dates remain visible in static/offline copies, including notices that have since expired. Do not silently portray an old notice as a current alert. Correct and rebuild when facts change. A public copy can remain in a visitor’s offline storage after withdrawal; removing it from the server cannot erase downloaded copies.
 
@@ -44,7 +48,7 @@ The reviewed eight-record Kingston conversion is now included in `deployments/ki
 
 The legacy and Food Help `/data/v1/resources.json` schemas are different despite sharing a path suffix. A website redirect must not silently claim wire compatibility for these machine endpoints. Treat any legacy data retention or contract retirement explicitly in the release's transition record. The [HSDS 3.3 mapping](interoperability.md) is unchanged and remains a design for a future converter, not an implemented export.
 
-The consolidation comparison of the retained legacy publication and current Kingston source confirms all eight stable IDs. Names, summaries, operator names, locations/coordinates, phone/extensions, official URLs, timezones, guidance, eligibility, limitations, evidence URLs/check dates/notes, review methods/dates, schedule notes/exceptions and temporary notices are preserved through explicit mappings. All verification dates remain 2026-09-04.
+The consolidation comparison of the retained legacy publication and the Kingston source confirmed all eight stable IDs at the September 4, 2026 migration baseline. Names, summaries, operator names, locations/coordinates, phone/extensions, official URLs, timezones, guidance, eligibility, limitations, evidence URLs/check dates/notes, review methods/dates, schedule notes/exceptions and temporary notices were preserved through explicit mappings. A later targeted September 15 review added evidence-backed cost information to the published records; Brit Smith Social Market also received that date as its updated verification date because its City cost source was checked then.
 
 The deliberate representation differences are:
 

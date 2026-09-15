@@ -39,10 +39,11 @@
     "interval_days": 30
   },
   "presentation": {
-    "introduction": "Find a meal or groceries. See where to go, when to visit, and what to bring.",
+    "introduction": "Find Emergency food or Affordable food in Kingston. Use meal, grocery and market filters to see what is offered, and check details before travelling.",
     "category_groups": [
       { "id": "meals", "label": "Meals", "categories": ["prepared_meals"] },
-      { "id": "groceries", "label": "Groceries", "categories": ["groceries", "food_banks_pantries"] }
+      { "id": "groceries", "label": "Groceries", "categories": ["groceries", "food_banks_pantries"] },
+      { "id": "markets", "label": "Markets", "categories": ["community_markets"] }
     ]
   },
   "location": {

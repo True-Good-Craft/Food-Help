@@ -20,6 +20,11 @@ await mkdir('.generated', { recursive: true });
 try { await mkdir('.generated/check.lock'); } catch (error) { if ((error as NodeJS.ErrnoException).code === 'EEXIST') throw new Error('Another Food Help check is active. Checks sharing test fixtures are explicitly serialized. If a process crashed, confirm it has stopped before removing .generated/check.lock.'); throw error; }
 try {
 const independent = await build({ siteDir: 'examples/exampleville', outDir: 'artifacts/exampleville' });
+const requestedReviewSource = options.siteDir ?? starterSite;
+const requestedReviewData = JSON.parse(await readFile(`${requestedReviewSource}/resources.json`, 'utf8')) as { resources?: Array<{ publication_status?: string }> };
+const reviewSource = requestedReviewData.resources?.some(resource => resource.publication_status === 'draft') ? requestedReviewSource : starterSite;
+const review = await build({ siteDir: reviewSource, reviewDrafts: true });
+process.env.FOOD_HELP_TEST_REVIEW = JSON.stringify({ directory: review.outDir, sourceDir: reviewSource });
 const untouchedFiles = JSON.parse(await readFile(independent.reportPath, 'utf8')).file_hashes as Record<string, string>;
 await build({ siteDir: 'tests/fixtures/kingston-like', outDir: 'artifacts/kingston-like' });
 await variant('artifacts/production-site', { example_content: false, canonical_origin: 'https://directory.example.test', indexing: { enabled: true } });

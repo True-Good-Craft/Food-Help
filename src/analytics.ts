@@ -104,7 +104,7 @@ export function createAnalytics(site: Site, production: boolean, env: AnalyticsE
 
 export function analytics(site: Site, production: boolean) {
   const collection = createAnalytics(site, production, {
-    origin: location.origin, url: location.href, referrer: document.referrer,
+    origin: location.origin, get url() { return location.href; }, referrer: document.referrer,
     online: () => navigator.onLine, visible: () => !document.hidden,
     privacySignal: () => (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true || navigator.doNotTrack === '1' || (window as Window & { doNotTrack?: string }).doNotTrack === '1',
     cookies: () => document.cookie,

@@ -5,11 +5,15 @@ Configuration and facts belong in the folder selected by `--site`. For Kingston 
 ## Add or correct a food programme
 
 1. Read the selected folder's `AGENTS.md` and review ownership instructions. Check the provider's current official sources and any supporting evidence. Treat submissions and automated findings as leads requiring human review.
-2. Edit `resources.json`. For a new programme, use a stable unused resource ID and the appropriate organization ID; preserve IDs when renaming an existing service. Use a draft until facts are reviewed. Record category, food-access purpose, practical access, eligibility, limitations, schedules, explicit unknowns and evidence. See [data authoring](data.md).
+2. Edit `resources.json`. For a new programme, use a stable unused resource ID and the appropriate organization ID; preserve IDs when renaming an existing service. Use a draft until facts are reviewed. Record category, food-access purpose, resolved cost classification, practical access, eligibility, limitations, schedules, explicit unknowns and evidence. See [data authoring](data.md).
 3. Record actual source-check and verification dates. A migration or software release is not a new verification. Keep the date chronology valid, retain unresolved qualifications, and use a temporary notice when a consequential change is supported. Do not substitute office hours for food-service hours.
 4. Review the right to publish contributed descriptions and any imported material. Keep private correspondence and permission receipts outside the repository; publish only appropriate evidence notes and rights statements.
 5. Run `npm run check -- --site deployments/kingston` (substitute your folder). Build and preview the same selection. Inspect the affected card, static resource page, simple/print directory, download and JSON. Review practical wording with JavaScript disabled as well.
 6. Have the operator approve publication of the reviewed facts. Commit the source changes, then explicitly release that community and revision using [deployment](deployment.md). A commit, a successful check or another community's release does not publish the change.
+
+When one provider runs several physical locations, create one organization and one resource per venue. Reuse the organization ID, but give every venue a stable resource ID, address, schedule, practical guidance and evidence. Put repeated sessions at the same venue in one weekly or dated schedule; do not merge different venues into one card.
+
+To inspect draft records without putting them in the public projection, run `npm run dev -- --site deployments/kingston --review-drafts` (substitute the selected folder). A review build defaults below `artifacts/reviews/<deployment_id>/`, visibly labels drafts, and cannot be combined with production. It uses a review-only data route, disables persistent offline installation, and sends noindex/no-store policy. This is a local editorial aid, not publication approval. Normal builds continue to exclude drafts.
 
 Use `withdrawn` or `closed` according to the documented distinction when a service leaves the public directory. Generated pages are removed and unknown routes return a genuine 404. Offline/downloaded copies cannot be reliably recalled; issue a corrected release promptly and keep uncertainty visible.
 

@@ -56,4 +56,26 @@ describe('directory presentation and schedule decisions', () => {
     expect(html).toContain('class="temporary-notice"'); expect(html).toContain(`/resources/${r.id}/`);
     expect(html).not.toContain('access.walk_in'); expect(html).toContain('Not confirmed');
   });
+  it('keeps cost and eligibility prominent, labels browse membership, and links schedule evidence', () => {
+    const r = resource();
+    const html = card(r, source as PublicDataset, site);
+    const details = html.indexOf('<details');
+    expect(html).toContain('<span class="tag browse-view-tag">Emergency food</span>');
+    expect(html).not.toContain('<span class="tag browse-view-tag">Affordable food</span>');
+    expect(html.indexOf('Example: community residents.')).toBeLessThan(details);
+    expect(html.indexOf('Fictional example of a free service.')).toBeLessThan(details);
+    expect(html).toContain('href="https://providers.example.invalid/about"');
+    expect(html).toContain('>Schedule and updates</a>');
+    expect(html).toContain('href="https://providers.example.invalid/community-table"');
+  });
+  it('labels mixed-cost listings in both views and marks drafts unmistakably', () => {
+    const r = resource();
+    r.cost = { state: 'mixed', description: 'Free or lower-cost options.' };
+    r.publication_status = 'draft';
+    const html = card(r, source as PublicDataset, site);
+    expect(html).toContain('data-browse-views="emergency affordable"');
+    expect(html).toContain('>Emergency food</span>');
+    expect(html).toContain('>Affordable food</span>');
+    expect(html).toContain('Review draft — not included in the public directory');
+  });
 });
