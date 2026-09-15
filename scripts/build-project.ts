@@ -32,7 +32,8 @@ function projectHeaders(html: string, production: boolean): Record<string, strin
     'X-Frame-Options': 'DENY',
     'Permissions-Policy': 'geolocation=(), camera=(), microphone=(), payment=()',
     ...(production ? { 'Strict-Transport-Security': 'max-age=31536000' } : {}),
-    'Cache-Control': 'no-cache'
+    // Keep the host from rewriting mail links or injecting client scripts into this static artifact.
+    'Cache-Control': 'no-cache, no-transform'
   };
 }
 

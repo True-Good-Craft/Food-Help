@@ -32,6 +32,7 @@ test('preview and production discovery policies stay distinct and aliases remain
   assert.equal((await readFile(path.join(targets.preview, 'sitemap.xml'), 'utf8')).includes('<url>'), false);
   assert.equal((await readFile(path.join(targets.production, 'sitemap.xml'), 'utf8')).match(/<loc>/g)?.length, 1);
   const headers = await readFile(path.join(targets.production, '_headers'), 'utf8');
+  assert.equal(responseHeaders(headers, new URL('https://food-help.ca/'))['Cache-Control'], 'no-cache, no-transform');
   assert.equal(responseHeaders(headers, new URL('https://food-help.ca/'))['X-Robots-Tag'], undefined);
   assert.equal(responseHeaders(headers, new URL('https://project.pages.dev/'))['X-Robots-Tag'], 'noindex');
   assert.equal(responseHeaders(headers, new URL('https://review.project.pages.dev/'))['X-Robots-Tag'], 'noindex');
