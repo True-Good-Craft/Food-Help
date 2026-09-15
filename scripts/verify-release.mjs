@@ -17,6 +17,16 @@ const built = JSON.parse(await readFile(reportPath, 'utf8'));
 assert.equal(built.production, true, 'Use the exact production build report');
 assert.equal(built.deployment_id, site.deployment_id);
 const origin = site.canonical_origin;
+const browseViews = [
+  { id: 'emergency', path: '/', costs: ['free', 'mixed'] },
+  { id: 'affordable', path: '/affordable-food/', costs: ['low_cost', 'subsidized', 'mixed'] },
+];
+const inBrowseView = (resources, view) => resources.filter(resource => view.costs.includes(resource.cost?.state));
+const jsonld = html => {
+  const match = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  assert.ok(match, 'Expected JSON-LD');
+  return JSON.parse(match[1]);
+};
 const evidenceDir = `artifacts/verification/${site.deployment_id}-${built.release.slice(0, 16)}`;
 await mkdir(evidenceDir, { recursive: true });
 const result = { origin, checked_at: new Date().toISOString(), source_revision: built.source_revision, release: built.release, dataset_version: built.dataset_version, checks: [], issues: [] };
@@ -31,8 +41,8 @@ async function get(route) {
 }
 let data, workerBuild;
 await check('production identity and HTTP policies', async () => {
-  const [home, worker, json, manifest, sitemap, robots, error] = await Promise.all(['/', '/service-worker.js', '/data/v1/resources.json', '/manifest.webmanifest', '/sitemap.xml', '/robots.txt', '/verification-unknown-route/'].map(get));
-  for (const response of [home, worker, json, manifest, sitemap, robots]) assert.equal(response.response.status, 200);
+  const [home, affordable, worker, json, manifest, sitemap, robots, llms, error] = await Promise.all(['/', '/affordable-food/', '/service-worker.js', '/data/v1/resources.json', '/manifest.webmanifest', '/sitemap.xml', '/robots.txt', '/llms.txt', '/verification-unknown-route/'].map(get));
+  for (const response of [home, affordable, worker, json, manifest, sitemap, robots, llms]) assert.equal(response.response.status, 200);
   assert.equal(error.response.status, 404);
   assert.equal(error.response.headers.get('content-security-policy'), built.common_headers['Content-Security-Policy']);
   assert.equal(home.response.headers.get('content-security-policy'), built.common_headers['Content-Security-Policy']);
@@ -40,7 +50,9 @@ await check('production identity and HTTP policies', async () => {
   assert.equal(home.response.headers.get('referrer-policy'), 'no-referrer');
   assert.match(home.response.headers.get('strict-transport-security'), /max-age=/);
   assert.match(home.text, /<meta name="robots" content="index,follow">/);
+  assert.match(affordable.text, /<meta name="robots" content="index,follow">/);
   assert.equal(home.response.headers.get('x-robots-tag'), null);
+  assert.equal(affordable.response.headers.get('x-robots-tag'), null);
   assert.match(worker.response.headers.get('cache-control'), /no-store|no-cache/);
   assert.match(worker.response.headers.get('content-type'), /javascript/);
   assert.equal(worker.response.headers.get('service-worker-allowed'), '/');
@@ -50,8 +62,21 @@ await check('production identity and HTTP policies', async () => {
   assert.equal(hash(worker.bytes), built.file_hashes['service-worker.js'], 'Served worker must match the exact built artifact');
   data = JSON.parse(json.text); assert.equal(data.dataset_version, built.dataset_version);
   assert.equal(data.resources.length, built.resources);
+  assert.equal(new Set(data.resources.map(resource => resource.id)).size, data.resources.length, 'Public JSON contains each resource exactly once');
+  for (const [view, response] of [[browseViews[0], home], [browseViews[1], affordable]]) {
+    const expected = inBrowseView(data.resources, view);
+    assert.ok(response.text.includes(`<link rel="canonical" href="${origin + view.path}">`));
+    const structured = jsonld(response.text);
+    assert.equal(structured['@type'], 'CollectionPage');
+    assert.equal(structured.url, origin + view.path);
+    assert.deepEqual(structured.mainEntity.itemListElement.map(item => item.name), expected.map(resource => resource.name));
+    assert.ok(sitemap.text.includes(`<loc>${origin + view.path}</loc>`));
+  }
   const app = JSON.parse(manifest.text); assert.equal(app.name, site.site_name); assert.equal(app.scope, '/'); assert.equal(app.start_url, '/');
   assert.ok(robots.text.includes(`Sitemap: ${origin}/sitemap.xml`));
+  assert.ok(llms.text.includes(`Emergency food directory: ${origin}/`));
+  assert.ok(llms.text.includes(`Affordable food directory: ${origin}/affordable-food/`));
+  assert.ok(llms.text.includes(`Public current JSON (Food Help v1): ${origin}/data/v1/resources.json`));
   for (const resource of data.resources) assert.ok(sitemap.text.includes(`${origin}/resources/${resource.id}/`));
   workerBuild = JSON.parse(worker.text.match(/^const BUILD = (.+);/)[1]);
   assert.equal(workerBuild.cache, `food-help-${site.deployment_id}-app-${built.release}`);
@@ -77,7 +102,7 @@ if (workerBuild) {
   }));
 }
 await check('normalized HTML routes and corresponding source', async () => {
-  for (const route of ['/404', '/directory/download', '/directory/download.html']) {
+  for (const route of ['/404', '/affordable-food', '/affordable-food/', '/directory/download', '/directory/download.html']) {
     const r = await get(route); assert.equal(r.response.status, 200); assert.equal(r.response.headers.get('content-security-policy'), built.common_headers['Content-Security-Policy']);
   }
   const licenses = await get('/licenses/'); assert.ok(licenses.text.includes(built.source_url));
@@ -98,14 +123,26 @@ try {
   await privacy(context);
   const page = await context.newPage();
   await check('live interface, accessibility, mobile and optional-collection suppression', async () => {
-    await page.goto(origin); await expect(page.locator('.brand')).toHaveText(site.site_name); await expect(page.locator('#filters')).toBeVisible();
-    await expect(page.locator('#resource-list article')).toHaveCount(built.resources);
-    for (const group of site.presentation?.category_groups ?? []) {
-      await page.locator(`[data-category="${group.id}"]`).click();
-      await expect(page.locator('#resource-list article')).toHaveCount(data.resources.filter(r => r.categories.some(c => group.categories.includes(c))).length);
+    for (const view of browseViews) {
+      const scoped = inBrowseView(data.resources, view);
+      await page.goto(origin + view.path); await expect(page.locator('.brand')).toHaveText(site.site_name); await expect(page.locator('#filters')).toBeVisible();
+      await expect(page.locator('.directory-shell')).toHaveAttribute('data-browse-view', view.id);
+      await expect(page.locator('#resource-list article')).toHaveCount(scoped.length);
+      const configured = site.presentation?.category_groups ?? [...new Set(scoped.flatMap(resource => resource.categories))].map(category => ({ id: category, categories: [category] }));
+      const groups = configured.filter(group => group.categories.some(category => scoped.some(resource => resource.categories.includes(category))));
+      await expect(page.locator('[data-category]:not([data-category="all"])')).toHaveCount(groups.length);
+      for (const group of groups) {
+        await page.locator(`[data-category="${group.id}"]`).click();
+        await expect(page.locator('#resource-list article')).toHaveCount(scoped.filter(resource => resource.categories.some(category => group.categories.includes(category))).length);
+      }
+      await page.locator('[data-category="all"]').click();
+      if (scoped[0]) {
+        await page.locator('#search').fill(scoped[0].name);
+        await expect(page.locator(`[data-resource-id="${scoped[0].id}"]`)).toBeVisible();
+        await page.locator('#search').fill('');
+      }
     }
-    await page.locator('[data-category="all"]').click();
-    await page.locator('#search').fill(data.resources[0].name); await expect(page.locator('#resource-list article')).toHaveCount(1); await page.locator('#search').fill('');
+    await page.goto(origin);
     await page.locator('h1').click();
     await page.evaluate(axe.source);
     const accessibility = await page.evaluate(() => window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } }));
@@ -122,18 +159,26 @@ try {
   await context.close(); context = undefined;
   await check('offline cold browser restart, resource navigation and reconnection', async () => {
     context = await chromium.launchPersistentContext(profile, { headless: true, offline: true }); await privacy(context);
-    const cold = await context.newPage(); await cold.goto(origin);
-    await expect(cold.locator('#resource-list article')).toHaveCount(built.resources); await expect(cold.locator('#data-retention-status')).toContainText('last saved validated');
-    await cold.getByRole('link', { name: data.resources[0].name, exact: true }).click(); await expect(cold.locator('h1')).toHaveText(data.resources[0].name);
-    await context.setOffline(false); await cold.goto(origin); await expect(cold.locator('#data-status')).toContainText('Listings updated');
+    const emergency = inBrowseView(data.resources, browseViews[0]), affordable = inBrowseView(data.resources, browseViews[1]);
+    const cold = await context.newPage(); await cold.goto(origin + browseViews[1].path);
+    await expect(cold.locator('#resource-list article')).toHaveCount(affordable.length); await expect(cold.locator('#data-retention-status')).toContainText('last saved validated');
+    await cold.goto(origin); await expect(cold.locator('#resource-list article')).toHaveCount(emergency.length);
+    const resource = emergency[0] ?? affordable[0];
+    if (resource) { await cold.goto(`${origin}/resources/${resource.id}/`); await expect(cold.locator('h1')).toHaveText(resource.name); }
+    await context.setOffline(false); await cold.goto(origin + browseViews[1].path); await expect(cold.locator('#data-status')).toContainText('Listings updated');
     await context.close(); context = undefined;
   });
   await check('no-JavaScript directory, print and standalone download', async () => {
     context = await chromium.launchPersistentContext(await mkdtemp(path.resolve('artifacts/profiles', 'nojs-')), { headless: true, javaScriptEnabled: false });
     await privacy(context);
-    const simple = await context.newPage(); await simple.goto(origin); await expect(simple.locator('#resource-list article')).toHaveCount(built.resources);
-    await simple.goto(`${origin}/directory/`); await expect(simple.locator('article')).toHaveCount(built.resources); await simple.emulateMedia({ media: 'print' }); await simple.pdf({ path: `${evidenceDir}/directory.pdf` });
+    const emergency = inBrowseView(data.resources, browseViews[0]), affordable = inBrowseView(data.resources, browseViews[1]);
+    const simple = await context.newPage(); await simple.goto(origin); await expect(simple.locator('#resource-list article')).toHaveCount(emergency.length);
+    await simple.goto(origin + browseViews[1].path); await expect(simple.locator('#resource-list article')).toHaveCount(affordable.length);
+    await simple.goto(`${origin}/directory/`); await expect(simple.locator('article')).toHaveCount(built.resources);
+    assert.equal(await simple.locator('article').evaluateAll(cards => new Set(cards.map(card => card.getAttribute('data-resource-id'))).size), built.resources);
+    await simple.emulateMedia({ media: 'print' }); await simple.pdf({ path: `${evidenceDir}/directory.pdf` });
     await simple.goto(`${origin}/directory/download`); await expect(simple.locator('article')).toHaveCount(built.resources);
+    assert.equal(await simple.locator('article').evaluateAll(cards => new Set(cards.map(card => card.getAttribute('data-resource-id'))).size), built.resources);
     await context.close(); context = undefined;
   });
 } finally {

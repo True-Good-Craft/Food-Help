@@ -9,10 +9,17 @@ for (const selected of selectedBuilds) test(`${selected.sourceDir}: the operator
   try {
     await context.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
     const data = JSON.parse(await readFile(`${selected.directory}/data/v1/resources.json`, 'utf8')), site = JSON.parse(await readFile(`${selected.sourceDir}/site.json`, 'utf8'));
-    const page = await context.newPage(); await page.goto(origin); await expect(page.locator('.brand')).toHaveText(site.site_name); await expect(page.locator('#filters')).toBeVisible(); await expect(page.locator('#resource-list article')).toHaveCount(data.resources.length);
-    await page.evaluate(axe.source); const result = await page.evaluate(async () => (window as unknown as { axe: typeof axe }).axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } }));
-    expect(result.violations.map(item => ({ id: item.id, nodes: item.nodes.map(node => node.target) }))).toEqual([]);
-    await page.screenshot({ path: `artifacts/screenshots/${site.deployment_id}/${test.info().project.name}-desktop.png`, fullPage: true });
+    const inView = (resource: { cost?: { state?: string } }, view: 'emergency' | 'affordable') => view === 'emergency' ? ['free', 'mixed'].includes(resource.cost?.state ?? '') : ['low_cost', 'subsidized', 'mixed'].includes(resource.cost?.state ?? '');
+    const page = await context.newPage();
+    for (const [route, view] of [['/', 'emergency'], ['/affordable-food/', 'affordable']] as const) {
+      const expectedCount = data.resources.filter((resource: { cost?: { state?: string } }) => inView(resource, view)).length;
+      await page.goto(origin + route); await expect(page.locator('.brand')).toHaveText(site.site_name); await expect(page.locator('#filters')).toBeVisible(); await expect(page.locator('#resource-list article')).toHaveCount(expectedCount);
+      if (expectedCount === 0) await expect(page.locator('#resource-list')).toContainText(`No ${view === 'emergency' ? 'Emergency food' : 'Affordable food'} listings have completed review for publication yet.`);
+      await expect(page.locator(`.browse-view-control a[href="${route}"]`)).toHaveAttribute('aria-current', 'page');
+      await page.evaluate(axe.source); const result = await page.evaluate(async () => (window as unknown as { axe: typeof axe }).axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } }));
+      expect(result.violations.map(item => ({ id: item.id, nodes: item.nodes.map(node => node.target) }))).toEqual([]);
+      await page.screenshot({ path: `artifacts/screenshots/${site.deployment_id}/${test.info().project.name}-${view}-desktop.png`, fullPage: true });
+    }
   } finally { await context.close(); await new Promise<void>(resolve => server.close(() => resolve())); }
 });
 test('analytics adapter is opt-in, context-free, and independent of public aggregates', async ({ browser }) => {
@@ -27,6 +34,9 @@ test('analytics adapter is opt-in, context-free, and independent of public aggre
     const page = await context.newPage(); await page.goto(`${origin}/privacy/`); expect(events).toEqual([]);
     await page.locator('#analytics-preference').check(); await page.goto(origin); await expect.poll(() => events.length).toBe(1); expect(events[0]).toEqual({ deployment: 'exampleville', event: 'page_start' });
     await page.locator('#search').fill('sensitive search'); await page.locator('[data-category="community_fridges"]').click(); expect(events).toHaveLength(1);
+    await page.getByRole('link', { name: 'Affordable food', exact: true }).first().click(); await expect(page).toHaveURL(`${origin}/affordable-food/`); expect(events).toHaveLength(1);
+    await page.locator('#search').fill('');
+    await page.locator('[data-event="source"]').first().evaluate(element => { element.addEventListener('click', event => event.preventDefault(), { once: true }); (element as HTMLElement).click(); }); expect(events).toHaveLength(1);
     await page.goto(`${origin}/usage/`); await expect(page.locator('main')).toContainText('Page starts'); await expect(page.locator('main')).toContainText('Unavailable'); await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,follow');
     await page.goto(`${origin}/privacy/`); await page.locator('#analytics-preference').uncheck(); const count = events.length; await page.goto(origin); expect(events).toHaveLength(count);
     await context.addInitScript(() => { Object.defineProperty(navigator, 'globalPrivacyControl', { get: () => true }); });

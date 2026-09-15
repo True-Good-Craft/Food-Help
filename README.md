@@ -38,11 +38,13 @@ npm run build -- --site deployments/kingston --production --source-revision <ful
 
 Production requires corresponding source availability for the exact built revision. Follow [release and hosting instructions](docs/deployment.md) before publishing. Upload the complete selected output, not the parent `dist/` folder. Builds do not deploy, create hosting, change DNS or publish other communities. Dedicated root HTTPS origins are supported; arbitrary subdirectory hosting is outside v1.
 
+For local editorial review of draft listings, use `npm run dev -- --site deployments/kingston --review-drafts`. It uses `http://127.0.0.1:4174` by default so a normal preview's worker cannot mask review content. The isolated review output lives below `artifacts/reviews/`, visibly marks drafts, is noindex/no-store, and has no offline installation. Review mode cannot be used for a production build and does not approve or publish facts.
+
 `npm run check -- --site <folder>` means **structurally safe and internally consistent enough to be reviewed for publication**. It builds the selected deployment and independent fixtures, validates output relationships, and exercises supported browsers. `npm run check -- --all` discovers community folders for validation only. Neither command certifies provider facts, rights or live availability. Missing required test engines are failures, not silent substitutions.
 
 ## Generated surfaces
 
-- A static directory with local search, category buttons and optional in-memory distance sorting.
+- Emergency food at `/` and directly linkable Affordable food at `/affordable-food/`, with local search, category buttons and optional in-memory distance sorting within either view.
 - Useful `/resources/{stable-id}/` HTML with source evidence and review dates.
 - `/directory/`, a printable no-JavaScript directory, and a self-contained HTML download.
 - `/data/v1/resources.json`, filtered from the selected authoritative dataset.
@@ -65,7 +67,7 @@ Published schedules are never a live availability feed. Location is optional and
 | `.github/workflows/` | Repeatable validation, separate from explicit publication |
 | `.generated/`, `artifacts/`, `dist/<deployment_id>/` | Disposable generated output; never hand-maintained authority |
 
-Read [maintenance](docs/maintenance.md) for adding listings, communities and shared upgrades; [architecture](docs/architecture.md) for generation/offline behaviour; [interoperability](docs/interoperability.md) for the preserved v1/HSDS mapping; and [verification](docs/verification.md) for automated versus physical-device evidence.
+Read [maintenance](docs/maintenance.md) for adding listings, communities and shared upgrades; [architecture](docs/architecture.md) for generation/offline behaviour; [interoperability](docs/interoperability.md) for the preserved v1/HSDS mapping; [verification](docs/verification.md) for automated versus physical-device evidence; and the [changelog](CHANGELOG.md) for unreleased user-visible changes.
 
 Software and supporting documentation use [MPL-2.0](LICENSE). The font retains [OFL-1.1](src/assets/fonts/OFL.txt), fictional datasets retain CC0-1.0, and real Kingston data has no asserted blanket open-data licence. [NOTICE](NOTICE.md) and [licensing](docs/licensing.md) explain coverage, attribution and source availability. Self-hosting and commercial software use do not require buying TGC services.
 

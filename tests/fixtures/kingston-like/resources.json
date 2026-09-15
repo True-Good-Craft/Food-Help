@@ -431,8 +431,8 @@
         "Do not use this fictional listing to seek food."
       ],
       "cost": {
-        "state": "free",
-        "description": "Fictional example of a free service."
+        "state": "low_cost",
+        "description": "Fictional example of a low-cost service."
       },
       "schedule": {
         "kind": "by_arrangement",
@@ -502,8 +502,8 @@
         "Do not use this fictional listing to seek food."
       ],
       "cost": {
-        "state": "free",
-        "description": "Fictional example of a free service."
+        "state": "mixed",
+        "description": "Fictional example with both free and low-cost support."
       },
       "schedule": {
         "kind": "by_arrangement",
@@ -588,8 +588,8 @@
         "Do not use this fictional listing to seek food."
       ],
       "cost": {
-        "state": "free",
-        "description": "Fictional example of a free service."
+        "state": "unknown",
+        "description": "Cost is intentionally unresolved in this fictional draft."
       },
       "schedule": {
         "kind": "weekly",

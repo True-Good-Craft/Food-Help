@@ -3,7 +3,7 @@ import { expect } from '@playwright/test';
 import siteJSON from '../../examples/exampleville/site.json' with { type: 'json' };
 import sourceJSON from '../../examples/exampleville/resources.json' with { type: 'json' };
 import { assertDataset, assertSite, assertUsage, publicDataset, validDate } from '../../src/validation.ts';
-import { localTime, scheduledStatus, distanceKm } from '../../src/domain.ts';
+import { browseViewFromPath, distanceKm, localTime, resourceBrowseViews, scheduledStatus } from '../../src/domain.ts';
 import type { Site, Dataset } from '../../src/types.ts';
 const site = siteJSON as Site, source = sourceJSON as unknown as Dataset;
 const fixture = () => structuredClone(source);
@@ -23,4 +23,28 @@ describe('published schedules, never live availability', () => {
   it('supports overnight intervals and explicit all-day exceptions', () => { const r = fixture().resources[0]!; r.schedule.weekly = [{ day: 1, state: 'published', intervals: [{ opens: '22:00', closes: '02:00', closes_next_day: true }] }]; expect(scheduledStatus(r, site, new Date('2026-09-08T00:00:00Z'))).toBe('scheduled_now'); r.schedule.exceptions = [{ date: '2026-09-08', confirmed: true, intervals: [], note: 'Closed', evidence_ids: ['example-source'] }]; expect(scheduledStatus(r, site, new Date('2026-09-08T00:00:00Z'))).toBe('not_scheduled_now'); });
   it('requires explicit evidence at a configured local warning date', () => { const s = structuredClone(site); s.jurisdiction = { coverage_through: '2026-12-31', warning_dates: [{ date: '2026-09-07', note: 'Verify special hours', source_url: 'https://example.invalid/date', checked_on: '2026-09-01' }] }; expect(scheduledStatus(fixture().resources[0]!, s, new Date('2026-09-07T12:00:00Z'))).toBe('unknown'); });
   it('computes stable approximate distances', () => { expect(distanceKm({ latitude: 0, longitude: 0 }, { latitude: 0, longitude: 0 })).toBe(0); expect(distanceKm({ latitude: 0, longitude: 0 }, { latitude: 0, longitude: 1 })).toBeCloseTo(111.195, 2); });
+});
+describe('browse views', () => {
+  it('derives Emergency and Affordable membership only from resolved cost', () => {
+    const r = fixture().resources[0]!;
+    const cases = [
+      ['free', ['emergency']],
+      ['low_cost', ['affordable']],
+      ['subsidized', ['affordable']],
+      ['mixed', ['emergency', 'affordable']],
+      ['unknown', []],
+    ] as const;
+    for (const [state, expected] of cases) {
+      r.cost = { state, description: 'Reviewed cost' };
+      expect(resourceBrowseViews(r)).toEqual(expected);
+    }
+    delete r.cost;
+    expect(resourceBrowseViews(r)).toEqual([]);
+  });
+  it('recognizes the canonical Affordable path with or without its static index spelling', () => {
+    expect(browseViewFromPath('/')).toBe('emergency');
+    expect(browseViewFromPath('/affordable-food/')).toBe('affordable');
+    expect(browseViewFromPath('/affordable-food')).toBe('affordable');
+    expect(browseViewFromPath('/affordable-food/index.html')).toBe('affordable');
+  });
 });
