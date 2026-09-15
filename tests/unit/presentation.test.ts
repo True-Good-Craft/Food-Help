@@ -2,7 +2,7 @@ import { describe, it } from 'node:test';
 import { expect } from '@playwright/test';
 import siteJSON from '../../examples/exampleville/site.json' with { type: 'json' };
 import sourceJSON from '../../examples/exampleville/resources.json' with { type: 'json' };
-import { categoryGroups, publishedSchedule, scheduledToday } from '../../src/domain.ts';
+import { categoryFilter, categoryGroups, publishedSchedule, resourceInCategoryGroup, scheduledToday } from '../../src/domain.ts';
 import { card, scheduleSummary } from '../../src/presentation.ts';
 import { assertSite } from '../../src/validation.ts';
 import type { Site, Dataset, PublicDataset } from '../../src/types.ts';
@@ -47,6 +47,25 @@ describe('directory presentation and schedule decisions', () => {
     s.presentation.category_groups!.push(s.presentation.category_groups![0]!); expect(() => assertSite(s)).toThrow(/Duplicate/);
     s.presentation.category_groups = [{ id: 'all', label: 'All', categories: ['groceries'] }]; expect(() => assertSite(s)).toThrow(/built in/);
     s.presentation.category_groups = [{ id: 'unknown', label: 'Unknown', categories: ['invented_category'] }]; expect(() => assertSite(s)).toThrow(/Unknown category/);
+  });
+  it('uses the primary category for configured filters and hides a redundant All types choice', () => {
+    const s = structuredClone(site);
+    s.presentation = { category_groups: [
+      { id: 'meals', label: 'Meals', categories: ['prepared_meals'] },
+      { id: 'groceries', label: 'Groceries', categories: ['groceries', 'food_banks_pantries'] },
+      { id: 'markets', label: 'Markets', categories: ['community_markets'] }
+    ] };
+    const market = resource(); market.categories = ['community_markets', 'groceries', 'prepared_meals'];
+    const marketOnly = categoryFilter(s, [market]);
+    expect(marketOnly.groups.map(group => group.id)).toEqual(['markets']);
+    expect(marketOnly.includeAll).toBe(false);
+    expect(resourceInCategoryGroup(s, market, marketOnly.groups[0]!)).toBe(true);
+    expect(resourceInCategoryGroup(s, market, s.presentation!.category_groups![1]!)).toBe(false);
+
+    const groceries = resource(); groceries.categories = ['groceries'];
+    const twoTypes = categoryFilter(s, [market, groceries]);
+    expect(twoTypes.groups.map(group => group.id)).toEqual(['groceries', 'markets']);
+    expect(twoTypes.includeAll).toBe(true);
   });
   it('renders a repeated purpose once, keeps links and warnings, and escapes author text', () => {
     const r = resource(); r.summary = 'A unique <support> description'; r.food_access_purpose = r.summary;

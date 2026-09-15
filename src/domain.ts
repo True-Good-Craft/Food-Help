@@ -64,11 +64,21 @@ export function scheduledStatus(resource: Resource, site: Site, now: Date): 'sch
 export function scheduledToday(resource: Resource, site: Site, now: Date): boolean {
   return ['now', 'later'].includes(publishedSchedule(resource, site, now).kind);
 }
-export function categoryGroups(site: Site, resources: Resource[]): { id: string; label: string; categories: string[] }[] {
+export type CategoryGroup = { id: string; label: string; categories: string[] };
+export function resourceInCategoryGroup(site: Site, resource: Resource, group: CategoryGroup): boolean {
+  if (!site.presentation?.category_groups) return resource.categories.some(category => group.categories.includes(category));
+  return group.categories.includes(resource.categories[0]!);
+}
+export function categoryGroups(site: Site, resources: Resource[]): CategoryGroup[] {
   const present = new Set(resources.flatMap(resource => resource.categories));
   const configured = site.presentation?.category_groups;
-  if (configured) return configured.filter(group => group.categories.some(category => present.has(category as Resource['categories'][number])));
+  if (configured) return configured.filter(group => resources.some(resource => resourceInCategoryGroup(site, resource, group)));
   return [...present].map(category => ({ id: category, label: category, categories: [category] }));
+}
+export function categoryFilter(site: Site, resources: Resource[]): { groups: CategoryGroup[]; includeAll: boolean } {
+  const groups = categoryGroups(site, resources);
+  const allCovered = resources.every(resource => groups.some(group => resourceInCategoryGroup(site, resource, group)));
+  return { groups, includeAll: resources.length > 0 && (groups.length > 1 || !allCovered) };
 }
 export function distanceKm(a: { latitude: number; longitude: number }, b: { latitude: number; longitude: number }): number {
   const rad = (n: number) => n * Math.PI / 180, dlat = rad(b.latitude - a.latitude), dlon = rad(b.longitude - a.longitude);

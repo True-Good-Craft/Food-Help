@@ -5,6 +5,7 @@ import path from 'node:path';
 import { parse } from 'parse5';
 import { files } from '../../scripts/build.ts';
 import { assertDataset } from '../../src/validation.ts';
+import { categoryFilter } from '../../src/domain.ts';
 import type { PublicDataset, Site } from '../../src/types.ts';
 import { selectedBuilds } from '../selected.ts';
 type Node = { nodeName: string; value?: string; attrs?: { name: string; value: string }[]; childNodes?: Node[] };
@@ -60,6 +61,9 @@ for (const { directory, sourceDir, production } of [...selectedBuilds, { directo
       expect(jsonld.url).toBe(site.canonical_origin + route);
       expect(jsonld.mainEntity.itemListElement.map((item: { name: string }) => item.name)).toEqual(expected.map(resource => resource.name));
       expect(xmlURLs.includes(site.canonical_origin + route)).toBe(production);
+      const filter = categoryFilter(site, expected);
+      expect(doc.filter(node => node.nodeName === 'button' && attr(node, 'data-category') === 'all')).toHaveLength(filter.includeAll ? 1 : 0);
+      expect(doc.filter(node => node.nodeName === 'button' && attr(node, 'data-category') !== undefined && attr(node, 'data-category') !== 'all').map(node => attr(node, 'data-category'))).toEqual(filter.groups.map(group => group.id));
     }
     for (const file of ['directory/index.html', 'directory/download.html']) {
       const doc = nodes(parse(await readFile(path.join(directory, file), 'utf8')) as unknown as Node);
