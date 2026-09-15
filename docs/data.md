@@ -1,6 +1,6 @@
 # Reviewed resource data
 
-`site/resources.json` is authoritative. Generated `/data/v1/resources.json` must never be edited. Food Help’s `format: "food-help"`, `schema_version: 1` distinguishes it from other projects’ version numbering.
+The selected deployment's `resources.json` is authoritative (for Kingston, `deployments/kingston/resources.json`). Generated `/data/v1/resources.json` must never be edited. Food Help's `format: "food-help"`, `schema_version: 1` distinguishes it from other projects' version numbering. Moving a dataset between source folders does not change this contract.
 
 The dataset has a stable UUID `dataset_id`, `content_language`, `taxonomy_version: 1`, organizations and resources. Organizations have stable slug IDs, names and optional descriptions, official URLs and content language. A resource references `organization_id`; locations are inline to keep small-directory authoring manageable. Preserve IDs through name changes. Do not recycle withdrawn IDs for unrelated services. V1 URLs use the stable resource ID directly.
 
@@ -36,8 +36,23 @@ Temporary notices include text, start/end dates and evidence references. Dates r
 
 Generated public fields are `deployment_id`, `dataset_version` (content digest), `compatibility_id` (deployment/configuration compatibility digest) and `data_updated_on` (latest published resource update). They are forbidden in source. Unreferenced organizations and unpublished resources never enter the public projection. The public dataset carries evidence; it is not an assertion of live availability. V1 limits its serialized size to 5 MB.
 
-## Later Kingston conversion
+## Kingston conversion and public-contract boundary
 
 Treat the verified Kingston source dataset, not a stale generated public file, as the input. Map legacy meals to `prepared_meals`; review grocery records individually for pantry versus groceries. Preserve stable IDs and evidence, group provider identity into organizations, convert known/unknown access explicitly, and split editorial/service/review status. Retain IANA timezones and explicit schedule uncertainty. Do not increase confidence during conversion. The Food Help format discriminator and new dataset ID make the public-contract transition explicit.
 
-Conversion is a separately reviewed deployment step. The repository includes only a synthetic Kingston-like test fixture. No provider facts, production domain redirects or installed-app migration are performed by this project’s setup command.
+The reviewed eight-record Kingston conversion is now included in `deployments/kingston/`; the separate synthetic Kingston-like test fixture remains fictional. Original review dates and uncertainties are preserved. The real dataset has no asserted blanket open-data licence; see [licensing](licensing.md). Setup does not invent or verify provider facts.
+
+The legacy and Food Help `/data/v1/resources.json` schemas are different despite sharing a path suffix. A website redirect must not silently claim wire compatibility for these machine endpoints. Treat any legacy data retention or contract retirement explicitly in the release's transition record. The [HSDS 3.3 mapping](interoperability.md) is unchanged and remains a design for a future converter, not an implemented export.
+
+The consolidation comparison of the retained legacy publication and current Kingston source confirms all eight stable IDs. Names, summaries, operator names, locations/coordinates, phone/extensions, official URLs, timezones, guidance, eligibility, limitations, evidence URLs/check dates/notes, review methods/dates, schedule notes/exceptions and temporary notices are preserved through explicit mappings. All verification dates remain 2026-09-04.
+
+The deliberate representation differences are:
+
+- Legacy `meals` becomes `prepared_meals`; pantry services move from broad `groceries` to `food_banks_pantries`, while Brit Smith Social Market remains `groceries`.
+- Provider identity becomes an organization reference; locations, schedules and evidence become structured records with stable evidence references.
+- Legacy `unconfirmed_fields` takes precedence over placeholder booleans and becomes explicit `unknown` access values. Missing information is not promoted to a confirmed yes/no.
+- Unconfirmed empty weekly-hour placeholders for Lunch by George and Community Choice Pantry become an unknown schedule, not a claim of seven closed days. Their temporary warnings remain.
+- Legacy `verification_due` splits into published editorial status and partially confirmed review state. It is not upgraded to confirmed information.
+- The new public dataset adds the `food-help` discriminator, dataset UUID, taxonomy/compatibility identifiers and content digests. The old timestamp-style dataset version and JSON shape remain at the preserved legacy endpoint.
+
+The comparison is migration evidence, not a new source review or a universal converter. See [legacy transition](legacy-transition.md) for endpoint and worker treatment.

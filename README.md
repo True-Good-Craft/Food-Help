@@ -1,69 +1,74 @@
 # Food Help
 
-Food Help builds one community’s accessible, installable, offline-capable food-resource directory from reviewed local data. It is a static Vite + TypeScript application with no runtime package dependencies, accounts, database or server application.
+Food Help builds an accessible, installable, offline-capable food-resource directory from reviewed local data. It is a static Vite + TypeScript application with no runtime package dependencies, accounts, database or server application.
 
-**A new deployment requires no changes to generic application source.** Configure `site/site.json`, author `site/resources.json`, and optionally supply `site/assets/` and sanitized `site/usage.json`.
+**A new community requires no changes to generic application source.** Shared software lives on `main`; each community supplies a folder containing `site.json`, `resources.json`, optional `assets/` and optional sanitized `usage.json`. Building and releasing one community does not update another.
 
-The included Exampleville directory is fictional and deliberately excluded from indexing. It must not be used to find real services.
+The real Kingston configuration and eight reviewed listings are in `deployments/kingston/`, for [kingston.food-help.ca](https://kingston.food-help.ca). The neutral starter in `examples/exampleville/` is fictional and excluded from indexing. It must not be used to find real services.
 
-## Start locally
+## Start independently
 
-Use Node **24.12 or later in the Node 24 line** (the tested version is in `.node-version`).
+Download, clone, fork or use this repository as a template. No TGC account, hosting purchase or analytics service is required. Use Node **24.12 or later in the Node 24 line** (see `.node-version`).
 
 ```sh
 npm ci
-npm run setup
 npx playwright install chromium firefox webkit
-npm run check
-npm run dev
+npm run setup -- --site deployments/my-community
+npm run check -- --site deployments/my-community
+npm run dev -- --site deployments/my-community
 ```
 
-Open `http://127.0.0.1:4173`. Development rebuilds on changes to `src/`, `site/` and `schemas/`; reload the page or accept a waiting application update. Use a fresh browser profile when checking a particular artifact without an older worker.
+Setup requires an explicit folder and creates a fictional starting configuration without inventing local facts. Finish [configuration](docs/configuration.md), replace example data with reviewed local resources, and establish your data rights before publication. In a noninteractive terminal, setup creates/validates the fictional starter rather than guessing answers. `--validate-only` leaves configuration and data unchanged; generated schema tooling may be refreshed. Existing resource data is preserved.
 
-`setup` prompts for deployment basics without inventing resource facts. Without an interactive terminal, or with `--validate-only`, it validates the configuration. It preserves existing resource data. Finish the remaining settings in the documented configuration file and replace fictional data with reviewed resources.
+Open `http://127.0.0.1:4173`. Development rebuilds the selected community; reload or accept its waiting application update. To inspect only the neutral example, use `npm run dev` without `--site`. A fresh browser profile avoids an earlier deployment's worker when comparing artifacts locally.
 
-`npm run check` means **structurally safe and internally consistent enough to be reviewed for publication**. It validates the actual deployment, builds two community fixtures, checks generated relationships, runs unit tests, and exercises Chromium, Firefox and WebKit. It does not certify provider facts, licensing, medical suitability or live availability. First install the test browsers; no test silently substitutes a missing engine.
+## Work on Kingston
 
 ```sh
-npm run build                  # preview, noindex
-npm run preview                # serve dist/ with generated response headers
-npm run build -- --production  # after human review; refuses example content
+npm run check -- --site deployments/kingston
+npm run build -- --site deployments/kingston
+npm run preview -- --site deployments/kingston
 ```
 
-Builds do not deploy. Upload the complete `dist/` artifact to an approved static host at a dedicated HTTPS origin. Arbitrary subdirectory hosting is outside v1.
+The build above is a noindex preview at `dist/kingston/`. After editorial review, build production explicitly:
 
-## What the build produces
+```sh
+npm run build -- --site deployments/kingston --production --source-revision <full-commit-sha>
+```
 
-- A static directory with optional local search, categories and in-memory distance sorting.
-- Useful `/resources/{stable-id}/` HTML pages, including evidence and review dates.
-- `/directory/`, a printable no-JavaScript directory, and a self-contained downloadable HTML copy.
-- `/data/v1/resources.json`, the current public dataset, filtered from authoritative source.
+Production requires corresponding source availability for the exact built revision. Follow [release and hosting instructions](docs/deployment.md) before publishing. Upload the complete selected output, not the parent `dist/` folder. Builds do not deploy, create hosting, change DNS or publish other communities. Dedicated root HTTPS origins are supported; arbitrary subdirectory hosting is outside v1.
+
+`npm run check -- --site <folder>` means **structurally safe and internally consistent enough to be reviewed for publication**. It builds the selected deployment and independent fixtures, validates output relationships, and exercises supported browsers. `npm run check -- --all` discovers community folders for validation only. Neither command certifies provider facts, rights or live availability. Missing required test engines are failures, not silent substitutions.
+
+## Generated surfaces
+
+- A static directory with local search, category buttons and optional in-memory distance sorting.
+- Useful `/resources/{stable-id}/` HTML with source evidence and review dates.
+- `/directory/`, a printable no-JavaScript directory, and a self-contained HTML download.
+- `/data/v1/resources.json`, filtered from the selected authoritative dataset.
 - Methodology, privacy, about and licensing pages; optional sanitized `/usage/`.
 - Canonicals, Open Graph, truthful JSON-LD, sitemap, robots and `llms.txt`.
-- A generated manifest, self-hosted icons/font, native service worker and security headers.
+- A manifest, self-hosted icons/font, native service worker and generated host policies.
 
-Published schedules are never a live availability feed. Optional location is not stored. Analytics is disabled by default and requires explicit configuration; no external infrastructure is required.
+Published schedules are never a live availability feed. Location is optional and not stored. Analytics is disabled in the starter and requires explicit deployment configuration and policy approval. Host-injected scripts are a separate responsibility; production verification checks actual responses.
 
 ## Source map
 
 | Location | Role |
 | --- | --- |
-| `site/site.json`, `site/resources.json` | Deployment and reviewed fact authority |
-| `site/assets/`, optional `site/usage.json` | Optional local branding and reviewed aggregates |
-| `schemas/` | Two versioned schema contracts |
-| `src/` | Generic domain, validation, presentation and browser behaviour |
-| `src/copy/en.ts` | Centralized application copy; additive French path |
-| `scripts/` | Setup, one build pipeline, preview and canonical check |
-| `examples/exampleville/` | Fictional authoring example, not an authority for your deployment |
-| `tests/` | Unit, output contracts, browser and offline tests; synthetic second community |
-| `.generated/`, `artifacts/`, `dist/` | Disposable generated output; never hand-maintained |
+| `deployments/<community>/site.json`, `resources.json` | Community configuration and reviewed fact authority |
+| Selected folder's `assets/`, optional `usage.json`, `AGENTS.md` | Branding, reviewed aggregates and local rules |
+| `examples/exampleville/` | Neutral fictional starter and test fixture |
+| `src/`, `schemas/`, `scripts/` | Shared application, data contracts and tooling |
+| `src/copy/en.ts` | Application copy and documented additive language path |
+| `tests/` | Unit, contract, browser, offline and synthetic-community checks |
+| `.github/workflows/` | Repeatable validation, separate from explicit publication |
+| `.generated/`, `artifacts/`, `dist/<deployment_id>/` | Disposable generated output; never hand-maintained authority |
 
-Read [configuration](docs/configuration.md), [resource authoring](docs/data.md), [architecture and offline behaviour](docs/architecture.md), [standards/reuse decisions](docs/interoperability.md), [deployment](docs/deployment.md), and [verification](docs/verification.md).
+Read [maintenance](docs/maintenance.md) for adding listings, communities and shared upgrades; [architecture](docs/architecture.md) for generation/offline behaviour; [interoperability](docs/interoperability.md) for the preserved v1/HSDS mapping; and [verification](docs/verification.md) for automated versus physical-device evidence.
 
-Application source and repository documentation use [MPL-2.0](LICENSE). The font retains its [OFL](src/assets/fonts/OFL.txt). Dataset rights are separate; see [NOTICE](NOTICE.md). No real provider dataset or production infrastructure is included.
+Software and supporting documentation use [MPL-2.0](LICENSE). The font retains [OFL-1.1](src/assets/fonts/OFL.txt), fictional datasets retain CC0-1.0, and real Kingston data has no asserted blanket open-data licence. [NOTICE](NOTICE.md) and [licensing](docs/licensing.md) explain coverage, attribution and source availability. Self-hosting and commercial software use do not require buying TGC services.
 
-The GitHub check workflow is manual-only (`workflow_dispatch`). Repository Actions are disabled for the initial publication; a maintainer must explicitly enable and run them. There are no deployment or scheduled workflows.
+`main` is the shared development source. Community release pointers select exact reviewed commits; adding a folder or merging shared software is not an instruction to deploy every community. Validation and publication remain separate. Hosting success alone is not proof of offline readiness, analytics delivery or physical-phone reliability.
 
-## Current inspection snapshot
-
-This initial repository is available for local inspection, not production sign-off. The latest local run passed type checks, 18 unit/output-contract tests and 21 browser tests. Two WebKit checks remain unresolved: optional analytics consent/event collection and corrupt-response last-good-data retention. Four browser cases are intentionally Chromium-only. Run `npm run check` to reproduce the outstanding results. Real-device installation and production-host checks are still pending. No website is deployed by publishing this repository.
+For a configured host, `npm run release -- --site deployments/kingston --ref <commit-or-tag>` checks/builds an exact local release plan. Adding `--publish` explicitly advances only `release/kingston` and triggers its configured hosting build. The checkout must be clean and already at the selected revision. See [deployment](docs/deployment.md) for prerequisites and rollback.

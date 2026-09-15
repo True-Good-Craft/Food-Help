@@ -2,7 +2,7 @@
 
 Do not put credentials, private provider records or visitor data in this repository. Everything in a deployed static artifact is public. `.gitignore` is not a secret scanner and cannot undo a prior disclosure.
 
-Report a suspected vulnerability privately to the repository’s maintainers using private vulnerability reporting when enabled. Before the public repository exists, use the project owner’s existing private contact channel; do not open a public issue containing exploit details or secrets. Operators’ public correction addresses are for directory facts, not automatically the software security contact.
+Report a suspected vulnerability privately to the repository's maintainers using private vulnerability reporting when enabled. Otherwise use an established private maintainer contact channel; do not open a public issue containing exploit details or secrets. Operators' public correction addresses are for directory facts, not automatically the software security contact. Do not assume a reporting feature is enabled without checking.
 
 Include affected versions, a minimal reproduction, impact and relevant configuration with sensitive values removed. Do not test against other communities without permission. A maintainer should acknowledge, assess and coordinate a fix before disclosure; no unsupported response-time guarantee is implied.
 

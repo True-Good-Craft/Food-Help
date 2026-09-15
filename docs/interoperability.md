@@ -2,6 +2,8 @@
 
 Focused review completed before the v1 data contract, checked September 2026. Food Help keeps a small authoring model and documents an interoperability mapping. It does **not** claim HSDS conformance, ship an HSDS API, or reproduce a subscription taxonomy.
 
+The shared-source/community-folder consolidation preserves this v1 contract and mapping. Select the dataset with `--site`; folder layout and independent releases do not rename fields, generate HSDS output or make the legacy Kingston JSON wire-compatible with Food Help v1. Dataset licensing remains separate from standards mapping; see [licensing](licensing.md).
+
 | Standard or project | Decision | Applied lesson and boundary |
 | --- | --- | --- |
 | [Open Referral / HSDS](https://docs.openreferral.org/en/latest/hsds/hsds_faqs.html) | Map/interoperate | Organization, service, location, contact, eligibility, identifiers and metadata are separate concepts. Food Help groups organizations but keeps service locations inline for simpler authoring. |

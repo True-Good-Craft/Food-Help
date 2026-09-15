@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "deployment_id": "kingston",
+  "community": {
+    "name": "Kingston",
+    "locality": "Kingston",
+    "region": "Ontario",
+    "country": "CA"
+  },
+  "site_name": "Kingston Food Help",
+  "short_name": "Food Help",
+  "description": "Find free and low-cost food support in Kingston, Ontario. Check details and contact providers before travelling.",
+  "language": "en",
+  "locale": "en-CA",
+  "text_direction": "ltr",
+  "time_zone": "America/Toronto",
+  "canonical_origin": "https://kingston.food-help.ca",
+  "operator": {
+    "name": "True Good Craft",
+    "url": "https://truegoodcraft.ca",
+    "statement": "An independent community resource by True Good Craft Inc.\nNot an official City of Kingston service."
+  },
+  "corrections": {
+    "email": "jamie@truegoodcraft.ca"
+  },
+  "help_contact": {
+    "label": "Call 2-1-1",
+    "phone": "211",
+    "description": "Call 2-1-1 for help finding services. Free and confidential, 24 hours a day.",
+    "source_url": "https://211ontario.ca/",
+    "checked_on": "2026-09-04"
+  },
+  "emergency_contact": {
+    "label": "Call 9-1-1 in an emergency",
+    "phone": "911",
+    "description": "For immediate danger or a life-threatening emergency."
+  },
+  "review": {
+    "interval_days": 30
+  },
+  "presentation": {
+    "introduction": "Find a meal or groceries. See where to go, when to visit, and what to bring.",
+    "category_groups": [
+      { "id": "meals", "label": "Meals", "categories": ["prepared_meals"] },
+      { "id": "groceries", "label": "Groceries", "categories": ["groceries", "food_banks_pantries"] }
+    ]
+  },
+  "location": {
+    "enabled": true
+  },
+  "indexing": {
+    "enabled": true
+  },
+  "analytics": {
+    "enabled": false
+  },
+  "public_usage": {
+    "enabled": false
+  },
+  "example_content": false,
+  "data_rights": {
+    "statement": "Resource facts remain subject to their original sources and provider rights. No separate open-data licence is asserted for this deployment."
+  },
+  "software_source_url": "https://github.com/True-Good-Craft/Food-Help"
+}

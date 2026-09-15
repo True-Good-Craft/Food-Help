@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MPL-2.0
 import { validateSite, validateSource, validatePublic, validateUsage } from '../.generated/validators.js';
 import type { Site, Dataset, PublicDataset, Resource, Usage } from './types.ts';
+import { copy } from './copy/en.ts';
 
 function requireValid(condition: unknown, message: string): asserts condition { if (!condition) throw new Error(message); }
 export function validDate(value: string): boolean { return /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value; }
@@ -23,10 +24,33 @@ export function assertSite(value: unknown): asserts value is Site {
   requireValid(new URL(site.canonical_origin).origin === site.canonical_origin, 'canonical_origin must be an HTTPS origin without a path or trailing slash');
   requireValid(site.language === 'en' && site.text_direction === 'ltr', 'v1 ships English UI; add a reviewed copy pack before enabling another UI language');
   new Intl.DateTimeFormat(site.locale).format();
+  if (site.presentation?.category_groups) {
+    unique(site.presentation.category_groups.map(group => group.id), 'category group IDs');
+    for (const group of site.presentation.category_groups) {
+      requireValid(group.id !== 'all', 'The all category group is built in');
+      requireValid(group.categories.every(category => Object.hasOwn(copy.categories, category)), 'Unknown category in presentation group');
+    }
+  }
   if (site.analytics?.enabled) {
     requireValid(site.analytics.endpoint && site.analytics.collection_mode && site.analytics.disclosure, 'Enabled analytics requires endpoint, collection_mode and disclosure');
     const endpoint = new URL(site.analytics.endpoint); requireValid(!endpoint.search && !endpoint.hash, 'Analytics endpoint cannot contain query or fragment');
-  } else requireValid(!site.analytics?.endpoint && !site.analytics?.constants && !site.analytics?.event_names, 'Disabled analytics must not configure collection');
+    const analytics = site.analytics;
+    if (analytics.event_payloads) {
+      requireValid(!analytics.event_names, 'Choose static event payloads or event names, not both');
+      requireValid(['page_start', 'call', 'help', 'directions', 'source', 'install'].every(event => Object.hasOwn(analytics.event_payloads!, event)), 'Static event payloads must explicitly cover every supported event');
+      for (const payload of Object.values(analytics.event_payloads)) requireValid(!Object.keys(payload).some(key => Object.hasOwn(analytics.constants ?? {}, key)), 'Event payloads cannot override shared constants');
+    } else requireValid(!Object.hasOwn(analytics.constants ?? {}, 'event'), 'Constants cannot override the event name');
+    if (analytics.attribution) {
+      const attribution = analytics.attribution;
+      requireValid(attribution.sources.includes('direct_unknown') && attribution.sources.includes('other') && attribution.campaigns.includes('none') && attribution.contents.includes('none'), 'Attribution requires bounded fallback labels');
+      unique(attribution.referrers.map(item => item.host), 'attribution referrer hosts');
+      const hosts = [...attribution.internal_hosts, ...attribution.referrers.map(item => item.host)];
+      requireValid(hosts.every(host => new URL(`https://${host}`).hostname === host && !host.includes('..')), 'Attribution requires normalized hostnames');
+      requireValid(attribution.referrers.every(item => attribution.sources.includes(item.source)), 'Referrer source must be allowlisted');
+      const reserved = ['source', 'campaign', 'content'];
+      requireValid(!reserved.some(key => Object.hasOwn(analytics.constants ?? {}, key)) && Object.values(analytics.event_payloads ?? {}).every(payload => !reserved.some(key => Object.hasOwn(payload, key))), 'Static fields cannot override bounded attribution');
+    }
+  } else requireValid(Object.keys(site.analytics ?? {}).every(key => key === 'enabled'), 'Disabled analytics must not configure collection');
   if (site.public_usage?.enabled) requireValid(site.public_usage.file === 'usage.json', 'Public usage needs site/usage.json');
   const branding = site.branding;
   if (branding?.logo || branding?.icon_192 || branding?.icon_512) requireValid(branding.logo && branding.icon_192 && branding.icon_512, 'Branding requires logo and both sized icons');
