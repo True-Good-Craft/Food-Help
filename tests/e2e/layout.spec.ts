@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { serve } from '../../scripts/serve.ts';
 import axe from 'axe-core';
 import { selectedBuilds } from '../selected.ts';
+import { categoryFilter, resourceInCategoryGroup } from '../../src/domain.ts';
 for (const selected of selectedBuilds) test(`${selected.sourceDir}: operator layout remains readable at desktop, mobile and enlarged-text widths`, async ({ browser }, info) => {
   const server = await serve({ root: selected.directory, port: 0 });
   const origin = `http://127.0.0.1:${(server.address() as { port: number }).port}`;
@@ -18,12 +19,12 @@ for (const selected of selectedBuilds) test(`${selected.sourceDir}: operator lay
     await page.setViewportSize({ width: 1920, height: 912 }); await page.goto(origin); await expect(page.locator('#filters')).toBeVisible(); await page.evaluate(() => document.fonts.ready);
     await expect(page.locator('h1')).toHaveText(`Find food help in ${site.community.name}`);
     if (site.presentation?.category_groups) {
-      const groups = site.presentation.category_groups.filter((group: { categories: string[] }) => group.categories.some(category => emergency.some((resource: { categories: string[] }) => resource.categories.includes(category))));
+      const { groups, includeAll } = categoryFilter(site, emergency);
       for (const group of groups) {
         await page.getByRole('button', { name: group.label, exact: true }).click();
-        await expect(page.locator('#resource-list article')).toHaveCount(emergency.filter((r: { categories: string[] }) => r.categories.some(category => group.categories.includes(category))).length);
+        await expect(page.locator('#resource-list article')).toHaveCount(emergency.filter((resource: Parameters<typeof resourceInCategoryGroup>[1]) => resourceInCategoryGroup(site, resource, group)).length);
       }
-      await page.getByRole('button', { name: 'All types', exact: true }).click();
+      if (includeAll) await page.getByRole('button', { name: 'All types', exact: true }).click();
     }
     const footer = await page.locator('.site-footer').boundingBox();
     expect(footer!.width).toBe(await page.evaluate(() => document.documentElement.clientWidth)); expect(footer!.height).toBeLessThan(220);
@@ -35,6 +36,10 @@ for (const selected of selectedBuilds) test(`${selected.sourceDir}: operator lay
       if (record.summary === record.food_access_purpose) expect(await article.locator('p').evaluateAll((nodes, summary) => nodes.filter(node => node.textContent === summary).length, record.summary)).toBe(1);
     }
     await page.goto(`${origin}/affordable-food/`); await expect(page.locator('#filters')).toBeVisible(); await expect(page.locator('#resource-list article')).toHaveCount(affordable.length);
+    const affordableFilter = categoryFilter(site, affordable);
+    await expect(page.locator('[data-category="all"]')).toHaveCount(affordableFilter.includeAll ? 1 : 0);
+    await expect(page.locator('[data-category]:not([data-category="all"])')).toHaveCount(affordableFilter.groups.length);
+    if (!affordableFilter.includeAll && affordableFilter.groups.length === 1) await expect(page.locator(`[data-category="${affordableFilter.groups[0]!.id}"]`)).toHaveAttribute('aria-pressed', 'true');
     for (const record of affordable) await expect(page.locator(`[data-resource-id="${record.id}"] .summary`)).toHaveText(record.summary);
     await page.screenshot({ path: `artifacts/screenshots/${site.deployment_id}/${info.project.name}-affordable-desktop.png`, fullPage: true });
     await page.goto(origin); await expect(page.locator('#filters')).toBeVisible();

@@ -7,6 +7,7 @@ import { createHash } from 'node:crypto';
 import { chromium, expect } from '@playwright/test';
 import axe from 'axe-core';
 import { argumentsFor, selection } from './lib/selection.ts';
+import { categoryFilter, resourceInCategoryGroup } from '../src/domain.ts';
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const args = argumentsFor();
 if (!args.siteDir) throw new Error('Explicit --site required for production verification');
@@ -128,14 +129,14 @@ try {
       await page.goto(origin + view.path); await expect(page.locator('.brand')).toHaveText(site.site_name); await expect(page.locator('#filters')).toBeVisible();
       await expect(page.locator('.directory-shell')).toHaveAttribute('data-browse-view', view.id);
       await expect(page.locator('#resource-list article')).toHaveCount(scoped.length);
-      const configured = site.presentation?.category_groups ?? [...new Set(scoped.flatMap(resource => resource.categories))].map(category => ({ id: category, categories: [category] }));
-      const groups = configured.filter(group => group.categories.some(category => scoped.some(resource => resource.categories.includes(category))));
+      const { groups, includeAll } = categoryFilter(site, scoped);
       await expect(page.locator('[data-category]:not([data-category="all"])')).toHaveCount(groups.length);
+      await expect(page.locator('[data-category="all"]')).toHaveCount(includeAll ? 1 : 0);
       for (const group of groups) {
         await page.locator(`[data-category="${group.id}"]`).click();
-        await expect(page.locator('#resource-list article')).toHaveCount(scoped.filter(resource => resource.categories.some(category => group.categories.includes(category))).length);
+        await expect(page.locator('#resource-list article')).toHaveCount(scoped.filter(resource => resourceInCategoryGroup(site, resource, group)).length);
       }
-      await page.locator('[data-category="all"]').click();
+      if (includeAll) await page.locator('[data-category="all"]').click();
       if (scoped[0]) {
         await page.locator('#search').fill(scoped[0].name);
         await expect(page.locator(`[data-resource-id="${scoped[0].id}"]`)).toBeVisible();

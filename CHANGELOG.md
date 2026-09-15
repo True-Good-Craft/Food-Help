@@ -12,6 +12,7 @@ Notable user-visible changes to Food Help are recorded here. Community publicati
 
 ### Changed
 
+- Category controls now show only primary types represented in the active browsing view, and omit “All types” when only one type is available.
 - Published resources require reviewed, evidence-backed cost information. Free services appear in Emergency food, low-cost and subsidized services appear in Affordable food, and mixed-cost services appear in both without duplicate records.
 - Static, printable, downloaded, offline and public-data surfaces continue to preserve the complete published directory.
 - Kingston’s eight Lionhearts Fresh Food Market location records were approved by Jamie Whelan for publication on 2026-09-15, with their recorded uncertainties and accessibility qualifications unchanged.

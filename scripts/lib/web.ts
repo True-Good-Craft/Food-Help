@@ -2,7 +2,7 @@
 import { createHash } from 'node:crypto';
 import { copy as c } from '../../src/copy/en.ts';
 import { card, escape as e, resourcePath, formatDate } from '../../src/presentation.ts';
-import { browseViewPaths, categoryGroups, inBrowseView, type BrowseView } from '../../src/domain.ts';
+import { browseViewPaths, categoryFilter, inBrowseView, type BrowseView } from '../../src/domain.ts';
 import type { PublicDataset, Site, Usage } from '../../src/types.ts';
 export const digest = (input: string | Uint8Array): string => createHash('sha256').update(input).digest('hex');
 export type Page = { path: string; title: string; description: string; body: string; indexable: boolean; directory?: boolean; review?: boolean; jsonld?: unknown };
@@ -15,7 +15,7 @@ export function pages(site: Site, data: PublicDataset, usage?: Usage): Page[] {
   const directoryPage = (view: BrowseView): Page => {
     const path = browseViewPaths[view], label = c.browseViews[view], description = c.browseDescriptions[view];
     const resources = data.resources.filter(resource => inBrowseView(resource, view));
-    const groups = categoryGroups(site, resources);
+    const { groups, includeAll } = categoryFilter(site, resources);
     const listData = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: view === 'emergency' ? site.site_name : `${label} | ${site.site_name}`, url: site.canonical_origin + path, description, mainEntity: { '@type': 'ItemList', itemListElement: resources.map((r, index) => ({ '@type': 'ListItem', position: index + 1, url: site.canonical_origin + resourcePath(r.id), name: r.name })) } };
     const viewNavigation = `<nav class="browse-view-control" aria-label="${c.browseBy}">${(['emergency', 'affordable'] as BrowseView[]).map(item => `<a href="${browseViewPaths[item]}" data-view="${item}"${item === view ? ' aria-current="page"' : ''}>${c.browseViews[item]}</a>`).join('')}</nav>`;
     return {
@@ -25,9 +25,9 @@ export function pages(site: Site, data: PublicDataset, usage?: Usage): Page[] {
         <section class="directory-shell" data-browse-view="${view}" aria-labelledby="directory-heading">
         <div class="section-heading"><h2 id="directory-heading">${c.directory}</h2><p class="dataset-status" id="data-status">${data.data_updated_on ? `${c.listingsUpdated} · ${formatDate(data.data_updated_on, site)}` : ''}</p></div>
         ${viewNavigation}<p class="browse-view-description" id="browse-view-description">${e(description)}</p>
-        <div id="filters" hidden><fieldset class="category-control"><legend class="sr-only">${c.category}</legend><div class="segmented-control">
-          <button type="button" data-category="all" aria-pressed="true">${c.all}</button>
-          ${groups.map(group => `<button type="button" data-category="${e(group.id)}" aria-pressed="false">${e(site.presentation?.category_groups ? group.label : c.categories[group.id as keyof typeof c.categories])}</button>`).join('')}
+        <div id="filters" hidden><fieldset class="category-control"${resources.length ? '' : ' hidden'}><legend class="sr-only">${c.category}</legend><div class="segmented-control">
+          ${includeAll ? `<button type="button" data-category="all" aria-pressed="true">${c.all}</button>` : ''}
+          ${groups.map(group => `<button type="button" data-category="${e(group.id)}" aria-pressed="${includeAll ? 'false' : 'true'}">${e(site.presentation?.category_groups ? group.label : c.categories[group.id as keyof typeof c.categories])}</button>`).join('')}
         </div></fieldset><div class="filters">
           <label class="search-control"><span>${c.search}</span><input id="search" type="search" autocomplete="off" placeholder="${c.searchPlaceholder}"></label>
           <label class="check-control"><input id="scheduled" type="checkbox"><span>${c.scheduledFilter}</span></label>
