@@ -2,6 +2,45 @@
 
 The application artifact is the selected `dist/<deployment_id>/` folder. Building is local and does not create a hosting project, push a repository, change DNS or contact Cloudflare. Deploy to a dedicated root HTTPS origin. No Cloudflare runtime service is required by the directory application.
 
+## Food Help project site
+
+The root `https://food-help.ca/` project site is an independent target, not a community directory. Its source is `project-site/`, its output is `dist/project/`, and its release pointer is `release/project`. Build and check it locally with:
+
+```sh
+npm run project:check
+npm run project:build
+npm run project:preview
+```
+
+The normal build is a noindex review artifact. Production requires corresponding source for the exact revision:
+
+```sh
+npm run project:build -- --production --source-revision <full-commit-sha>
+npm run project:release -- --ref <commit-or-tag>
+```
+
+After review and separate publication authorization, adding `--publish` to `project:release` advances only `release/project` using the same lease-protected release-plan policy as community releases. A dedicated root hosting project should watch only that branch, run `npm run project:build -- --production`, publish `dist/project`, and provide `CF_PAGES_COMMIT_SHA`. It must not watch `release/kingston`, build a `deployments/` folder, or combine root and community outputs. Retain the previous complete root artifact, source revision and hosting release identifier for rollback.
+
+Before the first release, an authorized operator must create or select that distinct static hosting project, attach only the approved `food-help.ca` hostname, disable host-injected analytics/scripts/HTML rewriting, and verify the generated headers, canonical, 404 and sitemap on the actual origin. Preview and provider-generated aliases must remain noindex. The generated project artifact has no client JavaScript, service worker or analytics integration.
+
+The intended redirect posture is one hop with path and query preserved:
+
+- `http://food-help.ca/*` → `https://food-help.ca/*`;
+- `http://www.food-help.ca/*` and `https://www.food-help.ca/*` → `https://food-help.ca/*`.
+
+These redirects require the relevant DNS, certificate and hosting configuration and are not made by the repository build. Inspect current zone/project state before applying them; do not change mail or unrelated TGC records.
+
+### Search Console and sitemap submission
+
+Use one Google Search Console **Domain property** for `food-help.ca` so the root and current/future subdomains are covered for ownership. An authorized account owner must add the property and publish Google's supplied DNS TXT verification record. That external verification is distinct from having valid metadata in the build.
+
+After the root and Kingston production origins are live and verified, submit both sitemaps separately within that property:
+
+- `https://food-help.ca/sitemap.xml`
+- `https://kingston.food-help.ca/sitemap.xml`
+
+The root sitemap intentionally contains only root-site pages. Each community retains its own canonical URLs, robots policy and sitemap; do not canonicalize or copy subdomain pages into the root sitemap. Search Console verification and sitemap acceptance still do not guarantee crawling or indexing. Record actual submission responses, inspect representative canonical/indexing reports after discovery, and keep previews, fictional examples and provider aliases noindex.
+
 Before production, review public facts, data rights, contacts, operator statement, optional analytics policy, source availability and canonical origin. Set `example_content: false` only after replacing the fictional dataset. Enable indexing explicitly if appropriate. For Kingston:
 
 ```sh

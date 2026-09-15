@@ -2,6 +2,7 @@
 import { spawn } from 'node:child_process';
 import { readFile, writeFile, mkdir, copyFile, readdir, rm } from 'node:fs/promises';
 import { build } from './build.ts';
+import { buildProject } from './build-project.ts';
 import { digest } from './lib/web.ts';
 import { argumentsFor, starterSite } from './lib/selection.ts';
 const options = argumentsFor();
@@ -20,6 +21,9 @@ await mkdir('.generated', { recursive: true });
 try { await mkdir('.generated/check.lock'); } catch (error) { if ((error as NodeJS.ErrnoException).code === 'EEXIST') throw new Error('Another Food Help check is active. Checks sharing test fixtures are explicitly serialized. If a process crashed, confirm it has stopped before removing .generated/check.lock.'); throw error; }
 try {
 const independent = await build({ siteDir: 'examples/exampleville', outDir: 'artifacts/exampleville' });
+const projectPreview = await buildProject({ outDir: 'artifacts/project-check/preview' });
+const projectProduction = await buildProject({ outDir: 'artifacts/project-check/production', production: true, sourceRevision: 'a'.repeat(40) });
+process.env.FOOD_HELP_TEST_PROJECT = JSON.stringify({ preview: projectPreview.outDir, production: projectProduction.outDir });
 const requestedReviewSource = options.siteDir ?? starterSite;
 const requestedReviewData = JSON.parse(await readFile(`${requestedReviewSource}/resources.json`, 'utf8')) as { resources?: Array<{ publication_status?: string }> };
 const reviewSource = requestedReviewData.resources?.some(resource => resource.publication_status === 'draft') ? requestedReviewSource : starterSite;

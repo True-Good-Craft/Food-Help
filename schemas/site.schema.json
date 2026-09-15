@@ -399,6 +399,9 @@
     },
     "software_source_url": {
       "$ref": "#/$defs/https"
+    },
+    "project_home_url": {
+      "$ref": "#/$defs/https"
     }
   },
   "$defs": {

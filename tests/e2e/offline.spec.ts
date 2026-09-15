@@ -1,6 +1,7 @@
 import { test, expect, chromium, type Page } from '@playwright/test';
 import { serve } from '../../scripts/serve.ts';
-import { cp, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import path from 'node:path';
 const EMERGENCY_COUNT = 4;
 const AFFORDABLE_COUNT = 2;
 const ready = async (page: Page) => {
@@ -50,9 +51,11 @@ test('bad response never overwrites last-good data; absent storage leaves static
     await page.goto(origin); await expect(page.locator('#resource-list article')).toHaveCount(EMERGENCY_COUNT); await expect(page.locator('#filters')).toBeHidden();
   } finally { await context.close(); await new Promise<void>(resolve => server.close(() => resolve())); }
 });
-test('cold restart uses the persisted worker and data with no network', async ({ browserName }, info) => {
+test('cold restart uses the persisted worker and data with no network', async ({ browserName }) => {
   test.skip(browserName !== 'chromium', 'Persistent browser-process restart is exercised in Chromium; all engines exercise offline navigation.');
-  const profile = info.outputPath('persistent-profile');
+  // Keep Chromium's nested on-disk CacheStorage path below Windows path limits.
+  await mkdir('artifacts/profiles', { recursive: true });
+  const profile = await mkdtemp(path.resolve('artifacts/profiles/cold-exampleville-'));
   let context = await chromium.launchPersistentContext(profile, { headless: true });
   try {
     const page = await context.newPage(); await page.goto('http://127.0.0.1:4173/affordable-food/'); await ready(page);

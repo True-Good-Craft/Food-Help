@@ -28,6 +28,7 @@ Use `--site deployments/kingston` for Kingston or `--site deployments/<community
 | `analytics` | No | Explicit optional collection boundary, described below |
 | `public_usage` | No | Enable a local sanitized aggregate file; independent of collection |
 | `software_source_url` | Required for distribution | Public covered source location; production must identify the exact built revision, including deployed modifications |
+| `project_home_url` | No | HTTPS link from a community footer to its broader project/community hub; does not change the directory canonical origin |
 
 V1 ships a reviewed English copy pack (`language: "en"`, `text_direction: "ltr"`); other language/direction combinations are represented in the schema but rejected by the runtime capability check until a copy pack exists. `locale` is not a claim that resource text has been translated. Resource and organization content can carry their own language. No English-only locality or country types exist.
 

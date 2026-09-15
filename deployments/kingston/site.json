@@ -62,5 +62,6 @@
   "data_rights": {
     "statement": "Resource facts remain subject to their original sources and provider rights. No separate open-data licence is asserted for this deployment."
   },
-  "software_source_url": "https://github.com/True-Good-Craft/Food-Help"
+  "software_source_url": "https://github.com/True-Good-Craft/Food-Help",
+  "project_home_url": "https://food-help.ca"
 }

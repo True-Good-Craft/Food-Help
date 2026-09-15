@@ -12,6 +12,9 @@ test('publication selects exactly one independent community pointer and uses a l
   assert.equal(releasePlan({ deployment: 'one-community', revision, currentRevision: revision, previousRevision: revision }).changed, false);
   assert.throws(() => releasePlan({ deployment: 'one-community', revision, currentRevision: previousRevision }), /currently checked-out/);
   assert.throws(() => releasePlan({ deployment: '../other', revision, currentRevision: revision }), /deployment ID/);
+  const project = releasePlan({ deployment: 'project', revision, currentRevision: revision });
+  assert.equal(project.branch, 'release/project');
+  assert.ok(!project.pushArguments.join(' ').includes('release/one-community'));
 });
 test('shared changes validate communities; a data change selects only its community', () => {
   const folders = ['deployments/one-community', 'deployments/other-community'];

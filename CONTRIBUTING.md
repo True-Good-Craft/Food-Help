@@ -2,7 +2,7 @@
 
 Read `AGENTS.md` and the selected `deployments/<community>/AGENTS.md`. Changes to platform behaviour belong in generic source; community facts and choices belong in that deployment folder. Never solve a community requirement with a locality branch in application code.
 
-Use the supported Node version, `npm ci`, and install Playwright browsers. Run `npm run check -- --site deployments/<community>` for a local change or `npm run check -- --all` for shared software before requesting review. Explain the problem, resulting behaviour, verification and any effects on public data, privacy, caches or deployment. Keep dependencies minimal; development-only tools still need a reason and a lockfile change. Validation does not deploy; publishing selects one community and an exact source revision.
+Use the supported Node version, `npm ci`, and install Playwright browsers. Run `npm run project:check` for a root project-site change, `npm run check -- --site deployments/<community>` for a local directory change, or `npm run check -- --all` for shared software before requesting review. Explain the problem, resulting behaviour, verification and any effects on public data, privacy, caches or deployment. Keep dependencies minimal; development-only tools still need a reason and a lockfile change. Validation does not deploy; publishing selects the project site or one community and an exact source revision.
 
 Provider suggestions are review leads. Supply source links, what was checked and when, uncertainties and the proposed fact change. Do not submit private correspondence, personal contact details or credentials. A maintainer/operator must approve facts before publication. Automated checks never make that editorial decision.
 
