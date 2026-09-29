@@ -663,6 +663,9 @@ h1 em {
   max-width:40ch;
   color:var(--muted);
 }
+.about-intro .about-report {
+  overflow-wrap:anywhere;
+}
 .about-intro a {
   display:inline-block;
   padding:.5rem 0;
