@@ -4,20 +4,31 @@ This is an operator checklist, not a replacement dataset. Authoritative provider
 
 **Review owner:** Jamie Whelan, for True Good Craft. The public correction address is the address in `site.json`. Review sources sooner when a correction, closure or changed schedule is reported. Automation can flag a due review; it cannot approve a provider fact.
 
-Seven existing listings retain their **2026-09-04** verification date. Their next 30-day review target is **2026-10-04**. Brit Smith Social Market was newly checked against the current City food-support page on **2026-09-15** for the explicit no-fee classification only, so its next target is **2026-10-15**. These dates are maintenance deadlines, not claims of live availability. After an actual review, update the relevant evidence and resource dates and this checklist's derived deadline together; do not advance verification dates for formatting, schema migration or deployment alone.
+Five existing listings retain their **2026-09-04** verification date. Their next 30-day review target is **2026-10-04**. Martha’s Table (direct provider update, corroborated by the City food-supports page) and Lunch by George (provider homepage) were re-reviewed on **2026-09-29**, so their next target is **2026-10-29**. Brit Smith Social Market was newly checked against the current City food-support page on **2026-09-15** for the explicit no-fee classification only, so its next target is **2026-10-15**. These dates are maintenance deadlines, not claims of live availability. After an actual review, update the relevant evidence and resource dates and this checklist's derived deadline together; do not advance verification dates for formatting, schema migration or deployment alone.
 
 The browsing classification is cost-derived: `free` appears under **Emergency food**; `low_cost` or `subsidized` appears under **Affordable food**; `mixed` appears in both; missing or `unknown` cost remains unresolved. All eight previously published Kingston resources now have a source-supported `free` cost. No record was duplicated to create a browsing view.
 
 | Resource ID | Current review state | Next review by |
 | --- | --- | --- |
-| `marthas-table` | Confirmed | 2026-10-04 |
+| `marthas-table` | Confirmed; provider email update 2026-09-29 (daily takeout, weekday delivery by application) | 2026-10-29 |
 | `loretta-meal-program` | Confirmed | 2026-10-04 |
 | `brit-smith-social-market` | Confirmed; cost source newly checked 2026-09-15 | 2026-10-15 |
 | `partners-in-mission` | Confirmed | 2026-10-04 |
 | `st-marys-drop-in` | Confirmed | 2026-10-04 |
-| `lunch-by-george` | Partially confirmed | 2026-10-04 |
+| `lunch-by-george` | Confirmed 2026-09-29: weekday takeaway from the van on Wellington Street near Johnson Street; breakfast 9–10:30, lunch noon–1 | 2026-10-29 |
 | `salvation-army-pantry` | Partially confirmed | 2026-10-04 |
 | `storehouse-of-hope` | Confirmed | 2026-10-04 |
+
+## Trellis HIV & Community Care
+
+Two records were prepared on **2026-09-29** from a direct provider email (September 24, 2026) relayed by Jamie Whelan, then checked against the provider's programs page and the City food-supports page. The operator approved them on 2026-09-29. `trellis-fresh-food-stall` is `published` and `trellis-breakfast` is held as `draft`; both have verification state `partially_confirmed`.
+
+| Resource ID | Provider-stated schedule | Status and open questions |
+| --- | --- | --- |
+| `trellis-breakfast` | 844A Princess Street — Monday to Thursday, 9–11 a.m. (the City lists 9–10:30) | Draft: no public source states that breakfast is free |
+| `trellis-fresh-food-stall` | 844A Princess Street — Tuesday afternoons while supplies last; start time unknown | Published; free per the provider page. Tuesday start time and eligibility still unknown |
+
+Eligibility, access and ID rules are not published by any source and remain unknown. No coordinates were found in a reviewed source, so none are published. The phone number is the organization's public toll-free line; staff direct lines are not published. Next review by **2026-10-29**.
 
 ## Lionhearts publication review
 
@@ -56,7 +67,7 @@ Source qualifications and conflicts to keep visible during review:
 
 Outstanding source questions remain open:
 
-- **Lunch by George:** changed lunch hours conflict across published sources; the complete dated change notice was not inspected in the recorded review. Preserve the warning and unknown schedule until serving times are confirmed.
+- **Lunch by George:** resolved 2026-09-29. The provider homepage now gives one consistent weekday schedule and the Wellington Street near Johnson Street distribution site; 211 and the City food-supports page still show the old 129 Wellington Street details and are superseded.
 - **Community Choice Pantry:** confirm food collection times and intake arrangements. Office hours must not be repurposed as food-service hours. Preserve unknown access rules where the evidence is incomplete.
 - **Every record:** keep provider qualifications, eligibility and intake details with their sources. Do not turn source-reviewed schedules into live availability. Check dated programme and holiday exceptions before carrying them forward.
 - **Dataset rights:** no blanket open-data licence has been established for all provider/211/City-derived material. Follow the specific review in [licensing](../../docs/licensing.md#real-community-data); keep the current rights statement meanwhile.

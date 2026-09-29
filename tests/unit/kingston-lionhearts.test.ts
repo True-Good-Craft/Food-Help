@@ -68,7 +68,7 @@ describe('Kingston Lionhearts publication', () => {
   });
 
   it('classifies all previously published Kingston listings as evidence-backed Emergency food', () => {
-    const existing = source.resources.filter(resource => resource.organization_id !== 'lionhearts' && resource.publication_status === 'published' && resource.service_condition !== 'closed');
+    const existing = source.resources.filter(resource => !['lionhearts', 'trellis-hiv-community-care'].includes(resource.organization_id) && resource.publication_status === 'published' && resource.service_condition !== 'closed');
     expect(existing).toHaveLength(8);
     for (const resource of existing) {
       expect(resource.cost?.state).toBe('free');
