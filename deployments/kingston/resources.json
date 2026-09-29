@@ -38,6 +38,12 @@
       "name": "Lionhearts",
       "description": "Operator of Fresh Food Market Pop-Ups in Kingston and area.",
       "url": "https://www.lionhearts.ca/kingston/our-programs/fresh-food-market-pop-ups/"
+    },
+    {
+      "id": "trellis-hiv-community-care",
+      "name": "Trellis HIV & Community Care",
+      "description": "Formerly HARS.",
+      "url": "https://www.trellishiv.ca/"
     }
   ],
   "resources": [
@@ -45,11 +51,12 @@
       "id": "marthas-table",
       "organization_id": "martha-s-table",
       "name": "Martha’s Table",
-      "summary": "Free breakfast, lunch and dinner on weekdays, with takeout lunch on weekends.",
+      "summary": "Free breakfast, lunch and dinner on weekdays, takeout lunch every day, and weekday meal delivery by application.",
       "categories": [
-        "prepared_meals"
+        "prepared_meals",
+        "food_delivery"
       ],
-      "food_access_purpose": "Free breakfast, lunch and dinner on weekdays, with takeout lunch on weekends.",
+      "food_access_purpose": "Free breakfast, lunch and dinner on weekdays, takeout lunch every day, and weekday meal delivery by application.",
       "location": {
         "description": "629 Princess Street, Kingston, ON K7L 1E2",
         "address": {
@@ -81,11 +88,12 @@
         "Everyone is welcome for meals."
       ],
       "limitations": [
-        "Weekend service is takeout lunch only."
+        "Weekend service is takeout lunch only.",
+        "Meal delivery requires an application."
       ],
       "before_you_go": [
-        "Takeout is at the rear of the building.",
-        "For meal delivery, call 343-580-1519 to ask about arrangements."
+        "Takeout meals are available noon–2 p.m. every day, at the rear of the building.",
+        "Door-to-door meal delivery runs Monday to Friday around midday; an application is required. Call 343-580-1519 to ask about delivery."
       ],
       "cost": {
         "state": "free",
@@ -311,16 +319,39 @@
             "access.registration_required",
             "access.identification_required"
           ]
+        },
+        {
+          "id": "provider-email-2026-09-28",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-09-29",
+          "note": "Martha’s Table leadership told Jamie Whelan by email on September 28, 2026 that takeout meals are offered noon–2 p.m. seven days a week and that door-to-door delivery (application required) runs Monday to Friday at mid-day. Private correspondence is kept outside this repository.",
+          "supports": [
+            "summary",
+            "food_access_purpose",
+            "categories",
+            "limitations",
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "city-food-supports",
+          "source_kind": "local_authority",
+          "url": "https://www.cityofkingston.ca/community-supports/community-supports-and-well-being/food-supports/",
+          "checked_on": "2026-09-29",
+          "note": "City food-supports page lists take-out meals every day from noon to 2 p.m., matching the provider update.",
+          "supports": [
+            "before_you_go"
+          ]
         }
       ],
       "verification": {
-        "reviewed_on": "2026-09-04",
+        "reviewed_on": "2026-09-29",
         "method": "multiple_sources",
         "state": "confirmed"
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-09-04"
+      "updated_on": "2026-09-29"
     },
     {
       "id": "loretta-meal-program",
@@ -1045,24 +1076,19 @@
       "id": "lunch-by-george",
       "organization_id": "outreach-st-george-s-kingston",
       "name": "Lunch by George",
-      "summary": "Free takeaway breakfast and lunch from St. George’s Hall.",
+      "summary": "Free takeaway breakfast and lunch on weekdays, served on Wellington Street near Johnson Street.",
       "categories": [
         "prepared_meals"
       ],
-      "food_access_purpose": "Free takeaway breakfast and lunch from St. George’s Hall.",
+      "food_access_purpose": "Free takeaway breakfast and lunch on weekdays, served on Wellington Street near Johnson Street.",
       "location": {
-        "description": "129 Wellington Street, Kingston, ON K7L 4W5",
+        "description": "Wellington Street near Johnson Street, Kingston, ON (takeaway distribution site)",
         "address": {
-          "street": "129 Wellington Street",
+          "street": "Wellington Street near Johnson Street",
           "locality": "Kingston",
           "region": "ON",
           "country": "CA",
-          "postal_code": "K7L 4W5",
           "neighbourhood": "Downtown Kingston"
-        },
-        "coordinates": {
-          "latitude": 44.2296985,
-          "longitude": -76.4833517
         }
       },
       "phone": "+16134842984",
@@ -1079,24 +1105,106 @@
         ]
       },
       "eligibility": [
-        "Anyone needing a meal is welcome."
+        "All are welcome."
       ],
       "limitations": [
-        "Published lunch times conflict. Contact the provider before travelling."
+        "Takeaway only.",
+        "Weekdays only."
       ],
       "before_you_go": [
-        "Use the Wellington Street entrance.",
-        "Provider lists weekday breakfast 9–10:30 a.m. and lunch noon–1 p.m.; older listings show lunch 11:30–12:30."
+        "Meals are handed out from the Lunch by George van parked on Wellington Street near Johnson Street, beside St. George’s Cathedral.",
+        "Meals are prepared at the St. Lawrence College teaching kitchen."
       ],
       "cost": {
         "state": "free",
         "description": "Free breakfast and lunch."
       },
       "schedule": {
-        "kind": "unknown",
-        "confirmed": false,
-        "note": "Weekday breakfast and lunch; call to confirm current serving times.",
-        "weekly": [],
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Monday to Friday: breakfast 9–10:30 a.m., lunch noon–1 p.m.",
+        "weekly": [
+          {
+            "day": 1,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "10:30"
+              },
+              {
+                "opens": "12:00",
+                "closes": "13:00"
+              }
+            ]
+          },
+          {
+            "day": 2,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "10:30"
+              },
+              {
+                "opens": "12:00",
+                "closes": "13:00"
+              }
+            ]
+          },
+          {
+            "day": 3,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "10:30"
+              },
+              {
+                "opens": "12:00",
+                "closes": "13:00"
+              }
+            ]
+          },
+          {
+            "day": 4,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "10:30"
+              },
+              {
+                "opens": "12:00",
+                "closes": "13:00"
+              }
+            ]
+          },
+          {
+            "day": 5,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "10:30"
+              },
+              {
+                "opens": "12:00",
+                "closes": "13:00"
+              }
+            ]
+          },
+          {
+            "day": 6,
+            "state": "closed",
+            "intervals": []
+          },
+          {
+            "day": 7,
+            "state": "closed",
+            "intervals": []
+          }
+        ],
         "exceptions": [],
         "evidence_ids": [
           "source-1"
@@ -1107,26 +1215,28 @@
           "id": "source-1",
           "source_kind": "provider",
           "url": "https://lunchbygeorge.ca/",
-          "checked_on": "2026-09-04",
-          "note": "Provider homepage now lists lunch noon–1 p.m., but repeats 11:30–12:30 elsewhere; provider phone is 613-484-2984.",
+          "checked_on": "2026-09-29",
+          "note": "Provider homepage checked September 29, 2026: Monday–Friday breakfast 9:00–10:30 a.m. and lunch noon–1:00 p.m., takeaway only, served from the distribution site on Wellington Street near Johnson Street; meals prepared at the St. Lawrence College Teaching Kitchen; “All are welcome.” The earlier 11:30–12:30 time no longer appears. Provider phone 613-484-2984.",
           "supports": [
             "name",
             "summary",
             "food_access_purpose",
             "official_url",
+            "location",
             "eligibility",
             "limitations",
             "before_you_go",
-            "cost",
-            "schedule"
+            "schedule",
+            "access.details",
+            "cost"
           ]
         },
         {
           "id": "source-2",
           "source_kind": "provider",
           "url": "https://lunchbygeorge.ca/279307-2/",
-          "checked_on": "2026-09-04",
-          "note": "Dated August 10, 2026 notice announces changed hours; full notice could not be inspected. No lunch status inferred.",
+          "checked_on": "2026-09-29",
+          "note": "Provider notice “Lunch by George: Updated Meal Serving Hours,” published August 10, 2026. The notice itself is an image; the times on the provider homepage are used.",
           "supports": [
             "name"
           ]
@@ -1136,36 +1246,36 @@
           "source_kind": "referral_directory",
           "url": "https://211ontario.ca/service/68953695/outreach-st-georges-kingston-lunch-by-george/",
           "checked_on": "2026-09-04",
-          "note": "June listing confirms drop-in, no documents, address and map; old lunch hours and phone differ from provider.",
+          "note": "June listing confirms drop-in and no documents; its old address, lunch hours and phone are superseded by the provider.",
           "supports": [
             "name",
-            "location",
             "phone",
             "access.walk_in",
             "access.appointment_required",
             "access.registration_required",
             "access.identification_required"
           ]
+        },
+        {
+          "id": "van-news",
+          "source_kind": "other_reviewed",
+          "url": "https://www.kingstondaily.ca/news/the-kingston-top-3/lunch-by-george-introduces-new-distribution-service-for-their-meal-service-in-kingston/",
+          "checked_on": "2026-09-29",
+          "note": "Kingston Daily, June 29, 2026: the program now distributes meals from a donated Sprinter cube van on Wellington Street near Johnson Street, replacing the pick-up window at St. George’s Cathedral. Corroborated by a September 8, 2026 correction from a member of the public.",
+          "supports": [
+            "before_you_go",
+            "location"
+          ]
         }
       ],
       "verification": {
-        "reviewed_on": "2026-09-04",
+        "reviewed_on": "2026-09-29",
         "method": "multiple_sources",
-        "state": "partially_confirmed"
+        "state": "confirmed"
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-09-04",
-      "notices": [
-        {
-          "id": "verification-notice",
-          "text": "Lunch hours recently changed. Conflicting published times still need confirmation.",
-          "starts_on": "2026-09-04",
-          "evidence_ids": [
-            "source-1"
-          ]
-        }
-      ]
+      "updated_on": "2026-09-29"
     },
     {
       "id": "salvation-army-pantry",
@@ -2829,6 +2939,225 @@
           ]
         }
       ]
+    },
+    {
+      "id": "trellis-breakfast",
+      "organization_id": "trellis-hiv-community-care",
+      "name": "Trellis Breakfast Program",
+      "summary": "Hot breakfast Monday to Thursday mornings at Trellis HIV & Community Care.",
+      "categories": [
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Hot breakfast Monday to Thursday mornings at Trellis HIV & Community Care.",
+      "location": {
+        "description": "844A Princess Street, Kingston, ON K7L 1G5",
+        "address": {
+          "street": "844A Princess Street",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K7L 1G5"
+        }
+      },
+      "phone": "+18005652209",
+      "official_url": "https://www.trellishiv.ca/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "unknown",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "Access rules and any documents needed have not been confirmed yet. Call before your first visit."
+        ]
+      },
+      "eligibility": [
+        "Eligibility has not been confirmed."
+      ],
+      "limitations": [
+        "Cost and eligibility have not been confirmed yet."
+      ],
+      "before_you_go": [
+        "Trellis was formerly known as HARS."
+      ],
+      "cost": {
+        "state": "unknown",
+        "description": "Cost has not been confirmed. Ask Trellis before your visit."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Monday to Thursday, 9–11 a.m., per Trellis staff; the City lists 9–10:30 a.m.",
+        "weekly": [
+          { "day": 1, "state": "published", "intervals": [{ "opens": "09:00", "closes": "11:00" }] },
+          { "day": 2, "state": "published", "intervals": [{ "opens": "09:00", "closes": "11:00" }] },
+          { "day": 3, "state": "published", "intervals": [{ "opens": "09:00", "closes": "11:00" }] },
+          { "day": 4, "state": "published", "intervals": [{ "opens": "09:00", "closes": "11:00" }] },
+          { "day": 5, "state": "closed", "intervals": [] },
+          { "day": 6, "state": "closed", "intervals": [] },
+          { "day": 7, "state": "closed", "intervals": [] }
+        ],
+        "exceptions": [],
+        "evidence_ids": [
+          "trellis-provider-relay"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "trellis-provider-relay",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-09-29",
+          "note": "Trellis HIV & Community Care staff told Jamie Whelan by email on September 24, 2026 that Trellis (formerly HARS) at 844A Princess Street offers breakfast Monday to Thursday, 9–11 a.m., and grocery items such as fruit and vegetables, when available, on Tuesday afternoons until they run out. The address, postal code, website and organization phone number come from the provider’s email signature. Eligibility, cost, access rules and the Tuesday start time were not stated. Private correspondence is kept outside this repository.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "categories",
+            "location",
+            "phone",
+            "official_url",
+            "before_you_go",
+            "schedule"
+          ]
+        },
+        {
+          "id": "trellis-programs-page",
+          "source_kind": "provider",
+          "url": "https://trellishiv.ca/programs-and-services/",
+          "checked_on": "2026-09-29",
+          "note": "Provider programs page (last modified March 27, 2025): the Fresh Food Stall at 844a Princess Street “is stocked with produce and other donated food items for individuals to access free of charge”; the community meal program “offers breakfast to members of our community.” Days, times and eligibility rules are not listed there.",
+          "supports": [
+            "name",
+            "official_url"
+          ]
+        },
+        {
+          "id": "city-food-supports",
+          "source_kind": "local_authority",
+          "url": "https://www.cityofkingston.ca/community-supports/community-supports-and-well-being/food-supports/",
+          "checked_on": "2026-09-29",
+          "note": "City food-supports page lists Trellis (HARS) at 844 Princess St.: hot breakfast Monday to Thursday, 9 to 10:30 a.m. This end time differs from the 11 a.m. given directly by Trellis staff on September 24, 2026; the more recent provider statement is used.",
+          "supports": [
+            "name",
+            "location"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-09-29",
+        "method": "direct_confirmation",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "draft",
+      "service_condition": "active",
+      "updated_on": "2026-09-29"
+    },
+    {
+      "id": "trellis-fresh-food-stall",
+      "organization_id": "trellis-hiv-community-care",
+      "name": "Trellis Fresh Food Stall",
+      "summary": "Free produce and other donated food items, when available, on Tuesday afternoons until they run out.",
+      "categories": [
+        "groceries"
+      ],
+      "food_access_purpose": "Free produce and other donated food items, when available, on Tuesday afternoons until they run out.",
+      "location": {
+        "description": "844A Princess Street, Kingston, ON K7L 1G5",
+        "address": {
+          "street": "844A Princess Street",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K7L 1G5"
+        }
+      },
+      "phone": "+18005652209",
+      "official_url": "https://www.trellishiv.ca/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "unknown",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "Access rules and any documents needed have not been confirmed yet. Call before your first visit."
+        ]
+      },
+      "eligibility": [
+        "Eligibility has not been confirmed."
+      ],
+      "limitations": [
+        "Available only while supplies last; items vary.",
+        "Eligibility has not been confirmed."
+      ],
+      "before_you_go": [
+        "The Tuesday start time has not been confirmed. Call ahead.",
+        "Trellis was formerly known as HARS."
+      ],
+      "cost": {
+        "state": "free",
+        "description": "Free of charge, according to Trellis."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": false,
+        "note": "Tuesday afternoons, while supplies last. Start time not yet confirmed.",
+        "weekly": [
+          { "day": 1, "state": "closed", "intervals": [] },
+          { "day": 2, "state": "unknown", "intervals": [] },
+          { "day": 3, "state": "closed", "intervals": [] },
+          { "day": 4, "state": "closed", "intervals": [] },
+          { "day": 5, "state": "closed", "intervals": [] },
+          { "day": 6, "state": "closed", "intervals": [] },
+          { "day": 7, "state": "closed", "intervals": [] }
+        ],
+        "exceptions": [],
+        "evidence_ids": [
+          "trellis-provider-relay"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "trellis-provider-relay",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-09-29",
+          "note": "Trellis HIV & Community Care staff told Jamie Whelan by email on September 24, 2026 that Trellis (formerly HARS) at 844A Princess Street offers breakfast Monday to Thursday, 9–11 a.m., and grocery items such as fruit and vegetables, when available, on Tuesday afternoons until they run out. The address, postal code, website and organization phone number come from the provider’s email signature. Eligibility, cost, access rules and the Tuesday start time were not stated. Private correspondence is kept outside this repository.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "categories",
+            "location",
+            "phone",
+            "limitations",
+            "before_you_go",
+            "schedule"
+          ]
+        },
+        {
+          "id": "trellis-programs-page",
+          "source_kind": "provider",
+          "url": "https://trellishiv.ca/programs-and-services/",
+          "checked_on": "2026-09-29",
+          "note": "Provider programs page (last modified March 27, 2025): the Fresh Food Stall at 844a Princess Street “is stocked with produce and other donated food items for individuals to access free of charge”; the community meal program “offers breakfast to members of our community.” Days, times and eligibility rules are not listed there.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "cost",
+            "official_url",
+            "limitations"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-09-29",
+        "method": "direct_confirmation",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-09-29"
     }
   ]
 }
