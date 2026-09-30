@@ -2944,11 +2944,11 @@
       "id": "trellis-breakfast",
       "organization_id": "trellis-hiv-community-care",
       "name": "Trellis Breakfast Program",
-      "summary": "Hot breakfast Monday to Thursday mornings at Trellis HIV & Community Care.",
+      "summary": "Free hot breakfast Monday to Thursday mornings at Trellis HIV & Community Care.",
       "categories": [
         "prepared_meals"
       ],
-      "food_access_purpose": "Hot breakfast Monday to Thursday mornings at Trellis HIV & Community Care.",
+      "food_access_purpose": "Free hot breakfast Monday to Thursday mornings at Trellis HIV & Community Care.",
       "location": {
         "description": "844A Princess Street, Kingston, ON K7L 1G5",
         "address": {
@@ -2975,19 +2975,19 @@
         "Eligibility has not been confirmed."
       ],
       "limitations": [
-        "Cost and eligibility have not been confirmed yet."
+        "Eligibility has not been confirmed."
       ],
       "before_you_go": [
         "Trellis was formerly known as HARS."
       ],
       "cost": {
-        "state": "unknown",
-        "description": "Cost has not been confirmed. Ask Trellis before your visit."
+        "state": "free",
+        "description": "Free, according to Trellis."
       },
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Monday to Thursday, 9–11 a.m., per Trellis staff; the City lists 9–10:30 a.m.",
+        "note": "Monday to Thursday, 9–11 a.m., per Trellis staff. Trellis says it extended the hours a little over a year ago; the City still lists 9–10:30 a.m.",
         "weekly": [
           { "day": 1, "state": "published", "intervals": [{ "opens": "09:00", "closes": "11:00" }] },
           { "day": 2, "state": "published", "intervals": [{ "opens": "09:00", "closes": "11:00" }] },
@@ -2999,7 +2999,8 @@
         ],
         "exceptions": [],
         "evidence_ids": [
-          "trellis-provider-relay"
+          "trellis-provider-relay",
+          "trellis-provider-followup"
         ]
       },
       "evidence": [
@@ -3017,6 +3018,18 @@
             "phone",
             "official_url",
             "before_you_go",
+            "schedule"
+          ]
+        },
+        {
+          "id": "trellis-provider-followup",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-09-30",
+          "note": "Trellis HIV & Community Care staff replied to Jamie Whelan by email on September 29, 2026: the breakfast is free, and Trellis extended its hours a little over a year ago, so it now runs 9–11 a.m. The Fresh Food Stall is up and running by 1 p.m. on Tuesdays until the food runs out. It is open to anyone, with one bag per household or couple, although staff do not question visitors about this. Private correspondence is kept outside this repository.",
+          "supports": [
+            "summary",
+            "food_access_purpose",
+            "cost",
             "schedule"
           ]
         },
@@ -3044,23 +3057,23 @@
         }
       ],
       "verification": {
-        "reviewed_on": "2026-09-29",
+        "reviewed_on": "2026-09-30",
         "method": "direct_confirmation",
         "state": "partially_confirmed"
       },
-      "publication_status": "draft",
+      "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-09-29"
+      "updated_on": "2026-09-30"
     },
     {
       "id": "trellis-fresh-food-stall",
       "organization_id": "trellis-hiv-community-care",
       "name": "Trellis Fresh Food Stall",
-      "summary": "Free produce and other donated food items, when available, on Tuesday afternoons until they run out.",
+      "summary": "Free produce and other donated food items, when available, on Tuesdays from 1 p.m. until the food runs out.",
       "categories": [
         "groceries"
       ],
-      "food_access_purpose": "Free produce and other donated food items, when available, on Tuesday afternoons until they run out.",
+      "food_access_purpose": "Free produce and other donated food items, when available, on Tuesdays from 1 p.m. until the food runs out.",
       "location": {
         "description": "844A Princess Street, Kingston, ON K7L 1G5",
         "address": {
@@ -3080,18 +3093,17 @@
         "registration_required": "unknown",
         "identification_required": "unknown",
         "details": [
-          "Access rules and any documents needed have not been confirmed yet. Call before your first visit."
+          "Open to anyone, according to Trellis. Walk-in, registration and ID rules have not been stated. Call before your first visit if you are unsure."
         ]
       },
       "eligibility": [
-        "Eligibility has not been confirmed."
+        "Open to anyone, according to Trellis."
       ],
       "limitations": [
         "Available only while supplies last; items vary.",
-        "Eligibility has not been confirmed."
+        "One bag per household or couple. Trellis says staff do not question visitors about this."
       ],
       "before_you_go": [
-        "The Tuesday start time has not been confirmed. Call ahead.",
         "Trellis was formerly known as HARS."
       ],
       "cost": {
@@ -3101,7 +3113,7 @@
       "schedule": {
         "kind": "weekly",
         "confirmed": false,
-        "note": "Tuesday afternoons, while supplies last. Start time not yet confirmed.",
+        "note": "Tuesdays, up and running by 1 p.m. until the food runs out. There is no set end time.",
         "weekly": [
           { "day": 1, "state": "closed", "intervals": [] },
           { "day": 2, "state": "unknown", "intervals": [] },
@@ -3113,7 +3125,8 @@
         ],
         "exceptions": [],
         "evidence_ids": [
-          "trellis-provider-relay"
+          "trellis-provider-relay",
+          "trellis-provider-followup"
         ]
       },
       "evidence": [
@@ -3135,6 +3148,20 @@
           ]
         },
         {
+          "id": "trellis-provider-followup",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-09-30",
+          "note": "Trellis HIV & Community Care staff replied to Jamie Whelan by email on September 29, 2026: the breakfast is free, and Trellis extended its hours a little over a year ago, so it now runs 9–11 a.m. The Fresh Food Stall is up and running by 1 p.m. on Tuesdays until the food runs out. It is open to anyone, with one bag per household or couple, although staff do not question visitors about this. Private correspondence is kept outside this repository.",
+          "supports": [
+            "summary",
+            "food_access_purpose",
+            "access.details",
+            "eligibility",
+            "limitations",
+            "schedule"
+          ]
+        },
+        {
           "id": "trellis-programs-page",
           "source_kind": "provider",
           "url": "https://trellishiv.ca/programs-and-services/",
@@ -3151,13 +3178,13 @@
         }
       ],
       "verification": {
-        "reviewed_on": "2026-09-29",
+        "reviewed_on": "2026-09-30",
         "method": "direct_confirmation",
         "state": "partially_confirmed"
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-09-29"
+      "updated_on": "2026-09-30"
     }
   ]
 }

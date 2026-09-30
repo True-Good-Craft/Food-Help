@@ -21,14 +21,14 @@ The browsing classification is cost-derived: `free` appears under **Emergency fo
 
 ## Trellis HIV & Community Care
 
-Two records were prepared on **2026-09-29** from a direct provider email (September 24, 2026) relayed by Jamie Whelan, then checked against the provider's programs page and the City food-supports page. The operator approved them on 2026-09-29. `trellis-fresh-food-stall` is `published` and `trellis-breakfast` is held as `draft`; both have verification state `partially_confirmed`.
+Two records were prepared on **2026-09-29** from a direct provider email (September 24, 2026) relayed by Jamie Whelan, then checked against the provider's programs page and the City food-supports page. The operator approved them on 2026-09-29. A provider follow-up email (September 29, 2026) was applied on **2026-09-30**: breakfast is free, the stall opens by 1 p.m. on Tuesdays, and the stall is open to anyone with one bag per household or couple. Both records are `published` with verification state `partially_confirmed`.
 
 | Resource ID | Provider-stated schedule | Status and open questions |
 | --- | --- | --- |
-| `trellis-breakfast` | 844A Princess Street — Monday to Thursday, 9–11 a.m. (the City lists 9–10:30) | Draft: no public source states that breakfast is free |
-| `trellis-fresh-food-stall` | 844A Princess Street — Tuesday afternoons while supplies last; start time unknown | Published; free per the provider page. Tuesday start time and eligibility still unknown |
+| `trellis-breakfast` | 844A Princess Street — Monday to Thursday, 9–11 a.m. (extended a little over a year ago; the City still lists 9–10:30) | Published; free per the provider. Eligibility and access rules still unknown |
+| `trellis-fresh-food-stall` | 844A Princess Street — Tuesdays, up and running by 1 p.m. until the food runs out | Published; free, open to anyone, one bag per household or couple. No end time, so Tuesday stays unconfirmed in the weekly hours |
 
-Eligibility, access and ID rules are not published by any source and remain unknown. No coordinates were found in a reviewed source, so none are published. The phone number is the organization's public toll-free line; staff direct lines are not published. Next review by **2026-10-29**.
+Walk-in, appointment, registration and ID rules are not published by any source and remain unknown. No coordinates were found in a reviewed source, so none are published. The phone number is the organization's public toll-free line; staff direct lines are not published. Next review by **2026-10-30**.
 
 ## Lionhearts publication review
 
