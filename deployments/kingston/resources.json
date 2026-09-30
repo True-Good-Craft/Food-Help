@@ -2963,20 +2963,18 @@
       "official_url": "https://www.trellishiv.ca/",
       "time_zone": "America/Toronto",
       "access": {
-        "walk_in": "unknown",
-        "appointment_required": "unknown",
-        "registration_required": "unknown",
+        "walk_in": "yes",
+        "appointment_required": "no",
+        "registration_required": "no",
         "identification_required": "unknown",
         "details": [
-          "Access rules and any documents needed have not been confirmed yet. Call before your first visit."
+          "Open to anyone. Just come in; no appointment or registration is needed."
         ]
       },
       "eligibility": [
-        "Eligibility has not been confirmed."
+        "Open to anyone."
       ],
-      "limitations": [
-        "Eligibility has not been confirmed."
-      ],
+      "limitations": [],
       "before_you_go": [
         "Trellis was formerly known as HARS."
       ],
@@ -3025,12 +3023,17 @@
           "id": "trellis-provider-followup",
           "source_kind": "direct_confirmation",
           "checked_on": "2026-09-30",
-          "note": "Trellis HIV & Community Care staff replied to Jamie Whelan by email on September 29, 2026: the breakfast is free, and Trellis extended its hours a little over a year ago, so it now runs 9–11 a.m. The Fresh Food Stall is up and running by 1 p.m. on Tuesdays until the food runs out. It is open to anyone, with one bag per household or couple, although staff do not question visitors about this. Private correspondence is kept outside this repository.",
+          "note": "Trellis HIV & Community Care staff replied to Jamie Whelan by email on September 29, 2026: the breakfast is free, and Trellis extended its hours a little over a year ago, so it now runs 9–11 a.m. The Fresh Food Stall is up and running by 1 p.m. on Tuesdays until the food runs out. It is open to anyone, with one bag per household or couple, although staff do not question visitors about this. Jamie Whelan confirmed on September 30, 2026, from Trellis, that both the breakfast and the Fresh Food Stall are open to anyone and people just come in, with no appointment or registration, and that the stall stays open from 1 p.m. until the food is gone. Private correspondence is kept outside this repository.",
           "supports": [
             "summary",
             "food_access_purpose",
             "cost",
-            "schedule"
+            "schedule",
+            "access.walk_in",
+            "access.appointment_required",
+            "access.registration_required",
+            "access.details",
+            "eligibility"
           ]
         },
         {
@@ -3069,11 +3072,11 @@
       "id": "trellis-fresh-food-stall",
       "organization_id": "trellis-hiv-community-care",
       "name": "Trellis Fresh Food Stall",
-      "summary": "Free produce and other donated food items, when available, on Tuesdays from 1 p.m. until the food runs out.",
+      "summary": "Free produce and other donated food items on Tuesdays from 1 p.m. until the food is gone.",
       "categories": [
         "groceries"
       ],
-      "food_access_purpose": "Free produce and other donated food items, when available, on Tuesdays from 1 p.m. until the food runs out.",
+      "food_access_purpose": "Free produce and other donated food items on Tuesdays from 1 p.m. until the food is gone.",
       "location": {
         "description": "844A Princess Street, Kingston, ON K7L 1G5",
         "address": {
@@ -3088,16 +3091,16 @@
       "official_url": "https://www.trellishiv.ca/",
       "time_zone": "America/Toronto",
       "access": {
-        "walk_in": "unknown",
-        "appointment_required": "unknown",
-        "registration_required": "unknown",
+        "walk_in": "yes",
+        "appointment_required": "no",
+        "registration_required": "no",
         "identification_required": "unknown",
         "details": [
-          "Open to anyone, according to Trellis. Walk-in, registration and ID rules have not been stated. Call before your first visit if you are unsure."
+          "Open to anyone. Just come in; no appointment or registration is needed."
         ]
       },
       "eligibility": [
-        "Open to anyone, according to Trellis."
+        "Open to anyone."
       ],
       "limitations": [
         "Available only while supplies last; items vary.",
@@ -3112,8 +3115,8 @@
       },
       "schedule": {
         "kind": "weekly",
-        "confirmed": false,
-        "note": "Tuesdays, up and running by 1 p.m. until the food runs out. There is no set end time.",
+        "confirmed": true,
+        "note": "Tuesdays from 1 p.m. until the food is gone. There is no set closing time.",
         "weekly": [
           { "day": 1, "state": "closed", "intervals": [] },
           { "day": 2, "state": "unknown", "intervals": [] },
@@ -3151,14 +3154,17 @@
           "id": "trellis-provider-followup",
           "source_kind": "direct_confirmation",
           "checked_on": "2026-09-30",
-          "note": "Trellis HIV & Community Care staff replied to Jamie Whelan by email on September 29, 2026: the breakfast is free, and Trellis extended its hours a little over a year ago, so it now runs 9–11 a.m. The Fresh Food Stall is up and running by 1 p.m. on Tuesdays until the food runs out. It is open to anyone, with one bag per household or couple, although staff do not question visitors about this. Private correspondence is kept outside this repository.",
+          "note": "Trellis HIV & Community Care staff replied to Jamie Whelan by email on September 29, 2026: the breakfast is free, and Trellis extended its hours a little over a year ago, so it now runs 9–11 a.m. The Fresh Food Stall is up and running by 1 p.m. on Tuesdays until the food runs out. It is open to anyone, with one bag per household or couple, although staff do not question visitors about this. Jamie Whelan confirmed on September 30, 2026, from Trellis, that both the breakfast and the Fresh Food Stall are open to anyone and people just come in, with no appointment or registration, and that the stall stays open from 1 p.m. until the food is gone. Private correspondence is kept outside this repository.",
           "supports": [
             "summary",
             "food_access_purpose",
             "access.details",
             "eligibility",
             "limitations",
-            "schedule"
+            "schedule",
+            "access.walk_in",
+            "access.appointment_required",
+            "access.registration_required"
           ]
         },
         {
