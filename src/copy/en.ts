@@ -19,7 +19,7 @@ export const copy = {
   provider: 'Operated by', address: 'Where', today: 'Today', quickAccess: 'Access', area: 'Service area', phone: 'Phone', eligibility: 'Who can use this', limitations: 'Limitations', before: 'Before you go',
   access: 'Access requirements', details: 'Before you go & weekly hours', schedule: 'Published schedule', timezone: 'Local timezone', cost: 'Cost', languages: 'Service languages',
   foodPurpose: 'Food support provided', staticHours: 'See published hours below; confirm before travelling.', accessUnknown: 'Check access arrangements before travelling.', dropIn: 'Drop-in access', appointmentNeeded: 'Appointment required', registrationNeeded: 'Registration required',
-  unknown: 'Not confirmed', yes: 'Yes', no: 'No', walkIn: 'Walk-ins accepted', appointment: 'Appointment required', registration: 'Registration required', identification: 'Identification required',
+  unknown: 'Not confirmed', yes: 'Yes', no: 'No', conditional: 'Depends; see details', from: 'From', noSetEnd: 'no set closing time', walkIn: 'Walk-ins accepted', appointment: 'Appointment required', registration: 'Registration required', identification: 'Identification required',
   conditions: { active: 'Operating service', temporarily_changed: 'Service temporarily changed', temporarily_unavailable: 'Service temporarily unavailable', closed: 'Closed' },
   verification: { confirmed: 'Reviewed and confirmed', partially_confirmed: 'Some information unconfirmed', needs_review: 'Needs review' },
   methods: { provider_source: 'Provider source reviewed', direct_confirmation: 'Direct confirmation', multiple_sources: 'Multiple sources reviewed', other_reviewed: 'Other reviewed evidence' },

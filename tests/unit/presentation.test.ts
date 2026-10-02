@@ -41,6 +41,17 @@ describe('directory presentation and schedule decisions', () => {
     const now = new Date('2026-09-08T00:00:00Z'); expect(publishedSchedule(r, site, now).kind).toBe('now');
     r.schedule.valid_from = '2026-09-08'; expect(publishedSchedule(r, site, now).kind).toBe('unknown');
   });
+  it('shows a known start without inventing a closing time or an open-now status', () => {
+    const r = resource(); r.schedule.weekly = [{ day: 1, state: 'unknown', opens: '13:00', intervals: [] }];
+    const html = card(r, { ...source, deployment_id: site.deployment_id, dataset_version: '1', compatibility_id: 'x', data_updated_on: '2026-09-01' } as PublicDataset, site, true);
+    expect(html).toContain('<li>Monday: From 13:00; no set closing time</li>');
+    expect(publishedSchedule(r, site, new Date('2026-09-07T18:00:00Z')).kind).toBe('unknown');
+  });
+  it('labels a qualified access rule without turning it into yes or no', () => {
+    const r = resource(); r.access.identification_required = 'conditional'; r.access.details = ['Bring ID if you have it.'];
+    const html = card(r, { ...source, deployment_id: site.deployment_id, dataset_version: '1', compatibility_id: 'x', data_updated_on: '2026-09-01' } as PublicDataset, site, true);
+    expect(html).toContain('<dt>Identification required</dt><dd>Depends; see details</dd>'); expect(html).toContain('Bring ID if you have it.');
+  });
   it('groups categories without changing facts and rejects ambiguous configuration', () => {
     const s = structuredClone(site); s.presentation = { category_groups: [{ id: 'take-home', label: 'Take-home food', categories: ['groceries', 'food_banks_pantries'] }] };
     expect(() => assertSite(s)).not.toThrow(); expect(categoryGroups(s, source.resources)).toHaveLength(1);

@@ -17,10 +17,11 @@ describe('Kingston Lionhearts publication', () => {
     expect(lionhearts).toHaveLength(8);
     expect(new Set(lionhearts.map(resource => resource.id)).size).toBe(8);
     expect(new Set(lionhearts.map(resource => resource.location?.address?.street)).size).toBe(8);
+    const rereviewed = new Set(['lionhearts-market-isabel-turner']), edited = new Set(['lionhearts-market-isabel-turner', 'lionhearts-market-artillery-park']);
     for (const resource of lionhearts) {
       expect(resource.publication_status).toBe('published');
-      expect(resource.verification).toEqual({ reviewed_on: '2026-09-15', method: 'multiple_sources', state: 'partially_confirmed' });
-      expect(resource.updated_on).toBe('2026-09-15');
+      expect(resource.verification).toEqual({ reviewed_on: rereviewed.has(resource.id) ? '2026-10-02' : '2026-09-15', method: 'multiple_sources', state: 'partially_confirmed' });
+      expect(resource.updated_on).toBe(edited.has(resource.id) ? '2026-10-02' : '2026-09-15');
     }
   });
 
@@ -56,7 +57,9 @@ describe('Kingston Lionhearts publication', () => {
     expect(weeklyInterval(byId('seniors-association'), 2)).toEqual([{ opens: '10:00', closes: '13:00' }]);
     expect(weeklyInterval(byId('kingston-east'), 3)).toEqual([{ opens: '10:00', closes: '11:30' }]);
     expect(weeklyInterval(byId('rideau-heights'), 3)).toEqual([{ opens: '13:30', closes: '16:30' }]);
-    expect(weeklyInterval(byId('isabel-turner'), 4)).toEqual([{ opens: '14:30', closes: '17:30' }]);
+    const isabel = byId('isabel-turner');
+    expect(weeklyInterval(isabel, 4)).toEqual([{ opens: '14:00', closes: '16:00' }]);
+    expect(isabel.schedule.exceptions.map(item => [item.date, item.intervals])).toEqual([['2026-10-08', [{ opens: '14:30', closes: '17:30' }]], ['2026-10-15', [{ opens: '14:30', closes: '17:30' }]]]);
     const ymca = byId('ymca-wright-crescent');
     expect(weeklyInterval(ymca, 2)).toEqual([{ opens: '16:30', closes: '18:30' }]); expect(weeklyInterval(ymca, 5)).toEqual([{ opens: '10:00', closes: '13:00' }]);
     expect(ymca.schedule.exceptions).toContainEqual(expect.objectContaining({ date: '2026-09-15', intervals: [] }));
@@ -65,6 +68,7 @@ describe('Kingston Lionhearts publication', () => {
     expect(wj.schedule.kind).toBe('dated'); expect(wj.schedule.exceptions.map(item => item.date)).toEqual(['2026-09-04', '2026-09-18', '2026-10-02', '2026-10-16', '2026-10-30', '2026-11-13', '2026-11-27', '2026-12-11']);
     expect(artillery.service_condition).toBe('active'); expect(artillery.schedule.exceptions).toContainEqual(expect.objectContaining({ date: '2026-09-19', confirmed: true, intervals: [] }));
     expect(artillery.notices).toContainEqual(expect.objectContaining({ starts_on: '2026-09-08', ends_on: '2026-09-20' }));
+    expect(JSON.stringify([artillery.before_you_go, artillery.schedule.note, artillery.notices])).not.toMatch(/returns September 26/);
   });
 
   it('classifies all previously published Kingston listings as evidence-backed Emergency food', () => {
