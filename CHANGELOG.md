@@ -11,6 +11,8 @@ Notable user-visible changes to Food Help are recorded here. Community publicati
 - Top-level Emergency food and Affordable food browsing, with Emergency as the default and a stable `/affordable-food/` route.
 - Location-specific resource cards that can share one provider identity without merging venue schedules.
 - Isolated local review builds for visibly labelled draft records.
+- A `conditional` access rule for requirements a source qualifies (for example, ID requested where available), shown as “Depends; see details” with the qualification in the access details.
+- A start-only weekday time for services with a known start and no set closing time; the weekly table shows the start without inventing an end or an open-now status.
 
 ### Changed
 

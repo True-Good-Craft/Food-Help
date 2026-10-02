@@ -156,6 +156,7 @@
       "enum": [
         "yes",
         "no",
+        "conditional",
         "unknown"
       ],
       "type": "string"
@@ -428,6 +429,9 @@
                   },
                   "intervals": {
                     "$ref": "#/$defs/intervals"
+                  },
+                  "opens": {
+                    "$ref": "#/$defs/time"
                   }
                 }
               }

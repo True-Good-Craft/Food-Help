@@ -89,6 +89,8 @@ export function assertDataset(value: unknown, mode: 'source' | 'public' | 'revie
     requireValid(!r.schedule.valid_from || !r.schedule.valid_to || r.schedule.valid_from <= r.schedule.valid_to, `Reversed schedule dates: ${r.id}`);
     for (const day of r.schedule.weekly) {
       requireValid(day.state === 'published' ? day.intervals.length > 0 : day.intervals.length === 0, `Inconsistent weekday: ${r.id}`); intervals(day.intervals, r.id);
+      // A known start with no published end stays an unknown day, so it never yields an open-now or closed claim.
+      requireValid(!day.opens || day.state === 'unknown', `Start-only time needs an unknown weekday: ${r.id}`);
       const next = r.schedule.weekly.find(item => item.day === day.day % 7 + 1);
       const overnight = day.intervals.find(item => item.closes_next_day);
       if (overnight && next?.intervals.length) requireValid(next.intervals.every(item => item.opens >= overnight.closes), `Overlapping overnight weekday: ${r.id}`);
@@ -107,6 +109,7 @@ export function assertDataset(value: unknown, mode: 'source' | 'public' | 'revie
       if (r.schedule.confirmed) requireValid(r.schedule.evidence_ids.length, `Confirmed schedule needs evidence: ${r.id}`);
       for (const key of ['walk_in', 'appointment_required', 'registration_required', 'identification_required'] as const) if (r.access[key] !== 'unknown') requireValid(r.evidence.some(e => e.supports.includes(`access.${key}`)), `Known access needs evidence: ${r.id}/${key}`);
     }
+    if (Object.values(r.access).includes('conditional')) requireValid(r.access.details.length, `Conditional access needs details: ${r.id}`);
     if (mode === 'public') requireValid(isPublished(r), `Unpublished record in public dataset: ${r.id}`);
     if (mode === 'review') requireValid(r.publication_status !== 'withdrawn' && r.service_condition !== 'closed', `Withdrawn or closed record in review dataset: ${r.id}`);
   }

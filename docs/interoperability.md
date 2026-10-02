@@ -31,7 +31,7 @@ Target HSDS **3.3**, with a separately declared consumer profile if one is later
 | Resource identity/name/summary | Service with organization link and description; preserve original Food Help ID in a clearly namespaced identifier/extension |
 | Inline address/coordinates | Location and address objects plus service-at-location link; do not invent a physical location for delivery/support-only resources |
 | Phone/extension | Phone record linked at the correct service/location level |
-| `eligibility`, access details, limitations, guidance | Supported service eligibility/application/description fields; Food Help’s yes/no/unknown access rules need a documented extension where a consumer has no exact field |
+| `eligibility`, access details, limitations, guidance | Supported service eligibility/application/description fields; Food Help’s yes/no/conditional/unknown access rules need a documented extension where a consumer has no exact field |
 | Categories and taxonomy version | Food Help-owned taxonomy/term records with stable IDs; no automatic crosswalk to licensed 211 terms |
 | `service_languages` | Service language records; keep `content_language` separate |
 | Weekly schedule/date exceptions | Reviewed conversion to the target version’s operating-hours/event structure. Preserve uncertainty and exceptional closures; do not silently discard unsupported intervals |
