@@ -3,7 +3,7 @@ import { expect } from '@playwright/test';
 import siteJSON from '../../examples/exampleville/site.json' with { type: 'json' };
 import sourceJSON from '../../examples/exampleville/resources.json' with { type: 'json' };
 import { categoryFilter, categoryGroups, publishedSchedule, resourceInCategoryGroup, scheduledToday } from '../../src/domain.ts';
-import { card, scheduleSummary } from '../../src/presentation.ts';
+import { card, formatPhone, formatTimeRange, scheduleSummary } from '../../src/presentation.ts';
 import { assertSite } from '../../src/validation.ts';
 import type { Site, Dataset, PublicDataset } from '../../src/types.ts';
 const site = siteJSON as Site, source = sourceJSON as unknown as Dataset;
@@ -46,6 +46,14 @@ describe('directory presentation and schedule decisions', () => {
     const html = card(r, { ...source, deployment_id: site.deployment_id, dataset_version: '1', compatibility_id: 'x', data_updated_on: '2026-09-01' } as PublicDataset, site, true);
     expect(html).toContain('<li>Monday: From 13:00; no set closing time</li>');
     expect(publishedSchedule(r, site, new Date('2026-09-07T18:00:00Z')).kind).toBe('unknown');
+  });
+  it('shortens twelve-hour times without dropping minutes or 24-hour clocks', () => {
+    const ca = { ...site, locale: 'en-CA' }, range = (...args: Parameters<typeof formatTimeRange>) => formatTimeRange(...args).replace(/\s/g, ' ');
+    expect(range('09:00', '11:00', ca)).toBe('9–11 a.m.');
+    expect(range('10:00', '13:00', ca)).toBe('10 a.m.–1 p.m.');
+    expect(range('14:30', '17:30', ca)).toBe('2:30–5:30 p.m.');
+    expect(range('09:00', '11:00', site)).toBe('09:00–11:00');
+    expect(formatPhone('+16135460320')).toBe('613-546-0320'); expect(formatPhone('+442071234567')).toBe('+442071234567');
   });
   it('labels a qualified access rule without turning it into yes or no', () => {
     const r = resource(); r.access.identification_required = 'conditional'; r.access.details = ['Bring ID if you have it.'];
@@ -90,8 +98,8 @@ describe('directory presentation and schedule decisions', () => {
     const r = resource();
     const html = card(r, source as PublicDataset, site);
     const details = html.indexOf('<details');
-    expect(html).toContain('<span class="tag browse-view-tag">Emergency food</span>');
-    expect(html).not.toContain('<span class="tag browse-view-tag">Affordable food</span>');
+    expect(html).toContain('<span class="tag browse-view-tag" data-view="emergency">Emergency food</span>');
+    expect(html).not.toContain('<span class="tag browse-view-tag" data-view="affordable">Affordable food</span>');
     expect(html.indexOf('Example: community residents.')).toBeLessThan(details);
     expect(html.indexOf('Fictional example of a free service.')).toBeLessThan(details);
     expect(html).toContain('href="https://providers.example.invalid/about"');
