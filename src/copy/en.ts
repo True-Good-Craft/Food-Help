@@ -50,6 +50,8 @@ export const copy = {
   saved: 'Validated directory saved for offline use.', cached: 'Showing the last saved validated directory. Check its review dates.', network: 'Showing the latest validated directory.', unavailable: 'A fresh dataset could not be loaded. The published page remains available below.',
   savingFailed: 'The current directory is available, but this browser could not save it for offline use.', appReady: 'Application ready for offline use.', appFailed: 'Offline setup was unavailable. Basic browsing still works.', offline: 'You are offline. Check review dates; details may have changed.',
   install: 'Install Food Help', installHelp: 'Use your browser’s Install app or Add to Home Screen option. Visit online once to save the directory, then check the offline-ready message.',
+  installPromptTitle: 'Keep this directory on your device', installPromptText: 'Install Food Help to open it like an app and keep the latest reviewed directory available offline.',
+  installPromptAction: 'Install now', installPromptInstructions: 'To install: open your browser’s Share menu and choose Add to Home Screen.', installPromptDismiss: 'Not now',
   updateReady: 'An application update is ready. Apply it when you are ready to reload this page.', update: 'Apply update', updateFailed: 'The update could not be applied. Your current directory is still available.',
   refresh: 'Refresh listings', usage: 'Public usage', usageIntro: 'Sanitized totals for this deployment. These are event counts, not unique people or measures of demand. Missing totals are shown as unavailable.',
   usagePeriod: 'Reporting period', usageGenerated: 'Aggregate prepared', usageMissing: 'Unavailable',

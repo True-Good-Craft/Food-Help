@@ -59,7 +59,7 @@ For a production build, pass `--source-revision <full-40-character-commit>` with
 }
 ```
 
-The example is illustrative and is not shipped as an enabled default. The default JSON POST body contains only configured static constants and one fixed event name (`page_start`, `call`, `help`, `directions`, `source`, `install`, optionally renamed). Do not put credentials, visitor identifiers, personal information or provider identity in constants. An endpoint on another origin must permit the deployment’s CORS request. Collection requires a production build on the exact canonical origin.
+The example is illustrative and is not shipped as an enabled default. The default JSON POST body contains only configured static constants and one fixed event name (`page_start`, `call`, `help`, `directions`, `source`, `install`, `resource_open`, `install_prompt_show`, `install_prompt_dismiss`, optionally renamed). Do not put credentials, visitor identifiers, personal information or provider identity in constants. An endpoint on another origin must permit the deployment’s CORS request. Collection requires a production build on the exact canonical origin.
 
 The adapter sends no referrer, cookies, search/filter values, page path, selected provider, location or generated visitor ID. It respects GPC/DNT, a local opt-out or opt-in preference, canonical operator suppression, storage failure and offline/background status. Requests time out without retries, queuing, replay or unload beacons. The endpoint necessarily receives transport information such as an IP address; its logging and retention are the operator’s responsibility. Selecting `opt_out` is an explicit operator policy choice, not a legal-consent conclusion.
 

@@ -763,6 +763,41 @@ h1 em {
   box-shadow:0 8px 24px #173f4c26;
   font-size:1rem;
 }
+.install-prompt {
+  max-width:min(430px,calc(100% - 2rem));
+  padding:1.5rem;
+  background:var(--white);
+  border:2px solid var(--navy);
+  border-radius:6px;
+  box-shadow:0 12px 36px #173f4c40;
+  color:inherit;
+  font-size:1.05rem;
+}
+.install-prompt::backdrop {
+  background:#173f4c66;
+}
+.install-prompt h2 {
+  margin:0 0 .6rem;
+  font-size:1.35rem;
+}
+.install-prompt p {
+  margin:.4rem 0;
+}
+.install-prompt-actions {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:.6rem;
+  margin-top:1rem;
+}
+.install-prompt-actions .button-primary,.install-prompt-actions .button-secondary {
+  min-height:50px;
+}
+@media(max-width:420px) {
+  .install-prompt-actions {
+    grid-template-columns:1fr;
+  }
+}
+@media print {.install-prompt{display:none!important}}
 @media(max-width:800px) {
   .hero {
     grid-template-columns:1fr 235px;

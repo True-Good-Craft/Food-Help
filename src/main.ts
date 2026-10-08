@@ -140,6 +140,11 @@ if (site.analytics?.enabled) {
   renderPreference();
 }
 document.addEventListener('click', event => { const target = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-event]') : null; const kind = target?.dataset.event; if (['call', 'help', 'directions', 'source'].includes(kind ?? '')) collection.emit(kind as EventKind); });
+// A listing's detail section opening is one broad engagement signal; which listing is never sent.
+results?.addEventListener('toggle', event => {
+  const details = event.target;
+  if (details instanceof HTMLDetailsElement && details.open && details.closest('article[data-resource-id]')) collection.emit('resource_open');
+}, true);
 collection.emit('page_start');
 window.addEventListener('online', () => { status('connection-status', c.online); void refresh(); });
 window.addEventListener('offline', () => status('connection-status', c.offline));
@@ -153,7 +158,42 @@ if (!config.review_drafts) {
   let installPrompt: InstallPrompt | null = null;
   window.addEventListener('beforeinstallprompt', event => { event.preventDefault(); installPrompt = event as InstallPrompt; byId('install')?.removeAttribute('hidden'); });
   byId('install')?.addEventListener('click', async () => { if (installPrompt) { await installPrompt.prompt(); installPrompt = null; byId('install')?.setAttribute('hidden', ''); } });
-  window.addEventListener('appinstalled', () => collection.emit('install'));
+  window.addEventListener('appinstalled', () => { collection.emit('install'); byId<HTMLDialogElement>('install-prompt')?.close(); });
+  // One prominent install suggestion per visit, then a quiet period. The stored
+  // dismissal time is a local courtesy timer, not an identifier, and never leaves the device.
+  const promptDialog = byId<HTMLDialogElement>('install-prompt');
+  const promptDismissedKey = 'food-help-install-prompt-dismissed', promptQuietPeriod = 14 * 24 * 60 * 60 * 1000;
+  const alreadyInstalled = () => matchMedia('(display-mode: standalone)').matches || (navigator as Navigator & { standalone?: boolean }).standalone === true;
+  const appleTouchBrowser = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  function dismissPrompt(): void {
+    if (!promptDialog?.open) return;
+    promptDialog.close();
+    try { localStorage.setItem(promptDismissedKey, String(Date.now())); } catch { /* A blocked timer simply ends the courtesy period. */ }
+    collection.emit('install_prompt_dismiss');
+  }
+  function offerInstall(): void {
+    if (!promptDialog || promptDialog.open || alreadyInstalled() || location.pathname !== '/') return;
+    const native = Boolean(installPrompt);
+    if (!native && !appleTouchBrowser()) return;
+    try { if (Date.now() - (Number(localStorage.getItem(promptDismissedKey)) || 0) < promptQuietPeriod) return; } catch { return; }
+    byId('install-prompt-instructions')?.toggleAttribute('hidden', native);
+    byId('install-prompt-action')?.toggleAttribute('hidden', !native);
+    promptDialog.showModal();
+    collection.emit('install_prompt_show');
+  }
+  setTimeout(offerInstall, 3000);
+  promptDialog?.addEventListener('cancel', dismissPrompt);
+  promptDialog?.addEventListener('click', event => { if (event.target === promptDialog) dismissPrompt(); });
+  byId('install-prompt-dismiss')?.addEventListener('click', dismissPrompt);
+  byId('install-prompt-action')?.addEventListener('click', async () => {
+    if (!installPrompt) return;
+    const choice = installPrompt.userChoice;
+    await installPrompt.prompt();
+    installPrompt = null;
+    byId('install')?.setAttribute('hidden', '');
+    if ((await choice).outcome === 'accepted') promptDialog?.close();
+    else dismissPrompt();
+  });
 }
 if (!config.review_drafts && 'serviceWorker' in navigator) {
   let reloadStarted = false;

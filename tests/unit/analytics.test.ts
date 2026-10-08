@@ -16,9 +16,11 @@ function fixture() {
       page_start: { event_name: 'page_view' }, call: { event_name: 'contact_click', event_value: 'resource_call' },
       help: { event_name: 'contact_click', event_value: 'help_211' }, directions: { event_name: 'outbound_click', event_value: 'directions' },
       source: { event_name: 'outbound_click', event_value: 'official_source' }, install: { event_name: 'pwa_install' },
+      resource_open: { event_name: 'engagement', event_value: 'resource_open' },
+      install_prompt_show: { event_name: 'install_prompt', event_value: 'show' }, install_prompt_dismiss: { event_name: 'install_prompt', event_value: 'dismiss' },
     },
     attribution: {
-      events: ['page_start', 'call', 'help', 'directions', 'source'], sources: ['direct_unknown', 'community', 'search', 'other'],
+      events: ['page_start', 'call', 'help', 'directions', 'source', 'resource_open'], sources: ['direct_unknown', 'community', 'search', 'other'],
       campaigns: ['none', 'example_outreach'], contents: ['none', 'example_poster'], internal_hosts: ['former.example.test'],
       referrers: [{ host: 'search.example.test', source: 'search', include_subdomains: true }],
     },
@@ -36,14 +38,17 @@ function fixture() {
 describe('optional aggregate collection', () => {
   it('sends exact static payloads and only finite public labels, without identity or provider context', () => {
     const { site, collection, values, requests } = fixture(); assertSite(site);
-    for (const kind of ['page_start', 'call', 'help', 'directions', 'source', 'install'] as EventKind[]) collection.emit(kind);
-    expect(values.size).toBe(0); expect(requests).toHaveLength(6);
-    for (const [index, kind] of (['page_start', 'call', 'help', 'directions', 'source', 'install'] as EventKind[]).entries()) {
-      expect(JSON.parse(requests[index]!.body as string)).toEqual({ ...site.analytics!.constants, ...site.analytics!.event_payloads![kind], ...(kind === 'install' ? {} : { source: 'community', campaign: 'example_outreach', content: 'example_poster' }) });
+    const emitted = ['page_start', 'call', 'help', 'directions', 'source', 'install', 'resource_open', 'install_prompt_show', 'install_prompt_dismiss'] as EventKind[];
+    for (const kind of emitted) collection.emit(kind);
+    expect(values.size).toBe(0); expect(requests).toHaveLength(9);
+    for (const [index, kind] of emitted.entries()) {
+      const attributed = kind !== 'install' && kind !== 'install_prompt_show' && kind !== 'install_prompt_dismiss';
+      expect(JSON.parse(requests[index]!.body as string)).toEqual({ ...site.analytics!.constants, ...site.analytics!.event_payloads![kind], ...(attributed ? { source: 'community', campaign: 'example_outreach', content: 'example_poster' } : {}) });
       expect(requests[index]).toMatchObject({ method: 'POST', mode: 'cors', credentials: 'omit', cache: 'no-store', redirect: 'error', referrerPolicy: 'no-referrer', headers: { 'Content-Type': 'text/plain;charset=UTF-8' } });
     }
     expect(JSON.stringify(requests.map(request => request.body))).not.toMatch(/secret|private|fbclid|location/);
-    expect(requests[0]).not.toHaveProperty('keepalive'); expect(requests[1]!.keepalive).toBe(true); expect(requests[5]).not.toHaveProperty('keepalive'); collection.pause();
+    expect(requests[0]).not.toHaveProperty('keepalive'); expect(requests[1]!.keepalive).toBe(true); expect(requests[5]).not.toHaveProperty('keepalive');
+    expect(requests[6]!.keepalive).toBe(true); expect(requests[7]).not.toHaveProperty('keepalive'); expect(requests[8]!.keepalive).toBe(true); collection.pause();
   });
   it('keeps the original simple JSON adapter compatible and opt-in', () => {
     const { site, env, requests } = fixture();

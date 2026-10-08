@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MPL-2.0
 import type { Site } from './types.ts';
 
-export type EventKind = 'page_start' | 'call' | 'help' | 'directions' | 'source' | 'install';
+export type EventKind = 'page_start' | 'call' | 'help' | 'directions' | 'source' | 'install' | 'resource_open' | 'install_prompt_show' | 'install_prompt_dismiss';
 type Suppression = 'disabled' | 'preview' | 'privacy' | 'operator' | 'storage' | null;
 type Attribution = { source: string; campaign: string; content: string };
 type AttributionConfig = NonNullable<NonNullable<Site['analytics']>['attribution']>;
@@ -11,7 +11,7 @@ export interface AnalyticsEnvironment {
   storage: Pick<Storage, 'getItem' | 'setItem'>;
   fetch: typeof fetch; now(): number;
 }
-const kinds: readonly EventKind[] = ['page_start', 'call', 'help', 'directions', 'source', 'install'];
+const kinds: readonly EventKind[] = ['page_start', 'call', 'help', 'directions', 'source', 'install', 'resource_open', 'install_prompt_show', 'install_prompt_dismiss'];
 const emptyAttribution = (): Attribution => ({ source: 'direct_unknown', campaign: 'none', content: 'none' });
 
 /** Reduce public outreach labels in memory. No raw context leaves this boundary. */
@@ -38,7 +38,7 @@ export function classifyAttribution(url: string, referrer: string, origin: strin
 export function createAnalytics(site: Site, production: boolean, env: AnalyticsEnvironment) {
   const config = site.analytics, key = config?.preference_key ?? `food-help-${site.deployment_id}-analytics-preference`;
   let attribution = classifyAttribution(env.url, env.referrer, site.canonical_origin, config?.attribution);
-  let pageAttempted = false, installAttempted = false, storageFailed = false;
+  let pageAttempted = false, installAttempted = false, promptShowAttempted = false, storageFailed = false;
   const lastAction = new Map<EventKind, number>();
   const pending = new Map<AbortController, { action: boolean; timer: ReturnType<typeof setTimeout> }>();
   function pause(backgroundOnly = false): void {
@@ -70,6 +70,9 @@ export function createAnalytics(site: Site, production: boolean, env: AnalyticsE
     } else if (kind === 'install') {
       if (installAttempted) return;
       installAttempted = true;
+    } else if (kind === 'install_prompt_show') {
+      if (promptShowAttempted) return;
+      promptShowAttempted = true;
     } else {
       const now = env.now();
       if (now - (lastAction.get(kind) ?? -Infinity) < 750) return;
@@ -80,8 +83,8 @@ export function createAnalytics(site: Site, production: boolean, env: AnalyticsE
     try { if (new URL(env.url).pathname !== '/') return; } catch { return; }
     const event = config.event_payloads ? config.event_payloads[kind] : { event: config.event_names?.[kind] ?? kind };
     if (!event) return;
-    const body = JSON.stringify({ ...config.constants, ...event, ...(config.attribution?.events.includes(kind as Exclude<EventKind, 'install'>) ? attribution : {}) });
-    const action = kind !== 'page_start' && kind !== 'install', controller = new AbortController();
+    const body = JSON.stringify({ ...config.constants, ...event, ...(config.attribution?.events.some(attributed => attributed === kind) ? attribution : {}) });
+    const action = kind !== 'page_start' && kind !== 'install' && kind !== 'install_prompt_show', controller = new AbortController();
     const timer = setTimeout(() => { controller.abort(); pending.delete(controller); }, 1500);
     pending.set(controller, { action, timer });
     try {

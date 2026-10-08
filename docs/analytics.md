@@ -10,11 +10,11 @@ Collection requires an explicitly reviewed deployment configuration, a productio
 
 ## Fixed events and wire formats
 
-The application exposes six broad event kinds: `page_start`, `call`, `help`, `directions`, `source` and `install`. `call` means a resource call; `help` means the site's general help number. The emitter receives only the kind, never the clicked element, resource, destination, search, filter or location.
+The application exposes nine broad event kinds: `page_start`, `call`, `help`, `directions`, `source`, `install`, `resource_open`, `install_prompt_show` and `install_prompt_dismiss`. `call` means a resource call; `help` means the site's general help number. `resource_open` means a listing's detail section was opened; which listing is never sent. `install_prompt_show` and `install_prompt_dismiss` count displays and dismissals of the install suggestion; acceptance is measured only by the existing `install` signal. The emitter receives only the kind, never the clicked element, resource, destination, search, filter or location.
 
 The default JSON body is the configured static `constants` plus `event`, optionally renamed with `event_names`. The default content type remains `application/json`.
 
-For an existing collector with a different strict contract, configure `event_payloads` instead of `event_names`. Supply all six keys; each value is a small object of static scalar fields. Constants and event fields must not overlap. For example:
+For an existing collector with a different strict contract, configure `event_payloads` instead of `event_names`. Supply all nine keys; each value is a small object of static scalar fields. Constants and event fields must not overlap. For example:
 
 ```json
 {
@@ -25,7 +25,10 @@ For an existing collector with a different strict contract, configure `event_pay
     "help": { "event_name": "contact", "kind": "general_help" },
     "directions": { "event_name": "outbound", "kind": "directions" },
     "source": { "event_name": "outbound", "kind": "official_source" },
-    "install": { "event_name": "installation_signal" }
+    "install": { "event_name": "installation_signal" },
+    "resource_open": { "event_name": "engagement", "kind": "resource_open" },
+    "install_prompt_show": { "event_name": "install_prompt", "kind": "show" },
+    "install_prompt_dismiss": { "event_name": "install_prompt", "kind": "dismiss" }
   },
   "content_type": "text/plain;charset=UTF-8"
 }
@@ -35,7 +38,7 @@ This fragment belongs within an enabled, separately reviewed `analytics` object 
 
 ## Optional finite outreach labels
 
-The optional `attribution` policy defines `events`, `sources`, `campaigns`, `contents`, `referrers` and `internal_hosts`. It permits only fixed public campaign labels, with maximum list lengths. Installation is never attributed.
+The optional `attribution` policy defines `events`, `sources`, `campaigns`, `contents`, `referrers` and `internal_hosts`. It permits only fixed public campaign labels, with maximum list lengths. Installation and install-prompt signals are never attributed.
 
 Source selection is `src`, then `utm_source`, then a configured referrer hostname rule, then `direct_unknown`. An unregistered explicit source or external host becomes `other`. Registered `utm_campaign` and `utm_content` labels are used; unknown values become `none`. Query strings, fragments and referrer URLs are never sent or stored by the adapter. Configured referrer rules have `{ "host": "search.example.test", "source": "search", "include_subdomains": true }`; hostname boundaries are checked. The canonical host and `internal_hosts` stay direct/unknown when no explicit source or matching rule exists.
 
@@ -47,7 +50,7 @@ Source selection is `src`, then `utm_source`, then a configured referrer hostnam
 
 GPC, navigator/window DNT, presence of the `dev_mode` cookie, `localStorage.noAnalytics === "1"`, or unreadable/unwritable preference storage suppress collection. The application creates no cookie. Signals are rechecked before every event. Changes in another tab recheck the choice and cancel pending requests. Disabled and preview builds do not read optional analytics storage.
 
-The client attempts one startup and one supported installation signal per page lifetime. Broad clicks have a 750ms per-kind in-memory duplicate guard. Hidden/offline events are dropped and never replayed on return. Requests omit credentials and referrers, reject redirects and use a 1,500ms abort timer. No beacon, queue, retry, response dependency or navigation wait exists.
+The client attempts one startup, one supported installation signal and one install-prompt show per page lifetime. Broad clicks have a 750ms per-kind in-memory duplicate guard. Hidden/offline events are dropped and never replayed on return. Requests omit credentials and referrers, reject redirects and use a 1,500ms abort timer. No beacon, queue, retry, response dependency or navigation wait exists.
 
 The optional `click_keepalive: true` allows only a previously started visible broad click to finish when the page hides or navigates. Other pending measurements abort. Opt-out, privacy/operator suppression and offline transitions still abort all pending requests. Timers cannot guarantee cancellation after a browser freezes or destroys a page realm; delivery is best effort. This capability needs explicit policy review and is off by default.
 

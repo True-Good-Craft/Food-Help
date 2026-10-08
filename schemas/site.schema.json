@@ -312,6 +312,15 @@
             },
             "install": {
               "$ref": "#/$defs/text"
+            },
+            "resource_open": {
+              "$ref": "#/$defs/text"
+            },
+            "install_prompt_show": {
+              "$ref": "#/$defs/text"
+            },
+            "install_prompt_dismiss": {
+              "$ref": "#/$defs/text"
             }
           }
         },
@@ -326,14 +335,17 @@
             "help": { "$ref": "#/$defs/eventPayload" },
             "directions": { "$ref": "#/$defs/eventPayload" },
             "source": { "$ref": "#/$defs/eventPayload" },
-            "install": { "$ref": "#/$defs/eventPayload" }
+            "install": { "$ref": "#/$defs/eventPayload" },
+            "resource_open": { "$ref": "#/$defs/eventPayload" },
+            "install_prompt_show": { "$ref": "#/$defs/eventPayload" },
+            "install_prompt_dismiss": { "$ref": "#/$defs/eventPayload" }
           }
         },
         "attribution": {
           "type": "object", "additionalProperties": false,
           "required": ["events", "sources", "campaigns", "contents", "referrers", "internal_hosts"],
           "properties": {
-            "events": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["page_start", "call", "help", "directions", "source"] } },
+            "events": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["page_start", "call", "help", "directions", "source", "resource_open"] } },
             "sources": { "$ref": "#/$defs/analyticsLabels" },
             "campaigns": { "$ref": "#/$defs/analyticsLabels" },
             "contents": { "$ref": "#/$defs/analyticsLabels" },
