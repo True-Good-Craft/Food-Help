@@ -65,7 +65,7 @@ function render(): void {
       const location = element.querySelector('[data-location]')!;
       location.textContent = `${c.nearest}: ${new Intl.NumberFormat(site.locale, { maximumFractionDigits: 1 }).format(distanceKm(position, resource.location.coordinates))} km · ${location.textContent}`;
     }
-    if (opened.has(resource.id)) element.querySelector('details')!.open = true;
+    if (opened.has(resource.id)) { const details = element.querySelector('details')!; details.dataset.restored = ''; details.open = true; }
   }
   if (focused) results.querySelector(`[data-resource-id="${focused.id}"]`)?.querySelectorAll<HTMLElement>('a,button,summary')[focused.index]?.focus({ preventScroll: true });
   status('result-status', c.resourceCount(resources.length, selectedView, config.review_drafts));
@@ -143,7 +143,10 @@ document.addEventListener('click', event => { const target = event.target instan
 // A listing's detail section opening is one broad engagement signal; which listing is never sent.
 results?.addEventListener('toggle', event => {
   const details = event.target;
-  if (details instanceof HTMLDetailsElement && details.open && details.closest('article[data-resource-id]')) collection.emit('resource_open');
+  if (!(details instanceof HTMLDetailsElement)) return;
+  // Re-rendering restores already-open listings; that is not a new opening.
+  if (Object.hasOwn(details.dataset, 'restored')) { delete details.dataset.restored; return; }
+  if (details.open && details.closest('article[data-resource-id]')) collection.emit('resource_open');
 }, true);
 collection.emit('page_start');
 window.addEventListener('online', () => { status('connection-status', c.online); void refresh(); });
