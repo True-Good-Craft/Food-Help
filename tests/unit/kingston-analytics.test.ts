@@ -18,6 +18,7 @@ function fixture(overrides: Partial<AnalyticsEnvironment> = {}, production = tru
     privacySignal: () => false, cookies: () => '', now: () => 1000,
     storage: { getItem: key => saved.get(key) ?? null, setItem: (key, value) => { saved.set(key, value); } },
     fetch: async (url, options) => { requests.push({ url: String(url), options: options! }); return new Response(null, { status: 204 }); },
+    visitId: () => 'visit-1',
     ...overrides,
   };
   return { collection: createAnalytics(site, production, env), requests, saved };
@@ -27,6 +28,8 @@ test('Kingston restored configuration sends only the six established v3 aggregat
   const { collection, requests, saved } = fixture();
   try {
     kinds.forEach(kind => collection.emit(kind));
+    // Optional kinds stay inert while Kingston's v3 contract configures no payloads for them.
+    collection.emit('resource_open'); collection.emit('install_prompt_show'); collection.emit('install_prompt_dismiss');
     assert.equal(requests.length, 6);
     const events = requests.map(request => JSON.parse(request.options.body as string));
     assert.deepEqual(events.map(event => [event.event_name, event.event_value ?? null]), [
