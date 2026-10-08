@@ -26,11 +26,13 @@ function fixture() {
     },
   };
   const values = new Map<string, string>(), requests: RequestInit[] = [];
+  let visitCounter = 0;
   const env: AnalyticsEnvironment = {
     origin: site.canonical_origin, url: `${site.canonical_origin}/?src=community&utm_campaign=example_outreach&utm_content=example_poster&search=secret&fbclid=private#location`, referrer: 'https://search.example.test/private?q=secret',
     online: () => true, visible: () => true, privacySignal: () => false, cookies: () => '',
     storage: { getItem: key => values.get(key) ?? null, setItem: (key, value) => { values.set(key, value); } },
     fetch: async (_url, init) => { requests.push(init!); return new Response(null, { status: 204 }); }, now: () => 1000,
+    visitId: () => `v${++visitCounter}`,
   };
   const collection = createAnalytics(site, true, env);
   return { site, env, values, requests, collection };
@@ -43,7 +45,7 @@ describe('optional aggregate collection', () => {
     expect(values.size).toBe(0); expect(requests).toHaveLength(9);
     for (const [index, kind] of emitted.entries()) {
       const attributed = kind !== 'install' && kind !== 'install_prompt_show' && kind !== 'install_prompt_dismiss';
-      expect(JSON.parse(requests[index]!.body as string)).toEqual({ ...site.analytics!.constants, ...site.analytics!.event_payloads![kind], ...(attributed ? { source: 'community', campaign: 'example_outreach', content: 'example_poster' } : {}) });
+      expect(JSON.parse(requests[index]!.body as string)).toEqual({ ...site.analytics!.constants, ...site.analytics!.event_payloads![kind], ...(attributed ? { source: 'community', campaign: 'example_outreach', content: 'example_poster', visit: 'v1' } : {}) });
       expect(requests[index]).toMatchObject({ method: 'POST', mode: 'cors', credentials: 'omit', cache: 'no-store', redirect: 'error', referrerPolicy: 'no-referrer', headers: { 'Content-Type': 'text/plain;charset=UTF-8' } });
     }
     expect(JSON.stringify(requests.map(request => request.body))).not.toMatch(/secret|private|fbclid|location/);
@@ -54,7 +56,7 @@ describe('optional aggregate collection', () => {
     const { site, env, requests } = fixture();
     site.analytics = { enabled: true, endpoint: 'https://metrics.example.invalid/events', collection_mode: 'opt_in', disclosure: 'Example only.', constants: { deployment: 'exampleville' } };
     const collection = createAnalytics(site, true, env); collection.emit('page_start'); expect(requests).toHaveLength(0);
-    collection.setAllowed(true); expect(JSON.parse(requests[0]!.body as string)).toEqual({ deployment: 'exampleville', event: 'page_start' });
+    collection.setAllowed(true); expect(JSON.parse(requests[0]!.body as string)).toEqual({ deployment: 'exampleville', event: 'page_start', visit: 'v3' });
     expect(requests[0]!.headers).toEqual({ 'Content-Type': 'application/json' }); collection.pause();
   });
   it('suppresses disabled builds, previews and every origin except the configured canonical HTTPS origin', () => {
@@ -102,11 +104,11 @@ describe('optional aggregate collection', () => {
       env.now = () => 1750; collection.emit('directions'); expect(requests).toHaveLength(1); collection.pause();
     }
   });
-  it('aborts all pending deliveries and clears attribution on cross-tab revocation', () => {
+  it('aborts all pending deliveries and clears attribution and the visit token on cross-tab revocation', () => {
     const { collection, env, values, requests } = fixture(); env.fetch = (_url, init) => { requests.push(init!); return new Promise(() => {}); };
     collection.emit('page_start'); collection.emit('directions'); values.set('example-choice', 'no'); collection.state();
     expect(requests.every(request => request.signal!.aborted)).toBe(true); collection.setAllowed(true); env.now = () => 1750; collection.emit('help');
-    expect(JSON.parse(requests[2]!.body as string)).toMatchObject({ source: 'direct_unknown', campaign: 'none', content: 'none' }); collection.pause();
+    expect(JSON.parse(requests[2]!.body as string)).toMatchObject({ source: 'direct_unknown', campaign: 'none', content: 'none', visit: 'v2' }); collection.pause();
   });
   it('lets already-started clicks finish on backgrounding only when configured; privacy still aborts them', () => {
     const { collection, env, requests } = fixture(); env.fetch = (_url, init) => { requests.push(init!); return new Promise(() => {}); };
@@ -135,6 +137,8 @@ describe('optional aggregate collection', () => {
       (s: Site) => { delete s.analytics!.event_payloads!.help; },
       (s: Site) => { s.analytics!.constants!.source = 'override'; },
       (s: Site) => { s.analytics!.event_payloads!.call!.site_key = 'override'; },
+      (s: Site) => { s.analytics!.constants!.visit = 'fixed'; },
+      (s: Site) => { s.analytics!.event_payloads!.help!.visit = 'fixed'; },
       (s: Site) => { s.analytics!.attribution!.sources = ['unbounded']; },
       (s: Site) => { s.analytics!.attribution!.referrers[0]!.source = 'unknown'; },
       (s: Site) => { s.analytics!.attribution!.referrers[0]!.host = 'https://bad.example'; },

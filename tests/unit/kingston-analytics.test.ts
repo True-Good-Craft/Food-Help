@@ -18,6 +18,7 @@ function fixture(overrides: Partial<AnalyticsEnvironment> = {}, production = tru
     privacySignal: () => false, cookies: () => '', now: () => 1000,
     storage: { getItem: key => saved.get(key) ?? null, setItem: (key, value) => { saved.set(key, value); } },
     fetch: async (url, options) => { requests.push({ url: String(url), options: options! }); return new Response(null, { status: 204 }); },
+    visitId: () => 'visit-1',
     ...overrides,
   };
   return { collection: createAnalytics(site, production, env), requests, saved };
@@ -41,8 +42,9 @@ test('Kingston restored configuration sends only the nine established v3 aggrega
       const keys = ['site_key', 'contract_version', 'collection_mode', 'page', 'event_name'];
       if (events[index]!.event_value) keys.push('event_value');
       if (attributed.has(kinds[index]!)) {
-        keys.push('source', 'campaign', 'content');
+        keys.push('source', 'campaign', 'content', 'visit');
         assert.equal(event.source, 'reddit'); assert.equal(event.campaign, 'outreach_2026_09'); assert.equal(event.content, 'post_02');
+        assert.equal(event.visit, 'visit-1');
       }
       assert.deepEqual(Object.keys(event).sort(), keys.sort());
     }

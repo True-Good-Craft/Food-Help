@@ -39,8 +39,10 @@ test('local collector receives a single broad click through native navigation, w
     const page = await context.newPage(); await page.goto(`${origin}/?query=secret&provider=private#location`); await page.waitForFunction(() => (window as unknown as { ready: boolean }).ready);
     await expect.poll(() => received.length).toBe(1);
     await page.locator('#same').click(); await expect(page).toHaveURL(`${origin}/next`); await expect.poll(() => received.length).toBe(2);
-    expect(received[1]!.body).toEqual({ deployment: 'fictional-collector-test', event: 'directions' });
+    expect(received[1]!.body).toMatchObject({ deployment: 'fictional-collector-test', event: 'directions' });
+    expect(typeof received[0]!.body.visit).toBe('string'); expect(received[1]!.body.visit).toBe(received[0]!.body.visit);
     await page.goto(origin); await page.waitForFunction(() => (window as unknown as { ready: boolean }).ready); await expect.poll(() => received.length).toBe(3);
+    expect(received[2]!.body.visit).not.toBe(received[0]!.body.visit);
     const popupPromise = context.waitForEvent('page'); await page.locator('#new').click(); const popup = await popupPromise; await popup.waitForLoadState(); await expect.poll(() => received.length).toBe(4); await popup.close();
     await page.bringToFront(); await page.locator('#revoke').click(); await page.locator('#same').click(); expect(received).toHaveLength(4);
     expect(received.every(event => !event.referrer && !event.cookie)).toBe(true);
