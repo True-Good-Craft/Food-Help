@@ -18,7 +18,6 @@ function fixture(overrides: Partial<AnalyticsEnvironment> = {}, production = tru
     privacySignal: () => false, cookies: () => '', now: () => 1000,
     storage: { getItem: key => saved.get(key) ?? null, setItem: (key, value) => { saved.set(key, value); } },
     fetch: async (url, options) => { requests.push({ url: String(url), options: options! }); return new Response(null, { status: 204 }); },
-    visitId: () => 'visit-1',
     ...overrides,
   };
   return { collection: createAnalytics(site, production, env), requests, saved };

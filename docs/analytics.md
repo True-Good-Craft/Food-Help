@@ -36,12 +36,6 @@ For an existing collector with a different strict contract, configure `event_pay
 
 This fragment belongs within an enabled, separately reviewed `analytics` object with `endpoint`, `collection_mode` and `disclosure`. It does not enable collection by itself. No collector secret belongs in public configuration. Static fields must never contain personal information, identifiers, resource identities or private operational details. Schema checks cannot establish whether a constant is appropriate to publish.
 
-## Per-visit linkage
-
-With the optional `"visit_linkage": true`, every event except `install`, `install_prompt_show` and `install_prompt_dismiss` carries a `visit` field: a random token generated in memory at page load. It lets one visit's broad steps (arrival, opening a listing, a call or directions click) be counted together per outreach label. The token is never written to storage or sent anywhere else, a fresh value is generated whenever collection is revoked or suppressed, and each page load starts a new one. Installation and prompt signals never carry it, so they stay unlinkable to outreach labels or visit activity. Static constants and event payloads cannot override `visit`. The token counts visits, not people: it cannot identify returning visitors, and no cross-visit history exists.
-
-`visit_linkage` is off unless a deployment explicitly enables it, and it changes the wire format. Enable it only where the reviewed collector contract accepts the field and its disclosure names it. Kingston's current v3 collector contract forbids session identifiers and unknown keys, so Kingston keeps it off and sends the exact six established events.
-
 ## Optional finite outreach labels
 
 The optional `attribution` policy defines `events`, `sources`, `campaigns`, `contents`, `referrers` and `internal_hosts`. It permits only fixed public campaign labels, with maximum list lengths. Installation and install-prompt signals are never attributed.
