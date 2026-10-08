@@ -1,0 +1,1817 @@
+{
+  "format": "food-help",
+  "schema_version": 1,
+  "dataset_id": "8f948b9f-9060-4736-bc76-168845136625",
+  "content_language": "en",
+  "taxonomy_version": 1,
+  "organizations": [
+    {
+      "id": "brockville-and-area-food-bank",
+      "name": "Brockville and Area Food Bank",
+      "url": "https://www.brockvilleandareafoodbank.ca/"
+    },
+    {
+      "id": "loaves-and-fishes",
+      "name": "Loaves and Fishes",
+      "description": "Volunteer-run low-cost lunch restaurant in downtown Brockville.",
+      "url": "https://www.facebook.com/loavesfishesbrockville/"
+    },
+    {
+      "id": "salvation-army-brockville",
+      "name": "The Salvation Army — Brockville",
+      "url": "https://www.facebook.com/SalvationArmyBrockvilleCommunity/"
+    },
+    {
+      "id": "wall-street-united-church",
+      "name": "Wall Street United Church",
+      "description": "Hosts the Sunday Suppers rotation page and a weekly Friday breakfast.",
+      "url": "https://wallstreetchurch.com/"
+    },
+    {
+      "id": "brockville-wesleyan-church",
+      "name": "Brockville Wesleyan Church",
+      "url": "https://www.brockwes.com/"
+    },
+    {
+      "id": "st-lawrence-anglican-church",
+      "name": "St. Lawrence Anglican Church"
+    },
+    {
+      "id": "first-presbyterian-church-brockville",
+      "name": "First Presbyterian Church"
+    },
+    {
+      "id": "bread-and-blessing-brockville",
+      "name": "Bread and Blessing Brockville",
+      "description": "Monthly free community lunch at Thousand Islands Secondary School.",
+      "url": "https://www.facebook.com/p/Bread-and-Blessing-Brockville-61574426063159/"
+    }
+  ],
+  "resources": [
+    {
+      "id": "brockville-and-area-food-bank",
+      "organization_id": "brockville-and-area-food-bank",
+      "name": "Brockville and Area Food Bank",
+      "summary": "Groceries for people in need, weekdays by appointment, with home delivery available on request.",
+      "categories": [
+        "food_banks_pantries"
+      ],
+      "food_access_purpose": "Groceries for people in need, weekdays by appointment, with home delivery available on request.",
+      "location": {
+        "description": "58 Buell Street, Brockville, ON",
+        "address": {
+          "street": "58 Buell Street",
+          "locality": "Brockville",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K6V 5V7",
+          "neighbourhood": "Downtown Brockville"
+        },
+        "coordinates": {
+          "latitude": 44.590369,
+          "longitude": -75.688064
+        }
+      },
+      "phone": "+16133420605",
+      "official_url": "https://www.brockvilleandareafoodbank.ca/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "unknown",
+        "appointment_required": "yes",
+        "registration_required": "unknown",
+        "identification_required": "conditional",
+        "details": [
+          "The provider asks visitors to call 613-342-0605 and leave a voicemail to make an appointment; home delivery can be requested the same way.",
+          "Intake closes at 2:45 p.m., and earlier on high-volume days so everyone already waiting is served.",
+          "Southeasthealthline asks visitors to bring ID and says income statements and heating, hydro and rent information may be required; the provider has not confirmed the details.",
+          "The building is wheelchair accessible, per southeasthealthline."
+        ]
+      },
+      "eligibility": [
+        "Applicants are screened to determine eligibility based on income criteria, per southeasthealthline. Its service area names Augusta, Front of Yonge and Elizabethtown alongside Brockville; a March 2026 news report names Brockville, Lyn, Mallorytown and North Augusta."
+      ],
+      "limitations": [
+        "A four to five day supply of food once a month, per southeasthealthline."
+      ],
+      "before_you_go": [
+        "Call 613-342-0605 and leave a voicemail to book a visit or ask about home delivery.",
+        "Arrive before 2:45 p.m.; intake may close earlier on busy days."
+      ],
+      "cost": {
+        "state": "free",
+        "description": "No charge."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Weekdays 10 a.m.–2:45 p.m., from the provider's own site. Intake closes at 2:45 p.m.",
+        "weekly": [
+          {
+            "day": 1,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "14:45"
+              }
+            ]
+          },
+          {
+            "day": 2,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "14:45"
+              }
+            ]
+          },
+          {
+            "day": 3,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "14:45"
+              }
+            ]
+          },
+          {
+            "day": 4,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "14:45"
+              }
+            ]
+          },
+          {
+            "day": 5,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "14:45"
+              }
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "provider-contact",
+          "provider-home"
+        ],
+        "exceptions": []
+      },
+      "evidence": [
+        {
+          "id": "provider-contact",
+          "source_kind": "provider",
+          "url": "https://www.brockvilleandareafoodbank.ca/contact-us-n/",
+          "checked_on": "2026-10-08",
+          "note": "Provider contact page: 58 Buell Street; PO Box 522, Brockville, ON K6V 5V7; 613-342-0605. Open Monday to Friday 10 a.m. to 2:45 p.m. Intake closes at 2:45 p.m. and may close earlier at high volume. Appointments and home-delivery requests by voicemail.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "official_url",
+            "before_you_go",
+            "schedule",
+            "access.appointment_required",
+            "access.details"
+          ]
+        },
+        {
+          "id": "provider-home",
+          "source_kind": "provider",
+          "url": "https://www.brockvilleandareafoodbank.ca/",
+          "checked_on": "2026-10-08",
+          "note": "Provider homepage restates Monday to Friday 10 a.m.–2:45 p.m. hours, address and phone.",
+          "supports": [
+            "name",
+            "location",
+            "phone",
+            "schedule"
+          ]
+        },
+        {
+          "id": "healthline-listing",
+          "source_kind": "referral_directory",
+          "url": "https://www.southeasthealthline.ca/displayservice.aspx?id=73405",
+          "checked_on": "2026-10-08",
+          "note": "Listing updated April 23, 2026: Mon–Fri 10 a.m.–2:45 p.m., arrive by 2:45 p.m. to complete intake. Fees: Free. Service: four to five day supply of food once a month. Application: bring ID; income statements, heating, hydro and rent information may be required. Eligibility: applicants are screened based on income criteria. Area served: Augusta, Front of Yonge, Elizabethtown (alongside Brockville). Wheelchair accessible. A fragment reading 'Open the 2nd & 4th Monday of the Month' conflicts with the provider's own weekday hours; the provider site controls. The postal code K6V 5V7 comes from this listing's address block.",
+          "supports": [
+            "location",
+            "eligibility",
+            "limitations",
+            "cost",
+            "schedule",
+            "access.identification_required",
+            "access.details"
+          ]
+        },
+        {
+          "id": "211-listing",
+          "source_kind": "referral_directory",
+          "url": "https://211ontario.ca/service/68957940/brockville-and-area-food-bank-brockville-and-area-food-bank/",
+          "checked_on": "2026-10-08",
+          "note": "Listing dated September 16, 2025. The page itself could not be re-read on 2026-10-08 (bot verification); a search-index extract shows Tuesday to Friday 10 a.m.–3 p.m. hours, which are superseded by the provider's current 10 a.m.–2:45 p.m. weekday hours.",
+          "supports": [
+            "schedule"
+          ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=2510&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 58 Buell Street, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-10-08",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-10-08"
+    },
+    {
+      "id": "salvation-army-food-bank",
+      "organization_id": "salvation-army-brockville",
+      "name": "The Salvation Army — Brockville emergency food bank",
+      "summary": "Emergency food bank with canned and non-perishable food, baby formula and infant cereal, weekdays by appointment.",
+      "categories": [
+        "food_banks_pantries"
+      ],
+      "food_access_purpose": "Emergency food bank with canned and non-perishable food, baby formula and infant cereal, weekdays by appointment.",
+      "location": {
+        "description": "175 First Avenue, Brockville, ON",
+        "address": {
+          "street": "175 First Avenue",
+          "locality": "Brockville",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K6V 5W1"
+        },
+        "coordinates": {
+          "latitude": 44.604883,
+          "longitude": -75.675093
+        }
+      },
+      "phone": "+16133425211",
+      "official_url": "https://www.facebook.com/SalvationArmyBrockvilleCommunity/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "unknown",
+        "appointment_required": "yes",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "The provider states the food bank is available by appointment; call 613-342-5211.",
+          "The building is wheelchair accessible, per southeasthealthline."
+        ]
+      },
+      "eligibility": [
+        "People in need in Leeds and Grenville, per southeasthealthline."
+      ],
+      "limitations": [
+        "Canned and non-perishable food, baby formula and infant cereal, and occasionally diapers and perishable food, per southeasthealthline; the exact contents of each hamper vary."
+      ],
+      "before_you_go": [
+        "Call 613-342-5211 to apply and make an appointment before visiting."
+      ],
+      "cost": {
+        "state": "free",
+        "description": "No charge."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Monday to Friday 9 a.m.–4 p.m. by appointment, per the provider.",
+        "weekly": [
+          {
+            "day": 1,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "16:00"
+              }
+            ]
+          },
+          {
+            "day": 2,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "16:00"
+              }
+            ]
+          },
+          {
+            "day": 3,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "16:00"
+              }
+            ]
+          },
+          {
+            "day": 4,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "16:00"
+              }
+            ]
+          },
+          {
+            "day": 5,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "16:00"
+              }
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "provider-facebook-foodbank"
+        ],
+        "exceptions": []
+      },
+      "evidence": [
+        {
+          "id": "provider-facebook-foodbank",
+          "source_kind": "provider",
+          "url": "https://www.facebook.com/SalvationArmyBrockvilleCommunity/",
+          "checked_on": "2026-10-08",
+          "note": "Official Salvation Army Brockville Community & Family Services Facebook video: 'Our Food Bank Program is available Monday to Friday from 9:00 am to 4:00 pm by appointment', with phone 613-342-5211 and email salvationarmybrockville@gmail.com. The video is undated in the captured snippet; treat the hours as provider-stated but not recently re-confirmed.",
+          "supports": [
+            "summary",
+            "food_access_purpose",
+            "phone",
+            "official_url",
+            "before_you_go",
+            "schedule",
+            "access.appointment_required",
+            "access.details",
+            "name"
+          ]
+        },
+        {
+          "id": "211-community-family-services",
+          "source_kind": "referral_directory",
+          "url": "https://211ontario.ca/service/69035117/salvation-army-the-community-and-family-services-brockville/",
+          "checked_on": "2026-10-08",
+          "note": "Listing updated October 27, 2025 describes the emergency food bank with canned, non-perishable foods, baby formula and infant cereal.",
+          "supports": [
+            "summary",
+            "limitations",
+            "eligibility"
+          ]
+        },
+        {
+          "id": "healthline-sa",
+          "source_kind": "referral_directory",
+          "url": "https://www.southeasthealthline.ca/displayservice.aspx?id=73867",
+          "checked_on": "2026-10-08",
+          "note": "Listing updated September 15, 2026: Salvation Army Brockville, 175 First Ave, 613-342-5211, salvationarmybrockville@gmail.com. Emergency food bank with canned, non-perishable foods, baby formula, infant cereal and occasionally diapers and perishable food. Fees: Free. Application: Call. Wheelchair accessible. Area served: Leeds and Grenville. Its Mon–Fri 8 a.m.–5 p.m. hours are office hours and are not used as food bank hours.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "eligibility",
+            "limitations",
+            "cost",
+            "access.appointment_required",
+            "access.details"
+          ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=601&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 175 First Avenue, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-10-08",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-10-08"
+    },
+    {
+      "id": "salvation-army-sandwich-program",
+      "organization_id": "salvation-army-brockville",
+      "name": "The Salvation Army — Brockville free sandwich program",
+      "summary": "Free sandwiches on Monday and Wednesday mornings.",
+      "categories": [
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Free sandwiches on Monday and Wednesday mornings.",
+      "location": {
+        "description": "175 First Avenue, Brockville, ON",
+        "address": {
+          "street": "175 First Avenue",
+          "locality": "Brockville",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K6V 5W1"
+        },
+        "coordinates": {
+          "latitude": 44.604883,
+          "longitude": -75.675093
+        }
+      },
+      "phone": "+16133425211",
+      "official_url": "https://www.facebook.com/SalvationArmyBrockvilleCommunity/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "yes",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "The community meal calendar and the church meal listing present this as a public drop-in program; they do not state appointment, registration or identification requirements."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone."
+      ],
+      "limitations": [
+        "Morning program only; sandwiches while supplies last."
+      ],
+      "before_you_go": [
+        "Check the FoodcoreLGL Brockville meal calendar or call 613-342-5211 before going, in case of holiday closures."
+      ],
+      "cost": {
+        "state": "free",
+        "description": "Free."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Mondays and Wednesdays 9 a.m.–noon.",
+        "weekly": [
+          {
+            "day": 1,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "12:00"
+              }
+            ]
+          },
+          {
+            "day": 3,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "12:00"
+              }
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "foodcore-calendar",
+          "wall-street-sunday-suppers"
+        ],
+        "exceptions": []
+      },
+      "evidence": [
+        {
+          "id": "foodcore-calendar",
+          "source_kind": "other_reviewed",
+          "url": "https://www.foodcorelgl.ca/_resources/calendars/Food_Calendar_Brockville.pdf",
+          "checked_on": "2026-10-08",
+          "note": "FoodcoreLGL 'Free/Low Cost Meals Brockville Sept–Dec 2026' calendar: Free Sandwich Program, Salvation Army Brockville, Mondays and Wednesdays 9 a.m.–noon, 175 First Ave, 613-342-5211. FoodcoreLGL is the regional food network for Leeds, Grenville and Lanark.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "eligibility",
+            "cost",
+            "schedule",
+            "access.walk_in"
+          ]
+        },
+        {
+          "id": "wall-street-sunday-suppers",
+          "source_kind": "provider",
+          "url": "https://wallstreetchurch.com/sunday-suppers/",
+          "checked_on": "2026-10-08",
+          "note": "Wall Street United Church community meal program page (page dated July 23, 2026): Salvation Army, 175 First Avenue, 613-342-5211, Free Sandwich Program Mondays and Wednesdays 9 a.m.–noon.",
+          "supports": [
+            "name",
+            "location",
+            "phone",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "healthline-sa",
+          "source_kind": "referral_directory",
+          "url": "https://www.southeasthealthline.ca/displayservice.aspx?id=73867",
+          "checked_on": "2026-10-08",
+          "note": "Listing updated September 15, 2026 describes a Salvation Army Brockville \"community meal program on Mondays and Wednesdays\" with no charge; it does not use the sandwich program name but is consistent with the calendar and church sources.",
+          "supports": [
+            "schedule",
+            "cost"
+          ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=601&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 175 First Avenue, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-10-08",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-10-08"
+    },
+    {
+      "id": "salvation-army-kids-club",
+      "organization_id": "salvation-army-brockville",
+      "name": "The Salvation Army — Brockville Kids Club hot meal",
+      "summary": "Free hot meal for children attending the Wednesday Kids Club program, open to children in grades 2 to 6.",
+      "categories": [
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Free hot meal for children attending the Wednesday Kids Club program, open to children in grades 2 to 6.",
+      "location": {
+        "description": "175 First Avenue, Brockville, ON",
+        "address": {
+          "street": "175 First Avenue",
+          "locality": "Brockville",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K6V 5W1"
+        },
+        "coordinates": {
+          "latitude": 44.604883,
+          "longitude": -75.675093
+        }
+      },
+      "phone": "+16133425211",
+      "official_url": "https://www.facebook.com/SalvationArmyBrockvilleCommunity/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "unknown",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "The meal is for children coming to the Kids Club program; call 613-342-5211 to ask about joining."
+        ]
+      },
+      "eligibility": [
+        "Open to all children in grades 2 to 6."
+      ],
+      "limitations": [
+        "The meal is part of the Wednesday Kids Club program, not a standalone drop-in dinner."
+      ],
+      "before_you_go": [
+        "Call 613-342-5211 to ask about the Kids Club before bringing a child for the first time."
+      ],
+      "cost": {
+        "state": "free",
+        "description": "Free."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Wednesdays 4:30–6:30 p.m. during the Kids Club program.",
+        "weekly": [
+          {
+            "day": 3,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "16:30",
+                "closes": "18:30"
+              }
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "foodcore-calendar",
+          "wall-street-sunday-suppers"
+        ],
+        "exceptions": []
+      },
+      "evidence": [
+        {
+          "id": "foodcore-calendar",
+          "source_kind": "other_reviewed",
+          "url": "https://www.foodcorelgl.ca/_resources/calendars/Food_Calendar_Brockville.pdf",
+          "checked_on": "2026-10-08",
+          "note": "FoodcoreLGL 'Free/Low Cost Meals Brockville Sept–Dec 2026' calendar: Kids Club Program, Salvation Army Brockville — free hot meal for the children coming to the Kids Club Program; open to all children in grades 2 to 6, Wednesdays 4:30–6:30 p.m.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "eligibility",
+            "limitations",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "wall-street-sunday-suppers",
+          "source_kind": "provider",
+          "url": "https://wallstreetchurch.com/sunday-suppers/",
+          "checked_on": "2026-10-08",
+          "note": "Wall Street United Church community meal program page (page dated July 23, 2026) repeats the Kids Club details: grades 2 to 6, Wednesdays 4:30–6:30 p.m.",
+          "supports": [
+            "summary",
+            "eligibility",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "211north-listing",
+          "source_kind": "referral_directory",
+          "url": "https://211north.ca/results/?searchLocation=Brockville&topicPath=73",
+          "checked_on": "2026-10-08",
+          "note": "A 211 Ontario North result describes a Wednesday dinner 4:30–6 p.m. running through the school year; its 6 p.m. end conflicts with the 6:30 p.m. end in the current FoodcoreLGL calendar, which controls. The school-year qualification is not confirmed and is not published.",
+          "supports": [
+            "schedule"
+          ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=601&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 175 First Avenue, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-10-08",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-10-08"
+    },
+    {
+      "id": "loaves-and-fishes",
+      "organization_id": "loaves-and-fishes",
+      "name": "Loaves and Fishes",
+      "summary": "Low-cost weekday lunch in downtown Brockville: $2 a meal, children under 10 free, meal tickets 3 for $5. Dine in, take out or delivery.",
+      "categories": [
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Low-cost weekday lunch in downtown Brockville: $2 a meal, children under 10 free, meal tickets 3 for $5. Dine in, take out or delivery.",
+      "location": {
+        "description": "25 Front Avenue West, Suite 1A, Brockville, ON",
+        "address": {
+          "street": "25 Front Avenue West, Suite 1A",
+          "locality": "Brockville",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K6V 4J2",
+          "neighbourhood": "Downtown Brockville"
+        },
+        "coordinates": {
+          "latitude": 44.597833,
+          "longitude": -75.688921
+        }
+      },
+      "phone": "+16133456498",
+      "official_url": "https://www.facebook.com/loavesfishesbrockville/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "yes",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "Restaurant-style public lunch service; the sources do not state appointment, registration or identification requirements."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone."
+      ],
+      "limitations": [
+        "Lunch only, weekdays only."
+      ],
+      "before_you_go": [
+        "Delivery is available; call 613-345-6498 to arrange it.",
+        "Meal tickets are 3 for $5. Children under 10 eat free."
+      ],
+      "cost": {
+        "state": "low_cost",
+        "description": "$2 per meal; meal tickets 3 for $5; children under 10 eat free."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Weekdays 11:30 a.m.–1 p.m., per the current FoodcoreLGL calendar, southeasthealthline and recent local event listings.",
+        "weekly": [
+          {
+            "day": 1,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "11:30",
+                "closes": "13:00"
+              }
+            ]
+          },
+          {
+            "day": 2,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "11:30",
+                "closes": "13:00"
+              }
+            ]
+          },
+          {
+            "day": 3,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "11:30",
+                "closes": "13:00"
+              }
+            ]
+          },
+          {
+            "day": 4,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "11:30",
+                "closes": "13:00"
+              }
+            ]
+          },
+          {
+            "day": 5,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "11:30",
+                "closes": "13:00"
+              }
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "foodcore-calendar",
+          "healthline-listing"
+        ],
+        "exceptions": []
+      },
+      "evidence": [
+        {
+          "id": "foodcore-calendar",
+          "source_kind": "other_reviewed",
+          "url": "https://www.foodcorelgl.ca/_resources/calendars/Food_Calendar_Brockville.pdf",
+          "checked_on": "2026-10-08",
+          "note": "FoodcoreLGL 'Free/Low Cost Meals Brockville Sept–Dec 2026' calendar: Monday to Friday 11:30 a.m.–1 p.m.; low cost meals; dine-in or delivery available; $2 per meal, children under 10 free, 3 for $5 meal tickets; 25 Front Ave. W., 613-345-6498.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "cost",
+            "schedule",
+            "access.walk_in"
+          ]
+        },
+        {
+          "id": "healthline-listing",
+          "source_kind": "referral_directory",
+          "url": "https://www.southeasthealthline.ca/displayservice.aspx?id=72958",
+          "checked_on": "2026-10-08",
+          "note": "Listing updated September 9, 2026: Mon–Fri 11:30 a.m.–1 p.m., 25 Front Ave W Suite 1A, fees $2 per person, children under 10 free.",
+          "supports": [
+            "location",
+            "phone",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "wall-street-sunday-suppers",
+          "source_kind": "provider",
+          "url": "https://wallstreetchurch.com/sunday-suppers/",
+          "checked_on": "2026-10-08",
+          "note": "Wall Street United's meal program page lists Loaves and Fishes as Monday to Friday 1–3 p.m., which conflicts with 11:30 a.m.–1 p.m. in the current FoodcoreLGL calendar, southeasthealthline (updated September 9, 2026) and recent Brockville Daily event listings. The three agreeing sources control; the Wall Street hours are treated as outdated.",
+          "supports": [
+            "schedule"
+          ]
+        },
+        {
+          "id": "brockville-daily-event",
+          "source_kind": "other_reviewed",
+          "url": "https://www.brockvilledaily.ca/local-events/event/loaves-and-fishes-daily-meals/",
+          "checked_on": "2026-10-08",
+          "note": "Brockville Daily event listing (published November 21, 2025, running through January 1, 2027): low-cost meals Monday to Friday 11:30 a.m.–1 p.m.; dine-in or delivery; $2, children under 10 free, tickets 3 for $5.",
+          "supports": [
+            "summary",
+            "before_you_go",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=2134&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 25 Front Avenue West, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance. Building point for Suite 1A; the unit entrance has not been verified.",
+          "supports": [
+            "location.coordinates"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-10-08",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-10-08"
+    },
+    {
+      "id": "wall-street-friday-breakfast",
+      "organization_id": "wall-street-united-church",
+      "name": "Wall Street United Church Friday breakfast",
+      "summary": "Free hot breakfast every Friday morning.",
+      "categories": [
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Free hot breakfast every Friday morning.",
+      "location": {
+        "description": "5 Wall Street, Brockville, ON",
+        "address": {
+          "street": "5 Wall Street",
+          "locality": "Brockville",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K6V 4R8",
+          "neighbourhood": "Downtown Brockville"
+        },
+        "coordinates": {
+          "latitude": 44.59119,
+          "longitude": -75.685142
+        }
+      },
+      "phone": "+16133425401",
+      "official_url": "https://wallstreetchurch.com/food-ministries/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "yes",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "The church invites the community to the breakfast; the sources do not state appointment, registration or identification requirements."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone."
+      ],
+      "limitations": [
+        "Friday mornings only."
+      ],
+      "before_you_go": [
+        "Check the FoodcoreLGL Brockville meal calendar or call 613-342-5401 before going, in case of holiday changes."
+      ],
+      "cost": {
+        "state": "free",
+        "description": "Free."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Fridays 9–11:30 a.m.",
+        "weekly": [
+          {
+            "day": 5,
+            "state": "published",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "11:30"
+              }
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "foodcore-calendar",
+          "wall-street-food-ministries"
+        ],
+        "exceptions": []
+      },
+      "evidence": [
+        {
+          "id": "foodcore-calendar",
+          "source_kind": "other_reviewed",
+          "url": "https://www.foodcorelgl.ca/_resources/calendars/Food_Calendar_Brockville.pdf",
+          "checked_on": "2026-10-08",
+          "note": "FoodcoreLGL 'Free/Low Cost Meals Brockville Sept–Dec 2026' calendar: Friday Breakfast, Wall Street United Church, hot breakfast every Friday 9–11:30 a.m., 5 Wall St., 613-342-5401.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "eligibility",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "wall-street-food-ministries",
+          "source_kind": "provider",
+          "url": "https://wallstreetchurch.com/food-ministries/",
+          "checked_on": "2026-10-08",
+          "note": "Provider food ministries page: 'Come and join us at Wall Street Church every Friday from 9–11.30am for a delicious hot breakfast.'",
+          "supports": [
+            "summary",
+            "official_url",
+            "schedule",
+            "access.walk_in"
+          ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=2731&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 5 Wall Street, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-10-08",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-10-08"
+    },
+    {
+      "id": "wall-street-sunday-supper",
+      "organization_id": "wall-street-united-church",
+      "name": "Wall Street United Church Sunday Supper",
+      "summary": "Free Sunday supper on the 2nd and 5th Sunday of the month; eat in or take out.",
+      "categories": [
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Free Sunday supper on the 2nd and 5th Sunday of the month; eat in or take out.",
+      "location": {
+        "description": "5 Wall Street, Brockville, ON",
+        "address": {
+          "street": "5 Wall Street",
+          "locality": "Brockville",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K6V 4R8",
+          "neighbourhood": "Downtown Brockville"
+        },
+        "coordinates": {
+          "latitude": 44.59119,
+          "longitude": -75.685142
+        }
+      },
+      "phone": "+16133425401",
+      "official_url": "https://wallstreetchurch.com/sunday-suppers/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "yes",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "Eat in and take out; the church asks people taking out to bring their own containers."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone."
+      ],
+      "limitations": [
+        "2nd and 5th Sundays of the month only."
+      ],
+      "before_you_go": [
+        "Bring your own containers if you plan to take out.",
+        "This supper is part of a downtown church rotation; the FoodcoreLGL Brockville meal calendar lists who serves each Sunday."
+      ],
+      "cost": {
+        "state": "free",
+        "description": "Free; donations welcome."
+      },
+      "schedule": {
+        "kind": "dated",
+        "confirmed": true,
+        "note": "Remaining 2nd and 5th Sundays from the September–December 2026 community meal calendar, 2:30–4:30 p.m. This is not live availability.",
+        "valid_from": "2026-10-11",
+        "valid_to": "2026-12-13",
+        "weekly": [],
+        "exceptions": [
+          {
+            "date": "2026-10-11",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "14:30",
+                "closes": "16:30"
+              }
+            ],
+            "note": "2nd Sunday supper.",
+            "evidence_ids": [
+              "foodcore-calendar",
+              "wall-street-sunday-suppers"
+            ]
+          },
+          {
+            "date": "2026-11-08",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "14:30",
+                "closes": "16:30"
+              }
+            ],
+            "note": "2nd Sunday supper.",
+            "evidence_ids": [
+              "foodcore-calendar",
+              "wall-street-sunday-suppers"
+            ]
+          },
+          {
+            "date": "2026-11-29",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "14:30",
+                "closes": "16:30"
+              }
+            ],
+            "note": "5th Sunday supper.",
+            "evidence_ids": [
+              "foodcore-calendar",
+              "wall-street-sunday-suppers"
+            ]
+          },
+          {
+            "date": "2026-12-13",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "14:30",
+                "closes": "16:30"
+              }
+            ],
+            "note": "2nd Sunday supper.",
+            "evidence_ids": [
+              "foodcore-calendar",
+              "wall-street-sunday-suppers"
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "foodcore-calendar",
+          "wall-street-sunday-suppers"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "foodcore-calendar",
+          "source_kind": "other_reviewed",
+          "url": "https://www.foodcorelgl.ca/_resources/calendars/Food_Calendar_Brockville.pdf",
+          "checked_on": "2026-10-08",
+          "note": "FoodcoreLGL 'Free/Low Cost Meals Brockville Sept–Dec 2026' calendar: Sunday Dinner, Wall Street United Church, 2nd and 5th Sundays, free, 2:30–4:30 p.m., dine in and take out, 5 Wall St., 613-342-5401.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "eligibility",
+            "limitations",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "wall-street-sunday-suppers",
+          "source_kind": "provider",
+          "url": "https://wallstreetchurch.com/sunday-suppers/",
+          "checked_on": "2026-10-08",
+          "note": "Provider Sunday Suppers page (page dated July 23, 2026): 2nd and 5th Sundays, no charge, eat in and take out (bring own containers), 2:30–4:30 p.m. Donations welcome.",
+          "supports": [
+            "official_url",
+            "cost",
+            "schedule",
+            "access.details",
+            "before_you_go",
+            "access.walk_in"
+          ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=2731&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 5 Wall Street, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-10-08",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-10-08"
+    },
+    {
+      "id": "brockville-wesleyan-sunday-supper",
+      "organization_id": "brockville-wesleyan-church",
+      "name": "Brockville Wesleyan Church Sunday Supper",
+      "summary": "Free Sunday supper on the 3rd Sunday of the month.",
+      "categories": [
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Free Sunday supper on the 3rd Sunday of the month.",
+      "location": {
+        "description": "33 Central Avenue West, Brockville, ON",
+        "address": {
+          "street": "33 Central Avenue West",
+          "locality": "Brockville",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K6V 4N4"
+        },
+        "coordinates": {
+          "latitude": 44.600395,
+          "longitude": -75.692415
+        }
+      },
+      "phone": "+16133424566",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "yes",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "The current meal calendar describes dine in or pick up, with delivery by prior arrangement. Wall Street United's page describes the same supper as take-out only; the calendar is newer and controls."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone."
+      ],
+      "limitations": [
+        "3rd Sunday of the month only."
+      ],
+      "before_you_go": [
+        "Call 613-342-4566 to arrange delivery in advance if you cannot pick up.",
+        "This supper is part of a downtown church rotation; the FoodcoreLGL Brockville meal calendar lists who serves each Sunday."
+      ],
+      "cost": {
+        "state": "free",
+        "description": "Free."
+      },
+      "schedule": {
+        "kind": "dated",
+        "confirmed": true,
+        "note": "Remaining 3rd Sundays from the September–December 2026 community meal calendar, 2:30–4:30 p.m. This is not live availability.",
+        "valid_from": "2026-10-18",
+        "valid_to": "2026-12-20",
+        "weekly": [],
+        "exceptions": [
+          {
+            "date": "2026-10-18",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "14:30",
+                "closes": "16:30"
+              }
+            ],
+            "note": "3rd Sunday supper.",
+            "evidence_ids": [
+              "foodcore-calendar"
+            ]
+          },
+          {
+            "date": "2026-11-15",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "14:30",
+                "closes": "16:30"
+              }
+            ],
+            "note": "3rd Sunday supper.",
+            "evidence_ids": [
+              "foodcore-calendar"
+            ]
+          },
+          {
+            "date": "2026-12-20",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "14:30",
+                "closes": "16:30"
+              }
+            ],
+            "note": "3rd Sunday supper.",
+            "evidence_ids": [
+              "foodcore-calendar"
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "foodcore-calendar"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "foodcore-calendar",
+          "source_kind": "other_reviewed",
+          "url": "https://www.foodcorelgl.ca/_resources/calendars/Food_Calendar_Brockville.pdf",
+          "checked_on": "2026-10-08",
+          "note": "FoodcoreLGL 'Free/Low Cost Meals Brockville Sept–Dec 2026' calendar: Sunday Supper, Brockville Wesleyan Church, 3rd Sunday of the month, free, dine in or pick up 2:30–4:30 p.m., delivery by prior arrangement, 33 Central Ave. W., 613-342-4566.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "cost",
+            "schedule",
+            "access.details",
+            "access.walk_in"
+          ]
+        },
+        {
+          "id": "wall-street-sunday-suppers",
+          "source_kind": "provider",
+          "url": "https://wallstreetchurch.com/sunday-suppers/",
+          "checked_on": "2026-10-08",
+          "note": "Wall Street United's meal program page lists the Wesleyan 3rd-Sunday supper 2:30–4:30 p.m. as pick-up/take-out only and shows phone 613-498-7729, which belongs to The Pier Church. The FoodcoreLGL calendar's dine-in-or-pick-up wording and the church's own 613-342-4566 number control; the conflicts are recorded here.",
+          "supports": [
+            "schedule"
+          ]
+        },
+        {
+          "id": "recorder-article",
+          "source_kind": "other_reviewed",
+          "url": "https://www.recorder.ca/news/sunday-suppers-filling-a-local-need",
+          "checked_on": "2026-10-08",
+          "note": "Brockville Recorder & Times, January 2025: Brockville Wesleyan hosts the 3rd-Sunday dinners with Centennial Road Church supplying most volunteers and sharing costs, as part of the shared Sunday Supper rotation.",
+          "supports": [
+            "summary",
+            "schedule"
+          ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=3497&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 33 Central Avenue West, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-10-08",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-10-08"
+    },
+    {
+      "id": "st-lawrence-sunday-dinner",
+      "organization_id": "st-lawrence-anglican-church",
+      "name": "St. Lawrence Anglican Church Sunday Dinner",
+      "summary": "Free Sunday dinner on the 1st Sunday of the month.",
+      "categories": [
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Free Sunday dinner on the 1st Sunday of the month.",
+      "location": {
+        "description": "80 Pine Street, Brockville, ON",
+        "address": {
+          "street": "80 Pine Street",
+          "locality": "Brockville",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K6V 1G7"
+        },
+        "coordinates": {
+          "latitude": 44.593132,
+          "longitude": -75.681061
+        }
+      },
+      "phone": "+16133455717",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "yes",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "Presented as a free community dinner; the sources do not state appointment, registration or identification requirements."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone."
+      ],
+      "limitations": [
+        "1st Sunday of the month only."
+      ],
+      "before_you_go": [
+        "This dinner is part of a downtown church rotation; the FoodcoreLGL Brockville meal calendar lists who serves each Sunday."
+      ],
+      "cost": {
+        "state": "free",
+        "description": "Free."
+      },
+      "schedule": {
+        "kind": "dated",
+        "confirmed": true,
+        "note": "Remaining 1st Sundays from the September–December 2026 community meal calendar, 3:30–5:30 p.m. This is not live availability.",
+        "valid_from": "2026-11-01",
+        "valid_to": "2026-12-06",
+        "weekly": [],
+        "exceptions": [
+          {
+            "date": "2026-11-01",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "15:30",
+                "closes": "17:30"
+              }
+            ],
+            "note": "1st Sunday dinner.",
+            "evidence_ids": [
+              "foodcore-calendar"
+            ]
+          },
+          {
+            "date": "2026-12-06",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "15:30",
+                "closes": "17:30"
+              }
+            ],
+            "note": "1st Sunday dinner.",
+            "evidence_ids": [
+              "foodcore-calendar"
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "foodcore-calendar"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "foodcore-calendar",
+          "source_kind": "other_reviewed",
+          "url": "https://www.foodcorelgl.ca/_resources/calendars/Food_Calendar_Brockville.pdf",
+          "checked_on": "2026-10-08",
+          "note": "FoodcoreLGL 'Free/Low Cost Meals Brockville Sept–Dec 2026' calendar: Sunday Dinner, St. Lawrence Anglican Church, 1st Sunday of the month, free, 3:30–5:30 p.m., 80 Pine St., 613-345-5717.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "eligibility",
+            "limitations",
+            "cost",
+            "schedule",
+            "access.walk_in"
+          ]
+        },
+        {
+          "id": "wall-street-sunday-suppers",
+          "source_kind": "provider",
+          "url": "https://wallstreetchurch.com/sunday-suppers/",
+          "checked_on": "2026-10-08",
+          "note": "Wall Street United's meal program page repeats the 1st-Sunday dinner at St. Lawrence, 3:30–5:30 p.m., no charge. An Employment and Education Centre community page lists 3–5 p.m.; the two church-rotation sources control.",
+          "supports": [
+            "schedule",
+            "cost"
+          ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=6139&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 80 Pine Street, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-10-08",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-10-08"
+    },
+    {
+      "id": "first-presbyterian-sunday-supper",
+      "organization_id": "first-presbyterian-church-brockville",
+      "name": "First Presbyterian Church Sunday Supper",
+      "summary": "Free Sunday supper on the 4th Sunday of the month; dine in or take away.",
+      "categories": [
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Free Sunday supper on the 4th Sunday of the month; dine in or take away.",
+      "location": {
+        "description": "10 Church Street, Brockville, ON",
+        "address": {
+          "street": "10 Church Street",
+          "locality": "Brockville",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K6V 3X4"
+        },
+        "coordinates": {
+          "latitude": 44.590426,
+          "longitude": -75.68653
+        }
+      },
+      "phone": "+16133455014",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "yes",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "Dine-in or takeaway meals; the sources do not state appointment, registration or identification requirements."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone."
+      ],
+      "limitations": [
+        "4th Sunday of the month only."
+      ],
+      "before_you_go": [
+        "This supper is part of a downtown church rotation; the FoodcoreLGL Brockville meal calendar lists who serves each Sunday."
+      ],
+      "cost": {
+        "state": "free",
+        "description": "Free; donations welcome."
+      },
+      "schedule": {
+        "kind": "dated",
+        "confirmed": true,
+        "note": "Remaining 4th Sundays from the September–December 2026 community meal calendar, 2:30–4:30 p.m. This is not live availability.",
+        "valid_from": "2026-10-25",
+        "valid_to": "2026-12-27",
+        "weekly": [],
+        "exceptions": [
+          {
+            "date": "2026-10-25",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "14:30",
+                "closes": "16:30"
+              }
+            ],
+            "note": "4th Sunday supper.",
+            "evidence_ids": [
+              "foodcore-calendar"
+            ]
+          },
+          {
+            "date": "2026-11-22",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "14:30",
+                "closes": "16:30"
+              }
+            ],
+            "note": "4th Sunday supper.",
+            "evidence_ids": [
+              "foodcore-calendar"
+            ]
+          },
+          {
+            "date": "2026-12-27",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "14:30",
+                "closes": "16:30"
+              }
+            ],
+            "note": "4th Sunday supper.",
+            "evidence_ids": [
+              "foodcore-calendar"
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "foodcore-calendar"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "foodcore-calendar",
+          "source_kind": "other_reviewed",
+          "url": "https://www.foodcorelgl.ca/_resources/calendars/Food_Calendar_Brockville.pdf",
+          "checked_on": "2026-10-08",
+          "note": "FoodcoreLGL 'Free/Low Cost Meals Brockville Sept–Dec 2026' calendar: Sunday Supper, First Presbyterian Church, 4th Sunday of the month, 2:30–4:30 p.m., dine-in or takeaway, free of charge, donations welcome, 10 Church St., 613-345-5014.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "eligibility",
+            "limitations",
+            "cost",
+            "schedule",
+            "access.details",
+            "access.walk_in"
+          ]
+        },
+        {
+          "id": "wall-street-sunday-suppers",
+          "source_kind": "provider",
+          "url": "https://wallstreetchurch.com/sunday-suppers/",
+          "checked_on": "2026-10-08",
+          "note": "Wall Street United's meal program page repeats the 4th-Sunday supper at First Presbyterian, 2:30–4:30 p.m., but prints phone 613-342-5211, which is the Salvation Army's number. The FoodcoreLGL calendar's 613-345-5014 controls and matches the church number published by Brockville tourism listings.",
+          "supports": [
+            "schedule",
+            "cost"
+          ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=2066&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 10 Church Street, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-10-08",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-10-08"
+    },
+    {
+      "id": "bread-and-blessing",
+      "organization_id": "bread-and-blessing-brockville",
+      "name": "Bread and Blessing Brockville",
+      "summary": "Free community lunch on the 2nd Saturday of the month at the Thousand Islands Secondary School cafeteria.",
+      "categories": [
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Free community lunch on the 2nd Saturday of the month at the Thousand Islands Secondary School cafeteria.",
+      "location": {
+        "description": "Thousand Islands Secondary School cafeteria, 2510 Parkedale Avenue, Brockville, ON",
+        "address": {
+          "street": "2510 Parkedale Avenue",
+          "locality": "Brockville",
+          "region": "ON",
+          "country": "CA",
+          "neighbourhood": "Thousand Islands Secondary School"
+        },
+        "coordinates": {
+          "latitude": 44.602078,
+          "longitude": -75.70402
+        }
+      },
+      "official_url": "https://www.facebook.com/p/Bread-and-Blessing-Brockville-61574426063159/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "yes",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "Presented as a free community meal; the sources do not state appointment, registration or identification requirements."
+        ]
+      },
+      "eligibility": [
+        "Open to everyone."
+      ],
+      "limitations": [
+        "2nd Saturday of the month only.",
+        "The program pauses in July and August, according to local event listings."
+      ],
+      "before_you_go": [
+        "Check the Bread and Blessing Facebook page or the FoodcoreLGL Brockville meal calendar for the next date.",
+        "Contact: breadandblessingbrockville@gmail.com."
+      ],
+      "cost": {
+        "state": "free",
+        "description": "Free."
+      },
+      "schedule": {
+        "kind": "dated",
+        "confirmed": true,
+        "note": "Remaining 2nd Saturdays from the September–December 2026 community meal calendar, noon–2 p.m. This is not live availability.",
+        "valid_from": "2026-10-10",
+        "valid_to": "2026-12-12",
+        "weekly": [],
+        "exceptions": [
+          {
+            "date": "2026-10-10",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "12:00",
+                "closes": "14:00"
+              }
+            ],
+            "note": "2nd Saturday community lunch.",
+            "evidence_ids": [
+              "foodcore-calendar"
+            ]
+          },
+          {
+            "date": "2026-11-14",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "12:00",
+                "closes": "14:00"
+              }
+            ],
+            "note": "2nd Saturday community lunch.",
+            "evidence_ids": [
+              "foodcore-calendar"
+            ]
+          },
+          {
+            "date": "2026-12-12",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "12:00",
+                "closes": "14:00"
+              }
+            ],
+            "note": "2nd Saturday community lunch.",
+            "evidence_ids": [
+              "foodcore-calendar"
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "foodcore-calendar"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "foodcore-calendar",
+          "source_kind": "other_reviewed",
+          "url": "https://www.foodcorelgl.ca/_resources/calendars/Food_Calendar_Brockville.pdf",
+          "checked_on": "2026-10-08",
+          "note": "FoodcoreLGL 'Free/Low Cost Meals Brockville Sept–Dec 2026' calendar: Bread and Blessing Brockville, 2nd Saturday of the month, 12–2 p.m., Thousand Islands Secondary School, 2510 Parkedale Ave., breadandblessingbrockville@gmail.com.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "location",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "cost",
+            "schedule",
+            "access.walk_in"
+          ]
+        },
+        {
+          "id": "provider-facebook",
+          "source_kind": "provider",
+          "url": "https://www.facebook.com/p/Bread-and-Blessing-Brockville-61574426063159/",
+          "checked_on": "2026-10-08",
+          "note": "Official Bread and Blessing Brockville Facebook page. A September 2026 post announces the September 12 community meal at Thousand Islands Secondary School after the summer break, confirming the program resumed for the fall.",
+          "supports": [
+            "official_url",
+            "location",
+            "limitations",
+            "schedule"
+          ]
+        },
+        {
+          "id": "brockville-daily-event",
+          "source_kind": "other_reviewed",
+          "url": "https://www.brockvilledaily.ca/local-events/event/bread-and-blessing-community-luncheon/",
+          "checked_on": "2026-10-08",
+          "note": "Brockville Daily event listing (April 11, 2026): free lunch for the Brockville community on the 2nd Saturday of every month, noon–2 p.m.",
+          "supports": [
+            "summary",
+            "cost",
+            "schedule"
+          ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=5674&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 2510 Parkedale Avenue, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance. School address point; the cafeteria entrance has not been verified.",
+          "supports": [
+            "location.coordinates"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-10-08",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-10-08"
+    }
+  ]
+}
