@@ -66,6 +66,10 @@
           "country": "CA",
           "postal_code": "K6V 5V7",
           "neighbourhood": "Downtown Brockville"
+        },
+        "coordinates": {
+          "latitude": 44.590369,
+          "longitude": -75.688064
         }
       },
       "phone": "+16133420605",
@@ -217,6 +221,16 @@
           "supports": [
             "schedule"
           ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=2510&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 58 Buell Street, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
         }
       ],
       "verification": {
@@ -245,6 +259,10 @@
           "region": "ON",
           "country": "CA",
           "postal_code": "K6V 5W1"
+        },
+        "coordinates": {
+          "latitude": 44.604883,
+          "longitude": -75.675093
         }
       },
       "phone": "+16133425211",
@@ -383,6 +401,16 @@
             "access.appointment_required",
             "access.details"
           ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=601&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 175 First Avenue, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
         }
       ],
       "verification": {
@@ -411,6 +439,10 @@
           "region": "ON",
           "country": "CA",
           "postal_code": "K6V 5W1"
+        },
+        "coordinates": {
+          "latitude": 44.604883,
+          "longitude": -75.675093
         }
       },
       "phone": "+16133425211",
@@ -513,6 +545,16 @@
             "schedule",
             "cost"
           ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=601&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 175 First Avenue, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
         }
       ],
       "verification": {
@@ -541,6 +583,10 @@
           "region": "ON",
           "country": "CA",
           "postal_code": "K6V 5W1"
+        },
+        "coordinates": {
+          "latitude": 44.604883,
+          "longitude": -75.675093
         }
       },
       "phone": "+16133425211",
@@ -629,6 +675,16 @@
           "supports": [
             "schedule"
           ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=601&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 175 First Avenue, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
         }
       ],
       "verification": {
@@ -658,6 +714,10 @@
           "country": "CA",
           "postal_code": "K6V 4J2",
           "neighbourhood": "Downtown Brockville"
+        },
+        "coordinates": {
+          "latitude": 44.597833,
+          "longitude": -75.688921
         }
       },
       "phone": "+16133456498",
@@ -804,6 +864,16 @@
             "cost",
             "schedule"
           ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=2134&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 25 Front Avenue West, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance. Building point for Suite 1A; the unit entrance has not been verified.",
+          "supports": [
+            "location.coordinates"
+          ]
         }
       ],
       "verification": {
@@ -833,6 +903,10 @@
           "country": "CA",
           "postal_code": "K6V 4R8",
           "neighbourhood": "Downtown Brockville"
+        },
+        "coordinates": {
+          "latitude": 44.59119,
+          "longitude": -75.685142
         }
       },
       "phone": "+16133425401",
@@ -912,6 +986,16 @@
             "schedule",
             "access.walk_in"
           ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=2731&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 5 Wall Street, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
         }
       ],
       "verification": {
@@ -941,6 +1025,10 @@
           "country": "CA",
           "postal_code": "K6V 4R8",
           "neighbourhood": "Downtown Brockville"
+        },
+        "coordinates": {
+          "latitude": 44.59119,
+          "longitude": -75.685142
         }
       },
       "phone": "+16133425401",
@@ -1076,6 +1164,16 @@
             "before_you_go",
             "access.walk_in"
           ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=2731&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 5 Wall Street, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
         }
       ],
       "verification": {
@@ -1104,6 +1202,10 @@
           "region": "ON",
           "country": "CA",
           "postal_code": "K6V 4N4"
+        },
+        "coordinates": {
+          "latitude": 44.600395,
+          "longitude": -75.692415
         }
       },
       "phone": "+16133424566",
@@ -1228,6 +1330,16 @@
             "summary",
             "schedule"
           ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=3497&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 33 Central Avenue West, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
         }
       ],
       "verification": {
@@ -1256,6 +1368,10 @@
           "region": "ON",
           "country": "CA",
           "postal_code": "K6V 1G7"
+        },
+        "coordinates": {
+          "latitude": 44.593132,
+          "longitude": -75.681061
         }
       },
       "phone": "+16133455717",
@@ -1353,6 +1469,16 @@
             "schedule",
             "cost"
           ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=6139&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 80 Pine Street, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
         }
       ],
       "verification": {
@@ -1381,6 +1507,10 @@
           "region": "ON",
           "country": "CA",
           "postal_code": "K6V 3X4"
+        },
+        "coordinates": {
+          "latitude": 44.590426,
+          "longitude": -75.68653
         }
       },
       "phone": "+16133455014",
@@ -1493,6 +1623,16 @@
             "schedule",
             "cost"
           ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=2066&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 10 Church Street, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
         }
       ],
       "verification": {
@@ -1521,6 +1661,10 @@
           "region": "ON",
           "country": "CA",
           "neighbourhood": "Thousand Islands Secondary School"
+        },
+        "coordinates": {
+          "latitude": 44.602078,
+          "longitude": -75.70402
         }
       },
       "official_url": "https://www.facebook.com/p/Bread-and-Blessing-Brockville-61574426063159/",
@@ -1647,6 +1791,16 @@
             "summary",
             "cost",
             "schedule"
+          ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=5674&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 2510 Parkedale Avenue, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance. School address point; the cafeteria entrance has not been verified.",
+          "supports": [
+            "location.coordinates"
           ]
         }
       ],
