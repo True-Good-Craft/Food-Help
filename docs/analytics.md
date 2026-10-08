@@ -10,11 +10,11 @@ Collection requires an explicitly reviewed deployment configuration, a productio
 
 ## Fixed events and wire formats
 
-The application exposes nine broad event kinds: `page_start`, `call`, `help`, `directions`, `source`, `install`, `resource_open`, `install_prompt_show` and `install_prompt_dismiss`. `call` means a resource call; `help` means the site's general help number. `resource_open` means a listing's detail section was opened; which listing is never sent. `install_prompt_show` and `install_prompt_dismiss` count displays and dismissals of the install suggestion; acceptance is measured only by the existing `install` signal. The emitter receives only the kind, never the clicked element, resource, destination, search, filter or location.
+The application exposes nine broad event kinds: `page_start`, `call`, `help`, `directions`, `source`, `install`, `resource_open`, `install_prompt_show` and `install_prompt_dismiss`. `call` means a resource call; `help` means the site's general help number. `resource_open` means a listing's detail section was opened; which listing is never sent. `install_prompt_show` and `install_prompt_dismiss` count displays and dismissals of the install suggestion; acceptance is measured only by the existing `install` signal. `resource_open` and the install-prompt kinds are optional capabilities: they are sent only where a deployment configures payloads for them under a collector contract that accepts them. The emitter receives only the kind, never the clicked element, resource, destination, search, filter or location.
 
 The default JSON body is the configured static `constants` plus `event`, optionally renamed with `event_names`. The default content type remains `application/json`.
 
-For an existing collector with a different strict contract, configure `event_payloads` instead of `event_names`. Supply all nine keys; each value is a small object of static scalar fields. Constants and event fields must not overlap. For example:
+For an existing collector with a different strict contract, configure `event_payloads` instead of `event_names`. Supply all six established keys; each value is a small object of static scalar fields. The three optional kinds (`resource_open`, `install_prompt_show`, `install_prompt_dismiss`) may be added only where the collector contract explicitly accepts them; a kind with no configured payload is never sent. Constants and event fields must not overlap. For example:
 
 ```json
 {
@@ -38,7 +38,9 @@ This fragment belongs within an enabled, separately reviewed `analytics` object 
 
 ## Per-visit linkage
 
-Every event except `install`, `install_prompt_show` and `install_prompt_dismiss` carries a `visit` field: a random token generated in memory at page load. It lets one visit's broad steps (arrival, opening a listing, a call or directions click) be counted together per outreach label. The token is never written to storage or sent anywhere else, a fresh value is generated whenever collection is revoked or suppressed, and each page load starts a new one. Installation and prompt signals never carry it, so they stay unlinkable to outreach labels or visit activity. Static constants and event payloads cannot override `visit`. The token counts visits, not people: it cannot identify returning visitors, and no cross-visit history exists.
+With the optional `"visit_linkage": true`, every event except `install`, `install_prompt_show` and `install_prompt_dismiss` carries a `visit` field: a random token generated in memory at page load. It lets one visit's broad steps (arrival, opening a listing, a call or directions click) be counted together per outreach label. The token is never written to storage or sent anywhere else, a fresh value is generated whenever collection is revoked or suppressed, and each page load starts a new one. Installation and prompt signals never carry it, so they stay unlinkable to outreach labels or visit activity. Static constants and event payloads cannot override `visit`. The token counts visits, not people: it cannot identify returning visitors, and no cross-visit history exists.
+
+`visit_linkage` is off unless a deployment explicitly enables it, and it changes the wire format. Enable it only where the reviewed collector contract accepts the field and its disclosure names it. Kingston's current v3 collector contract forbids session identifiers and unknown keys, so Kingston keeps it off and sends the exact six established events.
 
 ## Optional finite outreach labels
 

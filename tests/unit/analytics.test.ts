@@ -10,7 +10,7 @@ function fixture() {
   site.canonical_origin = 'https://analytics.example.test';
   site.analytics = {
     enabled: true, endpoint: 'https://metrics.example.invalid/events', collection_mode: 'opt_out', disclosure: 'Fictional aggregate collector used only by local tests.',
-    preference_key: 'example-choice', content_type: 'text/plain;charset=UTF-8', click_keepalive: true,
+    preference_key: 'example-choice', content_type: 'text/plain;charset=UTF-8', click_keepalive: true, visit_linkage: true,
     constants: { site_key: 'example_directory', contract_version: 3, collection_mode: 'opt_out', page: 'directory' },
     event_payloads: {
       page_start: { event_name: 'page_view' }, call: { event_name: 'contact_click', event_value: 'resource_call' },
@@ -56,7 +56,7 @@ describe('optional aggregate collection', () => {
     const { site, env, requests } = fixture();
     site.analytics = { enabled: true, endpoint: 'https://metrics.example.invalid/events', collection_mode: 'opt_in', disclosure: 'Example only.', constants: { deployment: 'exampleville' } };
     const collection = createAnalytics(site, true, env); collection.emit('page_start'); expect(requests).toHaveLength(0);
-    collection.setAllowed(true); expect(JSON.parse(requests[0]!.body as string)).toEqual({ deployment: 'exampleville', event: 'page_start', visit: 'v3' });
+    collection.setAllowed(true); expect(JSON.parse(requests[0]!.body as string)).toEqual({ deployment: 'exampleville', event: 'page_start' });
     expect(requests[0]!.headers).toEqual({ 'Content-Type': 'application/json' }); collection.pause();
   });
   it('suppresses disabled builds, previews and every origin except the configured canonical HTTPS origin', () => {

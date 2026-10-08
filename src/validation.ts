@@ -37,7 +37,7 @@ export function assertSite(value: unknown): asserts value is Site {
     const analytics = site.analytics;
     if (analytics.event_payloads) {
       requireValid(!analytics.event_names, 'Choose static event payloads or event names, not both');
-      requireValid(['page_start', 'call', 'help', 'directions', 'source', 'install', 'resource_open', 'install_prompt_show', 'install_prompt_dismiss'].every(event => Object.hasOwn(analytics.event_payloads!, event)), 'Static event payloads must explicitly cover every supported event');
+      requireValid(['page_start', 'call', 'help', 'directions', 'source', 'install'].every(event => Object.hasOwn(analytics.event_payloads!, event)), 'Static event payloads must explicitly cover every established event');
       for (const payload of Object.values(analytics.event_payloads)) requireValid(!Object.keys(payload).some(key => Object.hasOwn(analytics.constants ?? {}, key)), 'Event payloads cannot override shared constants');
     } else requireValid(!Object.hasOwn(analytics.constants ?? {}, 'event'), 'Constants cannot override the event name');
     requireValid(!Object.hasOwn(analytics.constants ?? {}, 'visit') && Object.values(analytics.event_payloads ?? {}).every(payload => !Object.hasOwn(payload, 'visit')), 'Static fields cannot override the per-visit token');

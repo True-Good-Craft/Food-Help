@@ -90,7 +90,7 @@ export function createAnalytics(site: Site, production: boolean, env: AnalyticsE
     try { if (new URL(env.url).pathname !== '/') return; } catch { return; }
     const event = config.event_payloads ? config.event_payloads[kind] : { event: config.event_names?.[kind] ?? kind };
     if (!event) return;
-    const linked = kind !== 'install' && kind !== 'install_prompt_show' && kind !== 'install_prompt_dismiss';
+    const linked = config.visit_linkage === true && kind !== 'install' && kind !== 'install_prompt_show' && kind !== 'install_prompt_dismiss';
     const body = JSON.stringify({ ...config.constants, ...event, ...(config.attribution?.events.some(attributed => attributed === kind) ? attribution : {}), ...(linked ? { visit } : {}) });
     const action = kind !== 'page_start' && kind !== 'install' && kind !== 'install_prompt_show', controller = new AbortController();
     const timer = setTimeout(() => { controller.abort(); pending.delete(controller); }, 1500);

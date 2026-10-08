@@ -6,7 +6,7 @@ import { assertSite } from '../../src/validation.ts';
 
 const site = JSON.parse(readFileSync(new URL('../../deployments/kingston/site.json', import.meta.url), 'utf8'));
 assertSite(site);
-const kinds: EventKind[] = ['page_start', 'call', 'help', 'directions', 'source', 'install', 'resource_open', 'install_prompt_show', 'install_prompt_dismiss'];
+const kinds: EventKind[] = ['page_start', 'call', 'help', 'directions', 'source', 'install'];
 
 function fixture(overrides: Partial<AnalyticsEnvironment> = {}, production = true) {
   const requests: { url: string; options: RequestInit }[] = [];
@@ -24,27 +24,26 @@ function fixture(overrides: Partial<AnalyticsEnvironment> = {}, production = tru
   return { collection: createAnalytics(site, production, env), requests, saved };
 }
 
-test('Kingston restored configuration sends only the nine established v3 aggregates without a first-visit preference write', () => {
+test('Kingston restored configuration sends only the six established v3 aggregates without a first-visit preference write', () => {
   const { collection, requests, saved } = fixture();
   try {
     kinds.forEach(kind => collection.emit(kind));
-    assert.equal(requests.length, 9);
+    // Optional kinds stay inert while Kingston's v3 contract configures no payloads for them.
+    collection.emit('resource_open'); collection.emit('install_prompt_show'); collection.emit('install_prompt_dismiss');
+    assert.equal(requests.length, 6);
     const events = requests.map(request => JSON.parse(request.options.body as string));
     assert.deepEqual(events.map(event => [event.event_name, event.event_value ?? null]), [
       ['page_view', null], ['contact_click', 'resource_call'], ['contact_click', 'help_211'],
       ['outbound_click', 'directions'], ['outbound_click', 'official_source'], ['pwa_install', null],
-      ['engagement', 'resource_open'], ['install_prompt', 'show'], ['install_prompt', 'dismiss'],
     ]);
-    const attributed = new Set(['page_start', 'call', 'help', 'directions', 'source', 'resource_open']);
     for (const [index, event] of events.entries()) {
       assert.equal(event.site_key, 'kingston_food_help'); assert.equal(event.contract_version, 3);
       assert.equal(event.collection_mode, 'opt_out'); assert.equal(event.page, 'directory');
       const keys = ['site_key', 'contract_version', 'collection_mode', 'page', 'event_name'];
-      if (events[index]!.event_value) keys.push('event_value');
-      if (attributed.has(kinds[index]!)) {
-        keys.push('source', 'campaign', 'content', 'visit');
+      if (index > 0 && index < 5) keys.push('event_value');
+      if (index < 5) {
+        keys.push('source', 'campaign', 'content');
         assert.equal(event.source, 'reddit'); assert.equal(event.campaign, 'outreach_2026_09'); assert.equal(event.content, 'post_02');
-        assert.equal(event.visit, 'visit-1');
       }
       assert.deepEqual(Object.keys(event).sort(), keys.sort());
     }

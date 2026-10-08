@@ -18,7 +18,7 @@ test('local collector receives a single broad click through native navigation, w
     }
     response.writeHead(200, { 'Content-Type': 'text/html' });
     if (request.url === '/next') { response.end('<!doctype html><title>Destination</title><p>Navigation completed</p>'); return; }
-    const site = { ...siteJSON, canonical_origin: origin, analytics: { enabled: true, endpoint: `${origin}/metrics`, collection_mode: 'opt_out', click_keepalive: true, constants: { deployment: 'fictional-collector-test' } } };
+    const site = { ...siteJSON, canonical_origin: origin, analytics: { enabled: true, endpoint: `${origin}/metrics`, collection_mode: 'opt_out', click_keepalive: true, visit_linkage: true, constants: { deployment: 'fictional-collector-test' } } };
     response.end(`<!doctype html><title>Local collector test</title><a id="same" href="/next">Same tab</a><a id="new" href="/next" target="_blank">New tab</a><button id="revoke">Disable</button><script type="module">
       import { createAnalytics } from '/module.js';
       const collection = createAnalytics(${JSON.stringify(site)}, true, { origin: location.origin, url: location.href, referrer: document.referrer,

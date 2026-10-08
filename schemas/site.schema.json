@@ -327,6 +327,7 @@
         "preference_key": { "type": "string", "pattern": "^[A-Za-z0-9_-]{1,80}$" },
         "content_type": { "enum": ["application/json", "text/plain;charset=UTF-8"], "type": "string" },
         "click_keepalive": { "type": "boolean" },
+        "visit_linkage": { "type": "boolean" },
         "event_payloads": {
           "type": "object", "additionalProperties": false,
           "properties": {
