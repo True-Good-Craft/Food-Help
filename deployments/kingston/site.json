@@ -59,7 +59,7 @@
     "preference_key": "kfh-optional-analytics",
     "content_type": "text/plain;charset=UTF-8",
     "click_keepalive": true,
-    "disclosure": "Optional aggregate analytics is on by default. You can turn it off below at any time. It counts connected Emergency food directory loads, broad call/directions/source-link clicks there, and supported-browser installation signals. Lighthouse, our measurement service, receives only fixed event types and public outreach labels. It never receives which provider you chose, searches, filters, location or visitor identifiers. Daily totals are kept for up to 400 days; no individual activity history is stored. Connection information is briefly used for abuse control, with rotating keyed minute counters kept for about two days and no raw IP retained in analytics. Your yes/no choice is saved in this browser on this website, without an analytics cookie or identifier. A choice saved on kingstonfoodhelp.ca cannot transfer to this domain; please turn analytics off here if that is your preference. Global Privacy Control, Do Not Track and local suppression settings keep collection off. Offline activity is never queued or replayed. Clicks do not establish that anyone received help.",
+    "disclosure": "Optional aggregate analytics is on by default. You can turn it off below at any time. It counts connected Emergency food directory loads, broad call/directions/source-link clicks there, and supported-browser installation signals. It also counts listing detail openings and install prompt shows and dismissals as broad totals only. Lighthouse, our measurement service, receives only fixed event types and public outreach labels. It never receives which provider you chose, searches, filters, location or visitor identifiers. Daily totals are kept for up to 400 days; no individual activity history is stored. Connection information is briefly used for abuse control, with rotating keyed minute counters kept for about two days and no raw IP retained in analytics. Your yes/no choice is saved in this browser on this website, without an analytics cookie or identifier. A choice saved on kingstonfoodhelp.ca cannot transfer to this domain; please turn analytics off here if that is your preference. Global Privacy Control, Do Not Track and local suppression settings keep collection off. Offline activity is never queued or replayed. Clicks do not establish that anyone received help.",
     "constants": {
       "site_key": "kingston_food_help",
       "contract_version": 3,
@@ -72,7 +72,10 @@
       "help": { "event_name": "contact_click", "event_value": "help_211" },
       "directions": { "event_name": "outbound_click", "event_value": "directions" },
       "source": { "event_name": "outbound_click", "event_value": "official_source" },
-      "install": { "event_name": "pwa_install" }
+      "install": { "event_name": "pwa_install" },
+      "resource_open": { "event_name": "resource_open" },
+      "install_prompt_show": { "event_name": "install_prompt", "event_value": "show" },
+      "install_prompt_dismiss": { "event_name": "install_prompt", "event_value": "dismiss" }
     },
     "attribution": {
       "events": ["page_start", "call", "help", "directions", "source"],
