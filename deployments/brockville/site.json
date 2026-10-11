@@ -52,7 +52,102 @@
     "enabled": false
   },
   "analytics": {
-    "enabled": false
+    "enabled": true,
+    "endpoint": "https://lighthouse.buscore.ca/metrics/event",
+    "collection_mode": "opt_out",
+    "preference_key": "bfh-optional-analytics",
+    "content_type": "text/plain;charset=UTF-8",
+    "click_keepalive": true,
+    "disclosure": "Optional aggregate analytics is on by default. You can turn it off below at any time. It counts connected Emergency food directory loads, broad call/directions/source-link clicks there, and supported-browser installation signals. Lighthouse, our measurement service, receives only fixed event types and public outreach labels. It never receives which provider you chose, searches, filters, location or visitor identifiers. Daily totals are kept for up to 400 days; no individual activity history is stored. Connection information is briefly used for abuse control, with rotating keyed minute counters kept for about two days and no raw IP retained in analytics. Your yes/no choice is saved in this browser on this website, without an analytics cookie or identifier. Global Privacy Control, Do Not Track and local suppression settings keep collection off. Offline activity is never queued or replayed. Clicks do not establish that anyone received help.",
+    "constants": {
+      "site_key": "brockville_food_help",
+      "contract_version": 3,
+      "collection_mode": "opt_out",
+      "page": "directory"
+    },
+    "event_payloads": {
+      "page_start": {
+        "event_name": "page_view"
+      },
+      "call": {
+        "event_name": "contact_click",
+        "event_value": "resource_call"
+      },
+      "help": {
+        "event_name": "contact_click",
+        "event_value": "help_211"
+      },
+      "directions": {
+        "event_name": "outbound_click",
+        "event_value": "directions"
+      },
+      "source": {
+        "event_name": "outbound_click",
+        "event_value": "official_source"
+      },
+      "install": {
+        "event_name": "pwa_install"
+      }
+    },
+    "attribution": {
+      "events": [
+        "page_start",
+        "call",
+        "help",
+        "directions",
+        "source"
+      ],
+      "sources": [
+        "direct_unknown",
+        "facebook",
+        "community",
+        "search",
+        "other",
+        "reddit"
+      ],
+      "campaigns": [
+        "none",
+        "launch_2026_09",
+        "outreach_2026_09"
+      ],
+      "contents": [
+        "none",
+        "post_01",
+        "poster_01",
+        "post_02"
+      ],
+      "internal_hosts": [
+        "brockville.food-help.ca"
+      ],
+      "referrers": [
+        {
+          "host": "facebook.com",
+          "source": "facebook",
+          "include_subdomains": true
+        },
+        {
+          "host": "reddit.com",
+          "source": "reddit",
+          "include_subdomains": true
+        },
+        {
+          "host": "www.google.com",
+          "source": "search"
+        },
+        {
+          "host": "www.google.ca",
+          "source": "search"
+        },
+        {
+          "host": "www.bing.com",
+          "source": "search"
+        },
+        {
+          "host": "duckduckgo.com",
+          "source": "search"
+        }
+      ]
+    }
   },
   "public_usage": {
     "enabled": false
