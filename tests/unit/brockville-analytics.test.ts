@@ -56,8 +56,8 @@ test('Brockville sends only the six Kingston-standard v3 aggregates, no product 
 });
 
 test('Brockville uses its own preference key and host, and its choices, privacy controls and gates are effective', () => {
-  assert.equal(site.analytics.preference_key, 'bfh-optional-analytics');
-  assert.deepEqual(site.analytics.attribution.internal_hosts, ['brockville.food-help.ca']);
+  assert.equal(site.analytics?.preference_key, 'bfh-optional-analytics');
+  assert.deepEqual(site.analytics?.attribution?.internal_hosts, ['brockville.food-help.ca']);
   assert.ok(!JSON.stringify(site.analytics).toLowerCase().includes('kingston'));
   for (const overrides of [
     { privacySignal: () => true }, { cookies: () => 'dev_mode=0' }, { online: () => false },
