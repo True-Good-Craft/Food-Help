@@ -10,7 +10,7 @@ Changes to resource facts, analytics policy, public usage data, the canonical do
 
 Brockville requirements belong in `deployments/brockville/`. Never add Brockville-specific behaviour to generic platform source. Run `npm run check -- --site deployments/brockville` before release. A release selects Brockville explicitly; neither another community's publication nor a shared-source merge is a Brockville release approval.
 
-The public operator is True Good Craft; Jamie Whelan is the operator's review owner for the current listings. All records carry a 2026-10-08 review date and a 30-day interval, making the next review due 2026-11-07. Follow `REVIEW.md`; unresolved hours and access details must remain visible until reviewed evidence resolves them.
+The public operator is True Good Craft; Jamie Whelan is the operator's review owner for the current listings. Records use a 30-day review interval from their last review date (2026-10-08 for the first dataset, so 2026-11-07; provider-confirmed records reviewed 2026-10-13 are due 2026-11-12). Follow `REVIEW.md`; unresolved hours and access details must remain visible until reviewed evidence resolves them.
 
 Do not list the Brockville Cooperative Care Centre: it closed in late 2025 even though some older resource pages still mention it.
 

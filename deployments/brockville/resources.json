@@ -52,11 +52,11 @@
       "id": "brockville-and-area-food-bank",
       "organization_id": "brockville-and-area-food-bank",
       "name": "Brockville and Area Food Bank",
-      "summary": "Groceries for people in need, weekdays by appointment, with home delivery available on request.",
+      "summary": "Groceries for people in need, weekdays 10 a.m.–2:45 p.m. with no appointment needed; home delivery can be requested.",
       "categories": [
         "food_banks_pantries"
       ],
-      "food_access_purpose": "Groceries for people in need, weekdays by appointment, with home delivery available on request.",
+      "food_access_purpose": "Groceries for people in need, weekdays 10 a.m.–2:45 p.m. with no appointment needed; home delivery can be requested.",
       "location": {
         "description": "58 Buell Street, Brockville, ON",
         "address": {
@@ -76,25 +76,26 @@
       "official_url": "https://www.brockvilleandareafoodbank.ca/",
       "time_zone": "America/Toronto",
       "access": {
-        "walk_in": "unknown",
-        "appointment_required": "yes",
+        "walk_in": "yes",
+        "appointment_required": "no",
         "registration_required": "unknown",
-        "identification_required": "conditional",
+        "identification_required": "yes",
         "details": [
-          "The provider asks visitors to call 613-342-0605 and leave a voicemail to make an appointment; home delivery can be requested the same way.",
+          "No appointment is needed; come during open hours.",
+          "Bring ID for everyone in the household (a driver's licence or OHIP card) and a piece of mail showing your address. No proof of income is needed.",
+          "Home delivery can be requested by calling 613-342-0605 and leaving a voicemail, per the provider's website.",
           "Intake closes at 2:45 p.m., and earlier on high-volume days so everyone already waiting is served.",
-          "Southeasthealthline asks visitors to bring ID and says income statements and heating, hydro and rent information may be required; the provider has not confirmed the details.",
           "The building is wheelchair accessible, per southeasthealthline."
         ]
       },
       "eligibility": [
-        "Applicants are screened to determine eligibility based on income criteria, per southeasthealthline. Its service area names Augusta, Front of Yonge and Elizabethtown alongside Brockville; a March 2026 news report names Brockville, Lyn, Mallorytown and North Augusta."
+        "No proof of income is needed, per the food bank. Southeasthealthline's service area names Augusta, Front of Yonge and Elizabethtown alongside Brockville; a March 2026 news report names Brockville, Lyn, Mallorytown and North Augusta."
       ],
       "limitations": [
         "A four to five day supply of food once a month, per southeasthealthline."
       ],
       "before_you_go": [
-        "Call 613-342-0605 and leave a voicemail to book a visit or ask about home delivery.",
+        "Bring ID for everyone in your household and a piece of mail showing your address.",
         "Arrive before 2:45 p.m.; intake may close earlier on busy days."
       ],
       "cost": {
@@ -104,7 +105,7 @@
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Weekdays 10 a.m.–2:45 p.m., from the provider's own site. Intake closes at 2:45 p.m.",
+        "note": "Monday to Friday 10 a.m.–2:45 p.m., confirmed by the food bank on October 9, 2026. Intake closes at 2:45 p.m.",
         "weekly": [
           {
             "day": 1,
@@ -158,6 +159,7 @@
           }
         ],
         "evidence_ids": [
+          "provider-email-2026-10-09",
           "provider-contact",
           "provider-home"
         ],
@@ -165,11 +167,29 @@
       },
       "evidence": [
         {
+          "id": "provider-email-2026-10-09",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-10-13",
+          "note": "The food bank's general manager told Jamie Whelan by email on October 9, 2026 that it does not take appointments (it only did during COVID), that it is open Monday to Friday 10 a.m.–2:45 p.m., that visitors need ID for the whole family (a driver's licence or OHIP card) and a piece of mail showing the address, and that no proof of income is needed. Home delivery was not discussed. Private correspondence is kept outside this repository.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "schedule",
+            "access.walk_in",
+            "access.appointment_required",
+            "access.identification_required",
+            "access.details",
+            "eligibility",
+            "before_you_go"
+          ]
+        },
+        {
           "id": "provider-contact",
           "source_kind": "provider",
           "url": "https://www.brockvilleandareafoodbank.ca/contact-us-n/",
           "checked_on": "2026-10-08",
-          "note": "Provider contact page: 58 Buell Street; PO Box 522, Brockville, ON K6V 5V7; 613-342-0605. Open Monday to Friday 10 a.m. to 2:45 p.m. Intake closes at 2:45 p.m. and may close earlier at high volume. Appointments and home-delivery requests by voicemail.",
+          "note": "Provider contact page: 58 Buell Street; PO Box 522, Brockville, ON K6V 5V7; 613-342-0605. Open Monday to Friday 10 a.m. to 2:45 p.m. Intake closes at 2:45 p.m. and may close earlier at high volume. Appointments and home-delivery requests by voicemail. The appointment wording is superseded by the food bank's October 9, 2026 email (no appointments).",
           "supports": [
             "name",
             "summary",
@@ -179,7 +199,6 @@
             "official_url",
             "before_you_go",
             "schedule",
-            "access.appointment_required",
             "access.details"
           ]
         },
@@ -201,7 +220,7 @@
           "source_kind": "referral_directory",
           "url": "https://www.southeasthealthline.ca/displayservice.aspx?id=73405",
           "checked_on": "2026-10-08",
-          "note": "Listing updated April 23, 2026: Mon–Fri 10 a.m.–2:45 p.m., arrive by 2:45 p.m. to complete intake. Fees: Free. Service: four to five day supply of food once a month. Application: bring ID; income statements, heating, hydro and rent information may be required. Eligibility: applicants are screened based on income criteria. Area served: Augusta, Front of Yonge, Elizabethtown (alongside Brockville). Wheelchair accessible. A fragment reading 'Open the 2nd & 4th Monday of the Month' conflicts with the provider's own weekday hours; the provider site controls. The postal code K6V 5V7 comes from this listing's address block.",
+          "note": "Listing updated April 23, 2026: Mon–Fri 10 a.m.–2:45 p.m., arrive by 2:45 p.m. to complete intake. Fees: Free. Service: four to five day supply of food once a month. Application: bring ID; income statements, heating, hydro and rent information may be required. Eligibility: applicants are screened based on income criteria. Area served: Augusta, Front of Yonge, Elizabethtown (alongside Brockville). Wheelchair accessible. A fragment reading 'Open the 2nd & 4th Monday of the Month' conflicts with the provider's own weekday hours; the provider site controls. The postal code K6V 5V7 comes from this listing's address block. Its income-document wording is superseded by the food bank's October 9, 2026 email (no proof of income needed).",
           "supports": [
             "location",
             "eligibility",
@@ -234,13 +253,13 @@
         }
       ],
       "verification": {
-        "reviewed_on": "2026-10-08",
+        "reviewed_on": "2026-10-13",
         "method": "multiple_sources",
-        "state": "partially_confirmed"
+        "state": "confirmed"
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-10-08"
+      "updated_on": "2026-10-13"
     },
     {
       "id": "salvation-army-food-bank",
@@ -294,7 +313,7 @@
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Monday to Friday 9 a.m.–4 p.m. by appointment, per the provider.",
+        "note": "Monday to Friday 9 a.m.–4 p.m. by appointment, per the provider; confirmed by the provider on October 9, 2026.",
         "weekly": [
           {
             "day": 1,
@@ -348,11 +367,24 @@
           }
         ],
         "evidence_ids": [
+          "provider-email-2026-10-09",
           "provider-facebook-foodbank"
         ],
         "exceptions": []
       },
       "evidence": [
+        {
+          "id": "provider-email-2026-10-09",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-10-13",
+          "note": "The Salvation Army Brockville's Community & Family Services coordinator told Jamie Whelan by email on October 9, 2026 that the information listed for the emergency food bank and the free sandwich program is correct. Private correspondence is kept outside this repository.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "schedule"
+          ]
+        },
         {
           "id": "provider-facebook-foodbank",
           "source_kind": "provider",
@@ -414,13 +446,13 @@
         }
       ],
       "verification": {
-        "reviewed_on": "2026-10-08",
+        "reviewed_on": "2026-10-13",
         "method": "multiple_sources",
-        "state": "partially_confirmed"
+        "state": "confirmed"
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-10-08"
+      "updated_on": "2026-10-13"
     },
     {
       "id": "salvation-army-sandwich-program",
@@ -497,12 +529,25 @@
           }
         ],
         "evidence_ids": [
+          "provider-email-2026-10-09",
           "foodcore-calendar",
           "wall-street-sunday-suppers"
         ],
         "exceptions": []
       },
       "evidence": [
+        {
+          "id": "provider-email-2026-10-09",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-10-13",
+          "note": "The Salvation Army Brockville's Community & Family Services coordinator told Jamie Whelan by email on October 9, 2026 that the information listed for the emergency food bank and the free sandwich program is correct. Private correspondence is kept outside this repository.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "schedule"
+          ]
+        },
         {
           "id": "foodcore-calendar",
           "source_kind": "other_reviewed",
@@ -558,13 +603,13 @@
         }
       ],
       "verification": {
-        "reviewed_on": "2026-10-08",
+        "reviewed_on": "2026-10-13",
         "method": "multiple_sources",
-        "state": "partially_confirmed"
+        "state": "confirmed"
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-10-08"
+      "updated_on": "2026-10-13"
     },
     {
       "id": "salvation-army-kids-club",
@@ -638,6 +683,15 @@
       },
       "evidence": [
         {
+          "id": "provider-email-2026-10-09",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-10-13",
+          "note": "The Salvation Army Brockville's Community & Family Services coordinator told Jamie Whelan by email on October 9, 2026 that the Kids Club program is no longer running and asked for this listing to be removed. Private correspondence is kept outside this repository.",
+          "supports": [
+            "service_condition"
+          ]
+        },
+        {
           "id": "foodcore-calendar",
           "source_kind": "other_reviewed",
           "url": "https://www.foodcorelgl.ca/_resources/calendars/Food_Calendar_Brockville.pdf",
@@ -688,13 +742,186 @@
         }
       ],
       "verification": {
-        "reviewed_on": "2026-10-08",
+        "reviewed_on": "2026-10-13",
         "method": "multiple_sources",
+        "state": "confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "closed",
+      "updated_on": "2026-10-13"
+    },
+    {
+      "id": "salvation-army-messy-church",
+      "organization_id": "salvation-army-brockville",
+      "name": "The Salvation Army — Brockville Messy Church",
+      "summary": "Free monthly family evening with a hot meal; parents or guardians register through The Salvation Army Brockville Facebook page.",
+      "categories": [
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Free monthly family evening with a hot meal; parents or guardians register through The Salvation Army Brockville Facebook page.",
+      "phone": "+16133425211",
+      "official_url": "https://www.facebook.com/SalvationArmyBrockvilleCommunity/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "unknown",
+        "appointment_required": "unknown",
+        "registration_required": "yes",
+        "identification_required": "unknown",
+        "details": [
+          "Parents or guardians must register through The Salvation Army Brockville Facebook page to take part.",
+          "The provider has not given the date, time or location here; check the Facebook page or call 613-342-5211."
+        ]
+      },
+      "eligibility": [
+        "A family-friendly evening; parents or guardians register their family."
+      ],
+      "limitations": [
+        "Held once a month; the meal is part of the Messy Church evening, not a standalone drop-in dinner."
+      ],
+      "before_you_go": [
+        "Register through The Salvation Army Brockville Facebook page before attending."
+      ],
+      "cost": {
+        "state": "free",
+        "description": "Free."
+      },
+      "schedule": {
+        "kind": "unknown",
+        "confirmed": false,
+        "note": "Once a month. The day, time and location were not stated.",
+        "weekly": [],
+        "exceptions": [],
+        "evidence_ids": [
+          "provider-email-2026-10-09"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "provider-email-2026-10-09",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-10-13",
+          "note": "The Salvation Army Brockville's Community & Family Services coordinator told Jamie Whelan by email on October 9, 2026 that Messy Church is a free, family-friendly evening held once a month, that a hot meal is provided, and that parents or guardians must register through The Salvation Army Brockville Facebook page. The email did not give a day, time or location. Private correspondence is kept outside this repository.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "cost",
+            "access.registration_required",
+            "access.details",
+            "eligibility",
+            "limitations",
+            "before_you_go",
+            "schedule"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-10-13",
+        "method": "direct_confirmation",
         "state": "partially_confirmed"
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-10-08"
+      "updated_on": "2026-10-13"
+    },
+    {
+      "id": "salvation-army-good-food-box",
+      "organization_id": "salvation-army-brockville",
+      "name": "Helping Hands Good Food Box",
+      "summary": "A monthly box of fresh fruit and vegetables for $15, ordered ahead and picked up at The Salvation Army Brockville or in Cardinal.",
+      "categories": [
+        "groceries"
+      ],
+      "food_access_purpose": "A monthly box of fresh fruit and vegetables for $15, ordered ahead and picked up at The Salvation Army Brockville or in Cardinal.",
+      "location": {
+        "description": "175 First Avenue, Brockville, ON",
+        "address": {
+          "street": "175 First Avenue",
+          "locality": "Brockville",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K6V 5W1"
+        },
+        "coordinates": {
+          "latitude": 44.604883,
+          "longitude": -75.675093
+        }
+      },
+      "phone": "+16133425211",
+      "phone_extension": "2",
+      "official_url": "https://www.facebook.com/SalvationArmyBrockvilleCommunity/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "unknown",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "Order at The Salvation Army Brockville (175 First Avenue), The Salvation Army Brockville Thrift Store (181 King Street West) or Burchell's Home Hardware in Cardinal.",
+          "Pick up at The Salvation Army Brockville (175 First Avenue) or the Ingredion Centre in Cardinal.",
+          "For more information, call 613-342-5211, extension 2."
+        ]
+      },
+      "eligibility": [],
+      "limitations": [
+        "One box a month; contents are a variety of fresh fruit and vegetables."
+      ],
+      "before_you_go": [
+        "Order ahead at one of the ordering locations; the monthly order deadline and pickup date were not stated, so call 613-342-5211, extension 2."
+      ],
+      "cost": {
+        "state": "low_cost",
+        "description": "$15 per box."
+      },
+      "schedule": {
+        "kind": "unknown",
+        "confirmed": false,
+        "note": "Once a month. The order deadline and pickup date were not stated.",
+        "weekly": [],
+        "exceptions": [],
+        "evidence_ids": [
+          "provider-email-2026-10-09"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "provider-email-2026-10-09",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-10-13",
+          "note": "The Salvation Army Brockville's Community & Family Services coordinator told Jamie Whelan by email on October 9, 2026 that the Helping Hands Good Food Box operates once a month and offers a variety of fresh fruits and vegetables for $15 per box; that orders are taken at The Salvation Army Brockville (175 First Avenue), its thrift store (181 King Street West) and Burchell's Home Hardware in Cardinal; that pickup is at 175 First Avenue and the Ingredion Centre in Cardinal; and that people can call 613-342-5211 extension 2 for more information. The email asked for the program to be listed. It did not give the monthly order deadline or pickup date. Private correspondence is kept outside this repository.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "location",
+            "phone",
+            "phone_extension",
+            "cost",
+            "access.details",
+            "limitations",
+            "before_you_go",
+            "schedule"
+          ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=601&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 175 First Avenue, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-10-13",
+        "method": "direct_confirmation",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-10-13"
     },
     {
       "id": "loaves-and-fishes",
