@@ -4,14 +4,16 @@ This is an operator checklist, not a replacement dataset. Authoritative provider
 
 **Review owner:** Jamie Whelan, for True Good Craft. The public correction address is the address in `site.json`. Review sources sooner when a correction, closure or changed schedule is reported. Automation can flag a due review; it cannot approve a provider fact.
 
-All records were first reviewed on **2026-10-08** as a scraped MVP from public sources. Nobody has been contacted yet, so every record is `partially_confirmed` until a provider confirms directly. The next 30-day review target is **2026-11-07** for all records. The church meal dates come from the FoodcoreLGL September–December 2026 Brockville calendar; when the January–April 2027 edition appears, replace the dated schedules and re-check.
+All records were first reviewed on **2026-10-08** as a scraped MVP from public sources, and every record stays `partially_confirmed` until a provider confirms directly. On 2026-10-13 the Brockville and Area Food Bank and The Salvation Army Brockville confirmations (both by email on 2026-10-09) were applied. The next 30-day review target is **2026-11-07** for records last reviewed on 2026-10-08 and **2026-11-12** for those reviewed on 2026-10-13. The church meal dates come from the FoodcoreLGL September–December 2026 Brockville calendar; when the January–April 2027 edition appears, replace the dated schedules and re-check.
 
 | Resource ID | Current review state | Next review by |
 | --- | --- | --- |
-| `brockville-and-area-food-bank` | Provider-confirmed weekday hours (10 a.m.–2:45 p.m.) and appointment-by-voicemail intake; eligibility, screening and document details from referral listings only | 2026-11-07 |
-| `salvation-army-food-bank` | Provider Facebook video states Mon–Fri 9 a.m.–4 p.m. by appointment; the video is undated, so treat hours as not recently re-confirmed | 2026-11-07 |
-| `salvation-army-sandwich-program` | Two agreeing sources (FoodcoreLGL calendar, Wall Street page) | 2026-11-07 |
-| `salvation-army-kids-club` | Two agreeing sources; a 211 North result gives a 6 p.m. end and a school-year qualification, both unresolved | 2026-11-07 |
+| `brockville-and-area-food-bank` | Confirmed by the provider 2026-10-09: Mon–Fri 10 a.m.–2:45 p.m., no appointments, ID for the whole family plus mail showing the address, no proof of income. Home delivery and the once-a-month supply limit still rest on the provider site and southeasthealthline | 2026-11-12 |
+| `salvation-army-food-bank` | Provider confirmed the listing is correct on 2026-10-09 (Mon–Fri 9 a.m.–4 p.m. by appointment) | 2026-11-12 |
+| `salvation-army-sandwich-program` | Provider confirmed the listing is correct on 2026-10-09 | 2026-11-12 |
+| `salvation-army-kids-club` | Closed: the provider said on 2026-10-09 the Kids Club program no longer runs | — |
+| `salvation-army-messy-church` | Provider email 2026-10-09: free monthly family evening with a hot meal, registration through the Facebook page. Day, time and location unknown | 2026-11-12 |
+| `salvation-army-good-food-box` | Provider email 2026-10-09: monthly box, $15, ordering and pickup locations. Monthly order deadline and pickup date unknown | 2026-11-12 |
 | `loaves-and-fishes` | Three agreeing sources for 11:30 a.m.–1 p.m.; Wall Street page's 1–3 p.m. treated as outdated | 2026-11-07 |
 | `wall-street-friday-breakfast` | Provider page plus FoodcoreLGL calendar agree | 2026-11-07 |
 | `wall-street-sunday-supper` | Provider page plus FoodcoreLGL calendar agree; dates listed through December 13, 2026 | 2026-11-07 |
@@ -25,13 +27,11 @@ All records were first reviewed on **2026-10-08** as a scraped MVP from public s
 - **Loaves and Fishes hours:** 11:30 a.m.–1 p.m. (FoodcoreLGL Sept–Dec 2026 calendar, southeasthealthline updated 2026-09-09, Brockville Daily) vs 1–3 p.m. (Wall Street United page). Published as 11:30–1:00.
 - **Brockville Wesleyan supper:** dine in or pick up with delivery by prior arrangement and phone 613-342-4566 (calendar) vs take-out only and 613-498-7729 (Wall Street page; that number belongs to The Pier Church). Published per the calendar.
 - **First Presbyterian phone:** 613-345-5014 (calendar, matches tourism listings) vs 613-342-5211 on the Wall Street page (the Salvation Army's number). Published as 613-345-5014.
-- **Kids Club end time:** 6:30 p.m. (calendar, Wall Street page) vs 6 p.m. with a school-year qualification (211 North result). Published as 6:30 p.m. without the school-year claim.
 - **Food bank service area:** referral listings name Brockville, Front of Yonge, Elizabethtown and Augusta; a March 2026 report names Brockville, Lyn, Mallorytown and North Augusta. Kept general.
 - **Food bank hours fragment:** southeasthealthline shows "Open the 2nd & 4th Monday of the Month" alongside weekday hours; the provider's own site controls.
 
 ## Leads not yet listed (do not publish without reviewed evidence)
 
-- **Helping Hands Good Food Box** (Salvation Army): pay at a thrift store, pick up third Tuesday. Sources disagree on which thrift store (King St, Brockville vs Prescott) and the southeasthealthline record was last fully updated 2024-09-27.
 - **Brockville Wesleyan community breakfast** (southeasthealthline community meals list) and **St. John's United monthly breakfast** (EEC page, "call for dates"): not in the current FoodcoreLGL calendar; confirm before listing.
 - **The Pier Church / 3M Harvest Lunch** at 806 Chelsea St: an after-school program for RNJ students (grades 7–12), not a public meal; an older EEC listing describes a weekday public lunch that could not be confirmed.
 - **School nutrition programs** (Upper Canada DSB, CDSBEO): no reviewed public contacts yet.
