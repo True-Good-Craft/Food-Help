@@ -398,7 +398,7 @@
       ],
       "before_you_go": [
         "Use the new location at 595 Bagot Street.",
-        "St. Vincent de Paul says it is closed on all statutory holidays, and from December 24 until it reopens January 4. Call to confirm holiday service for this program."
+        "Closed on all statutory holidays, and from December 24 until St. Vincent de Paul reopens on January 4."
       ],
       "cost": {
         "state": "free",
@@ -633,7 +633,7 @@
       "notices": [
         {
           "id": "svdp-winter-closure",
-          "text": "St. Vincent de Paul says it closes on December 24 and reopens January 4. Call to confirm this program's holiday service.",
+          "text": "Closed for the holidays from December 24; St. Vincent de Paul reopens on January 4.",
           "starts_on": "2026-12-24",
           "ends_on": "2027-01-03",
           "evidence_ids": [
@@ -689,7 +689,7 @@
       ],
       "before_you_go": [
         "Ask about registration before making a trip.",
-        "St. Vincent de Paul says it is closed on all statutory holidays, and from December 24 until it reopens January 4. Call to confirm holiday service for this program."
+        "Closed on all statutory holidays, and from December 24 until St. Vincent de Paul reopens on January 4."
       ],
       "cost": {
         "state": "free",
@@ -925,7 +925,7 @@
       "notices": [
         {
           "id": "svdp-winter-closure",
-          "text": "St. Vincent de Paul says it closes on December 24 and reopens January 4. Call to confirm this program's holiday service.",
+          "text": "Closed for the holidays from December 24; St. Vincent de Paul reopens on January 4.",
           "starts_on": "2026-12-24",
           "ends_on": "2027-01-03",
           "evidence_ids": [
