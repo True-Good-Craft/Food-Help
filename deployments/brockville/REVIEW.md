@@ -4,7 +4,7 @@ This is an operator checklist, not a replacement dataset. Authoritative provider
 
 **Review owner:** Jamie Whelan, for True Good Craft. The public correction address is the address in `site.json`. Review sources sooner when a correction, closure or changed schedule is reported. Automation can flag a due review; it cannot approve a provider fact.
 
-All records were first reviewed on **2026-10-08** as a scraped MVP from public sources, and every record stays `partially_confirmed` until a provider confirms directly. On 2026-10-13 the Brockville and Area Food Bank and The Salvation Army Brockville confirmations (both by email on 2026-10-09) were applied. The next 30-day review target is **2026-11-07** for records last reviewed on 2026-10-08 and **2026-11-12** for those reviewed on 2026-10-13. The church meal dates come from the FoodcoreLGL September–December 2026 Brockville calendar; when the January–April 2027 edition appears, replace the dated schedules and re-check.
+All records were first reviewed on **2026-10-08** as a scraped MVP from public sources, and every record stays `partially_confirmed` until a provider confirms directly. On 2026-10-13 the Brockville and Area Food Bank and The Salvation Army Brockville confirmations (both by email on 2026-10-09) were applied, and on 2026-10-15 the Salvation Army's October 13 dates for Messy Church and the Good Food Box. The next 30-day review target is **2026-11-07** for records last reviewed on 2026-10-08 **2026-11-12** for those reviewed on 2026-10-13, and **2026-11-14** for those reviewed on 2026-10-15. The church meal dates come from the FoodcoreLGL September–December 2026 Brockville calendar; when the January–April 2027 edition appears, replace the dated schedules and re-check.
 
 | Resource ID | Current review state | Next review by |
 | --- | --- | --- |
@@ -12,8 +12,8 @@ All records were first reviewed on **2026-10-08** as a scraped MVP from public s
 | `salvation-army-food-bank` | Provider confirmed the listing is correct on 2026-10-09 (Mon–Fri 9 a.m.–4 p.m. by appointment) | 2026-11-12 |
 | `salvation-army-sandwich-program` | Provider confirmed the listing is correct on 2026-10-09 | 2026-11-12 |
 | `salvation-army-kids-club` | Closed: the provider said on 2026-10-09 the Kids Club program no longer runs | — |
-| `salvation-army-messy-church` | Provider email 2026-10-09: free monthly family evening with a hot meal, registration through the Facebook page. Day, time and location unknown | 2026-11-12 |
-| `salvation-army-good-food-box` | Provider email 2026-10-09: monthly box, $15, ordering and pickup locations. Monthly order deadline and pickup date unknown | 2026-11-12 |
+| `salvation-army-messy-church` | Confirmed by the provider (emails 2026-10-09 and 2026-10-13): free monthly family evening with a hot meal, registration through the Facebook page, at 175 First Avenue 5–7 p.m. on November 20 and December 11, 2026. Ask for the 2027 dates before December 11 | 2026-11-14 |
+| `salvation-army-good-food-box` | Provider emails 2026-10-09 and 2026-10-13: monthly box, $15, ordering and pickup locations; November and December order deadlines and pickup dates. Pickup times unknown; ask for the 2027 dates before December 8 | 2026-11-14 |
 | `loaves-and-fishes` | Three agreeing sources for 11:30 a.m.–1 p.m.; Wall Street page's 1–3 p.m. treated as outdated | 2026-11-07 |
 | `wall-street-friday-breakfast` | Provider page plus FoodcoreLGL calendar agree | 2026-11-07 |
 | `wall-street-sunday-supper` | Provider page plus FoodcoreLGL calendar agree; dates listed through December 13, 2026 | 2026-11-07 |
@@ -40,7 +40,7 @@ All records were first reviewed on **2026-10-08** as a scraped MVP from public s
 
 ## Source notes
 
-- The FoodcoreLGL Brockville calendar (`https://www.foodcorelgl.ca/_resources/calendars/Food_Calendar_Brockville.pdf`) was the September–December 2026 edition when checked on 2026-10-08. It is the backbone source for the church meals and Bread and Blessing; FoodcoreLGL is the natural maintenance partner for this directory.
+- The FoodcoreLGL Brockville calendar (`https://www.foodcorelgl.ca/_resources/calendars/Food_Calendar_Brockville.pdf`) was the September–December 2026 edition when checked on 2026-10-08. It is the backbone source for the church meals and Bread and Blessing; FoodcoreLGL has since handed the calendar's production to Food Banks United, which agreed by email on 2026-10-14 to be credited as a source (credit line in `site.json` `data_rights`). Food Banks United collects program changes through its own changes form and releases calendars three times a year (January, May and September), so expect the next edition in January 2027.
 - All 11 listings now have coordinates for their eight venues, matched by exact civic address to the City of Brockville GIS public [Brockville Civic Address layer](https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0). Each resource includes a record-specific source URL and a 2026-10-08 check date. The layer metadata lists its last update as July 13, 2017; the live records were checked against the reviewed service addresses. These are approximate civic-address points for straight-line distance sorting, not verified service entrances, unit entrances or the school cafeteria entrance. Re-check the address point whenever a venue changes; provider-confirmation states remain unchanged.
 - No analytics and no search indexing for this deployment until the operator enables them.
 - Private correspondence and permission receipts belong outside this public repository. Public evidence notes should describe the finding without exposing private contact details. See [maintenance](../../docs/maintenance.md) for edit/check/release steps.

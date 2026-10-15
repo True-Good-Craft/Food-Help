@@ -398,7 +398,7 @@
       ],
       "before_you_go": [
         "Use the new location at 595 Bagot Street.",
-        "St. Vincent de Paul says it is closed on all statutory holidays, and from December 24 until it reopens January 4. Call to confirm holiday service for this program."
+        "Closed on all statutory holidays, and from December 24 until St. Vincent de Paul reopens on January 4."
       ],
       "cost": {
         "state": "free",
@@ -407,7 +407,7 @@
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Meals: Monday–Friday, 10 a.m.–1 p.m. The hall is open 9 a.m.–2:30 p.m.",
+        "note": "Meals: Monday–Friday, 10 a.m.–1 p.m. The hall is open 9 a.m.–2:30 p.m. Closed all statutory holidays and December 24–January 3.",
         "weekly": [
           {
             "day": 1,
@@ -470,9 +470,110 @@
             "intervals": []
           }
         ],
-        "exceptions": [],
+        "exceptions": [
+          {
+            "date": "2026-12-24",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2026-12-25",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2026-12-26",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2026-12-27",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2026-12-28",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2026-12-29",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2026-12-30",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2026-12-31",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2027-01-01",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2027-01-02",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2027-01-03",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          }
+        ],
         "evidence_ids": [
-          "source-1"
+          "source-1",
+          "svdp-holiday-email"
         ]
       },
       "evidence": [
@@ -516,7 +617,8 @@
           "note": "St. Vincent de Paul Society of Kingston staff told Jamie Whelan by email on October 1, 2026 that its information is currently up to date, that it is closed on all statutory holidays, and that it closes on December 24 and this year will not open until January 4. The email speaks for the organization and does not name individual programs. The years (December 24, 2026 through January 3, 2027, reopening January 4, 2027) are inferred from the email date. Private correspondence is kept outside this repository.",
           "supports": [
             "before_you_go",
-            "notices"
+            "notices",
+            "schedule"
           ]
         }
       ],
@@ -527,11 +629,11 @@
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-10-02",
+      "updated_on": "2026-10-15",
       "notices": [
         {
           "id": "svdp-winter-closure",
-          "text": "St. Vincent de Paul says it closes on December 24 and reopens January 4. Call to confirm this program's holiday service.",
+          "text": "Closed for the holidays from December 24; St. Vincent de Paul reopens on January 4.",
           "starts_on": "2026-12-24",
           "ends_on": "2027-01-03",
           "evidence_ids": [
@@ -587,7 +689,7 @@
       ],
       "before_you_go": [
         "Ask about registration before making a trip.",
-        "St. Vincent de Paul says it is closed on all statutory holidays, and from December 24 until it reopens January 4. Call to confirm holiday service for this program."
+        "Closed on all statutory holidays, and from December 24 until St. Vincent de Paul reopens on January 4."
       ],
       "cost": {
         "state": "free",
@@ -596,7 +698,7 @@
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Published service hours; this is not live availability.",
+        "note": "Published service hours; this is not live availability. Closed all statutory holidays and December 24–January 3.",
         "weekly": [
           {
             "day": 1,
@@ -659,9 +761,110 @@
             "intervals": []
           }
         ],
-        "exceptions": [],
+        "exceptions": [
+          {
+            "date": "2026-12-24",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2026-12-25",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2026-12-26",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2026-12-27",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2026-12-28",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2026-12-29",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2026-12-30",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2026-12-31",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2027-01-01",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2027-01-02",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          },
+          {
+            "date": "2027-01-03",
+            "confirmed": true,
+            "intervals": [],
+            "note": "Closed for the holidays.",
+            "evidence_ids": [
+              "svdp-holiday-email"
+            ]
+          }
+        ],
         "evidence_ids": [
-          "source-1"
+          "source-1",
+          "svdp-holiday-email"
         ]
       },
       "evidence": [
@@ -706,7 +909,8 @@
           "note": "St. Vincent de Paul Society of Kingston staff told Jamie Whelan by email on October 1, 2026 that its information is currently up to date, that it is closed on all statutory holidays, and that it closes on December 24 and this year will not open until January 4. The email speaks for the organization and does not name individual programs. The years (December 24, 2026 through January 3, 2027, reopening January 4, 2027) are inferred from the email date. Private correspondence is kept outside this repository.",
           "supports": [
             "before_you_go",
-            "notices"
+            "notices",
+            "schedule"
           ]
         }
       ],
@@ -717,11 +921,11 @@
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-10-02",
+      "updated_on": "2026-10-15",
       "notices": [
         {
           "id": "svdp-winter-closure",
-          "text": "St. Vincent de Paul says it closes on December 24 and reopens January 4. Call to confirm this program's holiday service.",
+          "text": "Closed for the holidays from December 24; St. Vincent de Paul reopens on January 4.",
           "starts_on": "2026-12-24",
           "ends_on": "2027-01-03",
           "evidence_ids": [

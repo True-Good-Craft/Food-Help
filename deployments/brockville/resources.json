@@ -769,7 +769,7 @@
         "identification_required": "unknown",
         "details": [
           "Parents or guardians must register through The Salvation Army Brockville Facebook page to take part.",
-          "The provider has not given the date, time or location here; check the Facebook page or call 613-342-5211."
+          "Held at The Salvation Army Brockville, 175 First Avenue, 5–7 p.m."
         ]
       },
       "eligibility": [
@@ -786,13 +786,45 @@
         "description": "Free."
       },
       "schedule": {
-        "kind": "unknown",
-        "confirmed": false,
-        "note": "Once a month. The day, time and location were not stated.",
+        "kind": "dated",
+        "confirmed": true,
+        "note": "Upcoming dates from The Salvation Army Brockville: Friday, November 20 and Friday, December 11, 2026, 5–7 p.m. This is not live availability.",
+        "valid_from": "2026-11-20",
+        "valid_to": "2026-12-11",
         "weekly": [],
-        "exceptions": [],
+        "exceptions": [
+          {
+            "date": "2026-11-20",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "17:00",
+                "closes": "19:00"
+              }
+            ],
+            "note": "Messy Church evening with a hot meal.",
+            "evidence_ids": [
+              "provider-email-2026-10-13"
+            ]
+          },
+          {
+            "date": "2026-12-11",
+            "confirmed": true,
+            "intervals": [
+              {
+                "opens": "17:00",
+                "closes": "19:00"
+              }
+            ],
+            "note": "Messy Church evening with a hot meal.",
+            "evidence_ids": [
+              "provider-email-2026-10-13"
+            ]
+          }
+        ],
         "evidence_ids": [
-          "provider-email-2026-10-09"
+          "provider-email-2026-10-09",
+          "provider-email-2026-10-13"
         ]
       },
       "evidence": [
@@ -800,7 +832,7 @@
           "id": "provider-email-2026-10-09",
           "source_kind": "direct_confirmation",
           "checked_on": "2026-10-13",
-          "note": "The Salvation Army Brockville's Community & Family Services coordinator told Jamie Whelan by email on October 9, 2026 that Messy Church is a free, family-friendly evening held once a month, that a hot meal is provided, and that parents or guardians must register through The Salvation Army Brockville Facebook page. The email did not give a day, time or location. Private correspondence is kept outside this repository.",
+          "note": "The Salvation Army Brockville's Community & Family Services coordinator told Jamie Whelan by email on October 9, 2026 that Messy Church is a free, family-friendly evening held once a month, that a hot meal is provided, and that parents or guardians must register through The Salvation Army Brockville Facebook page. Private correspondence is kept outside this repository.",
           "supports": [
             "name",
             "summary",
@@ -810,19 +842,53 @@
             "access.details",
             "eligibility",
             "limitations",
-            "before_you_go",
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "provider-email-2026-10-13",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-10-15",
+          "note": "The Salvation Army Brockville's Community & Family Services coordinator told Jamie Whelan by email on October 13, 2026 that Messy Church is held at The Salvation Army, 175 First Avenue, from 5 p.m. to 7 p.m., and that the upcoming dates are Friday, November 20 and Friday, December 11, 2026. Private correspondence is kept outside this repository.",
+          "supports": [
+            "location",
+            "access.details",
             "schedule"
+          ]
+        },
+        {
+          "id": "city-civic-address",
+          "source_kind": "other_reviewed",
+          "url": "https://brockgis.brockville.com/arcgis/rest/services/PublicOnly/Addresses/FeatureServer/0/query?objectIds=601&outFields=CIVICNUM%2CSTREET%2CMUN&returnGeometry=true&outSR=4326&f=pjson",
+          "checked_on": "2026-10-08",
+          "note": "City of Brockville GIS, Brockville Civic Address layer: exact civic-address match for 175 First Avenue, Brockville; geometry requested in WGS 84 (EPSG:4326) and rounded to six decimal places. The layer metadata lists July 13, 2017 as its last update; this address record was checked live on October 8, 2026 against the service address above. Used for approximate straight-line distance sorting, not a surveyed service entrance.",
+          "supports": [
+            "location.coordinates"
           ]
         }
       ],
       "verification": {
-        "reviewed_on": "2026-10-13",
+        "reviewed_on": "2026-10-15",
         "method": "direct_confirmation",
-        "state": "partially_confirmed"
+        "state": "confirmed"
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-10-13"
+      "updated_on": "2026-10-15",
+      "location": {
+        "description": "175 First Avenue, Brockville, ON",
+        "address": {
+          "street": "175 First Avenue",
+          "locality": "Brockville",
+          "region": "ON",
+          "country": "CA",
+          "postal_code": "K6V 5W1"
+        },
+        "coordinates": {
+          "latitude": 44.604883,
+          "longitude": -75.675093
+        }
+      }
     },
     {
       "id": "salvation-army-good-food-box",
@@ -867,7 +933,7 @@
         "One box a month; contents are a variety of fresh fruit and vegetables."
       ],
       "before_you_go": [
-        "Order ahead at one of the ordering locations; the monthly order deadline and pickup date were not stated, so call 613-342-5211, extension 2."
+        "Order ahead at one of the ordering locations. November: order by Thursday, November 19 and pick up Tuesday, November 24. December: order by Thursday, December 3 and pick up Tuesday, December 8. Call 613-342-5211, extension 2, for pickup times."
       ],
       "cost": {
         "state": "low_cost",
@@ -876,11 +942,12 @@
       "schedule": {
         "kind": "unknown",
         "confirmed": false,
-        "note": "Once a month. The order deadline and pickup date were not stated.",
+        "note": "Once a month. November: order by Thursday, November 19 and pick up Tuesday, November 24. December: order by Thursday, December 3 and pick up Tuesday, December 8. Pickup times were not stated.",
         "weekly": [],
         "exceptions": [],
         "evidence_ids": [
-          "provider-email-2026-10-09"
+          "provider-email-2026-10-09",
+          "provider-email-2026-10-13"
         ]
       },
       "evidence": [
@@ -888,7 +955,7 @@
           "id": "provider-email-2026-10-09",
           "source_kind": "direct_confirmation",
           "checked_on": "2026-10-13",
-          "note": "The Salvation Army Brockville's Community & Family Services coordinator told Jamie Whelan by email on October 9, 2026 that the Helping Hands Good Food Box operates once a month and offers a variety of fresh fruits and vegetables for $15 per box; that orders are taken at The Salvation Army Brockville (175 First Avenue), its thrift store (181 King Street West) and Burchell's Home Hardware in Cardinal; that pickup is at 175 First Avenue and the Ingredion Centre in Cardinal; and that people can call 613-342-5211 extension 2 for more information. The email asked for the program to be listed. It did not give the monthly order deadline or pickup date. Private correspondence is kept outside this repository.",
+          "note": "The Salvation Army Brockville's Community & Family Services coordinator told Jamie Whelan by email on October 9, 2026 that the Helping Hands Good Food Box operates once a month and offers a variety of fresh fruits and vegetables for $15 per box; that orders are taken at The Salvation Army Brockville (175 First Avenue), its thrift store (181 King Street West) and Burchell's Home Hardware in Cardinal; that pickup is at 175 First Avenue and the Ingredion Centre in Cardinal; and that people can call 613-342-5211 extension 2 for more information. The email asked for the program to be listed. Private correspondence is kept outside this repository.",
           "supports": [
             "name",
             "summary",
@@ -898,7 +965,15 @@
             "phone_extension",
             "cost",
             "access.details",
-            "limitations",
+            "limitations"
+          ]
+        },
+        {
+          "id": "provider-email-2026-10-13",
+          "source_kind": "direct_confirmation",
+          "checked_on": "2026-10-15",
+          "note": "The Salvation Army Brockville's Community & Family Services coordinator told Jamie Whelan by email on October 13, 2026 that the Good Food Box order deadlines and pickup dates are Thursday, November 19 with pickup Tuesday, November 24, and Thursday, December 3 with pickup Tuesday, December 8. Pickup times were not given. Private correspondence is kept outside this repository.",
+          "supports": [
             "before_you_go",
             "schedule"
           ]
@@ -915,13 +990,13 @@
         }
       ],
       "verification": {
-        "reviewed_on": "2026-10-13",
+        "reviewed_on": "2026-10-15",
         "method": "direct_confirmation",
         "state": "partially_confirmed"
       },
       "publication_status": "published",
       "service_condition": "active",
-      "updated_on": "2026-10-13"
+      "updated_on": "2026-10-15"
     },
     {
       "id": "loaves-and-fishes",
