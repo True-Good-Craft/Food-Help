@@ -82,13 +82,14 @@ export function createAnalytics(site: Site, production: boolean, env: AnalyticsE
       if (now - (lastAction.get(kind) ?? -Infinity) < 750) return;
       lastAction.set(kind, now);
     }
-    if (!allowed() || !config?.endpoint || !env.online() || !env.visible()) return;
+    // Browsers finish installing after the tab is backgrounded, so an install is not dropped for being hidden.
+    if (!allowed() || !config?.endpoint || !env.online() || (kind !== 'install' && !env.visible())) return;
     // Directory startup/actions only; no resource-page browsing or other page history.
     try { if (new URL(env.url).pathname !== '/') return; } catch { return; }
     const event = config.event_payloads ? config.event_payloads[kind] : { event: config.event_names?.[kind] ?? kind };
     if (!event) return;
     const body = JSON.stringify({ ...config.constants, ...event, ...(config.attribution?.events.some(attributed => attributed === kind) ? attribution : {}) });
-    const action = kind !== 'page_start' && kind !== 'install' && kind !== 'install_prompt_show', controller = new AbortController();
+    const action = kind !== 'page_start' && kind !== 'install_prompt_show', controller = new AbortController();
     const timer = setTimeout(() => { controller.abort(); pending.delete(controller); }, 1500);
     pending.set(controller, { action, timer });
     try {
