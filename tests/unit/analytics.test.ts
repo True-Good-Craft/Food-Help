@@ -47,7 +47,7 @@ describe('optional aggregate collection', () => {
       expect(requests[index]).toMatchObject({ method: 'POST', mode: 'cors', credentials: 'omit', cache: 'no-store', redirect: 'error', referrerPolicy: 'no-referrer', headers: { 'Content-Type': 'text/plain;charset=UTF-8' } });
     }
     expect(JSON.stringify(requests.map(request => request.body))).not.toMatch(/secret|private|fbclid|location/);
-    expect(requests[0]).not.toHaveProperty('keepalive'); expect(requests[1]!.keepalive).toBe(true); expect(requests[5]).not.toHaveProperty('keepalive');
+    expect(requests[0]).not.toHaveProperty('keepalive'); expect(requests[1]!.keepalive).toBe(true); expect(requests[5]!.keepalive).toBe(true);
     expect(requests[6]!.keepalive).toBe(true); expect(requests[7]).not.toHaveProperty('keepalive'); expect(requests[8]!.keepalive).toBe(true); collection.pause();
   });
   it('keeps the original simple JSON adapter compatible and opt-in', () => {
@@ -98,9 +98,16 @@ describe('optional aggregate collection', () => {
     for (const mode of ['online', 'visible'] as const) {
       const { collection, env, requests } = fixture(); env[mode] = () => false;
       collection.emit('page_start'); collection.emit('directions'); collection.emit('install'); env[mode] = () => true;
-      collection.emit('page_start'); collection.emit('install'); expect(requests).toHaveLength(0);
-      env.now = () => 1750; collection.emit('directions'); expect(requests).toHaveLength(1); collection.pause();
+      // An install finishing in a background tab is still sent once; offline it is dropped.
+      const installs = mode === 'visible' ? 1 : 0;
+      collection.emit('page_start'); collection.emit('install'); expect(requests).toHaveLength(installs);
+      env.now = () => 1750; collection.emit('directions'); expect(requests).toHaveLength(installs + 1); collection.pause();
     }
+  });
+  it('keeps a background install delivery alive like a click', () => {
+    const { collection, env, requests } = fixture(); env.fetch = (_url, init) => { requests.push(init!); return new Promise(() => {}); };
+    env.visible = () => false; collection.emit('install'); collection.background();
+    expect(requests).toHaveLength(1); expect(requests[0]!.signal!.aborted).toBe(false); collection.pause();
   });
   it('aborts all pending deliveries and clears attribution on cross-tab revocation', () => {
     const { collection, env, values, requests } = fixture(); env.fetch = (_url, init) => { requests.push(init!); return new Promise(() => {}); };

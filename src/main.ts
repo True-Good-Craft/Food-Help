@@ -197,7 +197,9 @@ if (!config.review_drafts) {
     if (!native && !appleTouchBrowser()) return;
     try { if (Date.now() - (Number(localStorage.getItem(promptDismissedKey)) || 0) < promptQuietPeriod) return; } catch { return; }
     byId('install-prompt-instructions')?.toggleAttribute('hidden', native);
-    byId('install-prompt-action')?.toggleAttribute('hidden', !native);
+    // Where there is no native prompt (iPhone), the visitor confirms adding the app themselves.
+    const action = byId('install-prompt-action');
+    if (action) action.textContent = native ? c.installPromptAction : c.installPromptAdded;
     promptDialog.showModal();
     collection.emit('install_prompt_show');
   }
@@ -206,7 +208,13 @@ if (!config.review_drafts) {
   promptDialog?.addEventListener('click', event => { if (event.target === promptDialog) dismissPrompt(); });
   byId('install-prompt-dismiss')?.addEventListener('click', dismissPrompt);
   byId('install-prompt-action')?.addEventListener('click', async () => {
-    if (!installPrompt) return;
+    if (!installPrompt) {
+      if (!promptDialog?.open) return;
+      promptDialog.close();
+      try { localStorage.setItem(promptDismissedKey, String(Date.now())); } catch { /* A blocked timer simply ends the courtesy period. */ }
+      collection.emit('install');
+      return;
+    }
     const choice = installPrompt.userChoice;
     await installPrompt.prompt();
     installPrompt = null;
