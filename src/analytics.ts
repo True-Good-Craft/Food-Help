@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MPL-2.0
 import type { Site } from './types.ts';
 
-export type EventKind = 'page_start' | 'call' | 'help' | 'directions' | 'source' | 'install' | 'resource_open' | 'install_prompt_show' | 'install_prompt_dismiss';
+export type EventKind = 'page_start' | 'call' | 'help' | 'directions' | 'source' | 'install' | 'resource_open' | 'install_prompt_show' | 'install_prompt_dismiss' | 'feedback_yes' | 'feedback_no';
 type Suppression = 'disabled' | 'preview' | 'privacy' | 'operator' | 'storage' | null;
 type Attribution = { source: string; campaign: string; content: string };
 type AttributionConfig = NonNullable<NonNullable<Site['analytics']>['attribution']>;
@@ -11,7 +11,7 @@ export interface AnalyticsEnvironment {
   storage: Pick<Storage, 'getItem' | 'setItem'>;
   fetch: typeof fetch; now(): number;
 }
-const kinds: readonly EventKind[] = ['page_start', 'call', 'help', 'directions', 'source', 'install', 'resource_open', 'install_prompt_show', 'install_prompt_dismiss'];
+const kinds: readonly EventKind[] = ['page_start', 'call', 'help', 'directions', 'source', 'install', 'resource_open', 'install_prompt_show', 'install_prompt_dismiss', 'feedback_yes', 'feedback_no'];
 const emptyAttribution = (): Attribution => ({ source: 'direct_unknown', campaign: 'none', content: 'none' });
 
 /** Reduce public outreach labels in memory. No raw context leaves this boundary. */
@@ -38,7 +38,7 @@ export function classifyAttribution(url: string, referrer: string, origin: strin
 export function createAnalytics(site: Site, production: boolean, env: AnalyticsEnvironment) {
   const config = site.analytics, key = config?.preference_key ?? `food-help-${site.deployment_id}-analytics-preference`;
   let attribution = classifyAttribution(env.url, env.referrer, site.canonical_origin, config?.attribution);
-  let pageAttempted = false, installAttempted = false, promptShowAttempted = false, storageFailed = false;
+  let pageAttempted = false, installAttempted = false, promptShowAttempted = false, feedbackAttempted = false, storageFailed = false;
   const lastAction = new Map<EventKind, number>();
   const pending = new Map<AbortController, { action: boolean; timer: ReturnType<typeof setTimeout> }>();
   function pause(backgroundOnly = false): void {
@@ -73,6 +73,10 @@ export function createAnalytics(site: Site, production: boolean, env: AnalyticsE
     } else if (kind === 'install_prompt_show') {
       if (promptShowAttempted) return;
       promptShowAttempted = true;
+    } else if (kind === 'feedback_yes' || kind === 'feedback_no') {
+      // One answer per page lifetime, whichever listing it was given on.
+      if (feedbackAttempted) return;
+      feedbackAttempted = true;
     } else {
       const now = env.now();
       if (now - (lastAction.get(kind) ?? -Infinity) < 750) return;
@@ -102,7 +106,9 @@ export function createAnalytics(site: Site, production: boolean, env: AnalyticsE
     if (value) emit('page_start');
   }
   function background(): void { state(); pause(true); }
-  return { emit, allowed, setAllowed, state, pause, background };
+  /** The feedback question appears only where both answers have a configured payload. */
+  const feedbackConfigured = () => Boolean(config?.event_payloads?.feedback_yes && config.event_payloads.feedback_no);
+  return { emit, allowed, setAllowed, state, pause, background, feedbackConfigured };
 }
 
 export function analytics(site: Site, production: boolean) {

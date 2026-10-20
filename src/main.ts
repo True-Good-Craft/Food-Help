@@ -32,6 +32,9 @@ function renderBrowseViewChrome(): void {
   document.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.setAttribute('content', url);
 }
 const collection = analytics(site, config.production);
+// "Did this help?" shows only on the counted directory page while collection is allowed; one answer per page load.
+let feedbackGiven = false;
+const feedbackShown = () => collection.feedbackConfigured() && location.pathname === '/' && collection.allowed();
 let dataset: PublicDataset | null = null, position: { latitude: number; longitude: number } | null = null, loading = false, selectedCategory = 'all';
 const results = byId('resource-list'), search = byId<HTMLInputElement>('search'), scheduled = byId<HTMLInputElement>('scheduled');
 function render(): void {
@@ -66,6 +69,10 @@ function render(): void {
       location.textContent = `${c.nearest}: ${new Intl.NumberFormat(site.locale, { maximumFractionDigits: 1 }).format(distanceKm(position, resource.location.coordinates))} km · ${location.textContent}`;
     }
     if (opened.has(resource.id)) { const details = element.querySelector('details')!; details.dataset.restored = ''; details.open = true; }
+  }
+  if (feedbackShown()) {
+    const line = feedbackGiven ? `<div class="feedback" data-feedback aria-live="polite"><p>${c.feedbackThanks}</p></div>` : `<div class="feedback" data-feedback aria-live="polite"><p>${c.feedbackQuestion}</p><div class="feedback-answers"><button class="button button-quiet" type="button" data-feedback-answer="feedback_yes">${c.feedbackYes}</button><button class="button button-quiet" type="button" data-feedback-answer="feedback_no">${c.feedbackNo}</button></div></div>`;
+    results.querySelectorAll('article[data-resource-id] details > .detail-grid').forEach(grid => grid.insertAdjacentHTML('afterend', line));
   }
   if (focused) results.querySelector(`[data-resource-id="${focused.id}"]`)?.querySelectorAll<HTMLElement>('a,button,summary')[focused.index]?.focus({ preventScroll: true });
   status('result-status', c.resourceCount(resources.length, selectedView, config.review_drafts));
@@ -134,12 +141,22 @@ if (site.analytics?.enabled) {
     if (preference) { preference.disabled = Boolean(current.suppression); preference.checked = collection.allowed(); }
     status('analytics-status', current.suppression ? c.analyticsSuppressed[current.suppression] : collection.allowed() ? c.analyticsEnabled : c.analyticsDisabled);
   }
-  if (preference) { preference.addEventListener('change', () => { collection.setAllowed(preference.checked); renderPreference(); }); }
+  if (preference) { preference.addEventListener('change', () => { collection.setAllowed(preference.checked); renderPreference(); render(); }); }
   window.addEventListener('storage', renderPreference);
   document.addEventListener('visibilitychange', renderPreference);
   renderPreference();
 }
 document.addEventListener('click', event => { const target = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-event]') : null; const kind = target?.dataset.event; if (['call', 'help', 'directions', 'source'].includes(kind ?? '')) collection.emit(kind as EventKind); });
+results?.addEventListener('click', event => {
+  const answer = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-feedback-answer]') : null;
+  const kind = answer?.dataset.feedbackAnswer;
+  if (feedbackGiven || (kind !== 'feedback_yes' && kind !== 'feedback_no')) return;
+  feedbackGiven = true;
+  collection.emit(kind);
+  const line = answer!.closest('[data-feedback]');
+  results.querySelectorAll('[data-feedback]').forEach(element => { if (element !== line) element.replaceChildren(Object.assign(document.createElement('p'), { textContent: c.feedbackThanks })); });
+  if (line) { line.replaceChildren(Object.assign(document.createElement('p'), { textContent: c.feedbackThanks, tabIndex: -1 })); line.querySelector<HTMLElement>('p')?.focus({ preventScroll: true }); }
+});
 // A listing's detail section opening is one broad engagement signal; which listing is never sent.
 results?.addEventListener('toggle', event => {
   const details = event.target;

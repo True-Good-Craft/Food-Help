@@ -642,6 +642,25 @@ h1 em {
   padding-top:.35rem;
   padding-bottom:.35rem;
 }
+.feedback {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:.25rem 1rem;
+  margin-top:1rem;
+  padding-top:.75rem;
+  border-top:1px solid var(--line);
+}
+.feedback p {
+  margin:0;
+}
+.feedback-answers {
+  display:flex;
+  gap:1.25rem;
+}
+.feedback .button-quiet {
+  min-height:40px;
+}
 .verified {
   font-size:.85rem;
   color:var(--muted);
