@@ -52,6 +52,7 @@ export const copy = {
   install: 'Install Food Help', installHelp: 'Use your browser’s Install app or Add to Home Screen option. Visit online once to save the directory, then check the offline-ready message.',
   installPromptTitle: 'Keep this directory on your device', installPromptText: 'Install Food Help to open it like an app and keep the latest reviewed directory available offline.',
   installPromptAction: 'Install now', installPromptInstructions: 'To install: open your browser’s Share menu and choose Add to Home Screen.', installPromptDismiss: 'Not now',
+  feedbackQuestion: 'Did this help you find food?', feedbackYes: 'Yes', feedbackNo: 'Not this time', feedbackThanks: 'Thanks for letting us know.',
   updateReady: 'An application update is ready. Apply it when you are ready to reload this page.', update: 'Apply update', updateFailed: 'The update could not be applied. Your current directory is still available.',
   refresh: 'Refresh listings', usage: 'Public usage', usageIntro: 'Sanitized totals for this deployment. These are event counts, not unique people or measures of demand. Missing totals are shown as unavailable.',
   usagePeriod: 'Reporting period', usageGenerated: 'Aggregate prepared', usageMissing: 'Unavailable',

@@ -10,11 +10,11 @@ Collection requires an explicitly reviewed deployment configuration, a productio
 
 ## Fixed events and wire formats
 
-The application exposes nine broad event kinds: `page_start`, `call`, `help`, `directions`, `source`, `install`, `resource_open`, `install_prompt_show` and `install_prompt_dismiss`. `call` means a resource call; `help` means the site's general help number. `resource_open` means a listing's detail section was opened; which listing is never sent. `install_prompt_show` and `install_prompt_dismiss` count displays and dismissals of the install suggestion; acceptance is measured only by the existing `install` signal. `resource_open` and the install-prompt kinds are optional capabilities: they are sent only where a deployment configures payloads for them under a collector contract that accepts them. The emitter receives only the kind, never the clicked element, resource, destination, search, filter or location.
+The application exposes eleven broad event kinds: `page_start`, `call`, `help`, `directions`, `source`, `install`, `resource_open`, `install_prompt_show`, `install_prompt_dismiss`, `feedback_yes` and `feedback_no`. `call` means a resource call; `help` means the site's general help number. `resource_open` means a listing's detail section was opened; which listing is never sent. `install_prompt_show` and `install_prompt_dismiss` count displays and dismissals of the install suggestion; acceptance is measured only by the existing `install` signal. `feedback_yes` and `feedback_no` are the **Yes** and **Not this time** answers to "Did this help you find food?", shown at the end of an opened listing's details; which listing is never sent, there is no free text, and only one answer is sent per page load. The question appears only on the interactive home directory, only while collection is allowed, and only where a deployment configures payloads for both answers. `resource_open`, the install-prompt kinds and the feedback kinds are optional capabilities: they are sent only where a deployment configures payloads for them under a collector contract that accepts them. The emitter receives only the kind, never the clicked element, resource, destination, search, filter or location.
 
 The default JSON body is the configured static `constants` plus `event`, optionally renamed with `event_names`. The default content type remains `application/json`.
 
-For an existing collector with a different strict contract, configure `event_payloads` instead of `event_names`. Supply all six established keys; each value is a small object of static scalar fields. The three optional kinds (`resource_open`, `install_prompt_show`, `install_prompt_dismiss`) may be added only where the collector contract explicitly accepts them; a kind with no configured payload is never sent. Constants and event fields must not overlap. For example:
+For an existing collector with a different strict contract, configure `event_payloads` instead of `event_names`. Supply all six established keys; each value is a small object of static scalar fields. The optional kinds (`resource_open`, `install_prompt_show`, `install_prompt_dismiss`, and `feedback_yes` with `feedback_no` as a pair) may be added only where the collector contract explicitly accepts them; a kind with no configured payload is never sent. Constants and event fields must not overlap. For example:
 
 ```json
 {
@@ -28,7 +28,9 @@ For an existing collector with a different strict contract, configure `event_pay
     "install": { "event_name": "installation_signal" },
     "resource_open": { "event_name": "engagement", "kind": "resource_open" },
     "install_prompt_show": { "event_name": "install_prompt", "kind": "show" },
-    "install_prompt_dismiss": { "event_name": "install_prompt", "kind": "dismiss" }
+    "install_prompt_dismiss": { "event_name": "install_prompt", "kind": "dismiss" },
+    "feedback_yes": { "event_name": "help_feedback", "kind": "yes" },
+    "feedback_no": { "event_name": "help_feedback", "kind": "not_this_time" }
   },
   "content_type": "text/plain;charset=UTF-8"
 }

@@ -321,6 +321,12 @@
             },
             "install_prompt_dismiss": {
               "$ref": "#/$defs/text"
+            },
+            "feedback_yes": {
+              "$ref": "#/$defs/text"
+            },
+            "feedback_no": {
+              "$ref": "#/$defs/text"
             }
           }
         },
@@ -338,7 +344,9 @@
             "install": { "$ref": "#/$defs/eventPayload" },
             "resource_open": { "$ref": "#/$defs/eventPayload" },
             "install_prompt_show": { "$ref": "#/$defs/eventPayload" },
-            "install_prompt_dismiss": { "$ref": "#/$defs/eventPayload" }
+            "install_prompt_dismiss": { "$ref": "#/$defs/eventPayload" },
+            "feedback_yes": { "$ref": "#/$defs/eventPayload" },
+            "feedback_no": { "$ref": "#/$defs/eventPayload" }
           }
         },
         "attribution": {

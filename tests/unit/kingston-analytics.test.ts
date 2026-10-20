@@ -6,7 +6,7 @@ import { assertSite } from '../../src/validation.ts';
 
 const site = JSON.parse(readFileSync(new URL('../../deployments/kingston/site.json', import.meta.url), 'utf8'));
 assertSite(site);
-const kinds: EventKind[] = ['page_start', 'call', 'help', 'directions', 'source', 'install', 'resource_open', 'install_prompt_show', 'install_prompt_dismiss'];
+const kinds: EventKind[] = ['page_start', 'call', 'help', 'directions', 'source', 'install', 'resource_open', 'install_prompt_show', 'install_prompt_dismiss', 'feedback_yes'];
 
 function fixture(overrides: Partial<AnalyticsEnvironment> = {}, production = true) {
   const requests: { url: string; options: RequestInit }[] = [];
@@ -23,16 +23,17 @@ function fixture(overrides: Partial<AnalyticsEnvironment> = {}, production = tru
   return { collection: createAnalytics(site, production, env), requests, saved };
 }
 
-test('Kingston configuration sends exactly the nine contracted v3 aggregates without a first-visit preference write', () => {
+test('Kingston configuration sends exactly the ten contracted v3 aggregates without a first-visit preference write', () => {
   const { collection, requests, saved } = fixture();
   try {
     kinds.forEach(kind => collection.emit(kind));
-    assert.equal(requests.length, 9);
+    assert.equal(requests.length, 10);
+    collection.emit('feedback_no'); assert.equal(requests.length, 10, 'only one feedback answer per page load');
     const events = requests.map(request => JSON.parse(request.options.body as string));
     assert.deepEqual(events.map(event => [event.event_name, event.event_value ?? null]), [
       ['page_view', null], ['contact_click', 'resource_call'], ['contact_click', 'help_211'],
       ['outbound_click', 'directions'], ['outbound_click', 'official_source'], ['pwa_install', null],
-      ['resource_open', null], ['install_prompt', 'show'], ['install_prompt', 'dismiss'],
+      ['resource_open', null], ['install_prompt', 'show'], ['install_prompt', 'dismiss'], ['help_feedback', 'yes'],
     ]);
     for (const [index, event] of events.entries()) {
       assert.equal(event.site_key, 'kingston_food_help'); assert.equal(event.contract_version, 3);

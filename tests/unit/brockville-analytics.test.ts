@@ -7,7 +7,7 @@ import { assertSite } from '../../src/validation.ts';
 const site = JSON.parse(readFileSync(new URL('../../deployments/brockville/site.json', import.meta.url), 'utf8'));
 assertSite(site);
 const kinds: EventKind[] = ['page_start', 'call', 'help', 'directions', 'source', 'install'];
-const inert: EventKind[] = ['resource_open', 'install_prompt_show', 'install_prompt_dismiss'];
+const inert: EventKind[] = ['resource_open', 'install_prompt_show', 'install_prompt_dismiss', 'feedback_yes', 'feedback_no'];
 
 function fixture(overrides: Partial<AnalyticsEnvironment> = {}, production = true) {
   const requests: { url: string; options: RequestInit }[] = [];
