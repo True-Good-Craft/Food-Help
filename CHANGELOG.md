@@ -6,7 +6,7 @@ Notable user-visible changes to Food Help are recorded here. Community publicati
 
 ### Added
 
-- A "Help keep Food Help running" section on the project homepage listing ways to support the project, with a footer link. Sponsorship amounts are not published; validation rejects prices in that copy.
+- A "Help keep Food Help running" section on the project homepage listing ways to support the project, with a "Support us" button in the main navigation and a footer link. Sponsorship amounts are not published; validation rejects prices in that copy.
 - Brockville in the project homepage's community list.
 - A hosting map and release-branch guard in the deployment guide.
 - A separate Food Help project homepage build, with an authoritative available-community list, prominent Kingston link, public project/contact context, root sitemap and robots files, and a real 404 page.
