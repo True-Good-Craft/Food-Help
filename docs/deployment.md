@@ -23,6 +23,20 @@ After review and separate publication authorization, adding `--publish` to `proj
 
 Before the first release, an authorized operator must create or select that distinct static hosting project, attach only the approved `food-help.ca` hostname, disable host-injected analytics/scripts/HTML rewriting, and verify the generated headers, canonical, 404 and sitemap on the actual origin. Preview and provider-generated aliases must remain noindex. The generated project artifact has no client JavaScript, service worker or analytics integration.
 
+### Hosting map
+
+Checked against the Cloudflare dashboard on 2026-10-30. Update this table whenever a hosting project, production branch or hostname changes, so the next maintainer does not have to rediscover it.
+
+| Public hostname | DNS record (Cloudflare, proxied) | Pages project | Production branch | Builds from |
+| --- | --- | --- | --- | --- |
+| `food-help.ca` (`www` CNAMEs to it) | CNAME `food-help-project.pages.dev` | `food-help-project` | `release/project` | `True-Good-Craft/Food-Help` |
+| `kingston.food-help.ca` | CNAME `food-help-kingston.pages.dev` | `food-help-kingston` | `release/kingston` | `True-Good-Craft/Food-Help` |
+| `brockville.food-help.ca` | CNAME `food-help-brockville.pages.dev` | `food-help-brockville` | `release/brockville` | `True-Good-Craft/Food-Help` |
+
+All three projects have automatic deployments enabled. A push to a project's production branch publishes it; pushes to any other branch only create previews, and preview builds are skipped. The `food-help.ca` zone also holds Cloudflare Email Routing MX/SPF/DKIM records and a Google site-verification TXT record; leave them alone.
+
+`release/*` branches are production state, not disposable work branches. Deleting one does not take the site down, because Cloudflare keeps serving the last build, but it hides which commit is live. That happened to `release/project`: it was deleted after the 2026-09-15 release (commit `a14347e`, PR #6), and the live root page went unnoticed for six weeks. Before releasing, run `git ls-remote origin 'refs/heads/release/*'` and confirm each expected pointer exists. If one is missing, read the Production row in that project's Cloudflare **Deployments** tab to recover the live commit, record it in the release notes, then release normally (the release script creates the branch again with an empty lease).
+
 The intended redirect posture is one hop with path and query preserved:
 
 - `http://food-help.ca/*` → `https://food-help.ca/*`;

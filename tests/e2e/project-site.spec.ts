@@ -12,6 +12,10 @@ test('project homepage works on mobile, by keyboard and without JavaScript', asy
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Find food help in your community.');
     await expect(page.getByRole('link', { name: 'Open Kingston directory' })).toHaveAttribute('href', 'https://kingston.food-help.ca/');
     await expect(page.getByRole('link', { name: 'Email Jamie' })).toHaveAttribute('href', /mailto:jamie@truegoodcraft\.ca/);
+    await expect(page.getByRole('link', { name: 'Open Brockville directory' })).toHaveAttribute('href', 'https://brockville.food-help.ca/');
+    await expect(page.getByRole('heading', { name: 'Help keep Food Help running' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Ask about supporting Food Help' })).toHaveAttribute('href', /mailto:jamie@truegoodcraft\.ca\?subject=Supporting%20Food%20Help/);
+    await expect(page.getByRole('link', { name: 'Support', exact: true })).toHaveAttribute('href', '/#support');
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
     await page.keyboard.press('Tab'); await expect(page.getByRole('link', { name: 'Skip to main content' })).toBeFocused();
     await page.keyboard.press('Enter'); await expect(page.locator('#main')).toBeFocused();

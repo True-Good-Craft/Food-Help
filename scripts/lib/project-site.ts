@@ -17,6 +17,7 @@ export type ProjectSite = {
   maintenance: string;
   operator: { name: string; url: string; lead: string; statement: string };
   contact: { email: string; label: string; description: string };
+  support?: { heading: string; description: string; ways: Array<{ title: string; description: string }>; label: string; email_subject: string };
   repository_url: string;
   setup_url: string;
   contribution_url: string;
@@ -48,7 +49,7 @@ const https = (value: unknown, label: string, originOnly = false): string => {
 
 export function assertProjectSite(value: unknown): asserts value is ProjectSite {
   const site = object(value, 'project-site/site.json');
-  exactKeys(site, ['schema_version', 'site_name', 'short_name', 'canonical_origin', 'language', 'locale', 'text_direction', 'description', 'headline', 'introduction', 'scope', 'maintenance', 'operator', 'contact', 'repository_url', 'setup_url', 'contribution_url', 'community_guide_url', 'analytics', 'indexing'], 'project-site/site.json');
+  exactKeys(site, ['schema_version', 'site_name', 'short_name', 'canonical_origin', 'language', 'locale', 'text_direction', 'description', 'headline', 'introduction', 'scope', 'maintenance', 'operator', 'contact', 'support', 'repository_url', 'setup_url', 'contribution_url', 'community_guide_url', 'analytics', 'indexing'], 'project-site/site.json');
   if (site.schema_version !== 1) throw new Error('Unsupported project site schema version');
   for (const field of ['site_name', 'short_name', 'language', 'locale', 'description', 'headline', 'introduction', 'scope', 'maintenance'] as const) text(site[field], field);
   if (!['ltr', 'rtl'].includes(String(site.text_direction))) throw new Error('text_direction must be ltr or rtl');
@@ -59,6 +60,16 @@ export function assertProjectSite(value: unknown): asserts value is ProjectSite 
   const contact = object(site.contact, 'contact'); exactKeys(contact, ['email', 'label', 'description'], 'contact');
   for (const field of ['email', 'label', 'description'] as const) text(contact[field], `contact.${field}`);
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(contact.email))) throw new Error('contact.email must be a public email address');
+  if (site.support !== undefined) {
+    const support = object(site.support, 'support'); exactKeys(support, ['heading', 'description', 'ways', 'label', 'email_subject'], 'support');
+    for (const field of ['heading', 'description', 'label', 'email_subject'] as const) text(support[field], `support.${field}`);
+    if (!Array.isArray(support.ways) || support.ways.length === 0 || support.ways.length > 6) throw new Error('support.ways must list one to six ways to help');
+    for (const [index, entry] of support.ways.entries()) {
+      const way = object(entry, `support.ways[${index}]`); exactKeys(way, ['title', 'description'], `support.ways[${index}]`);
+      for (const field of ['title', 'description'] as const) text(way[field], `support.ways[${index}].${field}`);
+    }
+    if (/\$\s*\d|\d\s*(?:dollars|CAD)\b/i.test(JSON.stringify(support))) throw new Error('support copy must not publish prices; ask people to get in touch about amounts');
+  }
   const analytics = object(site.analytics, 'analytics'); exactKeys(analytics, ['enabled'], 'analytics');
   if (analytics.enabled !== false) throw new Error('The project site has no approved analytics integration; enabled must remain false');
   const indexing = object(site.indexing, 'indexing'); exactKeys(indexing, ['enabled'], 'indexing');

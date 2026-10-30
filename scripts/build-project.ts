@@ -48,7 +48,13 @@ function header(site: ProjectSite, logo: string): string {
 }
 
 function footer(site: ProjectSite): string {
-  return `<footer class="site-footer"><div class="page-width footer-inner"><div><strong>${e(site.site_name)}</strong><p>An independent community project maintained by <a href="${e(site.operator.url)}">${e(site.operator.name)}</a>.</p></div><nav class="footer-links" aria-label="Project links"><a href="mailto:${e(site.contact.email)}">Contact</a><a href="${e(site.repository_url)}">Source</a><a href="${e(site.contribution_url)}">Contribute</a></nav></div></footer>`;
+  return `<footer class="site-footer"><div class="page-width footer-inner"><div><strong>${e(site.site_name)}</strong><p>An independent community project maintained by <a href="${e(site.operator.url)}">${e(site.operator.name)}</a>.</p></div><nav class="footer-links" aria-label="Project links"><a href="mailto:${e(site.contact.email)}">Contact</a>${site.support ? '<a href="/#support">Support</a>' : ''}<a href="${e(site.repository_url)}">Source</a><a href="${e(site.contribution_url)}">Contribute</a></nav></div></footer>`;
+}
+
+function support(site: ProjectSite): string {
+  if (!site.support) return '';
+  const mail = `mailto:${e(site.contact.email)}?subject=${encodeURIComponent(site.support.email_subject)}`;
+  return `<section class="page-width section" id="support" aria-labelledby="support-heading"><div class="section-heading"><h2 id="support-heading">${e(site.support.heading)}</h2><p>${e(site.support.description)}</p></div><ol class="principles support-ways">${site.support.ways.map(way => `<li><strong>${e(way.title)}</strong><p>${e(way.description)}</p></li>`).join('')}</ol><p class="hero-actions"><a class="button button-primary" href="${mail}">${e(site.support.label)}</a></p></section>`;
 }
 
 function home(site: ProjectSite, communities: CommunityList, production: boolean, css: string, logo: string, coveredSource: string): string {
@@ -65,6 +71,7 @@ function home(site: ProjectSite, communities: CommunityList, production: boolean
     <section class="page-width section" id="communities" aria-labelledby="communities-heading"><div class="section-heading"><h2 id="communities-heading">Choose a community</h2><p>Community directories are the place to find food programs. This project homepage does not duplicate their listings.</p></div><div class="community-list">${communityCards}</div></section>
     <section class="page-width section" id="about" aria-labelledby="about-heading"><div class="section-heading"><h2 id="about-heading">Information people can check</h2><p>${e(site.maintenance)}</p></div><ol class="principles"><li><strong>Public sources</strong><p>Published program pages and trusted public directories provide an evidence trail.</p></li><li><strong>Provider input</strong><p>Provider details can clarify what is offered and what people should know before travelling.</p></li><li><strong>Corrections</strong><p>Community feedback is reviewed before it changes a public listing.</p></li></ol></section>
     <section class="page-width section split"><article class="info-card"><h2>Built in Kingston</h2><p>${e(site.operator.statement)}</p><a class="text-link" href="${e(site.operator.url)}">About ${e(site.operator.name)}</a></article><article class="info-card" id="start"><h2>Built for other communities</h2><p>The software and setup guidance are public. Community operators keep control of their own reviewed information and publication.</p><div class="link-list"><a class="text-link" href="${e(site.repository_url)}">View the repository</a><a class="text-link" href="${e(site.setup_url)}">Setup guide</a><a class="text-link" href="${e(site.contribution_url)}">Contribution guide</a><a class="text-link" href="${e(site.community_guide_url)}">Add a community</a></div></article></section>
+    ${support(site)}
     <section class="page-width section"><div class="contact-panel"><div><h2>Bring a program or community forward</h2><p>${e(site.contact.description)} A short note is enough; do not include private client or service-user information.</p></div><a class="button button-primary" href="${mail}">${e(site.contact.label)}</a></div></section>
     <p class="page-width"><small>Covered source for this build: <a href="${e(coveredSource)}">Food Help repository</a>.</small></p>
   </main>${footer(site)}</body></html>`;
