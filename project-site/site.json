@@ -22,6 +22,30 @@
     "label": "Email Jamie",
     "description": "Suggest a food program, ask to list a community directory, or discuss starting one."
   },
+  "support": {
+    "heading": "Help keep Food Help running",
+    "description": "Food Help is free to use, with no ads, sign-ups or tracking. Keeping each directory accurate takes steady local work: checking listings, talking with providers and getting flyers to the places people go for help.",
+    "ways": [
+      {
+        "title": "Share it",
+        "description": "Tell people about it, post it or mention it in your newsletter."
+      },
+      {
+        "title": "Keep flyers on hand",
+        "description": "For a front desk, clinic or community space. Email Jamie and he will drop some off."
+      },
+      {
+        "title": "Send corrections",
+        "description": "If a program changes, let us know so the listing stays right."
+      },
+      {
+        "title": "Sponsor a community",
+        "description": "Local businesses and organizations can sponsor a directory's upkeep. Sponsors are thanked here and never influence listings. Ask about sponsorship amounts."
+      }
+    ],
+    "label": "Ask about supporting Food Help",
+    "email_subject": "Supporting Food Help"
+  },
   "repository_url": "https://github.com/True-Good-Craft/Food-Help",
   "setup_url": "https://github.com/True-Good-Craft/Food-Help#start-independently",
   "contribution_url": "https://github.com/True-Good-Craft/Food-Help/blob/main/CONTRIBUTING.md",

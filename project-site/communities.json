@@ -7,6 +7,13 @@
       "coverage": "Kingston, Ontario",
       "canonical_url": "https://kingston.food-help.ca",
       "description": "Emergency and affordable food resources for Kingston."
+    },
+    {
+      "id": "brockville",
+      "name": "Brockville",
+      "coverage": "Brockville, Ontario",
+      "canonical_url": "https://brockville.food-help.ca",
+      "description": "Free and low-cost food support for Brockville."
     }
   ]
 }
