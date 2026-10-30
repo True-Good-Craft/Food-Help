@@ -44,7 +44,7 @@ function head(site: ProjectSite, pathName: string, title: string, description: s
 }
 
 function header(site: ProjectSite, logo: string): string {
-  return `<a class="skip-link" href="#main" tabindex="0">Skip to main content</a><header class="site-header"><div class="header-inner"><a class="brand" href="/"><img src="${logo}" width="40" height="40" alt=""><span>${e(site.site_name)}</span></a><nav class="site-nav" aria-label="Main navigation"><a href="/#communities">Communities</a><a href="/#about">About</a><a href="/#start">Start a directory</a></nav></div></header>`;
+  return `<a class="skip-link" href="#main" tabindex="0">Skip to main content</a><header class="site-header"><div class="header-inner"><a class="brand" href="/"><img src="${logo}" width="40" height="40" alt=""><span>${e(site.site_name)}</span></a><nav class="site-nav" aria-label="Main navigation"><a href="/#communities">Communities</a><a href="/#about">About</a><a href="/#start">Start a directory</a>${site.support ? '<a class="nav-support" href="/#support">Support us</a>' : ''}</nav></div></header>`;
 }
 
 function footer(site: ProjectSite): string {

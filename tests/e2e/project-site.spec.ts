@@ -16,6 +16,7 @@ test('project homepage works on mobile, by keyboard and without JavaScript', asy
     await expect(page.getByRole('heading', { name: 'Help keep Food Help running' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Ask about supporting Food Help' })).toHaveAttribute('href', /mailto:jamie@truegoodcraft\.ca\?subject=Supporting%20Food%20Help/);
     await expect(page.getByRole('link', { name: 'Support', exact: true })).toHaveAttribute('href', '/#support');
+    await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Support us' })).toHaveAttribute('href', '/#support');
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
     await page.keyboard.press('Tab'); await expect(page.getByRole('link', { name: 'Skip to main content' })).toBeFocused();
     await page.keyboard.press('Enter'); await expect(page.locator('#main')).toBeFocused();
