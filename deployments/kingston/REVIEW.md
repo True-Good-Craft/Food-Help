@@ -30,6 +30,17 @@ Two records were prepared on **2026-09-29** from a direct provider email (Septem
 
 ID rules have not been stated and remain unknown. No coordinates were found in a reviewed source, so none are published. The phone number is the organization's public toll-free line; staff direct lines are not published. Next review by **2026-10-30**.
 
+## Good Times Diner and Good Food Box Kingston
+
+Two records were added on **2026-11-06** after checking provider pages. Both are `published` with verification state `partially_confirmed`.
+
+| Resource ID | Published schedule | Status and open questions |
+| --- | --- | --- |
+| `good-times-diner` | Chalmers United Church, 212 Barrie Street — Sundays and Wednesdays, 5:30–6 p.m. | Free per the host church. The student organizers welcome the Queen’s and Kingston community; the church describes it as for students. The City lists Sundays only. Exam and holiday breaks are not published |
+| `good-food-box-kingston` | Order by the second Thursday, pick up on the third Thursday (December: first and second Thursdays) | Low cost: $17 large box, $11 small box, $6 fruit or veggie bag. Pickup hours depend on the host site, so the schedule stays unconfirmed |
+
+Next review by **2026-12-06**.
+
 ## October 2, 2026 audit
 
 An audit of all 18 published listings was reviewed on **2026-10-02**. Core schedules and locations not listed below were supported. Finite schedules stay finite: St. Lawrence College keeps its seven Thursday dates through December 3 and W.J. Henderson its eight biweekly Friday dates through December 11. The YMCA Tuesday and Friday sessions remain one listing. A September 28 Lionhearts prepared-food stockout notice is not treated as a current stockout.
