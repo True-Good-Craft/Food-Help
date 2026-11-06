@@ -44,6 +44,18 @@
       "name": "Trellis HIV & Community Care",
       "description": "Formerly HARS.",
       "url": "https://www.trellishiv.ca/"
+    },
+    {
+      "id": "queens-asus",
+      "name": "Arts and Science Undergraduate Society of Queen’s University (ASUS)",
+      "description": "Queen’s student society; its student volunteers run the Good Times Diner.",
+      "url": "https://www.queensasus.com/"
+    },
+    {
+      "id": "kingston-community-health-centres",
+      "name": "Kingston Community Health Centres",
+      "description": "Runs the Good Food Box Kingston program.",
+      "url": "https://kchc.ca/"
     }
   ],
   "resources": [
@@ -3471,6 +3483,244 @@
       "publication_status": "published",
       "service_condition": "active",
       "updated_on": "2026-10-02"
+    },
+    {
+      "id": "good-times-diner",
+      "organization_id": "queens-asus",
+      "name": "Good Times Diner",
+      "summary": "Free student-run take-out meals on Sunday and Wednesday evenings at Chalmers United Church.",
+      "categories": [
+        "prepared_meals"
+      ],
+      "food_access_purpose": "Free student-run take-out meals on Sunday and Wednesday evenings at Chalmers United Church.",
+      "location": {
+        "description": "Chalmers United Church, 212 Barrie Street, Kingston, ON",
+        "address": {
+          "street": "212 Barrie Street",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA"
+        }
+      },
+      "official_url": "https://www.queensasus.com/good-times-diner/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "unknown",
+        "appointment_required": "unknown",
+        "registration_required": "unknown",
+        "identification_required": "unknown",
+        "details": [
+          "The organizers’ page does not mention registration, appointments or identification."
+        ]
+      },
+      "eligibility": [
+        "Open to anyone in the Queen’s and Kingston community experiencing food insecurity, according to the student organizers."
+      ],
+      "limitations": [
+        "Chalmers United Church describes the meals as for students; the organizers’ page welcomes the wider Kingston community."
+      ],
+      "before_you_go": [
+        "The diner is run by student volunteers. Breaks over exams and holidays are not published, so check the Good Times Diner page before going."
+      ],
+      "cost": {
+        "state": "free",
+        "description": "Free, according to Chalmers United Church, which hosts the diner."
+      },
+      "schedule": {
+        "kind": "weekly",
+        "confirmed": true,
+        "note": "Sundays and Wednesdays, 5:30–6 p.m. The City food-supports page lists Sundays only.",
+        "weekly": [
+          { "day": 1, "state": "closed", "intervals": [] },
+          { "day": 2, "state": "closed", "intervals": [] },
+          { "day": 3, "state": "published", "intervals": [{ "opens": "17:30", "closes": "18:00" }] },
+          { "day": 4, "state": "closed", "intervals": [] },
+          { "day": 5, "state": "closed", "intervals": [] },
+          { "day": 6, "state": "closed", "intervals": [] },
+          { "day": 7, "state": "published", "intervals": [{ "opens": "17:30", "closes": "18:00" }] }
+        ],
+        "exceptions": [],
+        "evidence_ids": [
+          "asus-good-times-diner",
+          "chalmers-food-meals"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "asus-good-times-diner",
+          "source_kind": "provider",
+          "url": "https://www.queensasus.com/good-times-diner/",
+          "checked_on": "2026-11-06",
+          "note": "ASUS Good Times Diner page: the student-run diner provides freshly prepared meals to individuals in the Queen’s and Kingston community experiencing food insecurity, every Sunday and Wednesday evening from 5:30 to 6 p.m., at Chalmers United Church; the page’s map gives 212 Barrie St. It does not state a cost, registration rules or seasonal breaks.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "categories",
+            "location",
+            "official_url",
+            "eligibility",
+            "schedule"
+          ]
+        },
+        {
+          "id": "chalmers-food-meals",
+          "source_kind": "other_reviewed",
+          "url": "https://chalmersunitedchurch.org/food-meals-in-kingston",
+          "checked_on": "2026-11-06",
+          "note": "Chalmers United Church “Food & Meals in Kingston” page (as of November 24, 2025) lists Queen’s Good Time Diner at the church, 212 Barrie Street: free take-out meals and sandwiches for students, 5:30–6 p.m. Sundays and Wednesdays.",
+          "supports": [
+            "summary",
+            "location",
+            "cost",
+            "schedule",
+            "limitations"
+          ]
+        },
+        {
+          "id": "city-food-supports",
+          "source_kind": "local_authority",
+          "url": "https://www.cityofkingston.ca/community-supports/community-supports-and-well-being/food-supports/",
+          "checked_on": "2026-11-06",
+          "note": "City food-supports page lists Good Times Diner under community kitchen and meal programs at Chalmers United Church, 212 Barrie St., Sunday 5:30–6 p.m. It does not list the Wednesday meal, a cost or eligibility.",
+          "supports": [
+            "name",
+            "location"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-11-06",
+        "method": "multiple_sources",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-11-06"
+    },
+    {
+      "id": "good-food-box-kingston",
+      "organization_id": "kingston-community-health-centres",
+      "name": "Good Food Box Kingston",
+      "summary": "Monthly box or bag of fresh fruit and vegetables at low cost. Order by the second Thursday and pick up on the third Thursday.",
+      "categories": [
+        "groceries"
+      ],
+      "food_access_purpose": "Fresh fruit and vegetables bought wholesale and sold at low cost, ordered monthly and picked up at a host site.",
+      "location": {
+        "description": "Order online or at Kingston Community Health Centres, 263 Weller Avenue. Pick up at the host site you choose when ordering.",
+        "address": {
+          "street": "263 Weller Avenue",
+          "locality": "Kingston",
+          "region": "ON",
+          "country": "CA"
+        }
+      },
+      "phone": "+16135302239",
+      "official_url": "https://www.goodfoodboxkingston.com/",
+      "time_zone": "America/Toronto",
+      "access": {
+        "walk_in": "no",
+        "appointment_required": "no",
+        "registration_required": "no",
+        "identification_required": "unknown",
+        "details": [
+          "Order and pay ahead: online by credit card or Visa debit, or in cash at the reception desks of Kingston Community Health Centres (263 Weller Avenue), Trellis (844 Princess Street) or the St. Vincent de Paul Society (595 Bagot Street).",
+          "Pick up at the host site you chose. Kingston pickup options include 263 Weller Avenue, Midtown Kingston Health Home (315 Queen Mary Road) and Zion Seniors’ Housing (106 Pine Street)."
+        ]
+      },
+      "eligibility": [
+        "Anyone in the Kingston area can order. There is no membership and there are no criteria."
+      ],
+      "limitations": [
+        "Orders must be placed by the deadline; late orders are filled the following month.",
+        "Box contents are fixed, and allergy or dietary requests cannot be accommodated."
+      ],
+      "before_you_go": [
+        "Pickup times vary by host site. For questions on pickup day, contact your host site or the Good Food Box line at 613-530-2239."
+      ],
+      "cost": {
+        "state": "low_cost",
+        "description": "Large box $17, small box $11, fruit bag $6, veggie bag $6."
+      },
+      "schedule": {
+        "kind": "unknown",
+        "confirmed": false,
+        "note": "Monthly. Orders are due the second Thursday and pickup is the third Thursday (November 2026: order by November 12, pick up November 19). In December, orders are due the first Thursday and pickup is the second Thursday (December 3 and 10, 2026). Pickup hours depend on the host site.",
+        "weekly": [],
+        "exceptions": [],
+        "evidence_ids": [
+          "gfb-schedule",
+          "gfb-shop"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "gfb-about",
+          "source_kind": "provider",
+          "url": "https://www.goodfoodboxkingston.com/",
+          "checked_on": "2026-11-06",
+          "note": "Good Food Box Kingston home page: a monthly produce box anyone in the Kingston area can order, with no membership and no criteria; produce is bought wholesale and the savings passed on. Orders are due the second Thursday of the month (except December) and are available for pickup on the third Thursday. Program contact 613-530-2239 and goodfoodbox@kchc.ca; run by Kingston Community Health Centres.",
+          "supports": [
+            "name",
+            "summary",
+            "food_access_purpose",
+            "categories",
+            "phone",
+            "official_url",
+            "eligibility",
+            "access.registration_required"
+          ]
+        },
+        {
+          "id": "gfb-shop",
+          "source_kind": "provider",
+          "url": "https://www.goodfoodboxkingston.com/shop",
+          "checked_on": "2026-11-06",
+          "note": "Shop page: large box $17.00, small box $11.00, fruit bag $6.00, veggie bag $6.00. Pickup on the third Thursday at the location chosen at checkout, including Midtown Kingston Health Home (315 Queen Mary Road) and Zion Seniors’ Housing (106 Pine Street). Cash orders at the reception desks of Kingston Community Health Centres (263 Weller Avenue), Trellis (844 Princess Street) or the St. Vincent de Paul Society (595 Bagot Street). Late orders are filled the following month.",
+          "supports": [
+            "cost",
+            "location",
+            "access.details",
+            "access.walk_in",
+            "access.appointment_required",
+            "limitations",
+            "schedule"
+          ]
+        },
+        {
+          "id": "gfb-schedule",
+          "source_kind": "provider",
+          "url": "https://www.goodfoodboxkingston.com/schedule",
+          "checked_on": "2026-11-06",
+          "note": "Schedule and FAQs page (2026 schedule): except for December, orders are due the second Thursday and pickup is the third Thursday; December orders are due the first Thursday and pickup is the second Thursday. Box contents are fixed and individual allergy or dietary requests cannot be accommodated. Questions on pickup day go to the host site or the program line. Host-site pickup times vary with each site’s hours.",
+          "supports": [
+            "schedule",
+            "limitations",
+            "before_you_go"
+          ]
+        },
+        {
+          "id": "kchc-good-food-box",
+          "source_kind": "provider",
+          "url": "https://kchc.ca/programs/good-food-box/",
+          "checked_on": "2026-11-06",
+          "note": "Kingston Community Health Centres program page: anyone can buy a Good Food Box, in sizes between $6 and $17, paid at the beginning of the month online or at KCHC reception and picked up on the third Thursday. Lists the Weller site, 263 Weller Avenue, as a host site.",
+          "supports": [
+            "cost",
+            "location",
+            "eligibility"
+          ]
+        }
+      ],
+      "verification": {
+        "reviewed_on": "2026-11-06",
+        "method": "provider_source",
+        "state": "partially_confirmed"
+      },
+      "publication_status": "published",
+      "service_condition": "active",
+      "updated_on": "2026-11-06"
     }
   ]
 }
