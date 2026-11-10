@@ -3,7 +3,7 @@ import { expect } from '@playwright/test';
 import siteJSON from '../../examples/exampleville/site.json' with { type: 'json' };
 import sourceJSON from '../../examples/exampleville/resources.json' with { type: 'json' };
 import { assertDataset, assertSite, assertUsage, publicDataset, validDate } from '../../src/validation.ts';
-import { browseViewFromPath, distanceKm, localTime, resourceBrowseViews, scheduledStatus } from '../../src/domain.ts';
+import { browseViewFromPath, distanceKm, localTime, resourceBrowseViews, reviewOverdue, scheduledStatus } from '../../src/domain.ts';
 import type { Site, Dataset } from '../../src/types.ts';
 const site = siteJSON as Site, source = sourceJSON as unknown as Dataset;
 const fixture = () => structuredClone(source);
@@ -20,7 +20,7 @@ describe('authoring contracts and evidence', () => {
 describe('published schedules, never live availability', () => {
   it('uses the deployment timezone and exclusive interval end', () => { const r = fixture().resources[0]!; expect(scheduledStatus(r, site, new Date('2026-09-07T08:00:00Z'))).toBe('scheduled_now'); expect(scheduledStatus(r, site, new Date('2026-09-07T16:00:00Z'))).toBe('not_scheduled_now'); });
   it('handles DST using local wall-clock time', () => { expect(localTime(new Date('2026-03-29T00:30:00Z'), 'Europe/London').time).toBe('00:30'); expect(localTime(new Date('2026-03-29T01:30:00Z'), 'Europe/London').time).toBe('02:30'); expect(localTime(new Date('2026-11-01T05:30:00Z'), 'America/Toronto').time).toBe('01:30'); expect(localTime(new Date('2026-11-01T06:30:00Z'), 'America/Toronto').time).toBe('01:30'); });
-  it('keeps old reviews and unknown days uncertain', () => { const r = fixture().resources[0]!; expect(scheduledStatus(r, site, new Date('2026-12-07T12:00:00Z'))).toBe('unknown'); expect(scheduledStatus(r, site, new Date('2026-09-06T12:00:00Z'))).toBe('unknown'); });
+  it('keeps published hours after the review target and keeps unknown days uncertain', () => { const r = fixture().resources[0]!, late = new Date('2026-12-07T12:00:00Z'); expect(reviewOverdue(r, site, late)).toBe(true); expect(scheduledStatus(r, site, late)).not.toBe('unknown'); expect(scheduledStatus(r, site, new Date('2026-09-06T12:00:00Z'))).toBe('unknown'); });
   it('supports overnight intervals and explicit all-day exceptions', () => { const r = fixture().resources[0]!; r.schedule.weekly = [{ day: 1, state: 'published', intervals: [{ opens: '22:00', closes: '02:00', closes_next_day: true }] }]; expect(scheduledStatus(r, site, new Date('2026-09-08T00:00:00Z'))).toBe('scheduled_now'); r.schedule.exceptions = [{ date: '2026-09-08', confirmed: true, intervals: [], note: 'Closed', evidence_ids: ['example-source'] }]; expect(scheduledStatus(r, site, new Date('2026-09-08T00:00:00Z'))).toBe('not_scheduled_now'); });
   it('requires explicit evidence at a configured local warning date', () => { const s = structuredClone(site); s.jurisdiction = { coverage_through: '2026-12-31', warning_dates: [{ date: '2026-09-07', note: 'Verify special hours', source_url: 'https://example.invalid/date', checked_on: '2026-09-01' }] }; expect(scheduledStatus(fixture().resources[0]!, s, new Date('2026-09-07T12:00:00Z'))).toBe('unknown'); });
   it('computes stable approximate distances', () => { expect(distanceKm({ latitude: 0, longitude: 0 }, { latitude: 0, longitude: 0 })).toBe(0); expect(distanceKm({ latitude: 0, longitude: 0 }, { latitude: 0, longitude: 1 })).toBeCloseTo(111.195, 2); });

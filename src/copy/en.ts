@@ -29,7 +29,7 @@ export const copy = {
   scheduleLabels: { now: 'Open by schedule', later: 'Later today', ended: 'No more hours today', none: 'No published hours today', unknown: 'Check hours before going', unavailable: 'Service temporarily unavailable' },
   appointmentHours: 'Appointment hours', appointmentLater: 'Appointments later today', bookingRequired: 'Booking required', until: 'Until', publishedOpening: 'Scheduled to open', seeWeekly: 'See the weekly hours below.',
   scheduleKinds: { weekly: 'Weekly schedule', dated: 'Dated schedule', by_arrangement: 'Contact provider to arrange', unknown: 'Hours not confirmed' },
-  validity: 'Schedule date range', exceptions: 'Date-specific changes', unconfirmed: 'Unconfirmed', reviewed: 'Last reviewed', updated: 'Information updated', overdue: 'Review overdue — confirm details before travelling.',
+  validity: 'Schedule date range', exceptions: 'Date-specific changes', unconfirmed: 'Unconfirmed', reviewed: 'Last reviewed', updated: 'Information updated',
   source: 'Official details', scheduleSource: 'Schedule and updates', sources: 'Evidence and provenance', checked: 'Source checked', sourcesChecked: 'Sources checked', supports: 'Reviewed information', call: 'Call', directions: 'Directions', resourcePage: 'Resource page',
   notices: 'Temporary notices', noticePeriod: 'Notice dates', report: 'Report a correction', noDetails: 'Not specified. Check with the provider.',
   draftBadge: 'Review draft — not included in the public directory', draftPreview: 'Draft review preview. Draft listings are shown for review and must not be treated as published.', draftReviewEphemeral: 'Draft review data is not retained in browser storage automatically. A downloaded review copy is a separate file that you choose to save.',

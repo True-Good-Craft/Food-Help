@@ -17,15 +17,22 @@ describe('directory presentation and schedule decisions', () => {
     expect(scheduleSummary(r, site, early).label).toBe('Appointments later today');
     expect(scheduleSummary(r, site, new Date('2026-09-07T10:00:00Z')).label).toBe('Appointment hours');
   });
-  it('keeps unconfirmed, overdue, interrupted, and out-of-range services out of the today filter', () => {
+  it('keeps unconfirmed, interrupted, and out-of-range services out of the today filter', () => {
     const now = new Date('2026-09-07T10:00:00Z');
     for (const change of [
       (r: ReturnType<typeof resource>) => { r.schedule.confirmed = false; },
-      (r: ReturnType<typeof resource>) => { r.verification.reviewed_on = '2025-01-01'; },
       (r: ReturnType<typeof resource>) => { r.service_condition = 'temporarily_unavailable'; },
       (r: ReturnType<typeof resource>) => { r.schedule.valid_from = '2026-09-08'; },
       (r: ReturnType<typeof resource>) => { r.verification.state = 'needs_review'; },
     ]) { const r = resource(); change(r); expect(scheduledToday(r, site, now)).toBe(false); }
+  });
+  it('keeps published hours when a review is past its target and marks the card with an asterisk only', () => {
+    const r = resource(), now = new Date('2026-09-07T10:00:00Z'); r.verification.reviewed_on = '2025-01-01';
+    expect(publishedSchedule(r, site, now).kind).toBe(publishedSchedule(resource(), site, now).kind); expect(scheduledToday(r, site, now)).toBe(scheduledToday(resource(), site, now));
+    expect(scheduleSummary(r, site, now)).toEqual(scheduleSummary(resource(), site, now));
+    const html = card(r, source as PublicDataset, site, false, 3, now);
+    expect(html).toContain('<span class="review-due" data-review-due aria-hidden="true">*</span>'); expect(html).not.toMatch(/overdue/i);
+    expect(card(resource(), source as PublicDataset, site, false, 3, now)).toContain('data-review-due aria-hidden="true" hidden>');
   });
   it('honours local warning dates and provider exceptions for future hours', () => {
     const s = structuredClone(site); s.jurisdiction = { coverage_through: '2026-09-30', warning_dates: [{ date: '2026-09-07', note: 'Confirm service', source_url: 'https://example.invalid/notice', checked_on: '2026-09-01' }] };

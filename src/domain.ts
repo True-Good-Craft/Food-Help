@@ -31,7 +31,7 @@ export type ScheduleView = { kind: 'now' | 'later' | 'ended' | 'none' | 'unknown
 export function publishedSchedule(resource: Resource, site: Site, now: Date): ScheduleView {
   const s = resource.schedule, today = localTime(now, resource.time_zone ?? site.time_zone);
   if (resource.service_condition === 'temporarily_unavailable' || resource.service_condition === 'closed') return { kind: 'unavailable', intervals: [] };
-  if (!s.confirmed || reviewOverdue(resource, site, now) || resource.verification.state === 'needs_review' || (s.valid_from && today.date < s.valid_from) || (s.valid_to && today.date > s.valid_to)) return { kind: 'unknown', intervals: [] };
+  if (!s.confirmed || resource.verification.state === 'needs_review' || (s.valid_from && today.date < s.valid_from) || (s.valid_to && today.date > s.valid_to)) return { kind: 'unknown', intervals: [] };
   const jurisdiction = site.jurisdiction;
   const previous = new Date(Date.parse(today.date) - 86400000).toISOString().slice(0, 10);
   const select = (date: string, day: number) => {

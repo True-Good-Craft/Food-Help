@@ -23,7 +23,7 @@ To inspect draft records without putting them in the public projection, run `npm
 
 Use `withdrawn` or `closed` according to the documented distinction when a service leaves the public directory. Generated pages are removed and unknown routes return a genuine 404. Offline/downloaded copies cannot be reliably recalled; issue a corrected release promptly and keep uncertainty visible.
 
-For Kingston, [the current review checklist](../deployments/kingston/REVIEW.md) identifies the owner, carried-forward dates and unresolved questions. The review interval in configuration drives overdue warnings; it is not an automatic re-verification or publication schedule.
+For Kingston, [the current review checklist](../deployments/kingston/REVIEW.md) identifies the owner, carried-forward dates and unresolved questions. The review interval in configuration adds an asterisk beside a listing's sources-checked date once its review is past the target, without hiding its published hours; it is not an automatic re-verification or publication schedule.
 
 ## Prepare a new community
 
