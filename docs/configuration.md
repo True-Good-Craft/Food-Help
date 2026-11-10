@@ -17,7 +17,7 @@ Use `--site deployments/kingston` for Kingston or `--site deployments/<community
 | `operator` | Yes | Public `name`; optional `url` and `statement` |
 | `corrections.email` | Yes | Public corrections address; do not use a private address inadvertently |
 | `help_contact`, `emergency_contact` | Yes | Explicit `null`, or public label/phone with optional description, source URL and checked date |
-| `review.interval_days` | Yes | Review target, 1–365 days; overdue wording does not auto-withdraw facts |
+| `review.interval_days` | Yes | Review target, 1–365 days; a listing past the target keeps its published details and gains an asterisk beside its sources-checked date |
 | `data_rights` | Yes | Operator’s rights statement; optional licence identifier and URL |
 | `example_content` | Yes | True for fictional data; production builds refuse it |
 | `indexing.enabled` | No | Explicitly true to allow indexing in a production build |
