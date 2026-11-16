@@ -788,7 +788,7 @@
       "schedule": {
         "kind": "dated",
         "confirmed": true,
-        "note": "Upcoming dates from The Salvation Army Brockville: Friday, November 20 and Friday, December 11, 2026, 5–7 p.m. This is not live availability.",
+        "note": "Upcoming dates from The Salvation Army Brockville: Friday, November 20 and Friday, December 11, 2026, 5–7 p.m.",
         "valid_from": "2026-11-20",
         "valid_to": "2026-12-11",
         "weekly": [],
@@ -1362,7 +1362,7 @@
       "schedule": {
         "kind": "dated",
         "confirmed": true,
-        "note": "Remaining 2nd and 5th Sundays from the September–December 2026 community meal calendar, 2:30–4:30 p.m. This is not live availability.",
+        "note": "Remaining 2nd and 5th Sundays from the September–December 2026 community meal calendar, 2:30–4:30 p.m.",
         "valid_from": "2026-10-11",
         "valid_to": "2026-12-13",
         "weekly": [],
@@ -1538,7 +1538,7 @@
       "schedule": {
         "kind": "dated",
         "confirmed": true,
-        "note": "Remaining 3rd Sundays from the September–December 2026 community meal calendar, 2:30–4:30 p.m. This is not live availability.",
+        "note": "Remaining 3rd Sundays from the September–December 2026 community meal calendar, 2:30–4:30 p.m.",
         "valid_from": "2026-10-18",
         "valid_to": "2026-12-20",
         "weekly": [],
@@ -1703,7 +1703,7 @@
       "schedule": {
         "kind": "dated",
         "confirmed": true,
-        "note": "Remaining 1st Sundays from the September–December 2026 community meal calendar, 3:30–5:30 p.m. This is not live availability.",
+        "note": "Remaining 1st Sundays from the September–December 2026 community meal calendar, 3:30–5:30 p.m.",
         "valid_from": "2026-11-01",
         "valid_to": "2026-12-06",
         "weekly": [],
@@ -1842,7 +1842,7 @@
       "schedule": {
         "kind": "dated",
         "confirmed": true,
-        "note": "Remaining 4th Sundays from the September–December 2026 community meal calendar, 2:30–4:30 p.m. This is not live availability.",
+        "note": "Remaining 4th Sundays from the September–December 2026 community meal calendar, 2:30–4:30 p.m.",
         "valid_from": "2026-10-25",
         "valid_to": "2026-12-27",
         "weekly": [],
@@ -1998,7 +1998,7 @@
       "schedule": {
         "kind": "dated",
         "confirmed": true,
-        "note": "Remaining 2nd Saturdays from the September–December 2026 community meal calendar, noon–2 p.m. This is not live availability.",
+        "note": "Remaining 2nd Saturdays from the September–December 2026 community meal calendar, noon–2 p.m.",
         "valid_from": "2026-10-10",
         "valid_to": "2026-12-12",
         "weekly": [],

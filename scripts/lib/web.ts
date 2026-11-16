@@ -33,7 +33,7 @@ export function pages(site: Site, data: PublicDataset, usage?: Usage): Page[] {
           <label class="check-control"><input id="scheduled" type="checkbox"><span>${c.scheduledFilter}</span></label>
           ${site.location?.enabled ? `<button id="locate" class="button button-secondary" type="button">${c.location}</button>` : ''}
         </div>${site.location?.enabled ? `<div class="location-feedback"><p class="quiet-status" id="location-status" role="status">${c.locationOptional}</p><button id="forget-location" class="text-button" type="button" hidden>${c.clearLocation}</button></div>` : ''}</div>
-        <p class="estimate-note">${c.scheduleDisclaimer} <strong>${c.notLive}</strong> ${c.callBefore}</p>
+        <p class="estimate-note">${c.scheduleDisclaimer} ${c.callBefore}</p>
         <div class="results-heading"><p class="result-status" id="result-status" role="status">${c.resourceCount(resources.length, view, reviewDrafts)}</p><button id="refresh" class="text-button" type="button" hidden>${c.refresh}</button></div>
         <div class="resource-list" id="resource-list">${resources.map(r => card(r, data, site)).join('') || `<p class="message-card">${c.noListings(view)}</p>`}</div></section>
         ${aboutSection(site)}`,

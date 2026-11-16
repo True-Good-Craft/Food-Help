@@ -710,7 +710,7 @@
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Published service hours; this is not live availability. Closed all statutory holidays and December 24–January 3.",
+        "note": "Published service hours. Closed all statutory holidays and December 24–January 3.",
         "weekly": [
           {
             "day": 1,
@@ -1217,7 +1217,7 @@
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Published service hours; this is not live availability.",
+        "note": "Published service hours.",
         "weekly": [
           {
             "day": 1,
@@ -1893,7 +1893,7 @@
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Tuesdays, 10 a.m.–1 p.m. This is a published schedule, not live availability.",
+        "note": "Tuesdays, 10 a.m.–1 p.m.",
         "weekly": [
           { "day": 1, "state": "closed", "intervals": [] },
           { "day": 2, "state": "published", "intervals": [{ "opens": "10:00", "closes": "13:00" }] },
@@ -2236,7 +2236,7 @@
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Wednesdays, 10–11:30 a.m. This is a published schedule, not live availability.",
+        "note": "Wednesdays, 10–11:30 a.m.",
         "weekly": [
           { "day": 1, "state": "closed", "intervals": [] },
           { "day": 2, "state": "closed", "intervals": [] },
@@ -2388,7 +2388,7 @@
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Wednesdays, 1:30–4:30 p.m. This is a published schedule, not live availability.",
+        "note": "Wednesdays, 1:30–4:30 p.m.",
         "weekly": [
           { "day": 1, "state": "closed", "intervals": [] },
           { "day": 2, "state": "closed", "intervals": [] },
@@ -2541,7 +2541,7 @@
       "schedule": {
         "kind": "dated",
         "confirmed": true,
-        "note": "Published fall 2026 market dates, 10 a.m.–noon. This is not live availability.",
+        "note": "Published fall 2026 market dates, 10 a.m.–noon.",
         "valid_from": "2026-09-10",
         "valid_to": "2026-12-03",
         "weekly": [],
@@ -2713,7 +2713,7 @@
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Thursdays, 2:30–5:30 p.m. through October 15; from October 22, Thursdays 2–4 p.m. This is a published schedule, not live availability.",
+        "note": "Thursdays, 2:30–5:30 p.m. through October 15; from October 22, Thursdays 2–4 p.m.",
         "weekly": [
           { "day": 1, "state": "closed", "intervals": [] },
           { "day": 2, "state": "closed", "intervals": [] },
@@ -2898,7 +2898,7 @@
       "schedule": {
         "kind": "dated",
         "confirmed": true,
-        "note": "Published fall 2026 market dates, 4–6 p.m. This is not live availability.",
+        "note": "Published fall 2026 market dates, 4–6 p.m.",
         "valid_from": "2026-09-04",
         "valid_to": "2026-12-11",
         "weekly": [],
@@ -3068,7 +3068,7 @@
       "schedule": {
         "kind": "weekly",
         "confirmed": true,
-        "note": "Saturdays, 10 a.m.–1 p.m. This is a published schedule, not live availability.",
+        "note": "Saturdays, 10 a.m.–1 p.m.",
         "weekly": [
           { "day": 1, "state": "closed", "intervals": [] },
           { "day": 2, "state": "closed", "intervals": [] },

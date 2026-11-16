@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MPL-2.0
 import { copy as c } from './copy/en.ts';
-import { localTime, publishedSchedule, resourceBrowseViews, reviewOverdue } from './domain.ts';
+import { localTime, publishedSchedule, resourceBrowseViews, reviewOverdue, type NextOpening } from './domain.ts';
 import type { Resource, PublicDataset, Site } from './types.ts';
 export const escape = (value: unknown): string => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]!);
 export const resourcePath = (id: string): string => `/resources/${id}/`;
@@ -42,12 +42,17 @@ export function accessSummary(r: Resource): string {
   if (r.access.walk_in === 'yes') return c.dropIn;
   return r.access.details[0] ?? c.accessUnknown;
 }
+export function nextOpeningText(next: NextOpening, site: Site): string {
+  const day = next.daysAway === 1 ? c.tomorrow : new Intl.DateTimeFormat(site.locale, { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(new Date(`${next.date}T12:00:00Z`));
+  return `${c.nextOpen}: ${day}, ${next.closes ? formatTimeRange(next.opens, next.closes, site, next.closes_next_day) : `${c.from.toLocaleLowerCase()} ${formatTime(next.opens, site)}`}`;
+}
 export function scheduleSummary(r: Resource, site: Site, now?: Date): { kind: string; label: string; detail: string; today: string } {
   if (!now) return { kind: r.schedule.confirmed ? 'static' : 'unknown', label: r.schedule.confirmed ? c.schedule : c.scheduleLabels.unknown, detail: c.callBefore, today: r.schedule.confirmed ? c.staticHours : r.schedule.note };
   const view = publishedSchedule(r, site, now), appointment = r.access.appointment_required === 'yes';
   const label = view.kind === 'now' && appointment ? c.appointmentHours : view.kind === 'later' && appointment ? c.appointmentLater : c.scheduleLabels[view.kind];
-  const detail = view.current ? `${appointment ? `${c.bookingRequired} · ` : ''}${c.until} ${formatTime(view.current.closes, site)}${view.current.closes_next_day ? ` ${c.nextDay}` : ''}` : view.next ? `${c.publishedOpening} ${formatTime(view.next.opens, site)}${appointment ? ` · ${c.bookingRequired}` : ''}` : view.kind === 'unknown' ? c.callBefore : c.seeWeekly;
-  const today = view.kind === 'unknown' ? r.schedule.note : view.kind === 'unavailable' ? c.conditions[r.service_condition] : `${times(view.intervals, site, '\n') || c.closed}${view.note ? `\n${view.note}` : ''}`;
+  const startOnly = view.startsAt ? `${c.from} ${formatTime(view.startsAt, site)}; ${c.noSetEnd}` : '';
+  const detail = view.current ? `${appointment ? `${c.bookingRequired} · ` : ''}${c.until} ${formatTime(view.current.closes, site)}${view.current.closes_next_day ? ` ${c.nextDay}` : ''}` : view.next || (view.kind === 'later' && view.startsAt) ? `${c.publishedOpening} ${formatTime(view.next?.opens ?? view.startsAt!, site)}${appointment ? ` · ${c.bookingRequired}` : ''}` : view.kind === 'unknown' ? c.callBefore : view.upcoming ? nextOpeningText(view.upcoming, site) : c.seeWeekly;
+  const today = view.kind === 'unavailable' ? c.conditions[r.service_condition] : view.startsAt ? startOnly : view.kind === 'unknown' ? r.schedule.note : `${times(view.intervals, site, '\n') || c.noServiceToday}${view.note ? `\n${view.note}` : ''}`;
   return { kind: view.kind, label, detail, today };
 }
 function evidenceField(field: string): string {

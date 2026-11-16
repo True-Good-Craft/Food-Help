@@ -57,11 +57,12 @@ function render(): void {
     buttons.querySelectorAll<HTMLElement>('[data-category]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.category === selectedCategory)));
   }
   const group = groups.find(group => group.id === selectedCategory);
-  let resources = viewResources.filter(r => (!query || searchable(r, dataset!.organizations.find(o => o.id === r.organization_id)!.name).includes(query)) && (!group || resourceInCategoryGroup(site, r, group)) && (!scheduled?.checked || scheduledToday(r, site, now)));
+  const matching = viewResources.filter(r => (!query || searchable(r, dataset!.organizations.find(o => o.id === r.organization_id)!.name).includes(query)) && (!group || resourceInCategoryGroup(site, r, group)));
+  let resources = scheduled?.checked ? matching.filter(r => scheduledToday(r, site, now)) : matching;
   if (position) resources = [...resources].sort((a, b) => (a.location?.coordinates ? distanceKm(position!, a.location.coordinates) : Infinity) - (b.location?.coordinates ? distanceKm(position!, b.location.coordinates) : Infinity));
   const opened = new Set(Array.from(results.querySelectorAll('article:has(details[open])')).map(el => el.getAttribute('data-resource-id')));
   const focused = document.activeElement instanceof HTMLElement && results.contains(document.activeElement) ? { id: document.activeElement.closest('[data-resource-id]')?.getAttribute('data-resource-id'), index: Array.from(document.activeElement.closest('article')!.querySelectorAll('a,button,summary')).indexOf(document.activeElement) } : null;
-  results.innerHTML = resources.map(r => card(r, dataset!, site, false, 3, now)).join('') || `<p class="message-card">${viewResources.length ? c.noResults(selectedView, includeAll) : c.noListings(selectedView)}</p>`;
+  results.innerHTML = resources.map(r => card(r, dataset!, site, false, 3, now)).join('') || `<p class="message-card">${!viewResources.length ? c.noListings(selectedView) : matching.length ? c.noneScheduledToday(selectedView) : c.noResults(selectedView, includeAll)}</p>`;
   for (const resource of resources) {
     const element = results.querySelector(`[data-resource-id="${resource.id}"]`)!;
     if (position && resource.location?.coordinates) {

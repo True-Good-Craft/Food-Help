@@ -62,4 +62,6 @@ test('the today filter includes future hours and preserves keyboard category sel
   const meals = page.locator('[data-category="prepared_meals"]'); await meals.focus(); await page.keyboard.press('Space');
   await expect(meals).toHaveAttribute('aria-pressed', 'true'); await expect(meals).toBeFocused(); await expect(page.locator('#resource-list article')).toHaveCount(1);
   await page.clock.setSystemTime(new Date('2026-09-07T18:00:00Z')); await page.locator('[data-category="all"]').click(); await expect(page.locator('#resource-list article')).toHaveCount(0);
+  await expect(page.locator('#resource-list .message-card')).toContainText('No Emergency food places have published hours for the rest of today.');
+  await page.locator('#scheduled').uncheck(); await expect(page.locator('#resource-list article').first()).toBeVisible();
 });
