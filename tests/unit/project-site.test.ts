@@ -21,7 +21,7 @@ test('project source validation rejects unsafe integration and ambiguous communi
   assert.doesNotThrow(() => assertProjectSite(base));
   assert.throws(() => assertProjectSite({ ...base, analytics: { enabled: true } }), /no approved analytics/);
   assert.throws(() => assertProjectSite({ ...base, canonical_origin: 'http://food-help.ca' }), /HTTPS origin/);
-  const support = { heading: 'Help', description: 'Description', ways: [{ title: 'Share it', description: 'Tell people' }], label: 'Ask about supporting', email_subject: 'Supporting' };
+  const support = { heading: 'Help', description: 'Description', ways: [{ title: 'Share it', description: 'Tell people' }], label: 'Ask about supporting', email_subject: 'Supporting', email_body: 'Hi' };
   assert.doesNotThrow(() => assertProjectSite({ ...base, support }));
   assert.throws(() => assertProjectSite({ ...base, support: { ...support, ways: [] } }), /one to six/);
   assert.throws(() => assertProjectSite({ ...base, support: { ...support, ways: [{ title: 'Sponsor', description: 'A month is $2,400' }] } }), /must not publish prices/);

@@ -44,7 +44,8 @@
       }
     ],
     "label": "Ask about supporting Food Help",
-    "email_subject": "Supporting Food Help"
+    "email_subject": "Supporting Food Help",
+    "email_body": "Hi Jamie,\n\nI'd like to help keep Food Help running.\n\nMy name:\nOrganization (if any):\nCommunity: Kingston / Brockville / other\nHow I'd like to help (share it, keep flyers on hand, send a correction, sponsor a community, something else):\n\nAnything else:\n"
   },
   "repository_url": "https://github.com/True-Good-Craft/Food-Help",
   "setup_url": "https://github.com/True-Good-Craft/Food-Help#start-independently",
