@@ -14,7 +14,11 @@ test('project homepage works on mobile, by keyboard and without JavaScript', asy
     await expect(page.getByRole('link', { name: 'Email Jamie' })).toHaveAttribute('href', /mailto:jamie@truegoodcraft\.ca/);
     await expect(page.getByRole('link', { name: 'Open Brockville directory' })).toHaveAttribute('href', 'https://brockville.food-help.ca/');
     await expect(page.getByRole('heading', { name: 'Help keep Food Help running' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Ask about supporting Food Help' })).toHaveAttribute('href', /mailto:jamie@truegoodcraft\.ca\?subject=Supporting%20Food%20Help/);
+    await expect(page.getByRole('link', { name: 'Ask about supporting Food Help' })).toHaveAttribute('href', /^mailto:jamie@truegoodcraft\.ca\?subject=Supporting%20Food%20Help&body=Hi%20Jamie/);
+    const supportSection = page.locator('#support');
+    await expect(supportSection.getByRole('link', { name: 'jamie@truegoodcraft.ca' })).toBeVisible();
+    await expect(supportSection.getByRole('link', { name: 'Gmail' })).toHaveAttribute('href', /^https:\/\/mail\.google\.com\/mail\/\?view=cm&fs=1&to=jamie%40truegoodcraft\.ca&su=Supporting%20Food%20Help&body=/);
+    await expect(supportSection.getByRole('link', { name: 'Outlook' })).toHaveAttribute('href', /^https:\/\/outlook\.live\.com\/mail\/0\/deeplink\/compose\?to=jamie%40truegoodcraft\.ca&subject=Supporting%20Food%20Help/);
     await expect(page.getByRole('link', { name: 'Support', exact: true })).toHaveAttribute('href', '/#support');
     await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Support us' })).toHaveAttribute('href', '/#support');
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
