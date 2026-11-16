@@ -54,6 +54,23 @@ describe('directory presentation and schedule decisions', () => {
     expect(html).toContain('<li>Monday: From 13:00; no set closing time</li>');
     expect(publishedSchedule(r, site, new Date('2026-09-07T18:00:00Z')).kind).toBe('unknown');
   });
+  it('reads a dated schedule as its listed dates, and an unconfirmed one as unknown', () => {
+    const r = resource(), now = new Date('2026-09-07T07:00:00Z');
+    r.schedule = { ...r.schedule, kind: 'dated', weekly: [], valid_from: '2026-09-01', valid_to: '2026-09-30', exceptions: [{ date: '2026-09-10', confirmed: true, intervals: [{ opens: '10:00', closes: '12:00' }], note: 'Market date', evidence_ids: ['example-source'] }] };
+    expect(publishedSchedule(r, site, now)).toMatchObject({ kind: 'none', upcoming: { date: '2026-09-10', opens: '10:00', closes: '12:00', daysAway: 3 } });
+    expect(scheduledToday(r, site, now)).toBe(false);
+    expect(publishedSchedule(r, site, new Date('2026-09-10T08:00:00Z')).kind).toBe('later'); expect(scheduledToday(r, site, new Date('2026-09-10T08:00:00Z'))).toBe(true);
+    expect(publishedSchedule(r, site, new Date('2026-10-01T08:00:00Z')).kind).toBe('unknown');
+    r.schedule.confirmed = false; expect(publishedSchedule(r, site, now).kind).toBe('unknown');
+  });
+  it('names no next date when none is published in the next few weeks', () => {
+    const r = resource(), now = new Date('2026-09-07T18:00:00Z');
+    r.schedule.weekly = r.schedule.weekly.map(day => day.day === 1 ? day : { ...day, state: 'closed', intervals: [] });
+    expect(publishedSchedule(r, site, now).upcoming?.date).toBe('2026-09-14');
+    r.schedule.weekly = r.schedule.weekly.map(day => day.day === 1 ? day : { ...day, state: 'unknown', intervals: [] });
+    r.schedule.valid_to = '2026-09-10'; expect(publishedSchedule(r, site, new Date('2026-09-07T18:00:00Z')).upcoming).toBeUndefined();
+    expect(scheduleSummary(r, site, now).detail).toBe('See the weekly hours below.');
+  });
   it('shortens twelve-hour times without dropping minutes or 24-hour clocks', () => {
     const ca = { ...site, locale: 'en-CA' }, range = (...args: Parameters<typeof formatTimeRange>) => formatTimeRange(...args).replace(/\s/g, ' ');
     expect(range('09:00', '11:00', ca)).toBe('9–11 a.m.');
